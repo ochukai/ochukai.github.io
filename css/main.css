@@ -651,7 +651,7 @@ textarea {
 }
 .header-inner {
   margin: 0 auto;
-  padding: 120px 0 10px;
+  padding: 130px 0 30px;
   width: 1200px;
 }
 .one-column .header-inner {
@@ -974,7 +974,7 @@ textarea {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff3c03;
+  background: #574f5e;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -1303,9 +1303,6 @@ textarea {
     text-align: justify;
   }
 }
-.posts-expand .post-body p {
-  text-indent: 2em;
-}
 .posts-expand .post-body h2,
 .posts-expand .post-body h3,
 .posts-expand .post-body h4,
@@ -1363,7 +1360,7 @@ textarea {
 }
 .posts-expand .post-eof {
   display: block;
-  margin: 160px auto 120px;
+  margin: 80px auto;
   width: 8%;
   height: 1px;
   background: #ccc;
