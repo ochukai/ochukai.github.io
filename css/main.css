@@ -215,7 +215,6 @@ h6 {
   margin: 0;
   padding: 0;
   font-weight: bold;
-  line-height: 1;
   font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 h1 {
@@ -457,12 +456,12 @@ td {
 }
 pre,
 .highlight {
-  background: #2d2d2d;
+  background: #002451;
   margin: 20px 0;
   padding: 15px;
   overflow: auto;
   font-size: 13px;
-  color: #ccc;
+  color: #fff;
   line-height: 1.6;
 }
 .highlight .gutter pre,
@@ -500,7 +499,7 @@ pre code {
 }
 .highlight figcaption {
   font-size: 0.85em;
-  color: #999;
+  color: #7285b7;
   line-height: 1em;
   margin-bottom: 1em;
 }
@@ -527,7 +526,7 @@ pre code {
   border-style: solid;
   border-color: #ccc;
   border-width: 1px 0;
-  background: #2d2d2d;
+  background: #002451;
   padding: 15px 40px 15px 15px;
 }
 .gist .gist-file {
@@ -553,8 +552,8 @@ pre code {
   border: none;
 }
 .gist .gist-file .gist-meta {
-  background: #2d2d2d;
-  color: #999;
+  background: #002451;
+  color: #7285b7;
   font: 13px Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
   text-shadow: 0 0;
   padding: 0;
@@ -569,7 +568,7 @@ pre code {
   text-decoration: underline;
 }
 pre .comment {
-  color: #999;
+  color: #7285b7;
 }
 pre .variable,
 pre .attribute,
@@ -583,7 +582,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #f2777a;
+  color: #ff9da4;
 }
 pre .number,
 pre .preprocessor,
@@ -591,11 +590,11 @@ pre .built_in,
 pre .literal,
 pre .params,
 pre .constant {
-  color: #f99157;
+  color: #ffc58f;
 }
 pre .ruby .class .title,
 pre .css .rules .attribute {
-  color: #9c9;
+  color: #d1f1a9;
 }
 pre .string,
 pre .value,
@@ -603,11 +602,11 @@ pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata {
-  color: #9c9;
+  color: #d1f1a9;
 }
 pre .title,
 pre .css .hexcolor {
-  color: #6cc;
+  color: #9ff;
 }
 pre .function,
 pre .python .decorator,
@@ -617,15 +616,34 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #69c;
+  color: #bbdaff;
 }
 pre .keyword,
 pre .javascript .function {
-  color: #c9c;
+  color: #ebbbff;
+}
+html {
+/* Corrects text resizing oddly in IE6/7 when body font-size is set using em units */
+  font-size: 62.5%;
+  overflow-y: scroll;
+/* Keeps page centered in all browsers regardless of content height */
+  -webkit-text-size-adjust: 100%;
+/* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+  -ms-text-size-adjust: 100%;
 }
 html,
 body {
   height: 100%;
+}
+body,
+button,
+input,
+select,
+textarea {
+  color: #303538;
+  font-family: '微软雅黑', Helvetica, serif;
+  font-size: 1.6rem;
+  line-height: 1.7;
 }
 .container {
   position: relative;
@@ -633,7 +651,7 @@ body {
 }
 .header-inner {
   margin: 0 auto;
-  padding: 100px 0 70px;
+  padding: 120px 0 10px;
   width: 1200px;
 }
 .one-column .header-inner {
@@ -641,7 +659,7 @@ body {
 }
 @media (min-width: 1600px) {
   .one-column .header-inner {
-    width: 900px;
+    width: 800px;
   }
 }
 .main {
@@ -656,7 +674,7 @@ body {
 }
 @media (min-width: 1600px) {
   .one-column .main-inner {
-    width: 900px;
+    width: 800px;
   }
 }
 .footer {
@@ -675,7 +693,7 @@ body {
 }
 @media (min-width: 1600px) {
   .one-column .footer-inner {
-    width: 900px;
+    width: 800px;
   }
 }
 .headband {
@@ -701,13 +719,8 @@ body {
   position: relative;
   display: inline-block;
   padding: 0 40px;
-  color: #fff;
-  background: #222;
   border-bottom: none;
   font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
-}
-.brand:hover {
-  color: #fff;
 }
 .logo {
   display: inline-block;
@@ -719,7 +732,7 @@ body {
   display: inline-block;
   vertical-align: top;
   line-height: 36px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: normal;
 }
 .site-subtitle {
@@ -961,7 +974,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #dfffbe;
+  background: #ff6c65;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -1243,6 +1256,7 @@ body {
   border-bottom: none;
   line-height: 1.2;
   vertical-align: top;
+  padding-bottom: 6px;
 }
 .posts-expand .post-title-link::before {
   content: "";
@@ -1288,6 +1302,9 @@ body {
   .posts-expand .post-body {
     text-align: justify;
   }
+}
+.posts-expand .post-body p {
+  text-indent: 2em;
 }
 .posts-expand .post-body h2,
 .posts-expand .post-body h3,

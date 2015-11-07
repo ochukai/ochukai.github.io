@@ -4,7 +4,7 @@
   <subtitle><![CDATA[I love Jone.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ochukai.github.io/"/>
-  <updated>2015-10-25T03:27:50.828Z</updated>
+  <updated>2015-11-07T14:36:34.864Z</updated>
   <id>http://ochukai.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ochukai.github.io/2015/10/21/demo/"/>
     <id>http://ochukai.github.io/2015/10/21/demo/</id>
     <published>2015-10-21T02:34:12.000Z</published>
-    <updated>2015-10-25T03:27:50.828Z</updated>
+    <updated>2015-11-07T14:36:34.864Z</updated>
     <content type="html"><![CDATA[<p>如果你使用过 Sass 3.3 之前的版本，那么你一定对那段时光颇有感触，那时候没有现如今这么好的条件，那时候的 Map 还只能用多重列表（lists of list）来模拟。多重列表可以实现复杂数据的嵌套定义，但却不是以键值对的形式实现的，所有当我们需要获取其中特定的某一项时就会比较麻烦。Map 这种数据类型天生就是基于键值对的形式，非常便于组织数据。</p>
 <p>自从可以使用 Map 之后，开发者们开始毫无顾忌地定义 Map 存储数据，比如断点宽度、颜色值、栅格布局等等响应式排版的细节，都被一股脑的塞进了 Map 中。</p>
 <p>那么，有了 Map 之后，我们还有必要使用 List 吗？可能某些人会觉得为了保持向后兼容应该继续使用多重列表模拟 Map，因为可能有些开发者仍然在使用老版本的 Sass 编译器，但实际上，这是多此一举了，Sass 的版本通常由 <code>package.json</code> 或者其他同类型的项目配置文件所控制，往往只需一条命令（<code>gem update sass</code>）即可更新 Sass 的版本，因此基本上无需考虑对老版本的兼容问题。</p>
@@ -67,14 +67,12 @@
 </tr>
 </tbody>
 </table>
-<h2 id="语法比较">语法比较</h2><div class="note"><br>    <h5>测试标题</h5><br>    <p>在下面的示例中，我创建了一个用于控制响应式布局的数据，该数据一共有四个断点，每一个断点都包含了 <code>min-width</code>、<code>max-width</code>、<code>font-size</code> 和 <code>line-height</code> 四个样式。</p><br></div>
-
+<h2 id="语法比较">语法比较</h2><h5 id="测试标题">测试标题</h5><p>在下面的示例中，我创建了一个用于控制响应式布局的数据，该数据一共有四个断点，每一个断点都包含了 <code>min-width</code>、<code>max-width</code>、<code>font-size</code> 和 <code>line-height</code> 四个样式</p>
 <h4 id="Map_语法">Map 语法</h4><p>下面就是使用 Map 存储的数据，具体来说，该 Map 中首先存储了四个用于标识断点的 Key，相对应的是保存具体属性值得 Value。虽然这种形式可读性更高，但是总体代码量却高达 26 行 450 个字符。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$breakpoint-map: (&#10;&#160; &#160; small: (&#10;&#160; &#160; &#160; &#160; min-width: null,&#10;&#160; &#160; &#160; &#160; max-width: 479px,&#10;&#160; &#160; &#160; &#160; base-font: 16px,&#10;&#160; &#160; &#160; &#160; vertical-rhythm: 1.3&#10;&#160; &#160; ),&#10;&#160; &#160; medium: (&#10;&#160; &#160; &#160; &#160; min-width: 480px,&#10;&#160; &#160; &#160; &#160; max-width: 959px,&#10;&#160; &#160; &#160; &#160; base-font: 18px,&#10;&#160; &#160; &#160; &#160; vertical-rhythm: 1.414&#10;&#160; &#160; ),&#10;&#160; &#160; large: (&#10;&#160; &#160; &#160; &#160; min-width: 960px,&#10;&#160; &#160; &#160; &#160; max-width: 1099px,&#10;&#160; &#160; &#160; &#160; base-font: 18px,&#10;&#160; &#160; &#160; &#160; vertical-rhythm: 1.5&#10;&#160; &#160; ),&#10;&#160; &#160; xlarge: (&#10;&#160; &#160; &#160; &#160; min-width: 1100px,&#10;&#160; &#160; &#160; &#160; max-width: null,&#10;&#160; &#160; &#160; &#160; base-font: 21px,&#10;&#160; &#160; &#160; &#160; vertical-rhythm: 1.618&#10;&#160; &#160; )&#10;);</span><br></pre></td></tr></table></figure>
 <h4 id="多重列表语法">多重列表语法</h4><p>下面的多重列表存储了和上面 Map 同样的数据，在多重列表中没有 Key-Value 的对应关系，这意味着要想找到特定的值，必须使用遍历或 <code>nth()</code> 的方式来实现了。从另一个角度来看，多种列表又比 Map 的代码量小得多，总共只有六行 180 个字符。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$breakpoint-list: (&#10;&#160; &#160; (small, null, 479px, 16px, 1.3),&#10;&#160; &#160; (medium, 480px, 959px, 18px, 1.414),&#10;&#160; &#160; (large, 960px, 1099px, 18px, 1.5),&#10;&#160; &#160; (xlarge, 1100px, null, 21px, 1.618)&#10;);</span><br></pre></td></tr></table></figure>
-<h2 id="遍历比较">遍历比较</h2><div class="note info"><br>    <h5>测试标题</h5><br>    <p>从上面简单地比较中可以粗略的看出，多种列表的代码量明显少于 Map。但是，如果我们需要遍历这些值得话，复杂度又是怎样的呢？</p><br></div>
-
+<h2 id="遍历比较">遍历比较</h2><h5 id="测试标题-1">测试标题</h5><p>从上面简单地比较中可以粗略的看出，多种列表的代码量明显少于 Map。但是，如果我们需要遍历这些值得话，复杂度又是怎样的呢？</p><p></p>
 <h4 id="遍历_Map">遍历 Map</h4><p>我们可以使用如下的代码遍历 Map：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@each $label, $map in $breakpoint-map &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>这里的变量 <code>$label</code> 和 <code>$map</code> 会随着对 <code>$breakpoint-map</code> 的遍历被动态地赋值，<code>$label</code> 将会被赋值为 <code>$breakpoint-map</code> 的 Key，而 <code>$map</code> 会被赋值为 <code>$breakpoint-map</code> 的 Value。为了在遍历过程中获取特定值，我们就需要使用 Sass 原生的 <code>map-get()</code> 函数，使用该函数需要传入两个参数：Map 的名字和求取的 Key，最后返回该 Map 中匹配该 Key 的 Value。</p>
