@@ -1,0 +1,582 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="angular,expressjs,jinger,node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="去年，也就是 2014 年的 12-14 日，我写下了第一篇关于 jinger 的博客。时间已经过去 86 天，近乎 3 个月的时间了，我却仅仅做了这么一点点东西，自己想起来都觉会咬牙切齿，没错，咬牙切齿是我最近常有的状态，再加上眉头紧锁，捶胸顿足等。
+虽然做得少，但也不是没做出东西，现在总结一下，希望能填补一下心灵的空缺，同时也可以激励一下自己。从去年五月份出院后整个人都不好了，再加上需要养病，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="京儿项目总结与展望">
+<meta property="og:url" content="http://ochukai.github.io/jinge-summary-and-expect/index.html">
+<meta property="og:site_name" content="I am Oliver">
+<meta property="og:description" content="去年，也就是 2014 年的 12-14 日，我写下了第一篇关于 jinger 的博客。时间已经过去 86 天，近乎 3 个月的时间了，我却仅仅做了这么一点点东西，自己想起来都觉会咬牙切齿，没错，咬牙切齿是我最近常有的状态，再加上眉头紧锁，捶胸顿足等。
+虽然做得少，但也不是没做出东西，现在总结一下，希望能填补一下心灵的空缺，同时也可以激励一下自己。从去年五月份出院后整个人都不好了，再加上需要养病，">
+<meta property="og:updated_time" content="2015-11-07T15:22:59.595Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="京儿项目总结与展望">
+<meta name="twitter:description" content="去年，也就是 2014 年的 12-14 日，我写下了第一篇关于 jinger 的博客。时间已经过去 86 天，近乎 3 个月的时间了，我却仅仅做了这么一点点东西，自己想起来都觉会咬牙切齿，没错，咬牙切齿是我最近常有的状态，再加上眉头紧锁，捶胸顿足等。
+虽然做得少，但也不是没做出东西，现在总结一下，希望能填补一下心灵的空缺，同时也可以激励一下自己。从去年五月份出院后整个人都不好了，再加上需要养病，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> 京儿项目总结与展望 | I am Oliver </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">I am Oliver</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I love Jone.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                京儿项目总结与展望
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-03-10T21:22:40+08:00" content="2015-03-10">
+              2015-03-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/angularjs/生活杂记/" itemprop="url" rel="index">
+                    <span itemprop="name">生活杂记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>去年，也就是 2014 年的 12-14 日，我写下了第一篇关于 jinger 的博客。时间已经过去 86 天，近乎 3 个月的时间了，我却仅仅做了这么一点点东西，自己想起来都觉会咬牙切齿，没错，咬牙切齿是我最近常有的状态，再加上眉头紧锁，捶胸顿足等。</p>
+<p>虽然做得少，但也不是没做出东西，现在总结一下，希望能填补一下心灵的空缺，同时也可以激励一下自己。从去年五月份出院后整个人都不好了，再加上需要养病，慢慢养成了懈怠的习惯，每次做不好事情都会有理由，“因为我有病。”</p>
+<hr>
+<p>上次写了一半，最近经常会把事情做一半然后不了了之了，这种习惯很不好!!!</p>
+<p>事情做到一半经常会断了思路（这里一半是数词，做事情的任何时候思路都会中断），无法高效的继续，我个人很讨厌这种感觉。这时容易分心做一些别的事情，比如正在写代码，突然不会写了，会上网查资料，网页上面又有各种各样的信息，稍微手贱就可能走上不归路，而在浏览的过程中随时也都有可能就网页上的信息联想起自己曾经想要尝试但是一直憋在心里的事情，看到 ghost 发布了新版本，咦~ 我的还是旧版的呢，于是我就想要更新一下，什么~npm也要更新，去官网看看更新了什么内容了吧， アレ‐　这里有一个 package 排行榜，看看有没有我需要的吧<del>~</del>~ 于是我彻底走远了！！！</p>
+<p>这是一种什么心理呢？ 猎奇，喜新厌旧，注意力不集中，肾虚？ 好可怕~~ 当我们做一件事情做不下去了的时候，新的事情肯定会更容易被我们接受，更容易开始。我在写博客写不下去的时候可能随时都会打开一个新 tab 进入淘宝，然后开始一次愉快的购物旅程，然后这一篇就会等到周末再发布了！</p>
+<p>我们务必时时注意自己当前的想法及行为（推荐一本书《当下的力量》），我要做什么，我正在做什么，距离目标还有多远 ? 我们要活在当下，过去的事情已经不存在，将来的事情还没有发生。不知道为什么我突然想起这句话，但<strong>对当下保持觉知是高效工作的一个好办法!!! </strong>突然想到前几天在知乎上面看到的一个问题，题主表示很迷茫，没有方向，很羡慕别人，然后有一个回答：你羡慕别人什么，你与他相比还有多少差距？ 这个回答深深的刺激了我，戳穿了盲目的恐惧，也量化了恐惧。看到了差距，量化了差距，就相当于有了目标，整个人都有劲了。</p>
+<h2 id="京儿的总结">京儿的总结</h2><h4 id="我要做什么">我要做什么</h4><p>京儿项目是我第好几个 node 项目，但与之前de项目不同的地方在于这个是给别人做的，也什么时间要求，很宽松，这也导致我效率很低。这个项目是用来展示产品和宣传公司的，这跟大部分的企业类网站类似，除此之外我还想加入商城的功能。</p>
+<h4 id="我正在做什么">我正在做什么</h4><p>京儿项目至今，我写了后台管理，各种增删改查，登陆注销。</p>
+<ul>
+<li>后台：node + express + mysql</li>
+<li>前台：angular + angular-bootstrap<br>真的算是很简陋的项目了，但是我却做的并不是那么得心应手，时间不足，下班回家累的跟狗似的，几乎不想继续写代码了。编码的过程中加入了一些我新接触的概念，比如基于 token 的登陆验证模式，angular-resource 的运用， angular-directive等，都是边学边用，很慢~~哦， angular是我新学的啦，但是却有一种老相识的感觉。</li>
+</ul>
+<h4 id="距离目标还有多远_?">距离目标还有多远 ?</h4><p>还差一个前台！！！</p>
+<p>现在后台主页每次都会加载几十个 js，我没有加上 cdn，代码没有加 ut，没有自动打包。</p>
+<p>&nbsp;</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angular/" rel="tag">#angular</a>
+          
+            <a href="/tags/expressjs/" rel="tag">#expressjs</a>
+          
+            <a href="/tags/jinger/" rel="tag">#jinger</a>
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angularjs-service-vs-factory/" rel="next" title="AngularJS: Service 与 Factory 的对比">
+                <i class="fa fa-chevron-left"></i> AngularJS: Service 与 Factory 的对比
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/protect-yourself/" rel="prev" title="在网络暴力中捍卫自己">
+                在网络暴力中捍卫自己 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Oliver Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    OnexT
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

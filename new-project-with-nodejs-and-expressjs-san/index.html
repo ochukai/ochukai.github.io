@@ -1,0 +1,804 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="angular,directive,expressjs,jinger,node,token," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="窗外阳光明媚，冬风和煦，路上行人点点，车流不息，我站在屋内，手中拿着旺旺（或旺仔）雪饼，嘴里嚼着，很脆。阳光洒在我的脸上，身上，很温暖。我肆意的享受着只有不开窗户才能体会到的冬天的温暖。
+我忽而想起了前天晚上，也就是元旦跨年夜，发生在外滩的踩踏事件，今天官方发布了死亡名单，都是一些年轻人葬身于此，大概只有年轻人才会在跨年夜去外滩凑热闹，看灯光表演吧。我在那一天可是早早的就被同事叫过去吃饭了，并且打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="New Project with Nodejs and Expressjs - san">
+<meta property="og:url" content="http://ochukai.github.io/new-project-with-nodejs-and-expressjs-san/index.html">
+<meta property="og:site_name" content="I am Oliver">
+<meta property="og:description" content="窗外阳光明媚，冬风和煦，路上行人点点，车流不息，我站在屋内，手中拿着旺旺（或旺仔）雪饼，嘴里嚼着，很脆。阳光洒在我的脸上，身上，很温暖。我肆意的享受着只有不开窗户才能体会到的冬天的温暖。
+我忽而想起了前天晚上，也就是元旦跨年夜，发生在外滩的踩踏事件，今天官方发布了死亡名单，都是一些年轻人葬身于此，大概只有年轻人才会在跨年夜去外滩凑热闹，看灯光表演吧。我在那一天可是早早的就被同事叫过去吃饭了，并且打">
+<meta property="og:updated_time" content="2015-11-07T15:22:59.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="New Project with Nodejs and Expressjs - san">
+<meta name="twitter:description" content="窗外阳光明媚，冬风和煦，路上行人点点，车流不息，我站在屋内，手中拿着旺旺（或旺仔）雪饼，嘴里嚼着，很脆。阳光洒在我的脸上，身上，很温暖。我肆意的享受着只有不开窗户才能体会到的冬天的温暖。
+我忽而想起了前天晚上，也就是元旦跨年夜，发生在外滩的踩踏事件，今天官方发布了死亡名单，都是一些年轻人葬身于此，大概只有年轻人才会在跨年夜去外滩凑热闹，看灯光表演吧。我在那一天可是早早的就被同事叫过去吃饭了，并且打">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> New Project with Nodejs and Expressjs - san | I am Oliver </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">I am Oliver</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I love Jone.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                New Project with Nodejs and Expressjs - san
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-01-03T13:03:26+08:00" content="2015-01-03">
+              2015-01-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/angularjs/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>窗外阳光明媚，冬风和煦，路上行人点点，车流不息，我站在屋内，手中拿着旺旺（或旺仔）雪饼，嘴里嚼着，很脆。阳光洒在我的脸上，身上，很温暖。我肆意的享受着只有不开窗户才能体会到的冬天的温暖。</p>
+<p>我忽而想起了前天晚上，也就是元旦跨年夜，发生在外滩的踩踏事件，今天官方发布了死亡名单，都是一些年轻人葬身于此，大概只有年轻人才会在跨年夜去外滩凑热闹，看灯光表演吧。我在那一天可是早早的就被同事叫过去吃饭了，并且打保皇到凌晨4点。看到名单的时候其实我是很有感触的，好多人都比我小一两岁，也有跟我同岁的，他们已经死了，死在我曾经去过并且同样抱怨过人多的地方，真的我都不知道该用什么词语去描绘我的心情。他们死了，我还活着，他们还没有来的及体会这世间的险恶与美好。</p>
+<p>上一篇记录了我使用 angular 和 bootstrap 等框架搭建了一个后台，然后使用 bower 解决了前端依赖太多以及依赖版本控制的问题，一切都进行的非常顺利。</p>
+<p>最近这一周可谓轻松，因为元旦放假了三天，只上班三天，不过下一周就要工作6天了。现在我就记录一下休息的前两天我做了什么。</p>
+<hr>
+<ul>
+<li>把项目放到了 github  上：<a href="https://github.com/xiaoyee/jinger" target="_blank" rel="external">Jinger</a></li>
+<li>完成了后台管理员的登陆和注册</li>
+<li>完成了我的第一个 angular 的 directive， 可以根据当前登录用户显示其对应的菜单</li>
+</ul>
+<hr>
+<h2 id="登陆和注册">登陆和注册</h2><p>登陆和注册是网站最最基本的两个功能，还可以加上忘记密码。</p>
+<p>传统思维的登陆可以总结为： 输入用户名/密码 - 提交 - 服务器接收验证 - <strong>服务器保存到 session</strong> - 前台提示登陆成功，这是大部分网站使用的方式，没有什么不好，但是现在有了好多种客户端，包括手机，平板上的 app 等，他们是不支持 session/cookie 的，所以现在好多服务器端采用 token 的方式保存登陆用户。</p>
+<p>基于 token 的登陆方式，这里有一篇文章我认为翻译的很好，而且我就是通过这一篇文章才理解这一种方式的：<a href="http://zhuanlan.zhihu.com/FrontendMagazine/19920223" target="_blank" rel="external">使用 AngularJS &amp; NodeJS 实现基于 token 的认证应用</a>。</p>
+<blockquote>
+<ol>
+<li>用户在登录表单中输入 <strong>用户名</strong> 和 <strong>密码</strong> ，然后点击 <strong>登录</strong> ；</li>
+<li>请求发送之后，通过在后端查询数据库验证用户的合法性。如果请求有效，使用在数据库得到的信息创建一个 token，然后在响应头信息中返回这个的信息，目的是把这个 token 存储到浏览器的本地存储中；</li>
+<li>在每次发送访问应用中受限制的后端服务器的请求时提供 token 信息；</li>
+<li>如果从请求头信息中拿到的 token 有效，允许用户访问受限制的后端服务器，并且返回 JSON 或者 XML。<br>虽然我的的网站暂时没有需要做成app的打算但是我很喜欢这种方式，所以我把登陆和注册按照这种方式写了。</li>
+</ol>
+</blockquote>
+<h3 id="数据库设计">数据库设计</h3><p>users 表的建表语句如下，增加了 token 这一列，这也是可以用来唯一确定这一个 user 的列。</p>
+<pre class="lang:mysql decode:true">CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_user_token` (`token`),
+  UNIQUE KEY `index_user_username` (`username`)
+)</pre>
+之前不了解这一种登录方式的时候以为 token 是可以变得，我以为每一次在没有保存 token 的地方登陆都要新生成一个的 token，而生成 token 的时候需要的 salt 也是随机的，把每次生成的 token 都保存起来，设计成一对多的表，每次登陆前检查一下是否在保存了 token ，这样也可以起到记住密码的作用，不过随着登录次数和登陆场所的增多，token 也就会变得更多，会很混乱。
+
+一个 user 对应多个 token 的方式我有点 hold 不住，暂时采用一对一的方式。
+
+### 数据库访问过程
+
+<pre class="lang:js decode:true  ">User.prototype.login = function (username, password) {
+
+    var columns = ['id', 'username', 'password', 'token'],
+        sql     = 'select ?? from ?? where username = ?';
+
+    return db.query(sql, [columns, this.tableName, username])
+        .then(function (rows) {
+            if (rows &amp;&amp; rows.length &gt; 0) {
+                var user = rows[0];
+                if (user.password == password) {
+                    delete user.password;
+                    return user;
+                }
+            }
+        });
+
+};</pre>
+用户登录的时候会传递用户名和密码到服务端，其实这里的方式也可以分两步
+
+1.  验证用户名和密码
+2.  根据验证成功的用户 id 取出其对应的 token
+而我觉得这样需要访问两次数据库而且逻辑上变复杂了，我脑容量有限，喜欢一步到位。取出所有，密码正确的话返回当前用户信息。
+
+### express
+
+<pre class="lang:js decode:true ">/*
+ * User login.
+ */
+router.post('/signin', function (req, res) {
+
+    // retrieve username and password.
+    var username = req.body.username;
+    var password = req.body.password;
+
+    mUser
+        .login(username, cryptor.md5(password))
+        .delay(1000)
+        .then(function (result) {
+            if (result) {
+                result.success = true;
+                res.json(result);
+                return;
+            }
+
+            res.json({
+                success: false
+            });
+        });
+});</pre>
+delay(1000) 是因为我喜欢看提交请求后屏幕最上方的 loading-bar 的效果，很爽。
+
+### 登录页面
+
+略
+
+### angular的操作
+
+前端使用了 angular 之后，也分出了 controller 与 service，使用 service 是为了解决不同 controller 不同 scope 具有相同逻辑操作的问题。
+<pre class="lang:xhtml decode:true ">&lt;form class="form-signin" role="form" ng-submit="login()"&gt;
+    &lt;input type="text" class="form-control" placeholder="用户名" required autofocus ng-model="username"&gt;
+    &lt;input type="password" class="form-control" placeholder="密码" required ng-model="password"&gt;
+    &lt;div class="checkbox"&gt;
+        &lt;label&gt;
+            &lt;input type="checkbox" value="remember-me" ng-model="rememberMe"&gt;记住密码
+        &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;button class="btn btn-lg btn-primary btn-block" type="submit"&gt;确认登陆&lt;/button&gt;
+&lt;/form&gt;</pre>
+
+<ul>
+<li>ng-model 是angular 的一个自带的 directive ，angular 会在当前 scope 新建一个变量 username，当 input 的 value 改变时，username 的值会跟着改变，password 也是如此。而且 username 的值改变的话，页面上也会实时显示它的值，这应该叫做双向绑定吧。</li>
+<li><p>ng-submit 也是一个 directive，当我们点击提交表单时会执行 login() 函数。<br><pre class="lang:default decode:true">$scope.login = function () {<br>var rememberMe = $scope.rememberMe,</pre></p>
+<pre><code>formData = {
+    username: <span class="variable">$scope</span>.username,
+    password: <span class="variable">$scope</span>.password
+};
+</code></pre><p>LoginService</p>
+<pre><code>.login(formData)
+.success(<span class="function"><span class="keyword">function</span> <span class="params">(res)</span> </span>{
+    <span class="keyword">if</span> (res.success) {
+        <span class="comment">// save the successful user when logged successfully.</span>
+        store.<span class="keyword">set</span>(<span class="string">'token'</span>, res.token);
+        <span class="comment">// redirect to /me.</span>
+        $location.path(<span class="string">'/me'</span>);
+    }
+});
+</code></pre><p>};</p>
+</li>
+</ul>
+<p>// ——————————————————-</p>
+<p>app.factory(‘LoginService’, [‘$http’,<br>    function ($http) {<br>        return {<br>            regist: function (data) {<br>                return $http.post(baseUrl + ‘/signup’, data);<br>            },<br>            login: function (data) {<br>                return $http.post(baseUrl + ‘/signin’, data);<br>            }<br>        };<br>    }]);<br>在 controller 里面把用户输入的用户名密码发送到服务器，如果服务器正常返回的话，把返回的 token 保存到浏览器的 localStorage ，其实在这个过程中 rememberMe 还没有起到作用，好像选不选择都会记住，如果不记住（不保存 token 到 localStorage）的话页面的访问都会是个问题，因为每次请求都需要带上 token 的值。要想取消保存的 token 只能在 logout 的时候删掉 localStorage 中的token。</p>
+<pre class="lang:js decode:true">$httpProvider.interceptors
+    .push(['$q', '$location', 'store',
+        function ($q, $location, store) {
+            return {
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    var token = store.get('token');
+                    if (token) {
+                        config.headers.Authorization = 'Bearer ' + token;
+                    }
+                    return config;
+                },
+                'responseError': function (response) {
+                    if (response.status === 401 || response.status === 403) {
+                        $location.path('/login');
+                    }
+                    return $q.reject(response);
+                }
+            };
+        }]);
+    }]);</pre>
+> 在应用的注册或者登录部分，不记名 token 响应了这个请求并且这个 token 被存储到本地存储中。当你向后端请求一个服务时，你需要把这个 token 放在头部中。你可以使用 AngularJS 的拦截器实现这个。
+> 
+> 
+> 在上面的代码中，每次请求都会被拦截并且会把 token 的值放到头部中。
+这在登陆之后向服务器端发送请求会很方便。
+<pre class="lang:default decode:true">function ensureAuthorized(req, res, next) {
+    var bearerToken;
+    var bearerHeader = req.headers["authorization"];
+
+    if (typeof bearerHeader !== 'undefined') {
+        var bearer = bearerHeader.split(" ");
+        bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.send(403).end();
+    }
+}
+
+// ----------------------------------------------------
+// in app.js
+app.use('/admin', authorizer, dashboard);</pre>
+服务器端每次处理请求的时候会自动按照以上规则，如果是属于 **/admin** 请求，会执行 authorizer 这个 middleware，其他请求 url 则不会。
+
+注册的话就很简单了，只是要处理用户名是否存在的问题。
+
+以上。
+
+## admin-sider
+
+angular 的 directive 是挺方便的一个东西。可以定义为 element， attribute，class， comment 四种格式，有点像 java 的自定义 tag。把一个前端组件封装成一个 directive 是一个不错的选择，至少我是这么认为的，比如我的 admin-sider。关于 directive 的知识可以参考这一篇博客 [Angular Directive](http://inching.org/2014/09/24/angular-directive/)。
+
+admin-sider 是一个侧边菜单。根据登录用户的不同，会显示不同的菜单项。
+<pre class="line-height:20 lang:js decode:true  ">var app = angular.module('myApp');
+app.directive("adminSider", ['$rootScope', 'store',
+    function ($rootScope, store) {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '/tpl/sider.html',
+            link: function ($scope, $elem, $attrs) {
+                var menus = store.get('menus');
+                if(typeof menus != 'undefined' &amp;&amp; menus != null){
+                    $rootScope.menus = menus;
+                    $rootScope.isRetriveMenus = true;
+                }
+            }
+        };
+    }]);</pre>
+其中
+
+*   restrict 限制了这个 directive 的形式，可以有四个值，A-attribute，E-element，C-class， M-comment
+*   replace 默认为 false，是否替换元标签，false 的话会保留，然后插入到里面，比如：**&lt;hello&gt;&lt;/hello&gt;** --&gt; **&lt;hello&gt;_&lt;a href='#'&gt;&lt;/a&gt;_&lt;/hello&gt;**；如果为 true，则表示替换：**&lt;hello&gt;&lt;/hello&gt;** --&gt; _**&lt;a href='#'&gt;&lt;/a&gt;**_
+*   template/templateUrl 指定模板或者模板文件。`template` 用于 templete 内容比较少的情况，更多的情况下你可能会见到 `templateUrl`。
+*   link 和 compile 的属性比较复杂。**待续！**
+*   关于名字 adminSider 虽然是 camelCase，但是在网页里面可以这样用：&lt;admin-sider&gt;&lt;/admin-sider&gt;，绝对不可以写成&lt;admin-sider/&gt;（这样会被解析成A）。
+
+### directive 的生命周期
+
+当应用启动时，Angular 开始使用 **$compile** 服务遍历 DOM 元素，试图使用注册过的指令列表来匹配每个元素、属性、注释、CSS 类，一旦匹配成功，AngularJS 调用相应指令的 compile 函数，这个 compile 函数返回一个 link 函数，被添加到稍后执行的 link 函数列表中。作用域在编译阶段还没有准备好，在编译阶段还不能使用作用域中数据。
+
+要注意的是 compile 函数不能访问 scope，并且必须返回一个 link 函数。只能在链接函数中使用 DOM，因为在编译函数中可能移除或复制元素。如果没有设置 compile 函数，你可以正常地配置 link 函数，**有了compile，就不能有 link，link 函数由 compile 函数返回**。
+
+一旦所有的指令编译完成便进入链接阶段。在这个阶段，作用域已准备就绪，所有收集的 link 函数将被一一执行。指令创造出来的模板会在正确的 scope 下被解析和处理，然后返回具有事件响应的真实的 DOM 节点。
+
+指令的 link 函数主要用来为 DOM 元素添加事件监听、监视模型属性变化、以及更新 DOM。我们可以在 link 函数中访问指令的 scope。
+
+大多数的情况下，你只需要使用 link 函数。这是因为大部分的指令只需要考虑注册事件监听、监视模型、以及更新 DOM 等，这些都可以在 link 函数中完成。凡是你使用 link 函数的地方，你都可以使用一个 pre 和 post 属性组成的对象，这两个属性分别表示前处理链接链接函数和后处理链接链接函数。默然情况下，链接函数指的是后处理链接函数.
+<pre class="lang:js decode:true">link: function LinkFunction($scope, $element, $attributes) { ... }
+//...
+link: {
+    // Pre-linking 是在所有子元素被链接之前执行，而 post-ling 是在所有子元素链接之后。
+    // 只有在 post-link 函数中做 DOM 变换才是安全的。
+    pre: function PreLinkFunction($scope, $element, $attributes) { ... },
+    post: function PostLinkFunction($scope, $element, $attributes) { ... }
+}</pre>
+
+<h3 id="Transclusion">Transclusion</h3><p><strong>略！！！</strong></p>
+<h3 id="admin-sider_的生命周期">admin-sider 的生命周期</h3><p><pre class="lang:xhtml decode:true">&lt;div id=”nav-sider” class=”nav-collapse”&gt;<br>    &lt;ul role=”navigation” class=”nav nav-pills nav-stacked”&gt;<br>        &lt;li ng-class=”{‘active’: menu.isActive}” ng-repeat=”menu in menus”&gt;<br>            &lt;a href=”#“&gt;  &lt;/a&gt;<br>        &lt;/li&gt;<br>    &lt;/ul&gt;<br>&lt;/div&gt;</pre><br>adminSider 是用来显示菜单的，所以需要有一个菜单列表，而且用户登陆之前，登陆后，注销后之后的菜单列表是不一样的，所以菜单列表就不能保存在adminSider 的 scope 里面。经过我查询资料发现有一个 $rootScope 可供使用，这是一个全局的，单例的对象，每一次切换 view ，对应的 controller 的 $scope 会变化，但 $rootScope 不会，于是我想把菜单列表保存在 $rootScope 里面。</p>
+<p>但是又出现了一个问题如果访问某一个页面的时候出现了卡顿，而用户不知道我是用 angular 写的网站，她点了一下刷新，那就毁了：菜单列表被清空了。这样还是不行，只能把菜单列表保存在 localStorage 了，这样就算刷新页面之后 $rootScope 里面没有了，还可以从 localStorage 里面取，而且如果需要销毁的话只需要随着 token 一起被删除就好了。</p>
+<p><pre class="lang:js decode:true ">if (‘/me’ === currentUrl &amp;&amp; token) {<br>    // update menus<br>    menuService<br>        .myMenus()<br>        .success(function (res) {<br>            if (res.success) {<br>                var menus = res.menus;<br>                $rootScope.menus = menus;<br>                $rootScope.isRetriveMenus = true;<br>                // save in localStorage.<br>                store.set(‘menus’, $rootScope.menus);<br>            }<br>        });<br>}</pre><br>像上面的代码，获取到菜单列表后保存在 localStorage，每次刷新页面肯定会执行 admin-sider 的 link 函数, 如下可以直接从 localStorage 里面取。</p>
+<p><pre class="lang:default decode:true ">link: function ($scope, $elem, $attrs) {<br>    var menus = store.get(‘menus’);<br>    if(typeof menus != ‘undefined’ &amp;&amp; menus != null){<br>        $rootScope.menus = menus;<br>        $rootScope.isRetriveMenus = true;<br>    }<br>}</pre><br>最重要的一点，admin-sider 中的 menus <strong>来源于 $rootScope.</strong></p>
+<hr>
+<p>今天写的有点长了，但是好多东西都表达不清楚。还需要多加练习，慢慢学会写 blog。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angular/" rel="tag">#angular</a>
+          
+            <a href="/tags/directive/" rel="tag">#directive</a>
+          
+            <a href="/tags/expressjs/" rel="tag">#expressjs</a>
+          
+            <a href="/tags/jinger/" rel="tag">#jinger</a>
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+            <a href="/tags/token/" rel="tag">#token</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/navicat-10-1-7-key/" rel="next" title="Navicat 10.1.7 的注册码">
+                <i class="fa fa-chevron-left"></i> Navicat 10.1.7 的注册码
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/angularjs-service-vs-factory/" rel="prev" title="AngularJS: Service 与 Factory 的对比">
+                AngularJS: Service 与 Factory 的对比 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Oliver Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    OnexT
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

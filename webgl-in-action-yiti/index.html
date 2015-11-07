@@ -1,0 +1,613 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html,js,webgl," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="由于喜欢玩魔方写了java版的计时器觉得不爽进而写了web版的计时器还是不爽，不如来一发3D版的可以直接上手的魔方过瘾。于是奋发图钱要学习WebGL，这就是本文的初衷。
+我不否定兴趣使然，这在我自己身上的体现可谓淋漓尽致。例子暂时不举了。
+之前小弟不才，一直觉得html5有了Canvas很nb，但不知还有WebGL这等东西，偶然在Lufy Legend的博客看到，感谢，其实最吸引我的原因便是博主翻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebGL in Action -- yiti">
+<meta property="og:url" content="http://ochukai.github.io/webgl-in-action-yiti/index.html">
+<meta property="og:site_name" content="I am Oliver">
+<meta property="og:description" content="由于喜欢玩魔方写了java版的计时器觉得不爽进而写了web版的计时器还是不爽，不如来一发3D版的可以直接上手的魔方过瘾。于是奋发图钱要学习WebGL，这就是本文的初衷。
+我不否定兴趣使然，这在我自己身上的体现可谓淋漓尽致。例子暂时不举了。
+之前小弟不才，一直觉得html5有了Canvas很nb，但不知还有WebGL这等东西，偶然在Lufy Legend的博客看到，感谢，其实最吸引我的原因便是博主翻">
+<meta property="og:image" content="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/w003_01.jpg">
+<meta property="og:updated_time" content="2015-11-07T15:22:59.587Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebGL in Action -- yiti">
+<meta name="twitter:description" content="由于喜欢玩魔方写了java版的计时器觉得不爽进而写了web版的计时器还是不爽，不如来一发3D版的可以直接上手的魔方过瘾。于是奋发图钱要学习WebGL，这就是本文的初衷。
+我不否定兴趣使然，这在我自己身上的体现可谓淋漓尽致。例子暂时不举了。
+之前小弟不才，一直觉得html5有了Canvas很nb，但不知还有WebGL这等东西，偶然在Lufy Legend的博客看到，感谢，其实最吸引我的原因便是博主翻">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> WebGL in Action -- yiti | I am Oliver </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">I am Oliver</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I love Jone.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                WebGL in Action -- yiti
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-12-07T11:13:55+08:00" content="2014-12-07">
+              2014-12-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WebGL/" itemprop="url" rel="index">
+                    <span itemprop="name">WebGL</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>由于喜欢玩魔方写了java版的计时器觉得不爽进而写了web版的计时器还是不爽，不如来一发3D版的可以直接上手的魔方过瘾。于是奋发图钱要学习WebGL，这就是本文的初衷。</p>
+<p>我不否定兴趣使然，这在我自己身上的体现可谓淋漓尽致。例子暂时不举了。</p>
+<p>之前小弟不才，一直觉得html5有了Canvas很nb，但不知还有WebGL这等东西，偶然在Lufy Legend的博客看到，感谢，其实最吸引我的原因便是博主翻译的<a href="http://wgld.org/" target="_blank" rel="external">http://wgld.org/</a>是来自nihon国度的WebGL专家，いしょに勉強しろ。</p>
+<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+<p>关于Canvas的绘图，这些比较基础：</p>
+<ol>
+<li><strong>canvas</strong>和<strong>img</strong>等标签一样，是一个可以自由制定大小的矩形区域。</li>
+<li>canvas的2d的<strong>context</strong>功能是一个封装了绘图处理的各种API的对象，这个对象中包含了所有的绘图函数和属性。</li>
+<li>2d的context可以进行图形，文字以及图片数据的描画，与之相对的，WebGL是三维，可以描画3D图形，叫做<strong>webglcontext</strong><br>&nbsp;</li>
+</ol>
+<p>这是WebGL所采用的右手坐标系。<br><a href="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/w003_01.jpg" target="_blank" rel="external"><img src="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/w003_01.jpg" alt="w003_01"></a></p>
+<p>&nbsp;</p>
+<p>利用WebGL绘制3D图形并输出在2D的显示器上面，这里3D到2D的转换是需要计算的。为了模拟三维空间，将三维空间的情报向二维的情报进行转换，需要三个坐标变换。</p>
+<h3 id="三种坐标转换：">三种坐标转换：</h3><ol>
+<li>模型转换</li>
+<li>视图转换</li>
+<li>投影转换</li>
+</ol>
+<h3 id="模型转换">模型转换</h3><blockquote>
+<p>三つある座標変換の一つ目は、<strong>モデル変換</strong>です。OpenGL の処理系ではこのモデル変換という名称が一般的ですが、DirectX 系ではワールド変換と呼ばれているものですね。</p>
+<p>モデル変換とは、被写体となる物体が三次元空間のどの位置にあるのかを定義するための座標変換です。現実の世界とは異なり、プログラムのなかの三次元空間には世界の中心の基準となる<em>原点</em>という位置が定義されています。その原点から見て、被写体となるモデルが相対的にどの位置に存在しているのかを知るためにモデル変換が必要になります。</p>
+<p>仮に、シミュレートする三次元空間にリンゴがひとつ存在しているとしたら、そのリンゴの存在する位置を定義するためにモデル変換が必要になるわけですね。<br>三种坐标变换中的第一个，是模型变换。在OpenGL的处理中虽然一般叫做模型变换，但是在DirectX中被叫做世界变换。</p>
+</blockquote>
+<p>模型变换，是指为了定义参照物在三维空间的什么位置而进行的坐标变换。和现实的世界不同，程序中的三维空间里定义了世界的中心的基准点，就是原点。从这个原点出发，为了知道参照物的相对位置，就需要进行必要的坐标变换。</p>
+<p>假设，虚拟的三维空间里有一个苹果，那么为了表示这个苹果在什么位置，就需要进行相应的模型变换了。</p>
+<h3 id="视图转换">视图转换</h3><blockquote>
+<p>三つある座標変換の二つ目は<strong>ビュー変換</strong>と呼ばれます。</p>
+<p>ビュー変換では、実際にカメラがどの位置にあるのか、そしてカメラはどこを向いているのかなどを定義します。先ほどのリンゴの話に合わせると、仮に三次元空間にリンゴが存在していたとしてもカメラがそのリンゴに向けられていなければ、リンゴが映し出されることはありませんね。他にも、たとえばカメラとリンゴとの距離が著しく離れていれば、仮にリンゴにカメラが向けられていたとしても映らないかもしれません。</p>
+<p>カメラの位置や、その向けられている方角を決めるために行なう座標変換、それがビュー変換というわけです。<br>三种坐标变换的第二个，是视图变换。</p>
+</blockquote>
+<p>视图变换，定义了镜头的实际位置以及镜头的方向。拿刚刚举例的苹果来说，即使三维空间中有一个苹果，如果镜头的方向不对着苹果的话，同样也是看不到这个苹果的。而且，如果将镜头大幅度远离苹果，那么也有可能看不到苹果了。</p>
+<p>为了决定镜头的位置和角度所进行的坐标变换就叫做视图变换。</p>
+<h3 id="投影转换">投影转换</h3><blockquote>
+<p>三つある座標変換の最後の一つ、それが<strong>プロジェクション変換</strong>です。</p>
+<p>この変換では、三次元空間のどの領域を撮影するのかなどを定義します。たとえば、横に幅広くパノラマとして撮影するのか、あるいは縦長の映像として撮影するのか、どのくらい遠くまでを撮影するのかなどを定義することができます。</p>
+<p>一般的なカメラの場合は、レンズの前にあるもの全てを撮影しますし、どのくらい遠くまで撮影するのかなんて意識することはありませんね。しかし、プログラムが無限に広い空間をシミュレートするのは不可能です。そこで、一番手前はここから、一番遠くはここまで、というシミュレートする領域を決めて処理するわけですね。</p>
+<p>プロジェクション変換を行なうことによって、いわゆる遠近法の効果が得られます。近くにあるものは大きく、遠くにあるものは小さく描画されるようになるわけです。<br>三种坐标变换中的最后一个，是投影变换。</p>
+</blockquote>
+<p>这个变换，定义了三维空间的摄影区域。比如，是横向摄影，还是纵向摄影，最远拍摄多远距离等。</p>
+<p>一般的照相机，直接拍摄镜头前的所有图像，最远拍摄多远也基本上没什么意识。但是，程序是无法模拟无限大的空间的，所以，从哪里开始拍摄，拍摄到哪里，必须有一个明确的范围。</p>
+<p>投影变幻，通过远近法则，可以将近处的物体描画的比较大，远处的物体描画的比较小。</p>
+<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+<p>上面的只是算是理论知识，我不是很喜欢背诵这些东西，读一遍有些许了解便可，下面便开始了。</p>
+<h3 id="一个最低限度的HTML模版，就是像下面这样。">一个最低限度的HTML模版，就是像下面这样。</h3><p><pre class="lang:xhtml decode:true ">&lt;!DOCTYPE html&gt;<br>&lt;html lang=”en”&gt;</pre></p>
+<p>&lt;head&gt;<br>    &lt;meta charset=”utf-8”&gt;<br>    &lt;title&gt;WebGL TEST&lt;/title&gt;<br>&lt;/head&gt;</p>
+<p>&lt;body&gt;<br>    &lt;canvas id=”canvas”&gt;&lt;/canvas&gt;</p>
+<pre><code><span class="subst">&amp;</span><span class="literal">lt</span>;script src=<span class="string">"script.js"</span> <span class="keyword">type</span>=<span class="string">"text/javascript"</span><span class="subst">&amp;</span><span class="literal">gt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>;/script<span class="subst">&amp;</span><span class="literal">gt</span>;
+</code></pre><p>&lt;/body&gt;</p>
+<p>&lt;/html&gt;<br>在javascript中使用getElementById等函数很容易能获取到这个canvas对象，获取了这个canvas之后，利用javascript可以完成所有的操作。</p>
+<h3 id="固定渲染管线和可编辑渲染管线">固定渲染管线和可编辑渲染管线</h3><p>固定渲染管线，简单来说，就是3d渲染所进行的一连串的计算流程，就像流水线一样。固定渲染管线中，上次所说的模型，视图，投影的坐标变换都会替我们完成。不需要理解细节，只需要知道所有的这些坐标变换都包含在里面，都会帮我们计算好。</p>
+<p>WebGL中不存在固定渲染管线。也就是说，坐标变换必须全部由自己来做。而且，这个记述了坐标变换的机制就叫做着色器(Shader)。</p>
+<p>这样可以由程序员控制的机制叫做可编辑渲染管线。而着色器又有 处理几何图形顶点的顶点着色器和处理像素的片段着色器两种类型。</p>
+<p>由于WebGL中没有固定管线，所以必须准备好顶点着色器和片段着色器。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/webgl/" rel="tag">#webgl</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/wordpress-newer-tips/" rel="next" title="Wordpress 新装技巧">
+                <i class="fa fa-chevron-left"></i> Wordpress 新装技巧
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/error-enoent-stat-after-install-nodejs-on-win8/" rel="prev" title="Error: ENOENT stat *** After install nodejs on win8.1">
+                Error: ENOENT stat *** After install nodejs on win8.1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Oliver Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    OnexT
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
