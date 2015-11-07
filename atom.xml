@@ -3,9 +3,9 @@
   <title><![CDATA[I am Oliver]]></title>
   <subtitle><![CDATA[I love Jone.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
+  <link href="http://ochukai.github.io/"/>
   <updated>2015-10-25T03:27:50.828Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://ochukai.github.io/</id>
   
   <author>
     <name><![CDATA[Oliver Wang]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[辨析 Sass 中的 Map 和 List]]></title>
-    <link href="http://yoursite.com/2015/10/21/demo/"/>
-    <id>http://yoursite.com/2015/10/21/demo/</id>
+    <link href="http://ochukai.github.io/2015/10/21/demo/"/>
+    <id>http://ochukai.github.io/2015/10/21/demo/</id>
     <published>2015-10-21T02:34:12.000Z</published>
     <updated>2015-10-25T03:27:50.828Z</updated>
     <content type="html"><![CDATA[<p>如果你使用过 Sass 3.3 之前的版本，那么你一定对那段时光颇有感触，那时候没有现如今这么好的条件，那时候的 Map 还只能用多重列表（lists of list）来模拟。多重列表可以实现复杂数据的嵌套定义，但却不是以键值对的形式实现的，所有当我们需要获取其中特定的某一项时就会比较麻烦。Map 这种数据类型天生就是基于键值对的形式，非常便于组织数据。</p>
@@ -107,7 +107,7 @@
     
     </summary>
     
-      <category term="css" scheme="http://yoursite.com/tags/css/"/>
+      <category term="css" scheme="http://ochukai.github.io/tags/css/"/>
     
   </entry>
   
