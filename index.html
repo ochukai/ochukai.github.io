@@ -26,10 +26,6 @@
 
 
 
-  
-    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-  
-
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
@@ -138,6 +134,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
@@ -154,16 +160,6 @@
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
           </a>
         </li>
       
@@ -221,7 +217,7 @@
             
               
                 
-                <a class="post-title-link" href="/2015/10/21/demo/" itemprop="url">
+                <a class="post-title-link" href="/demo/" itemprop="url">
                   辨析 Sass 中的 Map 和 List
                 </a>
               
@@ -261,7 +257,7 @@
 <p>自从可以使用 Map 之后，开发者们开始毫无顾忌地定义 Map 存储数据，比如断点宽度、颜色值、栅格布局等等响应式排版的细节，都被一股脑的塞进了 Map 中。</p>
 <p>那么，有了 Map 之后，我们还有必要使用 List 吗？可能某些人会觉得为了保持向后兼容应该继续使用多重列表模拟 Map，因为可能有些开发者仍然在使用老版本的 Sass 编译器，但实际上，这是多此一举了，Sass 的版本通常由 <code>package.json</code> 或者其他同类型的项目配置文件所控制，往往只需一条命令（<code>gem update sass</code>）即可更新 Sass 的版本，因此基本上无需考虑对老版本的兼容问题。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/21/demo/#more" rel="contents">
+            <a class="btn" href="/demo/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
