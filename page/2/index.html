@@ -265,7 +265,10 @@
 
 准备环境安装nodejs直接登陆nodejs的官网 http://nodejs.org 下载对应版本安装即可，path等都会自动配置好，很简单。
 安装expressnpm install -g express
-最新
+最新express4.0+版本中将命令工具分家出来了,所以还需要安装一个命令行工具
+npm install -g express-generator
+
+安装其他工具npm instal
             ...
           </span>
           <div class="post-more-link text-center">
@@ -378,7 +381,8 @@
           <span itemprop="articleBody">
             
             近几日我一直在研究AngularJS，曾经也研究过，但终于因为项目时间太赶而没有用上，这一次难得清闲几日决定继续。
-在Bing的过程中发现了angular-seed这个项目，是用来学习AngularJS的，所以就clone到了本地，项目里面的readme.md文件提到必须使用node才可编译，但我最
+在Bing的过程中发现了angular-seed这个项目，是用来学习AngularJS的，所以就clone到了本地，项目里面的readme.md文件提到必须使用node才可编译，但我最近的win8.1在前几次安装node都失败了，这一次又出现node无论如何我觉得都要再试一次。
+下载双击下一步等了一会竟然奇迹般的开始安装了，我很激动，于是赶紧到angular-s
             ...
           </span>
           <div class="post-more-link text-center">
@@ -480,7 +484,7 @@
             
             由于喜欢玩魔方写了java版的计时器觉得不爽进而写了web版的计时器还是不爽，不如来一发3D版的可以直接上手的魔方过瘾。于是奋发图钱要学习WebGL，这就是本文的初衷。
 我不否定兴趣使然，这在我自己身上的体现可谓淋漓尽致。例子暂时不举了。
-之前小弟不才，一直觉得html5有了Canvas很nb，但不
+之前小弟不才，一直觉得html5有了Canvas很nb，但不知还有WebGL这等东西，偶然在Lufy Legend的博客看到，感谢，其实最吸引我的原因便是博主翻译的http://wgld.org/是来自nihon国度的WebGL专家，いしょ
             ...
           </span>
           <div class="post-more-link text-center">
@@ -598,7 +602,9 @@
 移除Open Sans
 
 // Remove Open Sans that WP adds from frontend
-if (!function_exists('remove_wp_o
+if (!function_exists('remove_wp_open_sans')) :
+    function remove_wp_open_sans() {
+        wp_deregister_style( 'open-sans
             ...
           </span>
           <div class="post-more-link text-center">
