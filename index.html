@@ -261,7 +261,8 @@
         
           <span itemprop="articleBody">
             
-            # 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式mv git-credentials .git-credentials然后编辑 .
+            # 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式mv git-credentials .git-credentials然后编辑 .git-credentials
+# github 是这样的格式https://{username}:{password}@github.co
             ...
           </span>
           <div class="post-more-link text-center">
@@ -363,7 +364,8 @@
             
             发现中文显示为“？”，然后我看了一下 mysql.ini，添加了两行
 [mysqld]port=3306
-#下面的两行是添加的character_set_cli
+#下面的两行是添加的character_set_client=utf8character_set_server=utf8后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。
+mys
             ...
           </span>
           <div class="post-more-link text-center">
@@ -465,8 +467,9 @@
             
             use mysql
 update user set password=PASSWORD(‘hooray’) where user=’root’;
-flush p
-            ...
+flush privileges;&nbsp;
+
+            
           </span>
           <div class="post-more-link text-center">
             <a class="btn" href="/modify-wamp-mysql-password/#more" rel="contents">
@@ -566,7 +569,8 @@ flush p
           <span itemprop="articleBody">
             
             # 
-我想先问大家一个问题，有谁一年365，天天被未曾谋面的陌生人骂?举手的这个人就站在你们面前。不过别担心，我今天不是来诉苦的，我是穿着马甲来跟大家分享如何被
+我想先问大家一个问题，有谁一年365，天天被未曾谋面的陌生人骂?举手的这个人就站在你们面前。不过别担心，我今天不是来诉苦的，我是穿着马甲来跟大家分享如何被骂大的。
+网络对于我们来说再日常不过，但是当你身处网络世界的围攻中，就不再那么轻松。2013年的以前，我作梦也想不到自己会变成网络世界里的“
             ...
           </span>
           <div class="post-more-link text-center">
@@ -678,7 +682,8 @@ flush p
         
           <span itemprop="articleBody">
             
-            去年，也就是 2014 年的 12-14 日，我写下了第一篇关于 jinger 的博客。时间已经过去 86 天，近乎 3 个月的时间了，我却仅仅做了这么一点点东
+            去年，也就是 2014 年的 12-14 日，我写下了第一篇关于 jinger 的博客。时间已经过去 86 天，近乎 3 个月的时间了，我却仅仅做了这么一点点东西，自己想起来都觉会咬牙切齿，没错，咬牙切齿是我最近常有的状态，再加上眉头紧锁，捶胸顿足等。
+虽然做得少，但也不是没做出东西，现在总结一下，
             ...
           </span>
           <div class="post-more-link text-center">
@@ -790,7 +795,7 @@ flush p
         
           <span itemprop="articleBody">
             
-            在很多 AngularJS 的教程和文档里面，作者都会使用 service 或者 factory，但他们从来都不会解释为什么使用 service 或者 faco
+            在很多 AngularJS 的教程和文档里面，作者都会使用 service 或者 factory，但他们从来都不会解释为什么使用 service 或者 facotry，虽然 value 和 constant 用的不多但也有这种现象（Few mention that value and constan
             ...
           </span>
           <div class="post-more-link text-center">
@@ -902,7 +907,8 @@ flush p
         
           <span itemprop="articleBody">
             
-            窗外阳光明媚，冬风和煦，路上行人点点，车流不息，我站在屋内，手中拿着旺旺（或旺仔）雪饼，嘴里嚼着，很脆。阳光洒在我的脸上，身上，很温暖。我肆意的享受着只有不开窗
+            窗外阳光明媚，冬风和煦，路上行人点点，车流不息，我站在屋内，手中拿着旺旺（或旺仔）雪饼，嘴里嚼着，很脆。阳光洒在我的脸上，身上，很温暖。我肆意的享受着只有不开窗户才能体会到的冬天的温暖。
+我忽而想起了前天晚上，也就是元旦跨年夜，发生在外滩的踩踏事件，今天官方发布了死亡名单，都是一些年轻人葬身于此，大
             ...
           </span>
           <div class="post-more-link text-center">
@@ -1106,7 +1112,7 @@ NAVN-LNXG-XHHX-5NOO名和组织随便写。
           <span itemprop="articleBody">
             
             使用了 node 的 mysql 的库，不是 ORM 只是原生的 SQL，名字是 felixge/node-mysql ，这个库不错，挺好用的，比如
-var u
+var userId  = 1;var columns = [‘username’, ‘email’];var sql     = ‘SELECT ?
             ...
           </span>
           <div class="post-more-link text-center">
@@ -1218,7 +1224,7 @@ var u
         
           <span itemprop="articleBody">
             
-            上一篇记录了新装 node 以及新建 node web(express) 项目的过程，很潦草，只是记录了过程的一点点，而且当时新建项目的时候心态也不好，很着急，
+            上一篇记录了新装 node 以及新建 node web(express) 项目的过程，很潦草，只是记录了过程的一点点，而且当时新建项目的时候心态也不好，很着急，实际上手写的时候遇到了诸多问题，而且我本人也有选择困难症，经常会纠结到底用这个库还是那个库，还是自己写比较好呢，时间经常在这样的纠结中过去了
             ...
           </span>
           <div class="post-more-link text-center">
