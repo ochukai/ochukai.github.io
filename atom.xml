@@ -4,7 +4,7 @@
   <subtitle><![CDATA[I love Jone.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ochukai.github.io/"/>
-  <updated>2015-11-07T15:22:59.607Z</updated>
+  <updated>2015-11-11T09:47:49.733Z</updated>
   <id>http://ochukai.github.io/</id>
   
   <author>
@@ -13,6 +13,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Wrong clearfix Make me crazy!]]></title>
+    <link href="http://ochukai.github.io/Wrong-clearfix-Make-me-crazy/"/>
+    <id>http://ochukai.github.io/Wrong-clearfix-Make-me-crazy/</id>
+    <published>2015-11-11T09:45:59.000Z</published>
+    <updated>2015-11-11T09:47:49.733Z</updated>
+    <content type="html"><![CDATA[<p>Clearfix 就是这么简单！<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span>,</span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:before</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">" "</span></span><br><span class="line"></span></span></span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span><br><span class="line"></span></span></span>&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Clearfix 就是这么简单！<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span]]>
+    </summary>
+    
+      <category term="css" scheme="http://ochukai.github.io/tags/css/"/>
+    
+      <category term="html" scheme="http://ochukai.github.io/tags/html/"/>
+    
+      <category term="css" scheme="http://ochukai.github.io/categories/css/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[git bash 记住密码]]></title>
