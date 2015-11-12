@@ -33,7 +33,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="css,html," />
+  <meta name="keywords" content="js," />
 
 
 
@@ -49,16 +49,22 @@
 
 
 
-<meta name="description" content="Clearfix 就是这么简单！.clearfix:after,.clearfix:before &amp;#123;    display: table;    content: &quot; &quot;&amp;#125;.clearfix:after &amp;#123;    clear: both&amp;#125;">
+<meta name="description" content="http://www.alloyteam.com/2012/11/javascript-throttle/
+
+var throttle = function (fn, delay, mustRunDelay) &amp;#123;    var timer = null;    var start;        return function () &amp;#123;        var context =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Wrong clearfix Make me crazy!">
-<meta property="og:url" content="http://ochukai.github.io/Wrong-clearfix-Make-me-crazy/index.html">
+<meta property="og:title" content="Throttle in Javascript">
+<meta property="og:url" content="http://ochukai.github.io/Throttle-in-Javascript/index.html">
 <meta property="og:site_name" content="I am Oliver">
-<meta property="og:description" content="Clearfix 就是这么简单！.clearfix:after,.clearfix:before &amp;#123;    display: table;    content: &quot; &quot;&amp;#125;.clearfix:after &amp;#123;    clear: both&amp;#125;">
-<meta property="og:updated_time" content="2015-11-11T09:47:49.733Z">
+<meta property="og:description" content="http://www.alloyteam.com/2012/11/javascript-throttle/
+
+var throttle = function (fn, delay, mustRunDelay) &amp;#123;    var timer = null;    var start;        return function () &amp;#123;        var context =">
+<meta property="og:updated_time" content="2015-11-12T03:51:27.412Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wrong clearfix Make me crazy!">
-<meta name="twitter:description" content="Clearfix 就是这么简单！.clearfix:after,.clearfix:before &amp;#123;    display: table;    content: &quot; &quot;&amp;#125;.clearfix:after &amp;#123;    clear: both&amp;#125;">
+<meta name="twitter:title" content="Throttle in Javascript">
+<meta name="twitter:description" content="http://www.alloyteam.com/2012/11/javascript-throttle/
+
+var throttle = function (fn, delay, mustRunDelay) &amp;#123;    var timer = null;    var start;        return function () &amp;#123;        var context =">
 
 
 
@@ -70,7 +76,7 @@
   };
 </script>
 
-  <title> Wrong clearfix Make me crazy! | I am Oliver </title>
+  <title> Throttle in Javascript | I am Oliver </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -200,7 +206,7 @@
             
             
               
-                Wrong clearfix Make me crazy!
+                Throttle in Javascript
               
             
           </h1>
@@ -209,8 +215,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-11T17:45:59+08:00" content="2015-11-11">
-              2015-11-11
+            <time itemprop="dateCreated" datetime="2015-11-12T11:43:06+08:00" content="2015-11-12">
+              2015-11-12
             </time>
           </span>
 
@@ -219,8 +225,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -248,8 +254,11 @@
       
 
       
-        <span itemprop="articleBody"><p>Clearfix 就是这么简单！<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span>,</span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:before</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">" "</span></span><br><span class="line"></span></span></span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span><br><span class="line"></span></span></span>&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
+        <span itemprop="articleBody"><blockquote>
+<p><a href="http://www.alloyteam.com/2012/11/javascript-throttle/" target="_blank" rel="external">http://www.alloyteam.com/2012/11/javascript-throttle/</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> throttle = <span class="function"><span class="keyword">function</span> (<span class="params">fn, delay, mustRunDelay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">var</span> start;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>,</span><br><span class="line">            args    = <span class="built_in">arguments</span>,</span><br><span class="line">            cur     = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">        clearTimeout(timer);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!start) &#123;</span><br><span class="line">            start = cur;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (cur - start &gt;= mustRunDelay) &#123;</span><br><span class="line">            fn.apply(context, args);</span><br><span class="line">            start = cur;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            timer = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                fn.apply(context, args);</span><br><span class="line">            &#125;, delay);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// call throttle like this:</span></span><br><span class="line"><span class="built_in">window</span>.onresize = throttle(myFunc, <span class="number">50</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// that's all</span></span><br></pre></td></tr></table></figure>
+<h3 id="Another_implementation">Another implementation</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * 频率控制 返回函数连续调用时，fn 执行频率限定为每多少时间执行一次</span><br><span class="line"> * @param fn &#123;function&#125;  需要调用的函数</span><br><span class="line"> * @param delay  &#123;number&#125;    延迟时间，单位毫秒</span><br><span class="line"> * @param immediate  &#123;bool&#125; 给 immediate参数传递false 绑定的函数先执行，而不是delay后后执行。</span><br><span class="line"> * @return &#123;function&#125;实际调用函数</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">var</span> throttle = <span class="function"><span class="keyword">function</span> (<span class="params">fn, delay, immediate, debounce</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curr = +<span class="keyword">new</span> <span class="built_in">Date</span>(),<span class="comment">//当前事件</span></span><br><span class="line">        lastCall = <span class="number">0</span>,</span><br><span class="line">        lastExec = <span class="number">0</span>,</span><br><span class="line">        timer = <span class="literal">null</span>,</span><br><span class="line">        diff, <span class="comment">//时间差</span></span><br><span class="line">        context,<span class="comment">//上下文</span></span><br><span class="line">        args,</span><br><span class="line">        exec = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            lastExec = curr;</span><br><span class="line">            fn.apply(context, args);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        curr    = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">        context = <span class="keyword">this</span>,</span><br><span class="line">        args    = <span class="built_in">arguments</span>,</span><br><span class="line">        diff    = curr - (debounce ? lastCall : lastExec) - delay;</span><br><span class="line"></span><br><span class="line">        clearTimeout(timer);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (debounce) &#123;</span><br><span class="line">            <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">                timer = setTimeout(exec, delay);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                exec();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (diff &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                exec();</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">                timer = setTimeout(exec, -diff);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        lastCall = curr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * 空闲控制 返回函数连续调用时，空闲时间必须大于或等于 delay，fn 才会执行</span><br><span class="line"> * @param fn &#123;function&#125;  要调用的函数</span><br><span class="line"> * @param delay   &#123;number&#125;    空闲时间</span><br><span class="line"> * @param immediate  &#123;bool&#125; 给 immediate参数传递false 绑定的函数先执行，而不是delay后后执行。</span><br><span class="line"> * @return &#123;function&#125;实际调用函数</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">var</span> debounce = <span class="function"><span class="keyword">function</span> (<span class="params">fn, delay, immediate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> throttle(fn, delay, immediate, <span class="literal">true</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></span>
       
     </div>
 
@@ -257,9 +266,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css/" rel="tag">#css</a>
-          
-            <a href="/tags/html/" rel="tag">#html</a>
+            <a href="/tags/js/" rel="tag">#js</a>
           
         </div>
       
@@ -268,16 +275,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/remember-password-in-git-bash/" rel="next" title="git bash 记住密码">
-                <i class="fa fa-chevron-left"></i> git bash 记住密码
+              <a href="/Wrong-clearfix-Make-me-crazy/" rel="next" title="Wrong clearfix Make me crazy!">
+                <i class="fa fa-chevron-left"></i> Wrong clearfix Make me crazy!
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Throttle-in-Javascript/" rel="prev" title="Throttle in Javascript">
-                Throttle in Javascript <i class="fa fa-chevron-right"></i>
+              <a href="/Baseview-in-Backbone/" rel="prev" title="Baseview in Backbone">
+                Baseview in Backbone <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
