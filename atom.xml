@@ -4,7 +4,7 @@
   <subtitle><![CDATA[I love Jone.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ochukai.github.io/"/>
-  <updated>2015-11-23T03:06:34.942Z</updated>
+  <updated>2015-11-23T03:39:09.000Z</updated>
   <id>http://ochukai.github.io/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[GIT - remember password in linux.]]></title>
-    <link href="http://ochukai.github.io/GIT-remember-password-in-linux/"/>
-    <id>http://ochukai.github.io/GIT-remember-password-in-linux/</id>
+    <title><![CDATA[GIT - remember password in window & linux.]]></title>
+    <link href="http://ochukai.github.io/GIT-remember-password-in-window-and-linux/"/>
+    <id>http://ochukai.github.io/GIT-remember-password-in-window-and-linux/</id>
     <published>2015-11-23T02:46:44.000Z</published>
-    <updated>2015-11-23T03:06:34.942Z</updated>
+    <updated>2015-11-23T03:39:09.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Window">Window</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式</span></span><br><span class="line">mv git-credentials .git-credentials</span><br></pre></td></tr></table></figure>
 <p>然后编辑 <strong>.git-credentials</strong><br><figure class="highlight vala"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor"># github 是这样的格式</span></span><br><span class="line">https:<span class="comment">//&#123;username&#125;:&#123;password&#125;@github.com </span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># git.oschina.net 是这样的</span></span><br><span class="line">https:<span class="comment">//&#123;username&#125;:&#123;password&#125;@git.oschina.net</span></span><br></pre></td></tr></table></figure></p>
 <p>最后一步是<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></p>
@@ -40,11 +40,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[User correct way to change view]]></title>
+    <title><![CDATA[use correct way to change view]]></title>
     <link href="http://ochukai.github.io/use-correct-way-to-change-view/"/>
     <id>http://ochukai.github.io/use-correct-way-to-change-view/</id>
     <published>2015-11-17T15:42:24.000Z</published>
-    <updated>2015-11-23T02:56:00.000Z</updated>
+    <updated>2015-11-23T03:38:24.517Z</updated>
     <content type="html"></content>
     <summary type="html">
     
