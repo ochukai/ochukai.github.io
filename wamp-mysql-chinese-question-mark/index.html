@@ -50,24 +50,21 @@
 
 
 <meta name="description" content="发现中文显示为“？”，然后我看了一下 mysql.ini，添加了两行
-[mysqld]port=3306
-#下面的两行是添加的character_set_client=utf8character_set_server=utf8后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。
-mysql&amp;gt; show variables like ‘character%’;+————————–">
+[mysqld]port=3306#下面的两行是添加的character_set_client=utf8character_set_server=utf8
+后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。mysql&amp;gt; show variables like &apos;character%&apos;;+----------">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wamp mysql 中文显示为？">
 <meta property="og:url" content="http://ochukai.github.io/wamp-mysql-chinese-question-mark/index.html">
 <meta property="og:site_name" content="I am Oliver">
 <meta property="og:description" content="发现中文显示为“？”，然后我看了一下 mysql.ini，添加了两行
-[mysqld]port=3306
-#下面的两行是添加的character_set_client=utf8character_set_server=utf8后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。
-mysql&amp;gt; show variables like ‘character%’;+————————–">
-<meta property="og:updated_time" content="2015-11-07T15:22:59.603Z">
+[mysqld]port=3306#下面的两行是添加的character_set_client=utf8character_set_server=utf8
+后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。mysql&amp;gt; show variables like &apos;character%&apos;;+----------">
+<meta property="og:updated_time" content="2015-11-23T03:00:31.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wamp mysql 中文显示为？">
 <meta name="twitter:description" content="发现中文显示为“？”，然后我看了一下 mysql.ini，添加了两行
-[mysqld]port=3306
-#下面的两行是添加的character_set_client=utf8character_set_server=utf8后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。
-mysql&amp;gt; show variables like ‘character%’;+————————–">
+[mysqld]port=3306#下面的两行是添加的character_set_client=utf8character_set_server=utf8
+后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。mysql&amp;gt; show variables like &apos;character%&apos;;+----------">
 
 
 
@@ -258,9 +255,8 @@ mysql&amp;gt; show variables like ‘character%’;+————————–"
 
       
         <span itemprop="articleBody"><p>发现中文显示为“？”，然后我看了一下 mysql.ini，添加了两行</p>
-<p><pre class="lang:mysql decode:true">[mysqld]<br>port=3306</pre></p>
-<p>#下面的两行是添加的<br>character_set_client=utf8<br>character_set_server=utf8<br>后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。</p>
-<p><pre class="lang:mysql decode:true">mysql&gt; show variables like ‘character%’;<br>+————————–+—————————————————-<br>+<br>| Variable_name            | Value<br>|<br>+————————–+—————————————————-<br>+<br>| character_set_client     | gbk<br>|<br>| character_set_connection | gbk<br>|<br>| character_set_database   | utf8<br>|<br>| character_set_filesystem | binary<br>|<br>| character_set_results    | gbk<br>|<br>| character_set_server     | utf8<br>|<br>| character_set_system     | utf8<br>|<br>| character_sets_dir       | E:\Soft\wamp\bin\mysql\mysql5.6.12\share\charsets\<br>|<br>+————————–+—————————————————-</pre><br>&nbsp;</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="title">[mysqld]</span></span><br><span class="line"><span class="setting">port=<span class="value"><span class="number">3306</span></span></span></span><br><span class="line"><span class="comment">#下面的两行是添加的</span></span><br><span class="line"><span class="setting">character_set_client=<span class="value">utf8</span></span></span><br><span class="line"><span class="setting">character_set_server=<span class="value">utf8</span></span></span><br></pre></td></tr></table></figure>
+<p>后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">mysql&gt; show variables like 'character%';</span><br><span class="line">+--------------------------+----------------------------------------------------</span><br><span class="line">+</span><br><span class="line">| Variable_name            | Value</span><br><span class="line">|</span><br><span class="line">+--------------------------+----------------------------------------------------</span><br><span class="line">+</span><br><span class="line">| character_set_client     | gbk</span><br><span class="line">|</span><br><span class="line">| character_set_connection | gbk</span><br><span class="line">|</span><br><span class="line">| character_set_database   | utf8</span><br><span class="line">|</span><br><span class="line">| character_set_filesystem | binary</span><br><span class="line">|</span><br><span class="line">| character_set_results    | gbk</span><br><span class="line">|</span><br><span class="line">| character_set_server     | utf8</span><br><span class="line">|</span><br><span class="line">| character_set_system     | utf8</span><br><span class="line">|</span><br><span class="line">| character_sets_dir       | E:\Soft\wamp\bin\mysql\mysql5.6.12\share\charsets\</span><br><span class="line">|</span><br><span class="line">+--------------------------+----------------------------------------------------</span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -288,8 +284,8 @@ mysql&amp;gt; show variables like ‘character%’;+————————–"
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/remember-password-in-git-bash/" rel="prev" title="git bash 记住密码">
-                git bash 记住密码 <i class="fa fa-chevron-right"></i>
+              <a href="/Wrong-clearfix-Make-me-crazy/" rel="prev" title="Wrong clearfix Make me crazy!">
+                Wrong clearfix Make me crazy! <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

@@ -33,7 +33,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="angular,expressjs,node," />
+  <meta name="keywords" content="backbone," />
 
 
 
@@ -49,20 +49,16 @@
 
 
 
-<meta name="description" content="上一篇记录了新装 node 以及新建 node web(express) 项目的过程，很潦草，只是记录了过程的一点点，而且当时新建项目的时候心态也不好，很着急，实际上手写的时候遇到了诸多问题，而且我本人也有选择困难症，经常会纠结到底用这个库还是那个库，还是自己写比较好呢，时间经常在这样的纠结中过去了，项目于是变得遥遥无期。距离上一篇博客已经过去了整整14天！
-上一篇博客的晚上我思前想后，感觉用 b">
+<meta name="description">
 <meta property="og:type" content="article">
-<meta property="og:title" content="New Project with Nodejs and Expressjs - ni">
-<meta property="og:url" content="http://ochukai.github.io/new-project-with-nodejs-and-expressjs-ni/index.html">
+<meta property="og:title" content="User correct way to change view">
+<meta property="og:url" content="http://ochukai.github.io/use-correct-way-to-change-view/index.html">
 <meta property="og:site_name" content="I am Oliver">
-<meta property="og:description" content="上一篇记录了新装 node 以及新建 node web(express) 项目的过程，很潦草，只是记录了过程的一点点，而且当时新建项目的时候心态也不好，很着急，实际上手写的时候遇到了诸多问题，而且我本人也有选择困难症，经常会纠结到底用这个库还是那个库，还是自己写比较好呢，时间经常在这样的纠结中过去了，项目于是变得遥遥无期。距离上一篇博客已经过去了整整14天！
-上一篇博客的晚上我思前想后，感觉用 b">
-<meta property="og:image" content="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/QQ截图20141227160228.jpg">
-<meta property="og:updated_time" content="2015-11-07T15:22:59.591Z">
+<meta property="og:description">
+<meta property="og:updated_time" content="2015-11-23T02:56:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="New Project with Nodejs and Expressjs - ni">
-<meta name="twitter:description" content="上一篇记录了新装 node 以及新建 node web(express) 项目的过程，很潦草，只是记录了过程的一点点，而且当时新建项目的时候心态也不好，很着急，实际上手写的时候遇到了诸多问题，而且我本人也有选择困难症，经常会纠结到底用这个库还是那个库，还是自己写比较好呢，时间经常在这样的纠结中过去了，项目于是变得遥遥无期。距离上一篇博客已经过去了整整14天！
-上一篇博客的晚上我思前想后，感觉用 b">
+<meta name="twitter:title" content="User correct way to change view">
+<meta name="twitter:description">
 
 
 
@@ -74,7 +70,7 @@
   };
 </script>
 
-  <title> New Project with Nodejs and Expressjs - ni | I am Oliver </title>
+  <title> User correct way to change view | I am Oliver </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -204,7 +200,7 @@
             
             
               
-                New Project with Nodejs and Expressjs - ni
+                User correct way to change view
               
             
           </h1>
@@ -213,8 +209,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2014-12-27T17:12:05+08:00" content="2014-12-27">
-              2014-12-27
+            <time itemprop="dateCreated" datetime="2015-11-17T23:42:24+08:00" content="2015-11-17">
+              2015-11-17
             </time>
           </span>
 
@@ -223,20 +219,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/angularjs/" itemprop="url" rel="index">
-                    <span itemprop="name">angularjs</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/angularjs/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
+                  <a href="/categories/Backbone/" itemprop="url" rel="index">
+                    <span itemprop="name">Backbone</span>
                   </a>
                 </span>
 
@@ -264,99 +248,7 @@
       
 
       
-        <span itemprop="articleBody"><p>上一篇记录了新装 node 以及新建 node web(express) 项目的过程，很潦草，只是记录了过程的一点点，而且当时新建项目的时候心态也不好，很着急，实际上手写的时候遇到了诸多问题，而且我本人也有选择困难症，经常会纠结到底用这个库还是那个库，还是自己写比较好呢，时间经常在这样的纠结中过去了，项目于是变得遥遥无期。距离上一篇博客已经过去了整整14天！</p>
-<p>上一篇博客的晚上我思前想后，感觉用 bookshelf(orm) 的话，访问数据库这一部分不好控制，因为我自己的工作就是数据库的相关的，看不到自己写的格式优美的 sql 是不能容忍的。因为现在项目的重点还不是数据库部分，我也暂时没有过多写相关的代码，所以数据库的部分放在下一篇博客。</p>
-<hr>
-<p>最近使用 Bootstrap 写了一个后台管理的页面，如下：</p>
-<p><a href="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/QQ截图20141227160228.jpg" target="_blank" rel="external"><img src="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/QQ截图20141227160228.jpg" alt="QQ截图20141227160228"></a></p>
-<p>&nbsp;</p>
-<p>这个管理页面可是耗费了我近一周的功夫，暂时认定他的功能比较完整了吧。它是有什么构成的呢？</p>
-<ul>
-<li>angular</li>
-<li>bootstrap</li>
-<li>jquery</li>
-<li>angular-loading-bar</li>
-<li>nav.js<br>我打算用 bootstrap 做样式，后台整个就用 angular 来写，目标就这样的设定了。然后我就开始了漫长的学习过程，对于 bootstrap 的话，我之前已经用过无数次，所以比较熟悉，angular 我虽然也接触了无数次，但是仍旧没有用过啊，只是听说了很多关于它的介绍以及它的概念，比如指令（directive），这个东西我一直挺晕的，因为某一次逛微博的时候看到某某 MVVM 框架作者狂吹自己写的框架有12000个指令，而 angular 只有1200！！！吓得我魂飞魄散。但是 Jinger 这个项目还是要继续写的，于是我开始学习 angular。</li>
-</ul>
-<hr>
-<h1 id="Angular">Angular</h1><p>angular 是一个前端的 MVVM 框架，包括诸多概念，比如controller，service，directive等，初学咋一看挺吓人的，但其实挺好用，这是我近两天总结出来的。</p>
-<p>项目结构大致如此：</p>
-<pre class="lang:default decode:true  ">&lt;!DOCTYPE html&gt;
-&lt;html lang="zh" ng-app="myApp"&gt;
-
-&lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-    &lt;meta name="description" content="Jinger"&gt;
-    &lt;meta name="author" content="Ochukai"&gt;
-
-    &lt;title&gt;Jinger by Bootstrap&lt;/title&gt;
-    &lt;link rel="icon" href="favicon.ico"&gt;
-
-    &lt;!-- Bootstrap core CSS --&gt;
-    &lt;link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"&gt;
-    &lt;link href="assets/vendor/loading-bar/loading-bar.css" rel="stylesheet"&gt;
-
-    &lt;!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --&gt;
-    &lt;!--[if lt IE 9]&gt;
-      &lt;script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"&gt;&lt;/script&gt;
-      &lt;script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"&gt;&lt;/script&gt;
-    &lt;![endif]--&gt;
-    &lt;!--[if lte IE 8]&gt;&lt;link rel="stylesheet" href="assets/vendor/nav-js/responsive-nav.css"&gt;&lt;![endif]--&gt;
-    &lt;!--[if gt IE 8]&gt;&lt;!--&gt;
-    &lt;link rel="stylesheet" href="assets/css/styles.css"&gt;
-    &lt;!--&lt;![endif]--&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-
-    &lt;div id="nav-sider" class="nav-collapse"&gt;
-        &lt;ul role="navigation" class="nav nav-pills nav-stacked"&gt;
-            &lt;li&gt;
-                &lt;a href=""&gt;&lt;h2&gt; 京儿 &lt;/h2&gt;&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class="divider"&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-
-    &lt;div role="main" class="main"&gt;
-        &lt;a href="#nav" class="nav-toggle"&gt;Menu&lt;/a&gt;
-        &lt;div class="container-fluid"&gt;
-            &lt;div class="row"&gt;
-                &lt;div id="main-container" class="col-sm-12 col-md-12" ng-view&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Bootstrap core JavaScript
-    ================================================== --&gt;
-    &lt;!-- Placed at the end of the document so the pages load faster --&gt;
-    &lt;script src="assets/vendor/jquery/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/nav-js/responsive-nav.min.js"&gt;&lt;/script&gt;
-    &lt;!--  angularjs  --&gt;
-    &lt;script src="assets/vendor/angular/angular.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/angular/angular-animate.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/angular/angular-route.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/angular/angular-storage.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/loading-bar/loading-bar.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/js/app/app.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/js/app/controllers.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;</pre>
-
-<h1 id="Bower">Bower</h1><p>上图可以看出前端如果使用**框架，那必然引入的文件会很多很多，而且如果需要更换版本，哦！！！ 简直是噩梦。所以使用 Bower来管理前端的各种依赖。</p>
-<p>安装 node 的时候就已经安装了 bower ，所以现在可以直接使用了，首先在当前项目的根目录下打开 terminal ，输入</p>
-<p><pre class="lang:default decode:true ">bower init</pre><br>会有一些需要确认的信息，一般回车就好，等到向导结束，就会生成一个 bower.json 文件在项目的根目录如果刚刚 terminal 的路径没有错，生成的文件大概是这样的：</p>
-<p><pre class="lang:js decode:true">{<br>  “name”: “jinger”,<br>  “version”: “0.0.1”,<br>  “homepage”: “<a href="https://github.com/xiaoyee/jinger" target="_blank" rel="external">https://github.com/xiaoyee/jinger</a>“,<br>  “authors”: [<br>    “Ochukai &lt;sex.xiaoyee@gmail.com&gt;”<br>  ],<br>  “description”: “jinger”,<br>  “main”: “app.js”,<br>  “moduleType”: [<br>    “node”<br>  ],<br>  “keywords”: [<br>    “jinger”<br>  ],<br>  “license”: “MIT”,<br>  “ignore”: [<br>    “<em>*/.</em>“,<br>    “node_modules”,<br>    “bower_components”,<br>    “test”,<br>    “tests”<br>  ],<br>  “dependencies”: {<br>    “jquery”: “~2.1.3”<br>  }<br>}</pre><br>最重要的节点当然是 dependencies，这里定义了你的项目使用的库及其版本。</p>
-<p>使用 bower 安装的依赖默认实在项目根目录下的 bower_components 文件夹，当然是可以修改的了。修改的话，要在项目根目录新建 .bowerrc 文件，新建这个文件需要用 terminal 输入：</p>
-<p><pre class="lang:default decode:true">$ cd . &gt; .bowerrc</pre><br>这是官方的一个例子：</p>
-<p><pre class="lang:js decode:true">{<br>  “directory”: “app/components/“, // 这里可以规定依赖安装的位置。<br>  “analytics”: false,<br>  “timeout”: 120000,<br>  “registry”: {<br>    “search”: [<br>      “<a href="http://localhost:8000" target="_blank" rel="external">http://localhost:8000</a>“,<br>      “<a href="https://bower.herokuapp.com" target="_blank" rel="external">https://bower.herokuapp.com</a>“<br>    ]<br>  }<br>}</pre><br>更多信息，在<a href="http://bower.io/docs/api/" title="bower.io" target="_blank" rel="external">http://bower.io/docs/api/</a></p>
-<p>今天写这么多吧。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
@@ -364,11 +256,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/angular/" rel="tag">#angular</a>
-          
-            <a href="/tags/expressjs/" rel="tag">#expressjs</a>
-          
-            <a href="/tags/node/" rel="tag">#node</a>
+            <a href="/tags/backbone/" rel="tag">#backbone</a>
           
         </div>
       
@@ -377,16 +265,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/new-project-with-node-and-express-yiti/" rel="next" title="New Project with Nodejs and Expressjs - yiti">
-                <i class="fa fa-chevron-left"></i> New Project with Nodejs and Expressjs - yiti
+              <a href="/Baseview-in-Backbone/" rel="next" title="Baseview in Backbone">
+                <i class="fa fa-chevron-left"></i> Baseview in Backbone
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/mysql-special-sql-grammer/" rel="prev" title="MySQL 的几个特殊 SQL 语法">
-                MySQL 的几个特殊 SQL 语法 <i class="fa fa-chevron-right"></i>
+              <a href="/GIT-remember-password-in-linux/" rel="prev" title="GIT - remember password in linux.">
+                GIT - remember password in linux. <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

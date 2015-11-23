@@ -4,7 +4,7 @@
   <subtitle><![CDATA[I love Jone.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ochukai.github.io/"/>
-  <updated>2015-11-12T17:39:53.967Z</updated>
+  <updated>2015-11-23T03:06:34.942Z</updated>
   <id>http://ochukai.github.io/</id>
   
   <author>
@@ -13,6 +13,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[GIT - remember password in linux.]]></title>
+    <link href="http://ochukai.github.io/GIT-remember-password-in-linux/"/>
+    <id>http://ochukai.github.io/GIT-remember-password-in-linux/</id>
+    <published>2015-11-23T02:46:44.000Z</published>
+    <updated>2015-11-23T03:06:34.942Z</updated>
+    <content type="html"><![CDATA[<h1 id="Window">Window</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式</span></span><br><span class="line">mv git-credentials .git-credentials</span><br></pre></td></tr></table></figure>
+<p>然后编辑 <strong>.git-credentials</strong><br><figure class="highlight vala"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor"># github 是这样的格式</span></span><br><span class="line">https:<span class="comment">//&#123;username&#125;:&#123;password&#125;@github.com </span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># git.oschina.net 是这样的</span></span><br><span class="line">https:<span class="comment">//&#123;username&#125;:&#123;password&#125;@git.oschina.net</span></span><br></pre></td></tr></table></figure></p>
+<p>最后一步是<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></p>
+<h1 id="Linux">Linux</h1><blockquote>
+<p>在此之前或许要添加 ssh-key (<a href="https://help.github.com/articles/generating-ssh-keys/#platform-linux" target="_blank" rel="external">https://help.github.com/articles/generating-ssh-keys/#platform-linux</a>)</p>
+</blockquote>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">$ git config --<span class="keyword">global</span> credential.helper cache</span><br><span class="line"><span class="preprocessor"># 默认缓存密码15分钟，可以改得更长, 比如1小时</span></span><br><span class="line">$ git config --<span class="keyword">global</span> credential.helper <span class="string">'cache --timeout=3600'</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Window">Window</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 因为 windo]]>
+    </summary>
+    
+      <category term="git" scheme="http://ochukai.github.io/tags/git/"/>
+    
+      <category term="记住密码" scheme="http://ochukai.github.io/tags/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/"/>
+    
+      <category term="GIT" scheme="http://ochukai.github.io/categories/GIT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[User correct way to change view]]></title>
+    <link href="http://ochukai.github.io/use-correct-way-to-change-view/"/>
+    <id>http://ochukai.github.io/use-correct-way-to-change-view/</id>
+    <published>2015-11-17T15:42:24.000Z</published>
+    <updated>2015-11-23T02:56:00.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="backbone" scheme="http://ochukai.github.io/tags/backbone/"/>
+    
+      <category term="Backbone" scheme="http://ochukai.github.io/categories/Backbone/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Baseview in Backbone]]></title>
@@ -58,28 +100,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Throttle in Javascript]]></title>
-    <link href="http://ochukai.github.io/Throttle-in-Javascript/"/>
-    <id>http://ochukai.github.io/Throttle-in-Javascript/</id>
-    <published>2015-11-12T03:43:06.000Z</published>
-    <updated>2015-11-12T03:51:27.412Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p><a href="http://www.alloyteam.com/2012/11/javascript-throttle/" target="_blank" rel="external">http://www.alloyteam.com/2012/11/javascript-throttle/</a></p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> throttle = <span class="function"><span class="keyword">function</span> (<span class="params">fn, delay, mustRunDelay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">var</span> start;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>,</span><br><span class="line">            args    = <span class="built_in">arguments</span>,</span><br><span class="line">            cur     = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">        clearTimeout(timer);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!start) &#123;</span><br><span class="line">            start = cur;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (cur - start &gt;= mustRunDelay) &#123;</span><br><span class="line">            fn.apply(context, args);</span><br><span class="line">            start = cur;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            timer = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                fn.apply(context, args);</span><br><span class="line">            &#125;, delay);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// call throttle like this:</span></span><br><span class="line"><span class="built_in">window</span>.onresize = throttle(myFunc, <span class="number">50</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// that's all</span></span><br></pre></td></tr></table></figure>
-<h3 id="Another_implementation">Another implementation</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * 频率控制 返回函数连续调用时，fn 执行频率限定为每多少时间执行一次</span><br><span class="line"> * @param fn &#123;function&#125;  需要调用的函数</span><br><span class="line"> * @param delay  &#123;number&#125;    延迟时间，单位毫秒</span><br><span class="line"> * @param immediate  &#123;bool&#125; 给 immediate参数传递false 绑定的函数先执行，而不是delay后后执行。</span><br><span class="line"> * @return &#123;function&#125;实际调用函数</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">var</span> throttle = <span class="function"><span class="keyword">function</span> (<span class="params">fn, delay, immediate, debounce</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curr = +<span class="keyword">new</span> <span class="built_in">Date</span>(),<span class="comment">//当前事件</span></span><br><span class="line">        lastCall = <span class="number">0</span>,</span><br><span class="line">        lastExec = <span class="number">0</span>,</span><br><span class="line">        timer = <span class="literal">null</span>,</span><br><span class="line">        diff, <span class="comment">//时间差</span></span><br><span class="line">        context,<span class="comment">//上下文</span></span><br><span class="line">        args,</span><br><span class="line">        exec = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            lastExec = curr;</span><br><span class="line">            fn.apply(context, args);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        curr    = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">        context = <span class="keyword">this</span>,</span><br><span class="line">        args    = <span class="built_in">arguments</span>,</span><br><span class="line">        diff    = curr - (debounce ? lastCall : lastExec) - delay;</span><br><span class="line"></span><br><span class="line">        clearTimeout(timer);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (debounce) &#123;</span><br><span class="line">            <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">                timer = setTimeout(exec, delay);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                exec();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (diff &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                exec();</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">                timer = setTimeout(exec, -diff);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        lastCall = curr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * 空闲控制 返回函数连续调用时，空闲时间必须大于或等于 delay，fn 才会执行</span><br><span class="line"> * @param fn &#123;function&#125;  要调用的函数</span><br><span class="line"> * @param delay   &#123;number&#125;    空闲时间</span><br><span class="line"> * @param immediate  &#123;bool&#125; 给 immediate参数传递false 绑定的函数先执行，而不是delay后后执行。</span><br><span class="line"> * @return &#123;function&#125;实际调用函数</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">var</span> debounce = <span class="function"><span class="keyword">function</span> (<span class="params">fn, delay, immediate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> throttle(fn, delay, immediate, <span class="literal">true</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p><a href="http://www.alloyteam.com/2012/11/javascript-throttle/" target="_blank" rel="external">http://www.alloyteam.com/2012]]>
-    </summary>
-    
-      <category term="js" scheme="http://ochukai.github.io/tags/js/"/>
-    
-      <category term="javascript" scheme="http://ochukai.github.io/categories/javascript/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Wrong clearfix Make me crazy!]]></title>
     <link href="http://ochukai.github.io/Wrong-clearfix-Make-me-crazy/"/>
     <id>http://ochukai.github.io/Wrong-clearfix-Make-me-crazy/</id>
@@ -100,45 +120,18 @@
   </entry>
   
   <entry>
-    <title><![CDATA[git bash 记住密码]]></title>
-    <link href="http://ochukai.github.io/remember-password-in-git-bash/"/>
-    <id>http://ochukai.github.io/remember-password-in-git-bash/</id>
-    <published>2015-08-18T14:19:52.000Z</published>
-    <updated>2015-11-07T15:22:59.607Z</updated>
-    <content type="html"><![CDATA[<p><pre class="lang:sh decode:true"># 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式<br>mv git-credentials .git-credentials</pre><br>然后编辑 <strong>.git-credentials</strong></p>
-<p><pre class="lang:default decode:true"># github 是这样的格式<br><a href="https://{username}:{password}@github.com" target="_blank" rel="external">https://{username}:{password}@github.com</a> </pre></p>
-<h1 id="git-oschina-net_是这样的">git.oschina.net 是这样的</h1><p><a href="https://{username}:{password}@git.oschina.net" target="_blank" rel="external">https://{username}:{password}@git.oschina.net</a><br><br>最后一步是</p>
-<p><pre class="lang:sh decode:true">git config –global credential.helper store</pre><br>ok~~~</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><pre class="lang:sh decode:true"># 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式<br>mv git-credentials .git-credentials</pre><br>然后编辑 <strong>.gi]]>
-    </summary>
-    
-      <category term="git" scheme="http://ochukai.github.io/tags/git/"/>
-    
-      <category term="git bash" scheme="http://ochukai.github.io/tags/git-bash/"/>
-    
-      <category term="记住密码" scheme="http://ochukai.github.io/tags/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/"/>
-    
-      <category term="生活杂记" scheme="http://ochukai.github.io/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[wamp mysql 中文显示为？]]></title>
     <link href="http://ochukai.github.io/wamp-mysql-chinese-question-mark/"/>
     <id>http://ochukai.github.io/wamp-mysql-chinese-question-mark/</id>
     <published>2015-08-09T05:25:28.000Z</published>
-    <updated>2015-11-07T15:22:59.603Z</updated>
+    <updated>2015-11-23T03:00:31.083Z</updated>
     <content type="html"><![CDATA[<p>发现中文显示为“？”，然后我看了一下 mysql.ini，添加了两行</p>
-<p><pre class="lang:mysql decode:true">[mysqld]<br>port=3306</pre></p>
-<p>#下面的两行是添加的<br>character_set_client=utf8<br>character_set_server=utf8<br>后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。</p>
-<p><pre class="lang:mysql decode:true">mysql&gt; show variables like ‘character%’;<br>+————————–+—————————————————-<br>+<br>| Variable_name            | Value<br>|<br>+————————–+—————————————————-<br>+<br>| character_set_client     | gbk<br>|<br>| character_set_connection | gbk<br>|<br>| character_set_database   | utf8<br>|<br>| character_set_filesystem | binary<br>|<br>| character_set_results    | gbk<br>|<br>| character_set_server     | utf8<br>|<br>| character_set_system     | utf8<br>|<br>| character_sets_dir       | E:\Soft\wamp\bin\mysql\mysql5.6.12\share\charsets\<br>|<br>+————————–+—————————————————-</pre><br>&nbsp;</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="title">[mysqld]</span></span><br><span class="line"><span class="setting">port=<span class="value"><span class="number">3306</span></span></span></span><br><span class="line"><span class="comment">#下面的两行是添加的</span></span><br><span class="line"><span class="setting">character_set_client=<span class="value">utf8</span></span></span><br><span class="line"><span class="setting">character_set_server=<span class="value">utf8</span></span></span><br></pre></td></tr></table></figure>
+<p>后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">mysql&gt; show variables like 'character%';</span><br><span class="line">+--------------------------+----------------------------------------------------</span><br><span class="line">+</span><br><span class="line">| Variable_name            | Value</span><br><span class="line">|</span><br><span class="line">+--------------------------+----------------------------------------------------</span><br><span class="line">+</span><br><span class="line">| character_set_client     | gbk</span><br><span class="line">|</span><br><span class="line">| character_set_connection | gbk</span><br><span class="line">|</span><br><span class="line">| character_set_database   | utf8</span><br><span class="line">|</span><br><span class="line">| character_set_filesystem | binary</span><br><span class="line">|</span><br><span class="line">| character_set_results    | gbk</span><br><span class="line">|</span><br><span class="line">| character_set_server     | utf8</span><br><span class="line">|</span><br><span class="line">| character_set_system     | utf8</span><br><span class="line">|</span><br><span class="line">| character_sets_dir       | E:\Soft\wamp\bin\mysql\mysql5.6.12\share\charsets\</span><br><span class="line">|</span><br><span class="line">+--------------------------+----------------------------------------------------</span><br></pre></td></tr></table></figure></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>发现中文显示为“？”，然后我看了一下 mysql.ini，添加了两行</p>
-<p><pre class="lang:mysql decode:true">[mysqld]<br>port=3306</pre></p>
-<p>#下面的两行是添加的<br>character_]]>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="tit]]>
     </summary>
     
       <category term="mysql" scheme="http://ochukai.github.io/tags/mysql/"/>
@@ -154,15 +147,10 @@
     <link href="http://ochukai.github.io/modify-wamp-mysql-password/"/>
     <id>http://ochukai.github.io/modify-wamp-mysql-password/</id>
     <published>2015-07-31T15:32:13.000Z</published>
-    <updated>2015-11-07T15:22:59.603Z</updated>
-    <content type="html"><![CDATA[<p><pre class="lang:mysql decode:true ">use mysql</pre></p>
-<p>update user set password=PASSWORD(‘hooray’) where user=’root’;</p>
-<p>flush privileges;<br>&nbsp;</p>
-]]></content>
+    <updated>2015-11-23T02:59:25.158Z</updated>
+    <content type="html"><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> mysql</span><br><span class="line"></span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">PASSWORD</span>(<span class="string">'hooray'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
-    <![CDATA[<p><pre class="lang:mysql decode:true ">use mysql</pre></p>
-<p>update user set password=PASSWORD(‘hooray’) where user=’root’;</p>
-<p>flush p]]>
+    <![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> my]]>
     </summary>
     
       <category term="mysql" scheme="http://ochukai.github.io/tags/mysql/"/>
@@ -175,12 +163,11 @@
   
   <entry>
     <title><![CDATA[在网络暴力中捍卫自己]]></title>
-    <link href="http://ochukai.github.io/protect-yourself/"/>
-    <id>http://ochukai.github.io/protect-yourself/</id>
+    <link href="http://ochukai.github.io/protect-yourself-in-network/"/>
+    <id>http://ochukai.github.io/protect-yourself-in-network/</id>
     <published>2015-07-10T13:52:53.000Z</published>
-    <updated>2015-11-07T15:38:46.000Z</updated>
-    <content type="html"><![CDATA[<p># </p>
-<p>我想先问大家一个问题，有谁一年365，天天被未曾谋面的陌生人骂?举手的这个人就站在你们面前。不过别担心，我今天不是来诉苦的，我是穿着马甲来跟大家分享如何被骂大的。</p>
+    <updated>2015-11-23T03:09:10.684Z</updated>
+    <content type="html"><![CDATA[<p>我想先问大家一个问题，有谁一年365，天天被未曾谋面的陌生人骂?举手的这个人就站在你们面前。不过别担心，我今天不是来诉苦的，我是穿着马甲来跟大家分享如何被骂大的。</p>
 <p>网络对于我们来说再日常不过，但是当你身处网络世界的围攻中，就不再那么轻松。2013年的以前，我作梦也想不到自己会变成网络世界里的“黑姑娘”。因为参演了一部电视剧，演技没有达到观众的预期，故事的结局不尽人意，而被推到了风口浪尖，让我从一个还在摸爬滚打的小演员，一夜之间变成了被大家声讨的“热门人物”。</p>
 <p>震惊之余，让自己尽快从虚拟的世界中挣脱出来是我唯一的出路。我选择在网络声中被倒下，就在网络声中爬起来。有不少人认为，公众人物就应该具有强大的承受能力和耐力，打不还手，骂不还口。偶尔被坑蒙拐骗了，还要尽量先捂着不敢报警。</p>
 <p>当我被骂得小有名气的时候，我就暗自思量。反正也挨骂，不如用最积极的方式迎接骂声。2013年3月3日，我在微博上发出了一条名为“爱的骂骂”的微博，既然大家那么需要宣泄，点击鼠标可以不用负责，那我也动动手指头，干点什么吧！</p>
@@ -205,9 +192,8 @@
 <p>&nbsp;</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p># </p>
-<p>我想先问大家一个问题，有谁一年365，天天被未曾谋面的陌生人骂?举手的这个人就站在你们面前。不过别担心，我今天不是来诉苦的，我是穿着马甲来跟大家分享如何被骂大的。</p>
-<p>网络对于我们来说再日常不过，但是当你身处网络世界的围攻中，就不再那么轻松。2]]>
+    <![CDATA[<p>我想先问大家一个问题，有谁一年365，天天被未曾谋面的陌生人骂?举手的这个人就站在你们面前。不过别担心，我今天不是来诉苦的，我是穿着马甲来跟大家分享如何被骂大的。</p>
+<p>网络对于我们来说再日常不过，但是当你身处网络世界的围攻中，就不再那么轻松。2013年的以前，我作]]>
     </summary>
     
       <category term="tedx" scheme="http://ochukai.github.io/tags/tedx/"/>
@@ -223,472 +209,20 @@
   </entry>
   
   <entry>
-    <title><![CDATA[京儿项目总结与展望]]></title>
-    <link href="http://ochukai.github.io/jinge-summary-and-expect/"/>
-    <id>http://ochukai.github.io/jinge-summary-and-expect/</id>
-    <published>2015-03-10T13:22:40.000Z</published>
-    <updated>2015-11-07T15:22:59.595Z</updated>
-    <content type="html"><![CDATA[<p>去年，也就是 2014 年的 12-14 日，我写下了第一篇关于 jinger 的博客。时间已经过去 86 天，近乎 3 个月的时间了，我却仅仅做了这么一点点东西，自己想起来都觉会咬牙切齿，没错，咬牙切齿是我最近常有的状态，再加上眉头紧锁，捶胸顿足等。</p>
-<p>虽然做得少，但也不是没做出东西，现在总结一下，希望能填补一下心灵的空缺，同时也可以激励一下自己。从去年五月份出院后整个人都不好了，再加上需要养病，慢慢养成了懈怠的习惯，每次做不好事情都会有理由，“因为我有病。”</p>
-<hr>
-<p>上次写了一半，最近经常会把事情做一半然后不了了之了，这种习惯很不好!!!</p>
-<p>事情做到一半经常会断了思路（这里一半是数词，做事情的任何时候思路都会中断），无法高效的继续，我个人很讨厌这种感觉。这时容易分心做一些别的事情，比如正在写代码，突然不会写了，会上网查资料，网页上面又有各种各样的信息，稍微手贱就可能走上不归路，而在浏览的过程中随时也都有可能就网页上的信息联想起自己曾经想要尝试但是一直憋在心里的事情，看到 ghost 发布了新版本，咦~ 我的还是旧版的呢，于是我就想要更新一下，什么~npm也要更新，去官网看看更新了什么内容了吧， アレ‐　这里有一个 package 排行榜，看看有没有我需要的吧<del>~</del>~ 于是我彻底走远了！！！</p>
-<p>这是一种什么心理呢？ 猎奇，喜新厌旧，注意力不集中，肾虚？ 好可怕~~ 当我们做一件事情做不下去了的时候，新的事情肯定会更容易被我们接受，更容易开始。我在写博客写不下去的时候可能随时都会打开一个新 tab 进入淘宝，然后开始一次愉快的购物旅程，然后这一篇就会等到周末再发布了！</p>
-<p>我们务必时时注意自己当前的想法及行为（推荐一本书《当下的力量》），我要做什么，我正在做什么，距离目标还有多远 ? 我们要活在当下，过去的事情已经不存在，将来的事情还没有发生。不知道为什么我突然想起这句话，但<strong>对当下保持觉知是高效工作的一个好办法!!! </strong>突然想到前几天在知乎上面看到的一个问题，题主表示很迷茫，没有方向，很羡慕别人，然后有一个回答：你羡慕别人什么，你与他相比还有多少差距？ 这个回答深深的刺激了我，戳穿了盲目的恐惧，也量化了恐惧。看到了差距，量化了差距，就相当于有了目标，整个人都有劲了。</p>
-<h2 id="京儿的总结">京儿的总结</h2><h4 id="我要做什么">我要做什么</h4><p>京儿项目是我第好几个 node 项目，但与之前de项目不同的地方在于这个是给别人做的，也什么时间要求，很宽松，这也导致我效率很低。这个项目是用来展示产品和宣传公司的，这跟大部分的企业类网站类似，除此之外我还想加入商城的功能。</p>
-<h4 id="我正在做什么">我正在做什么</h4><p>京儿项目至今，我写了后台管理，各种增删改查，登陆注销。</p>
-<ul>
-<li>后台：node + express + mysql</li>
-<li>前台：angular + angular-bootstrap<br>真的算是很简陋的项目了，但是我却做的并不是那么得心应手，时间不足，下班回家累的跟狗似的，几乎不想继续写代码了。编码的过程中加入了一些我新接触的概念，比如基于 token 的登陆验证模式，angular-resource 的运用， angular-directive等，都是边学边用，很慢~~哦， angular是我新学的啦，但是却有一种老相识的感觉。</li>
-</ul>
-<h4 id="距离目标还有多远_?">距离目标还有多远 ?</h4><p>还差一个前台！！！</p>
-<p>现在后台主页每次都会加载几十个 js，我没有加上 cdn，代码没有加 ut，没有自动打包。</p>
-<p>&nbsp;</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>去年，也就是 2014 年的 12-14 日，我写下了第一篇关于 jinger 的博客。时间已经过去 86 天，近乎 3 个月的时间了，我却仅仅做了这么一点点东西，自己想起来都觉会咬牙切齿，没错，咬牙切齿是我最近常有的状态，再加上眉头紧锁，捶胸顿足等。</p>
-<p>虽然做]]>
-    </summary>
-    
-      <category term="angular" scheme="http://ochukai.github.io/tags/angular/"/>
-    
-      <category term="expressjs" scheme="http://ochukai.github.io/tags/expressjs/"/>
-    
-      <category term="jinger" scheme="http://ochukai.github.io/tags/jinger/"/>
-    
-      <category term="node" scheme="http://ochukai.github.io/tags/node/"/>
-    
-      <category term="angularjs" scheme="http://ochukai.github.io/categories/angularjs/"/>
-    
-      <category term="生活杂记" scheme="http://ochukai.github.io/categories/angularjs/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[AngularJS: Service 与 Factory 的对比]]></title>
-    <link href="http://ochukai.github.io/angularjs-service-vs-factory/"/>
-    <id>http://ochukai.github.io/angularjs-service-vs-factory/</id>
-    <published>2015-01-06T15:01:48.000Z</published>
-    <updated>2015-11-07T15:22:59.596Z</updated>
-    <content type="html"><![CDATA[<p>在很多 AngularJS 的教程和文档里面，作者都会使用 <strong>service</strong> 或者 <strong>factory</strong>，但他们从来都不会解释为什么使用 <strong>service</strong> 或者 <strong>facotry</strong>，虽然 <strong>value</strong> 和 <strong>constant</strong> 用的不多但也有这种现象（Few mention that <strong><code>value</code> </strong>and <strong><code>constant</code></strong> are also options.）。</p>
-<p>让我们来看一下为什么，当然我们需要先了解一下 <strong>provider.</strong></p>
-<h2 id="provider">provider</h2><p>这是定义 provider 方法的源代码：</p>
-<pre class="lang:js decode:true ">function provider(name, provider_) {
-    if (isFunction(provider_) || isArray(provider_)) {
-        provider_ = providerInjector.instantiate(provider_);
-    }
-    if (!provider_.$get) {
-        throw Error('Provider ' + name + ' must define $get factory method.');
-    }
-    return providerCache[name + providerSuffix] = provider_;
-}</pre>
-其中，**name** 是一个字符串， **provider_** 可以是一下三种之一：
-
-*   函数（function）
-
-如果传入一个函数作为一个参数，这个函数会被注入（the function is called with [dependency injection](http://docs.angularjs.org/guide/di)）然后返回一个具有 $get 方法的对象。
-
-*   数组（array）
-
-数组会被解释成为行内注解（[Inline Annotation](http://docs.angularjs.org/guide/di)），它也必须返回一个具有 $get 方法的对象。
-
-*   对象（object）
-
-这个对象必须具有 $get 方法。
-
-所以不管第二个参数传入的是什么，你都会得到一个具有 $get 方法的对象。这里有一个例子：
-<pre class="lang:js decode:true">// Create a module
-var hippo = angular.module('hippo', []);
-
-// Register an object provider
-hippo.provider('awesome', {
-    $get: function() {
-        return 'awesome data';
-    }
-});
-
-// Get the injector (this happens behind the scenes in angular apps)
-var injector = angular.injector(['hippo', 'ng']);
-
-// Call a function with dependency injection
-injector.invoke(function(awesome) {
-    console.log('awesome == ' + awesome);
-});</pre>
-一旦你明白了 **provider** 是什么，你就知道 **`factory`**，**`service`**，**`value`** 和 **`constant `**`只不过是生成 **provider** 的简单方法。`
-
-## factory
-
-这是 factory 的源代码：
-<pre class="lang:js decode:true">function factory(name, factoryFn) {
-    return provider(name, { $get: factoryFn });
-}
-</pre>
-所以可以把 awesome 写成这样：
-<pre class="lang:js decode:true">hippo.factory('awesome', function() {
-    return 'awesome data';
-});</pre>
-
-<h2 id="service">service</h2><p>这是 service 的源代码：</p>
-<pre class="lang:js decode:true">function service(name, constructor) {
-    return factory(name, ['$injector', function($injector) {
-        return $injector.instantiate(constructor);
-    }]);
-}</pre>
-所以，service 允许我们使用创建类的方式写对象，像这样：
-<pre class="lang:js decode:true ">function Gandalf() {
-    this.color = 'grey';
-}
-
-Gandalf.prototype.comeBack = function() {
-    this.color = 'white';
-}
-
-var gandalf = angular.module('gandalf', []);
-gandalf.service('gandalfService', Gandalf);
-
-var injector = angular.injector(['gandalf', 'ng']);
-injector.invoke(function(gandalfService) {
-    console.log(gandalfService.color);
-    gandalfService.comeBack()
-    console.log(gandalfService.color);
-});</pre>
-上面的代码会实例化 **Gandalf**，但是要记住：所有使用这个 **gandalfService** 的地方得到的都是同一个对象，也就是说 **service 是单例**的。
-
-## value
-
-这是 value  的源代码：
-<pre class="lang:js decode:true ">function value(name, value) {
-    return factory(name, valueFn(value));
-}</pre>
-使用 value 的方式，会使你把 awesome 写的更短。
-<pre class="lang:js decode:true">hippo.value('awesome', 'awesome data');</pre>
-
-<h2 id="contant">contant</h2><p>这是 contant 的源代码：</p>
-<p><pre class="lang:js decode:true">function constant(name, value) {<br>    providerCache[name] = value;<br>    instanceCache[name] = value;<br>}</pre><br><strong>contant </strong>与 <strong>value</strong> 不同的地方是它可以在 <strong>config</strong> 方法中被使用，像这样：</p>
-<p><pre class="lang:js decode:true ">var joe = angular.module(‘joe’, []);</pre></p>
-<p>joe.constant(‘bobTheConstant’, ‘a value’);</p>
-<p>joe.value(‘samTheValue’, ‘a different value’);</p>
-<p>joe.config(function(bobTheConstant) {<br>    console.log(bobTheConstant);<br>});</p>
-<p>joe.config(function(samTheValue) {<br>    console.log(samTheValue);<br>});</p>
-<p>// This will fail with “Error: Unknown provider: samTheValue from joe”<br>var injector = angular.injector([‘joe’, ‘ng’]);</p>
-<blockquote>
-<p>Read Module Loading &amp; Dependencies in <a href="http://docs.angularjs.org/guide/module" target="_blank" rel="external">the Modules doc</a> for more information on usage.</p>
-</blockquote>
-<h2 id="总结">总结</h2><blockquote>
-<p>If you want your function to be called like a normal function, use <code>factory</code> . If you want your function to be instantiated with the <code>new</code> operator, use <code>service</code> . If you don’t know the difference, use <code>factory</code> .<br>如果你想让你写的函数访问起来像正常的函数，使用 <strong>factory</strong>方法，如果你想让你写的函数被 <strong>使用 new 实例化后</strong>（当然不是自己 new，被 angular 注入后的对象已经是实例化之后的了，可以直接使用）使用，那么你用 <strong>service </strong>方法。如果你不知道有什么区别，那就是用 <strong>factory</strong> 方法。</p>
-</blockquote>
-<p>下面是官方文档中的介绍：</p>
-<blockquote>
-<p>This is the (great) documentation for each function in the AngularJS source:</p>
-<ul>
-<li><code>factory</code></li>
-</ul>
-<p>A short hand for configuring services if only <code>$get</code> method is required.</p>
-<ul>
-<li><code>service</code></li>
-</ul>
-<p>A short hand for registering service of given class.</p>
-<ul>
-<li><code>value</code></li>
-</ul>
-<p>A short hand for configuring services if the <code>$get</code> method is a constant.</p>
-<ul>
-<li><code>constant</code></li>
-</ul>
-<p>A constant value, but unlike {@link AUTO.$provide#value value} it can be injected into configuration function (other modules) and it is not interceptable by {@link AUTO.$provide#decorator decorator}.<br><strong>第一次翻译别人的作品。</strong><br>原文链接：<a href="http://iffycan.blogspot.com/2013/05/angular-service-or-factory.html" target="_blank" rel="external">http://iffycan.blogspot.com/2013/05/angular-service-or-factory.html</a></p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在很多 AngularJS 的教程和文档里面，作者都会使用 <strong>service</strong> 或者 <strong>factory</strong>，但他们从来都不会解释为什么使用 <strong>service</strong> 或者 <strong>fa]]>
-    </summary>
-    
-      <category term="angular" scheme="http://ochukai.github.io/tags/angular/"/>
-    
-      <category term="翻译" scheme="http://ochukai.github.io/tags/%E7%BF%BB%E8%AF%91/"/>
-    
-      <category term="angularjs" scheme="http://ochukai.github.io/categories/angularjs/"/>
-    
-      <category term="翻译" scheme="http://ochukai.github.io/categories/angularjs/%E7%BF%BB%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[New Project with Nodejs and Expressjs - san]]></title>
-    <link href="http://ochukai.github.io/new-project-with-nodejs-and-expressjs-san/"/>
-    <id>http://ochukai.github.io/new-project-with-nodejs-and-expressjs-san/</id>
-    <published>2015-01-03T05:03:26.000Z</published>
-    <updated>2015-11-07T15:22:59.593Z</updated>
-    <content type="html"><![CDATA[<p>窗外阳光明媚，冬风和煦，路上行人点点，车流不息，我站在屋内，手中拿着旺旺（或旺仔）雪饼，嘴里嚼着，很脆。阳光洒在我的脸上，身上，很温暖。我肆意的享受着只有不开窗户才能体会到的冬天的温暖。</p>
-<p>我忽而想起了前天晚上，也就是元旦跨年夜，发生在外滩的踩踏事件，今天官方发布了死亡名单，都是一些年轻人葬身于此，大概只有年轻人才会在跨年夜去外滩凑热闹，看灯光表演吧。我在那一天可是早早的就被同事叫过去吃饭了，并且打保皇到凌晨4点。看到名单的时候其实我是很有感触的，好多人都比我小一两岁，也有跟我同岁的，他们已经死了，死在我曾经去过并且同样抱怨过人多的地方，真的我都不知道该用什么词语去描绘我的心情。他们死了，我还活着，他们还没有来的及体会这世间的险恶与美好。</p>
-<p>上一篇记录了我使用 angular 和 bootstrap 等框架搭建了一个后台，然后使用 bower 解决了前端依赖太多以及依赖版本控制的问题，一切都进行的非常顺利。</p>
-<p>最近这一周可谓轻松，因为元旦放假了三天，只上班三天，不过下一周就要工作6天了。现在我就记录一下休息的前两天我做了什么。</p>
-<hr>
-<ul>
-<li>把项目放到了 github  上：<a href="https://github.com/xiaoyee/jinger" target="_blank" rel="external">Jinger</a></li>
-<li>完成了后台管理员的登陆和注册</li>
-<li>完成了我的第一个 angular 的 directive， 可以根据当前登录用户显示其对应的菜单</li>
-</ul>
-<hr>
-<h2 id="登陆和注册">登陆和注册</h2><p>登陆和注册是网站最最基本的两个功能，还可以加上忘记密码。</p>
-<p>传统思维的登陆可以总结为： 输入用户名/密码 - 提交 - 服务器接收验证 - <strong>服务器保存到 session</strong> - 前台提示登陆成功，这是大部分网站使用的方式，没有什么不好，但是现在有了好多种客户端，包括手机，平板上的 app 等，他们是不支持 session/cookie 的，所以现在好多服务器端采用 token 的方式保存登陆用户。</p>
-<p>基于 token 的登陆方式，这里有一篇文章我认为翻译的很好，而且我就是通过这一篇文章才理解这一种方式的：<a href="http://zhuanlan.zhihu.com/FrontendMagazine/19920223" target="_blank" rel="external">使用 AngularJS &amp; NodeJS 实现基于 token 的认证应用</a>。</p>
-<blockquote>
-<ol>
-<li>用户在登录表单中输入 <strong>用户名</strong> 和 <strong>密码</strong> ，然后点击 <strong>登录</strong> ；</li>
-<li>请求发送之后，通过在后端查询数据库验证用户的合法性。如果请求有效，使用在数据库得到的信息创建一个 token，然后在响应头信息中返回这个的信息，目的是把这个 token 存储到浏览器的本地存储中；</li>
-<li>在每次发送访问应用中受限制的后端服务器的请求时提供 token 信息；</li>
-<li>如果从请求头信息中拿到的 token 有效，允许用户访问受限制的后端服务器，并且返回 JSON 或者 XML。<br>虽然我的的网站暂时没有需要做成app的打算但是我很喜欢这种方式，所以我把登陆和注册按照这种方式写了。</li>
-</ol>
-</blockquote>
-<h3 id="数据库设计">数据库设计</h3><p>users 表的建表语句如下，增加了 token 这一列，这也是可以用来唯一确定这一个 user 的列。</p>
-<pre class="lang:mysql decode:true">CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_user_token` (`token`),
-  UNIQUE KEY `index_user_username` (`username`)
-)</pre>
-之前不了解这一种登录方式的时候以为 token 是可以变得，我以为每一次在没有保存 token 的地方登陆都要新生成一个的 token，而生成 token 的时候需要的 salt 也是随机的，把每次生成的 token 都保存起来，设计成一对多的表，每次登陆前检查一下是否在保存了 token ，这样也可以起到记住密码的作用，不过随着登录次数和登陆场所的增多，token 也就会变得更多，会很混乱。
-
-一个 user 对应多个 token 的方式我有点 hold 不住，暂时采用一对一的方式。
-
-### 数据库访问过程
-
-<pre class="lang:js decode:true  ">User.prototype.login = function (username, password) {
-
-    var columns = ['id', 'username', 'password', 'token'],
-        sql     = 'select ?? from ?? where username = ?';
-
-    return db.query(sql, [columns, this.tableName, username])
-        .then(function (rows) {
-            if (rows &amp;&amp; rows.length &gt; 0) {
-                var user = rows[0];
-                if (user.password == password) {
-                    delete user.password;
-                    return user;
-                }
-            }
-        });
-
-};</pre>
-用户登录的时候会传递用户名和密码到服务端，其实这里的方式也可以分两步
-
-1.  验证用户名和密码
-2.  根据验证成功的用户 id 取出其对应的 token
-而我觉得这样需要访问两次数据库而且逻辑上变复杂了，我脑容量有限，喜欢一步到位。取出所有，密码正确的话返回当前用户信息。
-
-### express
-
-<pre class="lang:js decode:true ">/*
- * User login.
- */
-router.post('/signin', function (req, res) {
-
-    // retrieve username and password.
-    var username = req.body.username;
-    var password = req.body.password;
-
-    mUser
-        .login(username, cryptor.md5(password))
-        .delay(1000)
-        .then(function (result) {
-            if (result) {
-                result.success = true;
-                res.json(result);
-                return;
-            }
-
-            res.json({
-                success: false
-            });
-        });
-});</pre>
-delay(1000) 是因为我喜欢看提交请求后屏幕最上方的 loading-bar 的效果，很爽。
-
-### 登录页面
-
-略
-
-### angular的操作
-
-前端使用了 angular 之后，也分出了 controller 与 service，使用 service 是为了解决不同 controller 不同 scope 具有相同逻辑操作的问题。
-<pre class="lang:xhtml decode:true ">&lt;form class="form-signin" role="form" ng-submit="login()"&gt;
-    &lt;input type="text" class="form-control" placeholder="用户名" required autofocus ng-model="username"&gt;
-    &lt;input type="password" class="form-control" placeholder="密码" required ng-model="password"&gt;
-    &lt;div class="checkbox"&gt;
-        &lt;label&gt;
-            &lt;input type="checkbox" value="remember-me" ng-model="rememberMe"&gt;记住密码
-        &lt;/label&gt;
-    &lt;/div&gt;
-    &lt;button class="btn btn-lg btn-primary btn-block" type="submit"&gt;确认登陆&lt;/button&gt;
-&lt;/form&gt;</pre>
-
-<ul>
-<li>ng-model 是angular 的一个自带的 directive ，angular 会在当前 scope 新建一个变量 username，当 input 的 value 改变时，username 的值会跟着改变，password 也是如此。而且 username 的值改变的话，页面上也会实时显示它的值，这应该叫做双向绑定吧。</li>
-<li><p>ng-submit 也是一个 directive，当我们点击提交表单时会执行 login() 函数。<br><pre class="lang:default decode:true">$scope.login = function () {<br>var rememberMe = $scope.rememberMe,</pre></p>
-<pre><code>formData = {
-    username: <span class="variable">$scope</span>.username,
-    password: <span class="variable">$scope</span>.password
-};
-</code></pre><p>LoginService</p>
-<pre><code>.login(formData)
-.success(<span class="function"><span class="keyword">function</span> <span class="params">(res)</span> </span>{
-    <span class="keyword">if</span> (res.success) {
-        <span class="comment">// save the successful user when logged successfully.</span>
-        store.<span class="keyword">set</span>(<span class="string">'token'</span>, res.token);
-        <span class="comment">// redirect to /me.</span>
-        $location.path(<span class="string">'/me'</span>);
-    }
-});
-</code></pre><p>};</p>
-</li>
-</ul>
-<p>// ——————————————————-</p>
-<p>app.factory(‘LoginService’, [‘$http’,<br>    function ($http) {<br>        return {<br>            regist: function (data) {<br>                return $http.post(baseUrl + ‘/signup’, data);<br>            },<br>            login: function (data) {<br>                return $http.post(baseUrl + ‘/signin’, data);<br>            }<br>        };<br>    }]);<br>在 controller 里面把用户输入的用户名密码发送到服务器，如果服务器正常返回的话，把返回的 token 保存到浏览器的 localStorage ，其实在这个过程中 rememberMe 还没有起到作用，好像选不选择都会记住，如果不记住（不保存 token 到 localStorage）的话页面的访问都会是个问题，因为每次请求都需要带上 token 的值。要想取消保存的 token 只能在 logout 的时候删掉 localStorage 中的token。</p>
-<pre class="lang:js decode:true">$httpProvider.interceptors
-    .push(['$q', '$location', 'store',
-        function ($q, $location, store) {
-            return {
-                'request': function (config) {
-                    config.headers = config.headers || {};
-                    var token = store.get('token');
-                    if (token) {
-                        config.headers.Authorization = 'Bearer ' + token;
-                    }
-                    return config;
-                },
-                'responseError': function (response) {
-                    if (response.status === 401 || response.status === 403) {
-                        $location.path('/login');
-                    }
-                    return $q.reject(response);
-                }
-            };
-        }]);
-    }]);</pre>
-> 在应用的注册或者登录部分，不记名 token 响应了这个请求并且这个 token 被存储到本地存储中。当你向后端请求一个服务时，你需要把这个 token 放在头部中。你可以使用 AngularJS 的拦截器实现这个。
-> 
-> 
-> 在上面的代码中，每次请求都会被拦截并且会把 token 的值放到头部中。
-这在登陆之后向服务器端发送请求会很方便。
-<pre class="lang:default decode:true">function ensureAuthorized(req, res, next) {
-    var bearerToken;
-    var bearerHeader = req.headers["authorization"];
-
-    if (typeof bearerHeader !== 'undefined') {
-        var bearer = bearerHeader.split(" ");
-        bearerToken = bearer[1];
-        req.token = bearerToken;
-        next();
-    } else {
-        res.send(403).end();
-    }
-}
-
-// ----------------------------------------------------
-// in app.js
-app.use('/admin', authorizer, dashboard);</pre>
-服务器端每次处理请求的时候会自动按照以上规则，如果是属于 **/admin** 请求，会执行 authorizer 这个 middleware，其他请求 url 则不会。
-
-注册的话就很简单了，只是要处理用户名是否存在的问题。
-
-以上。
-
-## admin-sider
-
-angular 的 directive 是挺方便的一个东西。可以定义为 element， attribute，class， comment 四种格式，有点像 java 的自定义 tag。把一个前端组件封装成一个 directive 是一个不错的选择，至少我是这么认为的，比如我的 admin-sider。关于 directive 的知识可以参考这一篇博客 [Angular Directive](http://inching.org/2014/09/24/angular-directive/)。
-
-admin-sider 是一个侧边菜单。根据登录用户的不同，会显示不同的菜单项。
-<pre class="line-height:20 lang:js decode:true  ">var app = angular.module('myApp');
-app.directive("adminSider", ['$rootScope', 'store',
-    function ($rootScope, store) {
-        return {
-            restrict: 'E',
-            replace: true,
-            templateUrl: '/tpl/sider.html',
-            link: function ($scope, $elem, $attrs) {
-                var menus = store.get('menus');
-                if(typeof menus != 'undefined' &amp;&amp; menus != null){
-                    $rootScope.menus = menus;
-                    $rootScope.isRetriveMenus = true;
-                }
-            }
-        };
-    }]);</pre>
-其中
-
-*   restrict 限制了这个 directive 的形式，可以有四个值，A-attribute，E-element，C-class， M-comment
-*   replace 默认为 false，是否替换元标签，false 的话会保留，然后插入到里面，比如：**&lt;hello&gt;&lt;/hello&gt;** --&gt; **&lt;hello&gt;_&lt;a href='#'&gt;&lt;/a&gt;_&lt;/hello&gt;**；如果为 true，则表示替换：**&lt;hello&gt;&lt;/hello&gt;** --&gt; _**&lt;a href='#'&gt;&lt;/a&gt;**_
-*   template/templateUrl 指定模板或者模板文件。`template` 用于 templete 内容比较少的情况，更多的情况下你可能会见到 `templateUrl`。
-*   link 和 compile 的属性比较复杂。**待续！**
-*   关于名字 adminSider 虽然是 camelCase，但是在网页里面可以这样用：&lt;admin-sider&gt;&lt;/admin-sider&gt;，绝对不可以写成&lt;admin-sider/&gt;（这样会被解析成A）。
-
-### directive 的生命周期
-
-当应用启动时，Angular 开始使用 **$compile** 服务遍历 DOM 元素，试图使用注册过的指令列表来匹配每个元素、属性、注释、CSS 类，一旦匹配成功，AngularJS 调用相应指令的 compile 函数，这个 compile 函数返回一个 link 函数，被添加到稍后执行的 link 函数列表中。作用域在编译阶段还没有准备好，在编译阶段还不能使用作用域中数据。
-
-要注意的是 compile 函数不能访问 scope，并且必须返回一个 link 函数。只能在链接函数中使用 DOM，因为在编译函数中可能移除或复制元素。如果没有设置 compile 函数，你可以正常地配置 link 函数，**有了compile，就不能有 link，link 函数由 compile 函数返回**。
-
-一旦所有的指令编译完成便进入链接阶段。在这个阶段，作用域已准备就绪，所有收集的 link 函数将被一一执行。指令创造出来的模板会在正确的 scope 下被解析和处理，然后返回具有事件响应的真实的 DOM 节点。
-
-指令的 link 函数主要用来为 DOM 元素添加事件监听、监视模型属性变化、以及更新 DOM。我们可以在 link 函数中访问指令的 scope。
-
-大多数的情况下，你只需要使用 link 函数。这是因为大部分的指令只需要考虑注册事件监听、监视模型、以及更新 DOM 等，这些都可以在 link 函数中完成。凡是你使用 link 函数的地方，你都可以使用一个 pre 和 post 属性组成的对象，这两个属性分别表示前处理链接链接函数和后处理链接链接函数。默然情况下，链接函数指的是后处理链接函数.
-<pre class="lang:js decode:true">link: function LinkFunction($scope, $element, $attributes) { ... }
-//...
-link: {
-    // Pre-linking 是在所有子元素被链接之前执行，而 post-ling 是在所有子元素链接之后。
-    // 只有在 post-link 函数中做 DOM 变换才是安全的。
-    pre: function PreLinkFunction($scope, $element, $attributes) { ... },
-    post: function PostLinkFunction($scope, $element, $attributes) { ... }
-}</pre>
-
-<h3 id="Transclusion">Transclusion</h3><p><strong>略！！！</strong></p>
-<h3 id="admin-sider_的生命周期">admin-sider 的生命周期</h3><p><pre class="lang:xhtml decode:true">&lt;div id=”nav-sider” class=”nav-collapse”&gt;<br>    &lt;ul role=”navigation” class=”nav nav-pills nav-stacked”&gt;<br>        &lt;li ng-class=”{‘active’: menu.isActive}” ng-repeat=”menu in menus”&gt;<br>            &lt;a href=”#“&gt;  &lt;/a&gt;<br>        &lt;/li&gt;<br>    &lt;/ul&gt;<br>&lt;/div&gt;</pre><br>adminSider 是用来显示菜单的，所以需要有一个菜单列表，而且用户登陆之前，登陆后，注销后之后的菜单列表是不一样的，所以菜单列表就不能保存在adminSider 的 scope 里面。经过我查询资料发现有一个 $rootScope 可供使用，这是一个全局的，单例的对象，每一次切换 view ，对应的 controller 的 $scope 会变化，但 $rootScope 不会，于是我想把菜单列表保存在 $rootScope 里面。</p>
-<p>但是又出现了一个问题如果访问某一个页面的时候出现了卡顿，而用户不知道我是用 angular 写的网站，她点了一下刷新，那就毁了：菜单列表被清空了。这样还是不行，只能把菜单列表保存在 localStorage 了，这样就算刷新页面之后 $rootScope 里面没有了，还可以从 localStorage 里面取，而且如果需要销毁的话只需要随着 token 一起被删除就好了。</p>
-<p><pre class="lang:js decode:true ">if (‘/me’ === currentUrl &amp;&amp; token) {<br>    // update menus<br>    menuService<br>        .myMenus()<br>        .success(function (res) {<br>            if (res.success) {<br>                var menus = res.menus;<br>                $rootScope.menus = menus;<br>                $rootScope.isRetriveMenus = true;<br>                // save in localStorage.<br>                store.set(‘menus’, $rootScope.menus);<br>            }<br>        });<br>}</pre><br>像上面的代码，获取到菜单列表后保存在 localStorage，每次刷新页面肯定会执行 admin-sider 的 link 函数, 如下可以直接从 localStorage 里面取。</p>
-<p><pre class="lang:default decode:true ">link: function ($scope, $elem, $attrs) {<br>    var menus = store.get(‘menus’);<br>    if(typeof menus != ‘undefined’ &amp;&amp; menus != null){<br>        $rootScope.menus = menus;<br>        $rootScope.isRetriveMenus = true;<br>    }<br>}</pre><br>最重要的一点，admin-sider 中的 menus <strong>来源于 $rootScope.</strong></p>
-<hr>
-<p>今天写的有点长了，但是好多东西都表达不清楚。还需要多加练习，慢慢学会写 blog。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>窗外阳光明媚，冬风和煦，路上行人点点，车流不息，我站在屋内，手中拿着旺旺（或旺仔）雪饼，嘴里嚼着，很脆。阳光洒在我的脸上，身上，很温暖。我肆意的享受着只有不开窗户才能体会到的冬天的温暖。</p>
-<p>我忽而想起了前天晚上，也就是元旦跨年夜，发生在外滩的踩踏事件，今天官方发]]>
-    </summary>
-    
-      <category term="angular" scheme="http://ochukai.github.io/tags/angular/"/>
-    
-      <category term="directive" scheme="http://ochukai.github.io/tags/directive/"/>
-    
-      <category term="expressjs" scheme="http://ochukai.github.io/tags/expressjs/"/>
-    
-      <category term="jinger" scheme="http://ochukai.github.io/tags/jinger/"/>
-    
-      <category term="node" scheme="http://ochukai.github.io/tags/node/"/>
-    
-      <category term="token" scheme="http://ochukai.github.io/tags/token/"/>
-    
-      <category term="angularjs" scheme="http://ochukai.github.io/categories/angularjs/"/>
-    
-      <category term="node" scheme="http://ochukai.github.io/categories/angularjs/node/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Navicat 10.1.7 的注册码]]></title>
     <link href="http://ochukai.github.io/navicat-10-1-7-key/"/>
     <id>http://ochukai.github.io/navicat-10-1-7-key/</id>
     <published>2014-12-28T13:23:42.000Z</published>
-    <updated>2015-11-07T15:22:59.590Z</updated>
+    <updated>2015-11-23T02:50:13.501Z</updated>
     <content type="html"><![CDATA[<blockquote>
-<p><span class="crayon-v">NAVN</span><span class="crayon-o">-</span><span class="crayon-v">LNXG</span><span class="crayon-o">-</span><span class="crayon-v">XHHX</span><span class="crayon-o">-</span><span class="crayon-cn">5NOO</span><br>名和组织随便写。</p>
+<p>NAVN-LNXG-XHHX-5NOO<br>名和组织随便写。</p>
 </blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<blockquote>
-<p><span class="crayon-v">NAVN</span><span class="crayon-o">-</span><span class="crayon-v">LNXG</span><span class="crayon-o">-<]]>
+<p>NAVN-LNXG-XHHX-5NOO<br>名和组织随便写。</p>
+</blockquote>
+]]>
     </summary>
     
       <category term="mysql" scheme="http://ochukai.github.io/tags/mysql/"/>
@@ -696,401 +230,6 @@ link: {
       <category term="navicat" scheme="http://ochukai.github.io/tags/navicat/"/>
     
       <category term="MySQL" scheme="http://ochukai.github.io/categories/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[MySQL 的几个特殊 SQL 语法]]></title>
-    <link href="http://ochukai.github.io/mysql-special-sql-grammer/"/>
-    <id>http://ochukai.github.io/mysql-special-sql-grammer/</id>
-    <published>2014-12-28T13:08:13.000Z</published>
-    <updated>2015-11-07T15:22:59.631Z</updated>
-    <content type="html"><![CDATA[<p>使用了 node 的 mysql 的库，不是 ORM 只是原生的 SQL，名字是 <a href="https://github.com/felixge/node-mysql" target="_blank" rel="external"><strong>felixge/node-mysql </strong></a>，这个库不错，挺好用的，比如</p>
-<p><pre class="lang:default decode:true">var userId  = 1;<br>var columns = [‘username’, ‘email’];<br>var sql     = ‘SELECT ?? FROM ?? WHERE id = ?’;</pre></p>
-<p>var query = connection.query(sql, [columns, ‘users’, userId], function(err, results) {<br>    // …<br>});<br>亦可以这样</p>
-<p><pre class="lang:default decode:true">var post  = {<br>    id   : 1,<br>    title: ‘Hello MySQL’<br>};</pre></p>
-<p>var query = connection.query(‘INSERT INTO posts SET ?’, post, function(err, result) {<br>  // Neat!<br>});<br>console.log(query.sql); // INSERT INTO posts SET <code>id</code> = 1, <code>title</code> = ‘Hello MySQL’<br>上面都是 Readme.md 中的示例代码，但是看到</p>
-<p><pre class="lang:default decode:true">INSERT INTO posts SET <code>id</code> = 1, <code>title</code> = ‘Hello MySQL’</pre><br>我发现这种用法我并没有见过，于是去官网看了下(<a href="http://dev.mysql.com/doc/refman/5.1/en/insert.html)，确实有这种用法我就放心了。" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.1/en/insert.html)，确实有这种用法我就放心了。</a></p>
-<h2 id="INSERT_INTO_tablename_SET_*">INSERT INTO tablename SET <em>*</em></h2><p><pre class="lang:mysql decode:true">INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]<br>    [INTO] tbl_name<br>    SET col_name={expr | DEFAULT}, …<br>    [ ON DUPLICATE KEY UPDATE<br>      col_name=expr<br>        [, col_name=expr] … ]</pre><br>这样的写法有什么好处呢？</p>
-<ul>
-<li>传统方法将列名和列值分开了，在使用时，列名必须和列值的数量一致，而且分开后不容易对比</li>
-<li>这种方法允许列名和列值成对出现和使用，不会出现顺序和数量不对应的情况</li>
-<li>速度快<br>&nbsp;</li>
-</ul>
-<h2 id="REPLACE_INTO_tablename_SET_*">REPLACE INTO tablename SET <em>*</em></h2><p><pre class="lang:mysql decode:true ">REPLACE [LOW_PRIORITY | DELAYED]<br>    [INTO] tbl_name<br>    SET col_name={expr | DEFAULT}, …</pre><br>在看上面的 INSERT INTO 的时候看到了一句话：</p>
-<blockquote>
-<p>You can use <a href="http://dev.mysql.com/doc/refman/5.1/en/replace.html" title="13.2.7 REPLACE Syntax" target="_blank" rel="external"><code>REPLACE</code></a> instead of <a href="http://dev.mysql.com/doc/refman/5.1/en/insert.html" title="13.2.5 INSERT Syntax" target="_blank" rel="external"><code>INSERT</code></a> to overwrite old rows.<br>所以点进去一探究竟，REPLACE 与 INSERT 很相似。<br>只有一点例外，假如表中的一个旧记录与一个用于PRIMARY KEY或一个UNIQUE索引的新记录具有相同的值，则在新记录被插入之前，旧记录被删除。</p>
-<p>注意，除非表有一个PRIMARY KEY或UNIQUE索引，否则，使用一个REPLACE语句没有意义。该 语句会与INSERT相同，因为没有索引被用于确定是否新行复制了其它的行。</p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>使用了 node 的 mysql 的库，不是 ORM 只是原生的 SQL，名字是 <a href="https://github.com/felixge/node-mysql" target="_blank" rel="external"><strong>felixge/n]]>
-    </summary>
-    
-      <category term="mysql" scheme="http://ochukai.github.io/tags/mysql/"/>
-    
-      <category term="MySQL" scheme="http://ochukai.github.io/categories/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[New Project with Nodejs and Expressjs - ni]]></title>
-    <link href="http://ochukai.github.io/new-project-with-nodejs-and-expressjs-ni/"/>
-    <id>http://ochukai.github.io/new-project-with-nodejs-and-expressjs-ni/</id>
-    <published>2014-12-27T09:12:05.000Z</published>
-    <updated>2015-11-07T15:22:59.591Z</updated>
-    <content type="html"><![CDATA[<p>上一篇记录了新装 node 以及新建 node web(express) 项目的过程，很潦草，只是记录了过程的一点点，而且当时新建项目的时候心态也不好，很着急，实际上手写的时候遇到了诸多问题，而且我本人也有选择困难症，经常会纠结到底用这个库还是那个库，还是自己写比较好呢，时间经常在这样的纠结中过去了，项目于是变得遥遥无期。距离上一篇博客已经过去了整整14天！</p>
-<p>上一篇博客的晚上我思前想后，感觉用 bookshelf(orm) 的话，访问数据库这一部分不好控制，因为我自己的工作就是数据库的相关的，看不到自己写的格式优美的 sql 是不能容忍的。因为现在项目的重点还不是数据库部分，我也暂时没有过多写相关的代码，所以数据库的部分放在下一篇博客。</p>
-<hr>
-<p>最近使用 Bootstrap 写了一个后台管理的页面，如下：</p>
-<p><a href="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/QQ截图20141227160228.jpg" target="_blank" rel="external"><img src="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/QQ截图20141227160228.jpg" alt="QQ截图20141227160228"></a></p>
-<p>&nbsp;</p>
-<p>这个管理页面可是耗费了我近一周的功夫，暂时认定他的功能比较完整了吧。它是有什么构成的呢？</p>
-<ul>
-<li>angular</li>
-<li>bootstrap</li>
-<li>jquery</li>
-<li>angular-loading-bar</li>
-<li>nav.js<br>我打算用 bootstrap 做样式，后台整个就用 angular 来写，目标就这样的设定了。然后我就开始了漫长的学习过程，对于 bootstrap 的话，我之前已经用过无数次，所以比较熟悉，angular 我虽然也接触了无数次，但是仍旧没有用过啊，只是听说了很多关于它的介绍以及它的概念，比如指令（directive），这个东西我一直挺晕的，因为某一次逛微博的时候看到某某 MVVM 框架作者狂吹自己写的框架有12000个指令，而 angular 只有1200！！！吓得我魂飞魄散。但是 Jinger 这个项目还是要继续写的，于是我开始学习 angular。</li>
-</ul>
-<hr>
-<h1 id="Angular">Angular</h1><p>angular 是一个前端的 MVVM 框架，包括诸多概念，比如controller，service，directive等，初学咋一看挺吓人的，但其实挺好用，这是我近两天总结出来的。</p>
-<p>项目结构大致如此：</p>
-<pre class="lang:default decode:true  ">&lt;!DOCTYPE html&gt;
-&lt;html lang="zh" ng-app="myApp"&gt;
-
-&lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-    &lt;meta name="description" content="Jinger"&gt;
-    &lt;meta name="author" content="Ochukai"&gt;
-
-    &lt;title&gt;Jinger by Bootstrap&lt;/title&gt;
-    &lt;link rel="icon" href="favicon.ico"&gt;
-
-    &lt;!-- Bootstrap core CSS --&gt;
-    &lt;link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"&gt;
-    &lt;link href="assets/vendor/loading-bar/loading-bar.css" rel="stylesheet"&gt;
-
-    &lt;!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --&gt;
-    &lt;!--[if lt IE 9]&gt;
-      &lt;script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"&gt;&lt;/script&gt;
-      &lt;script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"&gt;&lt;/script&gt;
-    &lt;![endif]--&gt;
-    &lt;!--[if lte IE 8]&gt;&lt;link rel="stylesheet" href="assets/vendor/nav-js/responsive-nav.css"&gt;&lt;![endif]--&gt;
-    &lt;!--[if gt IE 8]&gt;&lt;!--&gt;
-    &lt;link rel="stylesheet" href="assets/css/styles.css"&gt;
-    &lt;!--&lt;![endif]--&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-
-    &lt;div id="nav-sider" class="nav-collapse"&gt;
-        &lt;ul role="navigation" class="nav nav-pills nav-stacked"&gt;
-            &lt;li&gt;
-                &lt;a href=""&gt;&lt;h2&gt; 京儿 &lt;/h2&gt;&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class="divider"&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-
-    &lt;div role="main" class="main"&gt;
-        &lt;a href="#nav" class="nav-toggle"&gt;Menu&lt;/a&gt;
-        &lt;div class="container-fluid"&gt;
-            &lt;div class="row"&gt;
-                &lt;div id="main-container" class="col-sm-12 col-md-12" ng-view&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Bootstrap core JavaScript
-    ================================================== --&gt;
-    &lt;!-- Placed at the end of the document so the pages load faster --&gt;
-    &lt;script src="assets/vendor/jquery/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/nav-js/responsive-nav.min.js"&gt;&lt;/script&gt;
-    &lt;!--  angularjs  --&gt;
-    &lt;script src="assets/vendor/angular/angular.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/angular/angular-animate.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/angular/angular-route.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/angular/angular-storage.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/vendor/loading-bar/loading-bar.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/js/app/app.js"&gt;&lt;/script&gt;
-    &lt;script src="assets/js/app/controllers.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;</pre>
-
-<h1 id="Bower">Bower</h1><p>上图可以看出前端如果使用**框架，那必然引入的文件会很多很多，而且如果需要更换版本，哦！！！ 简直是噩梦。所以使用 Bower来管理前端的各种依赖。</p>
-<p>安装 node 的时候就已经安装了 bower ，所以现在可以直接使用了，首先在当前项目的根目录下打开 terminal ，输入</p>
-<p><pre class="lang:default decode:true ">bower init</pre><br>会有一些需要确认的信息，一般回车就好，等到向导结束，就会生成一个 bower.json 文件在项目的根目录如果刚刚 terminal 的路径没有错，生成的文件大概是这样的：</p>
-<p><pre class="lang:js decode:true">{<br>  “name”: “jinger”,<br>  “version”: “0.0.1”,<br>  “homepage”: “<a href="https://github.com/xiaoyee/jinger" target="_blank" rel="external">https://github.com/xiaoyee/jinger</a>“,<br>  “authors”: [<br>    “Ochukai &lt;sex.xiaoyee@gmail.com&gt;”<br>  ],<br>  “description”: “jinger”,<br>  “main”: “app.js”,<br>  “moduleType”: [<br>    “node”<br>  ],<br>  “keywords”: [<br>    “jinger”<br>  ],<br>  “license”: “MIT”,<br>  “ignore”: [<br>    “<em>*/.</em>“,<br>    “node_modules”,<br>    “bower_components”,<br>    “test”,<br>    “tests”<br>  ],<br>  “dependencies”: {<br>    “jquery”: “~2.1.3”<br>  }<br>}</pre><br>最重要的节点当然是 dependencies，这里定义了你的项目使用的库及其版本。</p>
-<p>使用 bower 安装的依赖默认实在项目根目录下的 bower_components 文件夹，当然是可以修改的了。修改的话，要在项目根目录新建 .bowerrc 文件，新建这个文件需要用 terminal 输入：</p>
-<p><pre class="lang:default decode:true">$ cd . &gt; .bowerrc</pre><br>这是官方的一个例子：</p>
-<p><pre class="lang:js decode:true">{<br>  “directory”: “app/components/“, // 这里可以规定依赖安装的位置。<br>  “analytics”: false,<br>  “timeout”: 120000,<br>  “registry”: {<br>    “search”: [<br>      “<a href="http://localhost:8000" target="_blank" rel="external">http://localhost:8000</a>“,<br>      “<a href="https://bower.herokuapp.com" target="_blank" rel="external">https://bower.herokuapp.com</a>“<br>    ]<br>  }<br>}</pre><br>更多信息，在<a href="http://bower.io/docs/api/" title="bower.io" target="_blank" rel="external">http://bower.io/docs/api/</a></p>
-<p>今天写这么多吧。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>上一篇记录了新装 node 以及新建 node web(express) 项目的过程，很潦草，只是记录了过程的一点点，而且当时新建项目的时候心态也不好，很着急，实际上手写的时候遇到了诸多问题，而且我本人也有选择困难症，经常会纠结到底用这个库还是那个库，还是自己写比较好呢，时]]>
-    </summary>
-    
-      <category term="angular" scheme="http://ochukai.github.io/tags/angular/"/>
-    
-      <category term="expressjs" scheme="http://ochukai.github.io/tags/expressjs/"/>
-    
-      <category term="node" scheme="http://ochukai.github.io/tags/node/"/>
-    
-      <category term="angularjs" scheme="http://ochukai.github.io/categories/angularjs/"/>
-    
-      <category term="node" scheme="http://ochukai.github.io/categories/angularjs/node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[New Project with Nodejs and Expressjs - yiti]]></title>
-    <link href="http://ochukai.github.io/new-project-with-node-and-express-yiti/"/>
-    <id>http://ochukai.github.io/new-project-with-node-and-express-yiti/</id>
-    <published>2014-12-14T03:32:38.000Z</published>
-    <updated>2015-11-07T15:22:59.585Z</updated>
-    <content type="html"><![CDATA[<p>今天我要开始写一个产品展示类的项目，业务逻辑很简单，决定使用 nodejs 来写。</p>
-<hr>
-<h2 id="准备环境">准备环境</h2><h3 id="安装nodejs">安装nodejs</h3><p>直接登陆nodejs的官网 <a href="http://nodejs.org" target="_blank" rel="external">http://nodejs.org</a> 下载对应版本安装即可，path等都会自动配置好，很简单。</p>
-<h3 id="安装express">安装express</h3><pre class="lang:default decode:true">npm install -g express</pre>
-最新express4.0+版本中将命令工具分家出来了,所以还需要安装一个命令行工具
-<pre class="lang:default decode:true">npm install -g express-generator</pre>
-
-<h3 id="安装其他工具">安装其他工具</h3><pre class="lang:default decode:true ">npm install nodemon -g　  // nodemon 用于实时监听 app.js 文件
-npm install grunt-cli -g　// grunt 是一款任务构建工具，可以使用它完成自动编译/压缩等工作
-npm install bower -g　　  // bower 是一款页面引入文件管理工具</pre>
-至此，环境大概几乎已经就绪，所以开始吧。
-
-* * *
-
-## 新建项目
-
-### express
-
-使用express-generator 创建项目，在工作空间下建立需要的文件夹，然后执行：
-<pre class="lang:default decode:true">cd jinger
-
-express
-
-npm install
-</pre>
-
-<h3 id="bookshelf（后来决定不用ORM了，用原生mysql）">bookshelf（后来决定不用ORM了，用原生mysql）</h3><p>因为项目里面要使用orm，我选择的是bookshelf(<a href="http://bookshelfjs.org/" target="_blank" rel="external">http://bookshelfjs.org/</a>)，所以安装它。</p>
-<pre class="lang:default decode:true  ">npm install knex --save
-npm install bookshelf --save
-
-Then add one of the following:
-npm install pg
-npm install mysql
-npm install mariasql
-npm install sqlite3</pre>
-
-<h3 id="jade">jade</h3><p>项目里面会用到jade,，所以最好使用html2jade 讲些好的html转为jade，方便直接用：</p>
-<pre class="lang:default decode:true ">npm install -g html2jade</pre>
-下面是简单的用法，但已足够。
-<pre class="lang:default decode:true ">html2jade example.html #直接输出为 example.jade
-
-html2jade http://twitter.com
-
-html2jade http://twitter.com &gt; twitter.jade</pre>
-ok！！！
-<pre class="lang:default decode:true">npm start</pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>今天我要开始写一个产品展示类的项目，业务逻辑很简单，决定使用 nodejs 来写。</p>
-<hr>
-<h2 id="准备环境">准备环境</h2><h3 id="安装nodejs">安装nodejs</h3><p>直接登陆nodejs的官网 <a href="http:/]]>
-    </summary>
-    
-      <category term="bookshelf" scheme="http://ochukai.github.io/tags/bookshelf/"/>
-    
-      <category term="expressjs" scheme="http://ochukai.github.io/tags/expressjs/"/>
-    
-      <category term="jade" scheme="http://ochukai.github.io/tags/jade/"/>
-    
-      <category term="jinger" scheme="http://ochukai.github.io/tags/jinger/"/>
-    
-      <category term="nodejs" scheme="http://ochukai.github.io/tags/nodejs/"/>
-    
-      <category term="orm" scheme="http://ochukai.github.io/tags/orm/"/>
-    
-      <category term="node" scheme="http://ochukai.github.io/categories/node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Error: ENOENT stat *** After install nodejs on win8.1]]></title>
-    <link href="http://ochukai.github.io/error-enoent-stat-after-install-nodejs-on-win8/"/>
-    <id>http://ochukai.github.io/error-enoent-stat-after-install-nodejs-on-win8/</id>
-    <published>2014-12-10T14:39:41.000Z</published>
-    <updated>2015-11-07T15:22:59.585Z</updated>
-    <content type="html"><![CDATA[<p>近几日我一直在研究AngularJS，曾经也研究过，但终于因为项目时间太赶而没有用上，这一次难得清闲几日决定继续。</p>
-<p>在Bing的过程中发现了angular-seed这个项目，是用来学习AngularJS的，所以就clone到了本地，项目里面的readme.md文件提到必须使用node才可编译，但我最近的win8.1在前几次安装node都失败了，这一次又出现node无论如何我觉得都要再试一次。</p>
-<p>下载双击下一步等了一会竟然奇迹般的开始安装了，我很激动，于是赶紧到angular-seed文件家里面，npm install回车一气呵成，但是却出错了。</p>
-<p><a href="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/QQ截图20141210223553.png" target="_blank" rel="external"><img src="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/QQ截图20141210223553-300x73.png" alt="QQ截图20141210223553"></a></p>
-<blockquote>
-<p>解决方案：这是文件路径不对造成的，在 <strong>C:\Users\“你用户名”\AppData\Roaming\</strong>   这个路径下建个npm文件夹即可！</p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>近几日我一直在研究AngularJS，曾经也研究过，但终于因为项目时间太赶而没有用上，这一次难得清闲几日决定继续。</p>
-<p>在Bing的过程中发现了angular-seed这个项目，是用来学习AngularJS的，所以就clone到了本地，项目里面的readme.md]]>
-    </summary>
-    
-      <category term="angular" scheme="http://ochukai.github.io/tags/angular/"/>
-    
-      <category term="node" scheme="http://ochukai.github.io/tags/node/"/>
-    
-      <category term="npm" scheme="http://ochukai.github.io/tags/npm/"/>
-    
-      <category term="angularjs" scheme="http://ochukai.github.io/categories/angularjs/"/>
-    
-      <category term="node" scheme="http://ochukai.github.io/categories/angularjs/node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[WebGL in Action -- yiti]]></title>
-    <link href="http://ochukai.github.io/webgl-in-action-yiti/"/>
-    <id>http://ochukai.github.io/webgl-in-action-yiti/</id>
-    <published>2014-12-07T03:13:55.000Z</published>
-    <updated>2015-11-07T15:22:59.587Z</updated>
-    <content type="html"><![CDATA[<p>由于喜欢玩魔方写了java版的计时器觉得不爽进而写了web版的计时器还是不爽，不如来一发3D版的可以直接上手的魔方过瘾。于是奋发图钱要学习WebGL，这就是本文的初衷。</p>
-<p>我不否定兴趣使然，这在我自己身上的体现可谓淋漓尽致。例子暂时不举了。</p>
-<p>之前小弟不才，一直觉得html5有了Canvas很nb，但不知还有WebGL这等东西，偶然在Lufy Legend的博客看到，感谢，其实最吸引我的原因便是博主翻译的<a href="http://wgld.org/" target="_blank" rel="external">http://wgld.org/</a>是来自nihon国度的WebGL专家，いしょに勉強しろ。</p>
-<p>&nbsp;</p>
-<hr>
-<p>&nbsp;</p>
-<p>关于Canvas的绘图，这些比较基础：</p>
-<ol>
-<li><strong>canvas</strong>和<strong>img</strong>等标签一样，是一个可以自由制定大小的矩形区域。</li>
-<li>canvas的2d的<strong>context</strong>功能是一个封装了绘图处理的各种API的对象，这个对象中包含了所有的绘图函数和属性。</li>
-<li>2d的context可以进行图形，文字以及图片数据的描画，与之相对的，WebGL是三维，可以描画3D图形，叫做<strong>webglcontext</strong><br>&nbsp;</li>
-</ol>
-<p>这是WebGL所采用的右手坐标系。<br><a href="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/w003_01.jpg" target="_blank" rel="external"><img src="http://oyaoya-wordpress.stor.sinaapp.com/uploads/2014/12/w003_01.jpg" alt="w003_01"></a></p>
-<p>&nbsp;</p>
-<p>利用WebGL绘制3D图形并输出在2D的显示器上面，这里3D到2D的转换是需要计算的。为了模拟三维空间，将三维空间的情报向二维的情报进行转换，需要三个坐标变换。</p>
-<h3 id="三种坐标转换：">三种坐标转换：</h3><ol>
-<li>模型转换</li>
-<li>视图转换</li>
-<li>投影转换</li>
-</ol>
-<h3 id="模型转换">模型转换</h3><blockquote>
-<p>三つある座標変換の一つ目は、<strong>モデル変換</strong>です。OpenGL の処理系ではこのモデル変換という名称が一般的ですが、DirectX 系ではワールド変換と呼ばれているものですね。</p>
-<p>モデル変換とは、被写体となる物体が三次元空間のどの位置にあるのかを定義するための座標変換です。現実の世界とは異なり、プログラムのなかの三次元空間には世界の中心の基準となる<em>原点</em>という位置が定義されています。その原点から見て、被写体となるモデルが相対的にどの位置に存在しているのかを知るためにモデル変換が必要になります。</p>
-<p>仮に、シミュレートする三次元空間にリンゴがひとつ存在しているとしたら、そのリンゴの存在する位置を定義するためにモデル変換が必要になるわけですね。<br>三种坐标变换中的第一个，是模型变换。在OpenGL的处理中虽然一般叫做模型变换，但是在DirectX中被叫做世界变换。</p>
-</blockquote>
-<p>模型变换，是指为了定义参照物在三维空间的什么位置而进行的坐标变换。和现实的世界不同，程序中的三维空间里定义了世界的中心的基准点，就是原点。从这个原点出发，为了知道参照物的相对位置，就需要进行必要的坐标变换。</p>
-<p>假设，虚拟的三维空间里有一个苹果，那么为了表示这个苹果在什么位置，就需要进行相应的模型变换了。</p>
-<h3 id="视图转换">视图转换</h3><blockquote>
-<p>三つある座標変換の二つ目は<strong>ビュー変換</strong>と呼ばれます。</p>
-<p>ビュー変換では、実際にカメラがどの位置にあるのか、そしてカメラはどこを向いているのかなどを定義します。先ほどのリンゴの話に合わせると、仮に三次元空間にリンゴが存在していたとしてもカメラがそのリンゴに向けられていなければ、リンゴが映し出されることはありませんね。他にも、たとえばカメラとリンゴとの距離が著しく離れていれば、仮にリンゴにカメラが向けられていたとしても映らないかもしれません。</p>
-<p>カメラの位置や、その向けられている方角を決めるために行なう座標変換、それがビュー変換というわけです。<br>三种坐标变换的第二个，是视图变换。</p>
-</blockquote>
-<p>视图变换，定义了镜头的实际位置以及镜头的方向。拿刚刚举例的苹果来说，即使三维空间中有一个苹果，如果镜头的方向不对着苹果的话，同样也是看不到这个苹果的。而且，如果将镜头大幅度远离苹果，那么也有可能看不到苹果了。</p>
-<p>为了决定镜头的位置和角度所进行的坐标变换就叫做视图变换。</p>
-<h3 id="投影转换">投影转换</h3><blockquote>
-<p>三つある座標変換の最後の一つ、それが<strong>プロジェクション変換</strong>です。</p>
-<p>この変換では、三次元空間のどの領域を撮影するのかなどを定義します。たとえば、横に幅広くパノラマとして撮影するのか、あるいは縦長の映像として撮影するのか、どのくらい遠くまでを撮影するのかなどを定義することができます。</p>
-<p>一般的なカメラの場合は、レンズの前にあるもの全てを撮影しますし、どのくらい遠くまで撮影するのかなんて意識することはありませんね。しかし、プログラムが無限に広い空間をシミュレートするのは不可能です。そこで、一番手前はここから、一番遠くはここまで、というシミュレートする領域を決めて処理するわけですね。</p>
-<p>プロジェクション変換を行なうことによって、いわゆる遠近法の効果が得られます。近くにあるものは大きく、遠くにあるものは小さく描画されるようになるわけです。<br>三种坐标变换中的最后一个，是投影变换。</p>
-</blockquote>
-<p>这个变换，定义了三维空间的摄影区域。比如，是横向摄影，还是纵向摄影，最远拍摄多远距离等。</p>
-<p>一般的照相机，直接拍摄镜头前的所有图像，最远拍摄多远也基本上没什么意识。但是，程序是无法模拟无限大的空间的，所以，从哪里开始拍摄，拍摄到哪里，必须有一个明确的范围。</p>
-<p>投影变幻，通过远近法则，可以将近处的物体描画的比较大，远处的物体描画的比较小。</p>
-<p>&nbsp;</p>
-<hr>
-<p>&nbsp;</p>
-<p>上面的只是算是理论知识，我不是很喜欢背诵这些东西，读一遍有些许了解便可，下面便开始了。</p>
-<h3 id="一个最低限度的HTML模版，就是像下面这样。">一个最低限度的HTML模版，就是像下面这样。</h3><p><pre class="lang:xhtml decode:true ">&lt;!DOCTYPE html&gt;<br>&lt;html lang=”en”&gt;</pre></p>
-<p>&lt;head&gt;<br>    &lt;meta charset=”utf-8”&gt;<br>    &lt;title&gt;WebGL TEST&lt;/title&gt;<br>&lt;/head&gt;</p>
-<p>&lt;body&gt;<br>    &lt;canvas id=”canvas”&gt;&lt;/canvas&gt;</p>
-<pre><code><span class="subst">&amp;</span><span class="literal">lt</span>;script src=<span class="string">"script.js"</span> <span class="keyword">type</span>=<span class="string">"text/javascript"</span><span class="subst">&amp;</span><span class="literal">gt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>;/script<span class="subst">&amp;</span><span class="literal">gt</span>;
-</code></pre><p>&lt;/body&gt;</p>
-<p>&lt;/html&gt;<br>在javascript中使用getElementById等函数很容易能获取到这个canvas对象，获取了这个canvas之后，利用javascript可以完成所有的操作。</p>
-<h3 id="固定渲染管线和可编辑渲染管线">固定渲染管线和可编辑渲染管线</h3><p>固定渲染管线，简单来说，就是3d渲染所进行的一连串的计算流程，就像流水线一样。固定渲染管线中，上次所说的模型，视图，投影的坐标变换都会替我们完成。不需要理解细节，只需要知道所有的这些坐标变换都包含在里面，都会帮我们计算好。</p>
-<p>WebGL中不存在固定渲染管线。也就是说，坐标变换必须全部由自己来做。而且，这个记述了坐标变换的机制就叫做着色器(Shader)。</p>
-<p>这样可以由程序员控制的机制叫做可编辑渲染管线。而着色器又有 处理几何图形顶点的顶点着色器和处理像素的片段着色器两种类型。</p>
-<p>由于WebGL中没有固定管线，所以必须准备好顶点着色器和片段着色器。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>由于喜欢玩魔方写了java版的计时器觉得不爽进而写了web版的计时器还是不爽，不如来一发3D版的可以直接上手的魔方过瘾。于是奋发图钱要学习WebGL，这就是本文的初衷。</p>
-<p>我不否定兴趣使然，这在我自己身上的体现可谓淋漓尽致。例子暂时不举了。</p>
-<p>之前小]]>
-    </summary>
-    
-      <category term="html" scheme="http://ochukai.github.io/tags/html/"/>
-    
-      <category term="js" scheme="http://ochukai.github.io/tags/js/"/>
-    
-      <category term="webgl" scheme="http://ochukai.github.io/tags/webgl/"/>
-    
-      <category term="WebGL" scheme="http://ochukai.github.io/categories/WebGL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Wordpress 新装技巧]]></title>
-    <link href="http://ochukai.github.io/wordpress-newer-tips/"/>
-    <id>http://ochukai.github.io/wordpress-newer-tips/</id>
-    <published>2014-12-03T13:40:56.000Z</published>
-    <updated>2015-11-07T15:22:59.585Z</updated>
-    <content type="html"><![CDATA[<p>第一次安装Wordpress总会遇到各种各样的问题，比如字体加载很慢…</p>
-<p>现在问题都解决了，我需要自己总结一下。</p>
-<blockquote>
-<p>移除Open Sans</p>
-</blockquote>
-<pre class="theme:ado font:consolas font-size:14 line-height:18 toolbar:2 striped:false marking:false ranges:false start-line:0 tab-convert:true lang:php decode:true">// Remove Open Sans that WP adds from frontend
-if (!function_exists('remove_wp_open_sans')) :
-    function remove_wp_open_sans() {
-        wp_deregister_style( 'open-sans' );
-        wp_register_style( 'open-sans', false );
-    }
-    add_action('wp_enqueue_scripts', 'remove_wp_open_sans');
-
-    // Uncomment below to remove from admin
-    // add_action('admin_enqueue_scripts', 'remove_wp_open_sans');
-endif;</pre>
-
-<blockquote>
-<p>去掉更新提示</p>
-</blockquote>
-<pre class="theme:ado font:consolas font-size:14 line-height:18 lang:php decode:true">// Remove update notices.
-add_action('admin_menu','wp_hide_nag');
-function wp_hide_nag() {
-    remove_action( 'admin_notices', 'update_nag', 3 );
-}</pre>
-
-<p>以上两段代码 都要加在function.php的最后。</p>
-<p>话说前面两个都是错误的，但是我不忍心删除。</p>
-<p>在SAE的wordpress 如果想要实现修改固定链接，需要修改config.yaml</p>
-<pre class="lang:yaml decode:true ">name: oyaoya
-version: 1
-handle:
-  - rewrite: if(!is_dir() &amp;&amp; !is_file()) goto "index.php?%{QUERY_STRING}"</pre>
-
-<p>&nbsp;</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>第一次安装Wordpress总会遇到各种各样的问题，比如字体加载很慢…</p>
-<p>现在问题都解决了，我需要自己总结一下。</p>
-<blockquote>
-<p>移除Open Sans</p>
-</blockquote>
-<pre class="theme:ado fo]]>
-    </summary>
-    
-      <category term="php" scheme="http://ochukai.github.io/tags/php/"/>
-    
-      <category term="wordpress" scheme="http://ochukai.github.io/tags/wordpress/"/>
-    
-      <category term="PHP" scheme="http://ochukai.github.io/categories/PHP/"/>
-    
-      <category term="Wordpress" scheme="http://ochukai.github.io/categories/PHP/Wordpress/"/>
     
   </entry>
   
