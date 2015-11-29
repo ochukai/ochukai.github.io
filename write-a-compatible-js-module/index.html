@@ -33,7 +33,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="css,html," />
+  <meta name="keywords" content="AMD,CMD,compatible module," />
 
 
 
@@ -49,16 +49,19 @@
 
 
 
-<meta name="description" content="Clearfix 就是这么简单！.clearfix:after,.clearfix:before &amp;#123;    display: table;    content: &quot; &quot;&amp;#125;.clearfix:after &amp;#123;    clear: both&amp;#125;">
+<meta name="description" content="没什么好解释的，直接看代码吧。
+(function (factory) &amp;#123;    if (typeof define === &apos;function&apos; &amp;amp;&amp;amp; define.amd) &amp;#123;        // AMD. Register as an anonymous module.        define([&apos;jquery&apos;, &apos;underscore&apos;], fac">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Wrong clearfix Make me crazy!">
-<meta property="og:url" content="http://ochukai.github.io/wrong-clearfix-make-me-crazy/index.html">
+<meta property="og:title" content="编写一个可以兼容 AMD 和 CMD 的 js 模块">
+<meta property="og:url" content="http://ochukai.github.io/write-a-compatible-js-module/index.html">
 <meta property="og:site_name" content="I am Oliver">
-<meta property="og:description" content="Clearfix 就是这么简单！.clearfix:after,.clearfix:before &amp;#123;    display: table;    content: &quot; &quot;&amp;#125;.clearfix:after &amp;#123;    clear: both&amp;#125;">
-<meta property="og:updated_time" content="2015-11-27T02:59:07.000Z">
+<meta property="og:description" content="没什么好解释的，直接看代码吧。
+(function (factory) &amp;#123;    if (typeof define === &apos;function&apos; &amp;amp;&amp;amp; define.amd) &amp;#123;        // AMD. Register as an anonymous module.        define([&apos;jquery&apos;, &apos;underscore&apos;], fac">
+<meta property="og:updated_time" content="2015-11-29T12:16:59.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wrong clearfix Make me crazy!">
-<meta name="twitter:description" content="Clearfix 就是这么简单！.clearfix:after,.clearfix:before &amp;#123;    display: table;    content: &quot; &quot;&amp;#125;.clearfix:after &amp;#123;    clear: both&amp;#125;">
+<meta name="twitter:title" content="编写一个可以兼容 AMD 和 CMD 的 js 模块">
+<meta name="twitter:description" content="没什么好解释的，直接看代码吧。
+(function (factory) &amp;#123;    if (typeof define === &apos;function&apos; &amp;amp;&amp;amp; define.amd) &amp;#123;        // AMD. Register as an anonymous module.        define([&apos;jquery&apos;, &apos;underscore&apos;], fac">
 
 
 
@@ -70,7 +73,7 @@
   };
 </script>
 
-  <title> Wrong clearfix Make me crazy! | I am Oliver </title>
+  <title> 编写一个可以兼容 AMD 和 CMD 的 js 模块 | I am Oliver </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -200,7 +203,7 @@
             
             
               
-                Wrong clearfix Make me crazy!
+                编写一个可以兼容 AMD 和 CMD 的 js 模块
               
             
           </h1>
@@ -209,8 +212,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-11T17:45:59+08:00" content="2015-11-11">
-              2015-11-11
+            <time itemprop="dateCreated" datetime="2015-11-29T20:11:07+08:00" content="2015-11-29">
+              2015-11-29
             </time>
           </span>
 
@@ -219,8 +222,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -248,8 +251,8 @@
       
 
       
-        <span itemprop="articleBody"><p>Clearfix 就是这么简单！<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span>,</span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:before</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">" "</span></span><br><span class="line"></span></span></span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span><br><span class="line"></span></span></span>&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
+        <span itemprop="articleBody"><p>没什么好解释的，直接看代码吧。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">factory</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</span><br><span class="line">        <span class="comment">// AMD. Register as an anonymous module.</span></span><br><span class="line">        define([<span class="string">'jquery'</span>, <span class="string">'underscore'</span>], factory);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="comment">// Node/CommonJS style for Browserify/Seajs</span></span><br><span class="line">        <span class="built_in">module</span>.exports = factory;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Browser globals</span></span><br><span class="line">        factory(jQuery, _);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="function"><span class="keyword">function</span> (<span class="params">$, _</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//doSomething...</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></span>
       
     </div>
 
@@ -257,9 +260,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css/" rel="tag">#css</a>
+            <a href="/tags/AMD/" rel="tag">#AMD</a>
           
-            <a href="/tags/html/" rel="tag">#html</a>
+            <a href="/tags/CMD/" rel="tag">#CMD</a>
+          
+            <a href="/tags/compatible-module/" rel="tag">#compatible module</a>
           
         </div>
       
@@ -268,17 +273,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/wamp-mysql-chinese-question-mark/" rel="next" title="wamp mysql 中文显示为？">
-                <i class="fa fa-chevron-left"></i> wamp mysql 中文显示为？
+              <a href="/show-a-default-image-when-the-image-is-broken/" rel="next" title="图片加载错误时显示默认图片">
+                <i class="fa fa-chevron-left"></i> 图片加载错误时显示默认图片
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/baseview-in-backbone/" rel="prev" title="Baseview in Backbone">
-                Baseview in Backbone <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
