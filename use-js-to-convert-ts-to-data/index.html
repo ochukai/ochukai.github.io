@@ -33,7 +33,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AMD,CMD,compatible module," />
+  <meta name="keywords" content="date,format,js,ts," />
 
 
 
@@ -49,19 +49,16 @@
 
 
 
-<meta name="description" content="没什么好解释的，直接看代码吧。
-(function (factory) &amp;#123;    if (typeof define === &apos;function&apos; &amp;amp;&amp;amp; define.amd) &amp;#123;        // AMD. Register as an anonymous module.        define([&apos;jquery&apos;, &apos;underscore&apos;], fac">
+<meta name="description" content="问题产生今天在处理一个接口时，发现返回的格式是这样的：&amp;#123;    &apos;meta&apos;: &amp;#123;        &apos;has_next_msg&apos;: false    &amp;#125;    &apos;objects&apos;: [        &amp;#123;            &apos;text&apos;: &apos;111&apos;,             &apos;from_user_type&apos;: &apos;PAT&apos;,             &apos;pic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编写一个可以兼容 AMD 和 CMD 的 js 模块">
-<meta property="og:url" content="http://ochukai.github.io/write-a-compatible-js-module/index.html">
+<meta property="og:title" content="JavaScript 中 Timestamp 与 Date 的转化">
+<meta property="og:url" content="http://ochukai.github.io/use-js-to-convert-ts-to-data/index.html">
 <meta property="og:site_name" content="I am Oliver">
-<meta property="og:description" content="没什么好解释的，直接看代码吧。
-(function (factory) &amp;#123;    if (typeof define === &apos;function&apos; &amp;amp;&amp;amp; define.amd) &amp;#123;        // AMD. Register as an anonymous module.        define([&apos;jquery&apos;, &apos;underscore&apos;], fac">
-<meta property="og:updated_time" content="2015-11-29T12:20:29.128Z">
+<meta property="og:description" content="问题产生今天在处理一个接口时，发现返回的格式是这样的：&amp;#123;    &apos;meta&apos;: &amp;#123;        &apos;has_next_msg&apos;: false    &amp;#125;    &apos;objects&apos;: [        &amp;#123;            &apos;text&apos;: &apos;111&apos;,             &apos;from_user_type&apos;: &apos;PAT&apos;,             &apos;pic">
+<meta property="og:updated_time" content="2015-12-02T03:49:22.093Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编写一个可以兼容 AMD 和 CMD 的 js 模块">
-<meta name="twitter:description" content="没什么好解释的，直接看代码吧。
-(function (factory) &amp;#123;    if (typeof define === &apos;function&apos; &amp;amp;&amp;amp; define.amd) &amp;#123;        // AMD. Register as an anonymous module.        define([&apos;jquery&apos;, &apos;underscore&apos;], fac">
+<meta name="twitter:title" content="JavaScript 中 Timestamp 与 Date 的转化">
+<meta name="twitter:description" content="问题产生今天在处理一个接口时，发现返回的格式是这样的：&amp;#123;    &apos;meta&apos;: &amp;#123;        &apos;has_next_msg&apos;: false    &amp;#125;    &apos;objects&apos;: [        &amp;#123;            &apos;text&apos;: &apos;111&apos;,             &apos;from_user_type&apos;: &apos;PAT&apos;,             &apos;pic">
 
 
 
@@ -73,7 +70,7 @@
   };
 </script>
 
-  <title> 编写一个可以兼容 AMD 和 CMD 的 js 模块 | I am Oliver </title>
+  <title> JavaScript 中 Timestamp 与 Date 的转化 | I am Oliver </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -203,7 +200,7 @@
             
             
               
-                编写一个可以兼容 AMD 和 CMD 的 js 模块
+                JavaScript 中 Timestamp 与 Date 的转化
               
             
           </h1>
@@ -212,8 +209,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-29T20:11:07+08:00" content="2015-11-29">
-              2015-11-29
+            <time itemprop="dateCreated" datetime="2015-12-02T11:10:44+08:00" content="2015-12-02">
+              2015-12-02
             </time>
           </span>
 
@@ -251,9 +248,11 @@
       
 
       
-        <span itemprop="articleBody"><p>没什么好解释的，直接看代码吧。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">factory</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</span><br><span class="line">        <span class="comment">// AMD. Register as an anonymous module.</span></span><br><span class="line">        define([<span class="string">'jquery'</span>, <span class="string">'underscore'</span>], factory);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="comment">// Node/CommonJS style for Browserify/Seajs</span></span><br><span class="line">        <span class="built_in">module</span>.exports = factory;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Browser globals</span></span><br><span class="line">        factory(jQuery, _);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="function"><span class="keyword">function</span> (<span class="params">$, _</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//doSomething...</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
-<p>还有一种写法<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// from: http://segmentfault.com/a/1190000003732752</span></span><br><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">MyModule</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> moduleName = MyModule;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="built_in">module</span>.exports = moduleName;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; (define.amd || define.cmd)) &#123;</span><br><span class="line">        define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> moduleName; &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.moduleName = moduleName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span> || (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+        <span itemprop="articleBody"><h2 id="问题产生">问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    'meta': &#123;</span><br><span class="line">        'has_next_msg': false</span><br><span class="line">    &#125;</span><br><span class="line">    'objects': [</span><br><span class="line">        &#123;</span><br><span class="line">            'text': '111', </span><br><span class="line">            'from_user_type': 'PAT', </span><br><span class="line">            'pic': '', </span><br><span class="line">            'ts': 1419939065</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>ts</code> 那个属性我不太熟悉，不过我觉得应该是 timestamp 的意思吧。后来才知道，<code>ts</code> 就是该条消息的发送时间戳（timestamp），显示这条信息的时候应该显示为日期。</p>
+<h2 id="把_Date_转化为_Timestamp">把 Date 转化为 Timestamp</h2><p>我们都知道，在 js 里面把 date 转化为 timestamp 的方法比较简单，而且方法也有好多种，比如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// get the timestamp in seconds</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// or with a slightly way</span></span><br><span class="line"><span class="built_in">Date</span>.now() / <span class="number">1000</span> | <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Year 2038 problem? lol...</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'Jan 1, 2039'</span>) / <span class="number">1000</span> | <span class="number">0</span> <span class="comment">// -2117514496 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*----------*/</span></span><br><span class="line"><span class="built_in">Math</span>.round(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()/<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">+<span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1000</span> | <span class="number">0</span></span><br><span class="line"></span><br><span class="line">~~(<span class="built_in">Date</span>.now() / <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1e3</span> | <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="把_Timestamp_转化为_Date">把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Date</span>.prototype.format = <span class="function"><span class="keyword">function</span>(<span class="params">format</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = &#123;</span><br><span class="line">        <span class="string">'M+'</span>: <span class="keyword">this</span>.getMonth() + <span class="number">1</span>,          <span class="comment">// month</span></span><br><span class="line">        <span class="string">'d+'</span>: <span class="keyword">this</span>.getDate(),                 <span class="comment">// day</span></span><br><span class="line">        <span class="string">'h+'</span>: <span class="keyword">this</span>.getHours(),                  <span class="comment">// hour</span></span><br><span class="line">        <span class="string">'m+'</span>: <span class="keyword">this</span>.getMinutes(),                  <span class="comment">// minute</span></span><br><span class="line">        <span class="string">'s+'</span>: <span class="keyword">this</span>.getSeconds(),                    <span class="comment">// second     </span></span><br><span class="line">        <span class="string">'q+'</span>: <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth() + <span class="number">3</span>) / <span class="number">3</span>),  <span class="comment">// quarter</span></span><br><span class="line">        <span class="string">'S'</span> : <span class="keyword">this</span>.getMilliseconds()                 <span class="comment">// millisecond</span></span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// year</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/(y+)/</span>.test(format) || <span class="regexp">/(Y+)/</span>.test(format)) &#123;</span><br><span class="line">        format = format.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear() + <span class="string">''</span>)</span><br><span class="line">                       .substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> o) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'('</span> + k + <span class="string">')'</span>).test(format)) &#123;</span><br><span class="line">            <span class="keyword">var</span> first = <span class="built_in">RegExp</span>.$<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">var</span> str = first.length === <span class="number">1</span> </span><br><span class="line">                    ? o[k] </span><br><span class="line">                    : (<span class="string">'00'</span> + o[k]).substr((<span class="string">''</span> + o[k]).length); <span class="comment">// nb</span></span><br><span class="line">            format = format.replace(first, str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> format;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tsToDate</span>(<span class="params">timestamp</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>)).format(<span class="string">'yyyy-MM-dd hh:mm:ss'</span>);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// test it</span></span><br><span class="line">&gt; tsToDate(<span class="number">1448967948</span>)</span><br><span class="line">&lt; <span class="string">"2015-12-01 19:05:48"</span></span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -262,11 +261,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/AMD/" rel="tag">#AMD</a>
+            <a href="/tags/date/" rel="tag">#date</a>
           
-            <a href="/tags/CMD/" rel="tag">#CMD</a>
+            <a href="/tags/format/" rel="tag">#format</a>
           
-            <a href="/tags/compatible-module/" rel="tag">#compatible module</a>
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/ts/" rel="tag">#ts</a>
           
         </div>
       
@@ -275,17 +276,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/show-a-default-image-when-the-image-is-broken/" rel="next" title="图片加载错误时显示默认图片">
-                <i class="fa fa-chevron-left"></i> 图片加载错误时显示默认图片
+              <a href="/write-a-compatible-js-module/" rel="next" title="编写一个可以兼容 AMD 和 CMD 的 js 模块">
+                <i class="fa fa-chevron-left"></i> 编写一个可以兼容 AMD 和 CMD 的 js 模块
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/use-js-to-convert-ts-to-data/" rel="prev" title="JavaScript 中 Timestamp 与 Date 的转化">
-                JavaScript 中 Timestamp 与 Date 的转化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
