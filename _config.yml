@@ -70,8 +70,8 @@ pagination_dir: page
 
 ## Themes: http://hexo.io/themes/
 #theme: landscape
-theme: ounn
-# theme: apollo
+# theme: ounn
+theme: strict
 
 #test feed
 feed:

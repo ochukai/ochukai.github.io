@@ -1,0 +1,72 @@
+<!doctype html><html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1024" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title> 入职报告 @Oliver </title>
+
+  <meta name="author" content="Oliver Wang" />
+  <link href="../green/css/impress-demo.css" rel="stylesheet" />
+</head>
+
+<body class="impress-not-supported">
+
+  <!--
+      For example this fallback message is only visible when there is `impress-not-supported` class on body.
+  -->
+  <div class="fallback-message">
+      <p> 浏览器不支持哦~ </p>
+  </div>
+
+  <div id="impress">
+    <div id="bored" class="step slide">
+        <q>Aren't you just <b>bored</b> with all those slides-based presentations?</q>
+    </div>
+
+    <!-- trun left 3500 and become larger 2 than step1 -->
+    <div class="step"
+         data-x="2000"
+         data-y="1000"
+         data-z="200"
+         data-scale="2"
+         data-rotate="180"
+         >
+        <q>Don't you think that presentations given <strong>in modern browsers</strong> shouldn't <strong>copy the limits</strong> of 'classic' slide decks?</q>
+    </div>
+
+    <div class="step"
+         data-x="2000"
+         data-y="1000"
+         data-z="200"
+         data-scale="2"
+         data-rotate="180"
+         >
+        <q>Don't you think that presentations given <strong>in modern browsers</strong> shouldn't <strong>copy the limits</strong> of 'classic' slide decks?</q>
+    </div>
+
+    <div class="step slide" data-x="6000" data-y="4000" data-scale="4">
+        <q>Would you like to <strong>impress your audience</strong> with <strong>stunning visualization</strong> of your talk?</q>
+    </div>
+
+    <div id="its-in-3d" class="step"
+              data-x="8200"
+              data-y="6300"
+              data-z="-200"
+              data-rotate-x="-50"
+              data-rotate-y="20"
+              data-scale="8">
+        <p><span class="have">have</span> <span class="you">you</span> <span class="noticed">noticed</span> <span class="its">it's</span> <span class="in">in</span> <b>3D<sup>*</sup></b>?</p>
+        <span class="footnote">* beat that, prezi ;)</span>
+    </div>
+
+    <div id="overview" class="step" data-x="3000" data-y="2500" data-scale="12"> </div>
+  </div>
+
+
+  <script src="../green/js/impress.js"></script>
+  <script>impress().init();</script>
+
+</body>
+
+</html>

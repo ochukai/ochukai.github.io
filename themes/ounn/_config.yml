@@ -1,0 +1,7 @@
+version: 0.0.1
+
+# favicon
+favicon: /favicon.ico
+
+# other pages
+green: /source/green/index.html
