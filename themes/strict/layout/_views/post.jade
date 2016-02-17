@@ -13,6 +13,7 @@ mixin post(post, index)
           != post.excerpt
         else
           != post.content
+
     footer.post__foot.u-cf
       if post.tags && post.tags.length
         ul.post__tag.u-fl
@@ -20,6 +21,7 @@ mixin post(post, index)
             li.post__tag__item: a.post__tag__link(href = config.root + tag.path)
               = tag.name
           - })
+
       // if post.excerpt && index == 'index'
       //   a.post__more.u-fr(href = config.root + post.path + '#more')= theme.excerpt_link
       // else
