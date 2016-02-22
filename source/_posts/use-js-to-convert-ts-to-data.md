@@ -12,15 +12,15 @@ date: 2015-12-02 11:10:44
 今天在处理一个接口时，发现返回的格式是这样的：
 ```json
 {
-    'meta': {
-        'has_next_msg': false
-    }
-    'objects': [
+    "meta": {
+        "has_next_msg": false
+    },
+    "objects": [
         {
-            'text': '111', 
-            'from_user_type': 'PAT', 
-            'pic': '', 
-            'ts': 1419939065
+            "text": "111",
+            "from_user_type": "PAT",
+            "pic": "",
+            "ts": 1419939065
         }
     ]
 }
@@ -66,29 +66,29 @@ Date.prototype.format = function(format) {
         'q+': Math.floor((this.getMonth() + 3) / 3),  // quarter
         'S' : this.getMilliseconds()                 // millisecond
     };
-    
+
     // year
     if (/(y+)/.test(format) || /(Y+)/.test(format)) {
         format = format.replace(RegExp.$1, (this.getFullYear() + '')
                        .substr(4 - RegExp.$1.length));
     }
-    
+
     for (var k in o) {
         if (new RegExp('(' + k + ')').test(format)) {
             var first = RegExp.$1;
-            var str = first.length === 1 
-                    ? o[k] 
+            var str = first.length === 1
+                    ? o[k]
                     : ('00' + o[k]).substr(('' + o[k]).length); // nb
             format = format.replace(first, str);
         }
     }
-    
+
     return format;
 };
 
 function tsToDate(timestamp) {
     return (new Date(timestamp * 1000)).format('yyyy-MM-dd hh:mm:ss');
-} 
+}
 
 
 // test it
