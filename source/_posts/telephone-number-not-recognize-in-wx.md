@@ -12,27 +12,3 @@ date: 2016-02-26 18:36:25
 <meta name="format-detection" content="telephone=no"/>
 <meta http-equiv="x-rim-auto-match" content="none">
 ```
-
-
-
-        var shareContent = JSON.stringify({
-            "title": title,
-            "description": description,
-            "url": url,
-            "imgUrl": imgUrl,
-            "type": "link",
-            "dataUrl": ""
-        });
-        var greenapple_share = function () {
-            try {
-                window.js_bridge.return_jsonstr(shareContent);
-            } catch (err) {
-                return shareContent;
-            }
-        };
-        try {
-            window.js_bridge.return_jsonstr(shareContent);
-            window.js_bridge.need_share();
-        } catch (err) {
-            console.log(err);
-        }
