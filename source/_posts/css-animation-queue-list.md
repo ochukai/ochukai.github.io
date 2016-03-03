@@ -1,4 +1,4 @@
-title: css-animation-queue-list
+title: Queue Anim 列表
 tags:
   - css
   - animation
