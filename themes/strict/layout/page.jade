@@ -4,7 +4,7 @@ extends _views/main
 
 block main
   +post(page, 'page')
-  if config.disqus_shortname && page.comments
+  if theme.disqus_shortname && page.comments
     div.comments
       div#disqus_thread
         noscript.

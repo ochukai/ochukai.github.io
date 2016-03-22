@@ -1,6 +1,5 @@
 # head
 menu:
-#   Home: /
   Archives: /archives
 
 rss: /atom.xml
@@ -14,3 +13,4 @@ comment_link: 0 COMMENTS
 # foot
 # themes_mata: ' ❤ Theme by <a href="http://unmric.com" target="_blank">unmric</a>'
 google_analytics: UA-73840162-1
+disqus_shortname: ochukai
