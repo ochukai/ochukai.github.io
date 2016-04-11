@@ -1,6 +1,6 @@
 # head
 menu:
-  Archives: /archives
+  カタログ: /archives
 
 rss: /atom.xml
 favicon: /favicon.png
