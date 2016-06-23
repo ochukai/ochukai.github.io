@@ -1,4 +1,4 @@
 title: 分类
 date: 2015-11-07 17:35:00
-type: "categories"
+type: "カタログ"
 ---
