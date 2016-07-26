@@ -1,18 +1,25 @@
 mixin post(post, index)
+
   article.post
-    header.post__head
-      time.post__time(datetime = date_xml(post.date))
-        = date(post.date, theme.date_format)
-      h1.post__title: a(href = config.root + post.path)
-        = post.title
-    if index != 'archive'
-      if post.img
-        a.post__image(href = config.root + post.path): img(src = post.img, alt = 'featured-image')
-      div.post__main.echo
-        if post.excerpt && index == 'index'
-          != post.excerpt
-        else
-          != post.content
+    if index === 'archive'
+      header.post__head.archive
+        time.post__time(datetime = date_xml(post.date))
+          = date(post.date, theme.date_format)
+        h1.post__title.archive: a(href = config.root + post.path)
+          = post.title
+    else
+      header.post__head
+        time.post__time(datetime = date_xml(post.date))
+          = date(post.date, theme.date_format)
+        h1.post__title: a(href = config.root + post.path)
+          = post.title
+        if post.img
+          a.post__image(href = config.root + post.path): img(src = post.img, alt = 'featured-image')
+        div.post__main.echo
+          if post.excerpt && index == 'index'
+            != post.excerpt
+          else
+            != post.content
 
     footer.post__foot.u-cf
       if post.tags && post.tags.length
@@ -22,7 +29,7 @@ mixin post(post, index)
               = tag.name
           - })
 
-      //- if post.excerpt && index == 'index'
-      //-   a.post__more.u-fr(href = config.root + post.path + '#more')= theme.excerpt_link
-      //- else
-      //-   a.post__foot-link.u-fr(href = config.root + post.path + '#disqus_thread')= theme.comment_link
+        //- if post.excerpt && index == 'index'
+        //-   a.post__more.u-fr(href = config.root + post.path + '#more')= theme.excerpt_link
+        //- else
+        //-   a.post__foot-link.u-fr(href = config.root + post.path + '#disqus_thread')= theme.comment_link
