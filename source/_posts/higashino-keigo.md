@@ -1,4 +1,4 @@
-title: Higashino Keigo
+title: 东野圭吾(Higashino Keigo)的全集
 tags:
   - 文学
   - 日本文学

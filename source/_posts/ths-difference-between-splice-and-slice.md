@@ -1,4 +1,4 @@
-igtitle: Splice 和 Slice 的区别
+title: Splice 和 Slice 的区别
 tags:
   - splice
   - slice
