@@ -111,7 +111,9 @@ $(function() {
       var $this = $(this);
       var width = $this.outerWidth();
       var xx = e.offsetX;
-      var className = (xx < (width / 2)) ? 'slide-in-from-left' : 'slide-in-from-right';
+      var className = (xx < (width / 2))
+                    ? 'slide-in-from-left'
+                    : 'slide-in-from-right';
 
       $this.removeClass(classList).addClass(className);      
     })
@@ -119,7 +121,9 @@ $(function() {
       var $this = $(this);
       var width = $this.outerWidth();
       var xx = e.offsetX;
-      var className = (xx < (width / 2)) ? 'slide-out-from-left' : 'slide-out-from-right';
+      var className = (xx < (width / 2))
+                    ? 'slide-out-from-left'
+                    : 'slide-out-from-right';
       $this.removeClass(classList).addClass(className);
     });
 
