@@ -2,7 +2,7 @@ title: 杀死正在占有你端口的小程序
 tags:
   - 端口占用
 categories:
-  - LINUX
+  - Linux
 date: 2016-02-25 18:38:07
 ---
 
