@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>[object Object] - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-11-22T01:40:09.766Z" class="post__time">November 22, 2016</time><h1 class="post__title"><a href="/splice-in-javascript/">Javascript 中的 splice 方法</a></h1><div class="post__main echo"><blockquote>
+<p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p>
+</blockquote>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arrayObject.splice(index, how-many, item1, item2, ...itemX)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</td>
+</tr>
+<tr>
+<td>how-many</td>
+<td>必需。要删除的项目数量。<code>如果设置为 0，则不会删除项目</code>。</td>
+</tr>
+<tr>
+<td>item1, …, itemX</td>
+<td>可选。向数组添加的新项目。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></div><div class="line">arrr.splice(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></div></pre></td></tr></table></figure></p>
+<p>删除第三个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></div><div class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></div></pre></td></tr></table></figure></p>
+<p>删除后面两个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></div><div class="line">                  <span class="comment">// arrr: [0, 1]</span></div></pre></td></tr></table></figure></p>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/splice/" class="post__tag__link">splice</a></li><li class="post__tag__item"><a href="/tags/array/" class="post__tag__link">array</a></li><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li></ul></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","count");
+</script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+ga('create','UA-73840162-1');
+ga('send','pageview');
+</script><script src="http://code.jquery.com/jquery-2.2.1.min.js"></script><script src="/js/main.js"></script></body></html>

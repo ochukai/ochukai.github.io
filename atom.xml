@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>I am Oliver</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.ochukai.me/"/>
+  <updated>2016-12-08T11:45:52.851Z</updated>
+  <id>http://blog.ochukai.me/</id>
+  
+  <author>
+    <name>Oliver Wang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webpack-dev-server 在 webstorm 中失效的问题</title>
+    <link href="http://blog.ochukai.me/webpack-dev-server-vs-webstorm/"/>
+    <id>http://blog.ochukai.me/webpack-dev-server-vs-webstorm/</id>
+    <published>2016-12-08T11:32:09.000Z</published>
+    <updated>2016-12-08T11:45:52.851Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近换了公司 ！！！</p>
+<p>重新用上了高大上的 win7 系统，还是熟悉的画面，然后又装上了 WebStorm，准备开始我的性福人生。</p>
+<p>但天有不测风云，在使用一个基于 webpack 构建的项目中，每次修改代码之后，webpack-dev-server 总是不能够自动重新编译，很烦！！！</p>
+<p>这可急坏了宝宝！！！</p>
+<p>但是我非常冷静的分析了一下原因，可能是因为webstorm有自动保存的机制， 是不是很机制，一下子就命中了要害（但其实这中间的过程可复杂了）</p>
+<p><img src="..//images/webstorm-save-file.png" alt="正常"></p>
+<p>如上图， 在 <code>File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings</code> 里面，取消勾选上面红框的两项。</p>
+<p>每次修改之后，<code>ctrl + s</code> 就可以了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近换了公司 ！！！&lt;/p&gt;
+&lt;p&gt;重新用上了高大上的 win7 系统，还是熟悉的画面，然后又装上了 WebStorm，准备开始我的性福人生。&lt;/p&gt;
+&lt;p&gt;但天有不测风云，在使用一个基于 webpack 构建的项目中，每次修改代码之后，webpack-dev-server
+    
+    </summary>
+    
+      <category term="WebStorm" scheme="http://blog.ochukai.me/categories/webstorm/"/>
+    
+    
+      <category term="webpack-dev-server" scheme="http://blog.ochukai.me/tags/webpack-dev-server/"/>
+    
+      <category term="webpack" scheme="http://blog.ochukai.me/tags/webpack/"/>
+    
+      <category term="webstorm" scheme="http://blog.ochukai.me/tags/webstorm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 window 里面杀死某个进程</title>
+    <link href="http://blog.ochukai.me/kill-process-in-window/"/>
+    <id>http://blog.ochukai.me/kill-process-in-window/</id>
+    <published>2016-11-22T01:49:57.000Z</published>
+    <updated>2016-12-08T11:50:20.425Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="查看被谁占用"><a href="#查看被谁占用" class="headerlink" title="查看被谁占用"></a>查看被谁占用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">netstat -ano | findstr 8989</div><div class="line">  </div><div class="line"># C:\Users\Administrator&gt;netstat -ano | findstr 8989</div><div class="line">#   TCP    0.0.0.0:8989           0.0.0.0:0              LISTENING       6360</div><div class="line">#   TCP    [::]:8989              [::]:0                 LISTENING       6360</div><div class="line">#   TCP    [::1]:8989             [::1]:53638            ESTABLISHED     6360</div><div class="line">#   TCP    [::1]:8989             [::1]:53640            ESTABLISHED     6360</div><div class="line">#   TCP    [::1]:8989             [::1]:53641            ESTABLISHED     6360</div><div class="line">#   TCP    [::1]:8989             [::1]:53645            ESTABLISHED     6360</div><div class="line">#   TCP    [::1]:8989             [::1]:53646            ESTABLISHED     6360</div><div class="line">#   TCP    [::1]:8989             [::1]:53652            ESTABLISHED     6360</div><div class="line">#   TCP    [::1]:8989             [::1]:53653            ESTABLISHED     6360</div><div class="line">#   TCP    [::1]:8989             [::1]:53654            ESTABLISHED     6360</div><div class="line">#   TCP    [::1]:53638            [::1]:8989             ESTABLISHED     5440</div><div class="line">#   TCP    [::1]:53640            [::1]:8989             ESTABLISHED     5440</div><div class="line">#   TCP    [::1]:53641            [::1]:8989             ESTABLISHED     5440</div><div class="line">#   TCP    [::1]:53645            [::1]:8989             ESTABLISHED     5440</div><div class="line">#   TCP    [::1]:53646            [::1]:8989             ESTABLISHED     5440</div><div class="line">#   TCP    [::1]:53652            [::1]:8989             ESTABLISHED     5440</div><div class="line">#   TCP    [::1]:53653            [::1]:8989             ESTABLISHED     5440</div><div class="line">#   TCP    [::1]:53654            [::1]:8989             ESTABLISHED     5440</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tasklist | findstr 8989//查看pid为3036的是什么程序在用</div></pre></td></tr></table></figure>
+<h2 id="杀死某进程"><a href="#杀死某进程" class="headerlink" title="杀死某进程"></a>杀死某进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># /T 包括子进程</div><div class="line"># /F 强制</div><div class="line">  </div><div class="line">taskkill /T /F /PID 8989</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;查看被谁占用&quot;&gt;&lt;a href=&quot;#查看被谁占用&quot; class=&quot;headerlink&quot; title=&quot;查看被谁占用&quot;&gt;&lt;/a&gt;查看被谁占用&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut
+    
+    </summary>
+    
+      <category term="Window" scheme="http://blog.ochukai.me/categories/window/"/>
+    
+    
+      <category term="端口占用" scheme="http://blog.ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Javascript 中的 splice 方法</title>
+    <link href="http://blog.ochukai.me/splice-in-javascript/"/>
+    <id>http://blog.ochukai.me/splice-in-javascript/</id>
+    <published>2016-11-22T01:40:09.766Z</published>
+    <updated>2016-11-22T01:40:09.766Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p>
+</blockquote>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arrayObject.splice(index, how-many, item1, item2, ...itemX)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</td>
+</tr>
+<tr>
+<td>how-many</td>
+<td>必需。要删除的项目数量。<code>如果设置为 0，则不会删除项目</code>。</td>
+</tr>
+<tr>
+<td>item1, …, itemX</td>
+<td>可选。向数组添加的新项目。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></div><div class="line">arrr.splice(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></div></pre></td></tr></table></figure></p>
+<p>删除第三个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></div><div class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></div></pre></td></tr></table></figure></p>
+<p>删除后面两个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></div><div class="line">                  <span class="comment">// arrr: [0, 1]</span></div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+    
+      <category term="[object Object]" scheme="http://blog.ochukai.me/categories/javascript/object-object/"/>
+    
+    
+      <category term="splice" scheme="http://blog.ochukai.me/tags/splice/"/>
+    
+      <category term="array" scheme="http://blog.ochukai.me/tags/array/"/>
+    
+      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>东野圭吾(Higashino Keigo)的全集</title>
+    <link href="http://blog.ochukai.me/higashino-keigo/"/>
+    <id>http://blog.ochukai.me/higashino-keigo/</id>
+    <published>2016-07-26T08:38:44.000Z</published>
+    <updated>2016-11-22T01:40:09.751Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近看了几篇 东野圭吾 的小说, 都还蛮有意思的。 像 《嫌疑人X的献身》, 《流星之绊》,《毕业》啊 等等,好多都记不住名字了。</p>
+<p>于是决定把他的全集整理一下,留着有空都看一遍~</p>
+<hr>
+<h2 id="加贺恭一郎系列"><a href="#加贺恭一郎系列" class="headerlink" title="加贺恭一郎系列"></a>加贺恭一郎系列</h2><ul>
+<li>《毕业——雪月花杀人游戏》（《毕业前杀人游戏》）&lt;卒业―雪月花杀人ゲーム&gt;</li>
+<li>《沉睡的森林》&lt;眠りの森&gt;</li>
+<li>《谁杀了她》&lt;どちらかが彼女を杀した&gt;</li>
+<li>《恶意》</li>
+<li>《我杀了他》&lt;私が彼を杀した&gt;</li>
+<li>《又一个谎言》 &lt;嘘をもうひとつだけ&gt;　刊载于推理杂志220-224期</li>
+<li>《红手指》 &lt;赤い指&gt;（2011年冬季档日剧SP，阿部宽、黑木明纱主演）</li>
+<li>《新参者》（2010年拍摄日剧，阿部宽、黑木明纱主演）</li>
+<li>《麒麟之翼》&lt;麒麟の翼&gt;</li>
+</ul>
+<h2 id="神探伽利略-按列表顺序"><a href="#神探伽利略-按列表顺序" class="headerlink" title="神探伽利略 (按列表顺序)"></a>神探伽利略 (按列表顺序)</h2><ul>
+<li>《侦探伽利略》&lt;探侦ガリレオ&gt;</li>
+<li>《预知梦》&lt;予知梦&gt;</li>
+<li>《嫌疑犯X的献身》&lt;容疑者Xの献身&gt;</li>
+<li>《伽利略的苦恼》&lt;ガリレオの苦悩&gt;</li>
+<li>《圣女的救济》&lt;圣女の救済&gt;</li>
+<li>《盛夏的方程式》&lt;真夏の方程式&gt;</li>
+<li>《虚像的小丑》&lt;虚像の道化师&gt;</li>
+<li>《禁断的魔术》&lt;禁断の魔术&gt;</li>
+</ul>
+<h2 id="毒舌三部曲"><a href="#毒舌三部曲" class="headerlink" title="毒舌三部曲"></a>毒舌三部曲</h2><ul>
+<li>怪笑小说</li>
+<li>毒笑小说</li>
+<li>黑笑小说</li>
+</ul>
+<h2 id="获奖作品"><a href="#获奖作品" class="headerlink" title="获奖作品"></a>获奖作品</h2><ul>
+<li>1983年《人偶之家》第29届江戸川乱歩赏二次予选通过</li>
+<li>1984年《魔球》第30届江戸川乱歩赏最终候补</li>
+<li>1985年《放学后》夺得第31届江户川乱步奖，开始专职写作。</li>
+<li>1988年《学生街杀人事件》第9届吉川英治文学新人赏候补・第41回日本推理作家协会赏（长编）候补</li>
+<li>1990年《鸟人计划》第11届吉川英治文学新人赏候补</li>
+<li>1991年《天使之耳》第44届日本推理作家协会赏（短编集）候补</li>
+<li>1992年《镜之中》第45届日本推理作家协会赏（短编集）候补</li>
+<li>1993年《雪地杀机》第46届日本推理作家协会赏（长编部）候补</li>
+<li>1993年《交通警察之夜》第46届日本推理作家协会赏（短编集）候补</li>
+<li>1996年《天空之蜂》第17届吉川英治文学新人赏候补</li>
+<li>1997年《名侦探的守则》第18届吉川英治文学新人赏候补</li>
+<li>1999年《秘密》第120届直木奖三十五赏候补，第20回吉川英治文学新人赏候补，第52回日本推理作家协会奖</li>
+<li>2000年《白夜行》第122届直木奖三十五赏候补</li>
+<li>2001年《单恋》第125届直木奖三十五赏候补</li>
+<li>2003年《信》第129届直木奖三十五赏候补</li>
+<li>2004年《幻夜》第131届直木三奖十五赏候补</li>
+<li>2006年《嫌疑人X的献身》将第134届直木奖、第6届本格推理小说 大奖及当年度日本三大推理小说排行榜（“这本推理小说了不起！”、“周刊文春推理小说BEST10”、“本格推理小说 BEST10”）第1名一并收入囊中。</li>
+<li>2008年《流星之绊》荣获第43届新风奖。</li>
+<li>2009年《新参者》获“这本推理小说了不起！”、“周刊文春推理小说BEST10”年度第1名。</li>
+<li>2012年《嫌疑犯X的献身》美国图书馆协会最推荐图书（推理部门）、爱伦·坡奖最优秀长编奖候补、巴瑞奖新人赏奖候补</li>
+<li>2012年《浪矢杂货店的奇迹》第7届中央公论文艺奖</li>
+</ul>
+<hr>
+<p>上面的作品今年都看完应该就不错了~ 毕竟做人都是要有目标的嘛,那么更远大的目标呢,就是下面的全部列表了。</p>
+<hr>
+<h2 id="作品列表"><a href="#作品列表" class="headerlink" title="作品列表"></a>作品列表</h2><h3 id="1985年"><a href="#1985年" class="headerlink" title="1985年"></a>1985年</h3><ol>
+<li>《放学后》&lt;放课後&gt; （第31 届江户川乱步奖）</li>
+</ol>
+<h3 id="1986年"><a href="#1986年" class="headerlink" title="1986年"></a>1986年</h3><ol>
+<li>《毕业——雪月花杀人游戏》（加贺恭一郎系列）（《毕业前杀人游戏》）&lt;卒业―雪月花杀人ゲーム&gt;</li>
+<li>《白马山庄杀人事件》&lt;白马山荘杀人事件&gt;</li>
+</ol>
+<h3 id="1987年"><a href="#1987年" class="headerlink" title="1987年"></a>1987年</h3><ol>
+<li>《学生街里的杀人事件》&lt;学生街の杀人&gt;（入围第41届日本推理作家协会赏）</li>
+<li>《十一字杀人》<11文字の杀人></11文字の杀人></li>
+</ol>
+<h3 id="1988年"><a href="#1988年" class="headerlink" title="1988年"></a>1988年</h3><ol>
+<li>《魔球》</li>
+<li>《以眨眼干杯》&lt;ウインクで乾杯&gt; 原名&lt;香子の梦―コンパニオン杀人事件&gt; / 《香子之梦——夥伴杀人事件》</li>
+<li>《浪花少年侦探团》&lt;浪花少年探侦団&gt;</li>
+</ol>
+<h3 id="1989年"><a href="#1989年" class="headerlink" title="1989年"></a>1989年</h3><ol>
+<li>《十字豪宅的小丑》&lt;十字屋敷のピエロ&gt;</li>
+<li>《沉睡的森林》&lt;眠りの森&gt;（加贺恭一郎系列）（特别说明：并不是木村拓哉主演的那部电视剧）</li>
+<li>《鸟人计划》&lt;鸟人计画&gt;（入围第11届吉川英治文学新人奖）</li>
+<li>《杀人现场在云端》&lt;杀人现场は云の上&gt;</li>
+<li>《布鲁特斯的心脏——完全犯罪杀人接力》&lt;ブルータスの心臓―完全犯罪杀人リレー&gt;</li>
+</ol>
+<h3 id="1990年"><a href="#1990年" class="headerlink" title="1990年"></a>1990年</h3><ol>
+<li>《侦探俱乐部》&lt;探侦倶楽部&gt; 原名 &lt;依頼人の娘&gt;《负责人的女儿》<br>本短篇集包括：<ol>
+<li>伪装之夜 / 伪装の夜</li>
+<li>疯狂的电击 / 罠の中</li>
+<li>少女委托人 / 依頼人の娘</li>
+<li>伊豆旅馆的神秘案 / 探侦の使い方</li>
+<li>玫瑰与匕首 / 蔷薇とナイフ</li>
+</ol>
+</li>
+<li>《宿命》（2004年拍摄日剧SP，柏原崇、藤木直人主演）</li>
+<li>《没有凶手的杀人夜》&lt;犯人のいない杀人の夜&gt;（曾刊载于推理杂志）<ol>
+<li>小小的恶作剧故事 / 小さな故意の物语（2012年日剧《东野圭吾推理系列》第八集，三浦春马主演）</li>
+<li>黑暗中的两个人 / 闇の中の二人</li>
+<li>舞女 / 踊り子</li>
+<li>无尽之夜 / エンドレス·ナイト（2012年日剧《东野圭吾推理系列》第三集，松下奈绪主演）</li>
+<li>白色凶器 / 白い凶器（2012年日剧《东野圭吾推理系列》第七集，户田惠梨香主演）</li>
+<li>别了，教练 / さよならコーチ（2012年日剧《东野圭吾推理系列》第一集，唐泽寿明主演）</li>
+<li>没有凶手的杀人夜 / 犯人のいない杀人の夜（2012年日剧《东野圭吾推理系列》第二集，坂口宪二主演）</li>
+</ol>
+</li>
+<li>《面具山庄杀人事件》&lt;仮面山荘杀人事件&gt;</li>
+</ol>
+<h3 id="1991年"><a href="#1991年" class="headerlink" title="1991年"></a>1991年</h3><ol>
+<li>《变身》&lt;变身&gt;（2005年拍摄电影，玉木宏、苍井优主演）</li>
+<li>《回廊亭杀人事件》&lt;回廊亭杀人事件&gt;（2012年06月24日播出日剧SP，主演：常盘贵子）</li>
+<li>《天使之耳》&lt;交通警察の夜&gt;<ol>
+<li>天使之耳/ 天使の耳</li>
+<li>隔离带/ 分离帯</li>
+<li>危险的新叶/ 危険な若叶</li>
+<li>请通过/ 通りゃんせ</li>
+<li>请勿弃物/ 舍てないで</li>
+<li>镜之中/ 镜の中で</li>
+</ol>
+</li>
+</ol>
+<h3 id="1992年"><a href="#1992年" class="headerlink" title="1992年"></a>1992年</h3><ol>
+<li>《雪地杀机》&lt;ある闭ざされた雪の山荘で&gt;</li>
+<li>《美丽的凶器》&lt;美しき凶器&gt;</li>
+</ol>
+<h3 id="1993年"><a href="#1993年" class="headerlink" title="1993年"></a>1993年</h3><ol>
+<li>《同班同学》&lt;同级生&gt;</li>
+<li>《分身》（2012年2月12日播出日剧，主演：长泽雅美）</li>
+<li>《和阿忍老师说再见——浪花少年侦探团·独立篇》&lt;しのぶセンセにサヨナラ―浪花少年探侦団·独立编&gt;</li>
+</ol>
+<h3 id="1994年"><a href="#1994年" class="headerlink" title="1994年"></a>1994年</h3><ol>
+<li>《怪人们》 / 怪しい人びと<ol>
+<li>沉睡的女人 / 寝ていた女</li>
+<li>让我再听一次你的判罚 / もう一度コールしてくれ</li>
+<li>至死方休 / 死んだら働けない</li>
+<li>蜜月之旅 / 甘いはずなのに</li>
+<li>新婚照之谜 / 结婚报告（2012年日剧《东野圭吾推理系列》第九集，广末凉子主演）</li>
+<li>灯塔之上 / 灯台にて</li>
+<li>哥斯达黎加的冷雨 / コスタリカの雨は冷たい</li>
+</ol>
+</li>
+<li>《我以前死去的家》&lt;むかし仆が死んだ家&gt;</li>
+<li>《操纵彩虹的少年》&lt;虹を操る少年&gt;</li>
+</ol>
+<h3 id="1995年"><a href="#1995年" class="headerlink" title="1995年"></a>1995年</h3><ol>
+<li>《平行世界·爱情故事》&lt;パラレルワールド·ラブストーリー&gt;</li>
+<li>《那个时候我们是傻瓜》（散文集）&lt;あの顷ぼくらはアホでした&gt;</li>
+<li>《怪笑小说》<ol>
+<li>郁积电车 / 郁积电车</li>
+<li>追星阿婆 / おっかけバアさん</li>
+<li>一彻老爸 / 一彻おやじ</li>
+<li>逆转同学会 / 逆転同窓会</li>
+<li>超狸理论 / 超たぬき理论</li>
+<li>无人岛大相扑转播 / 无人岛大相扑中継</li>
+<li>尸台社区 / しかばね台分譲住宅</li>
+<li>献给某位老爷爷的线香 / あるジーサンに线香を</li>
+<li>动物家庭 / 动物家族</li>
+</ol>
+</li>
+<li>《天空之蜂》&lt;天空の蜂&gt;（入围第17届吉川英治文学新人奖）</li>
+</ol>
+<h3 id="1996年"><a href="#1996年" class="headerlink" title="1996年"></a>1996年</h3><ol>
+<li>《名侦探的守则》&lt;名探侦の掟&gt;（2009春季日剧，松田翔太主演）</li>
+<li>《谁杀了她》（加贺恭一郎系列）&lt;どちらかが彼女を杀した&gt;</li>
+<li>《毒笑小说》<ol>
+<li>绑架天国 / 诱拐天国</li>
+<li>Angel / エンジェル</li>
+<li>手工贵妇 / 手作りマダム</li>
+<li>程序警察 / マニュアル警察（世界奇妙物语 2000秋季sp，玉置浩二主演，又名《准则警察》）</li>
+<li>爷爷当家 / ホームアローンじいさん</li>
+<li>新郎人偶 / 花婿人形</li>
+<li>女作家 / 女流作家</li>
+<li>杀意使用说明书 / 杀意取扱说明书（世界奇妙物语 2010秋季sp，玉木宏、冢本高史主演）</li>
+<li>补偿 / つぐない</li>
+<li>光荣的证言 / 栄光の证言</li>
+<li>本格推理周边鉴定秀 / 本格推理関连グッズ鉴定ショー</li>
+<li>绑架电话网 / 诱拐电话网</li>
+</ol>
+</li>
+<li>《恶意》（加贺恭一郎系列）</li>
+<li>《名侦探的诅咒》&lt;名探侦の呪缚&gt;</li>
+</ol>
+<h3 id="1998年"><a href="#1998年" class="headerlink" title="1998年"></a>1998年</h3><ol>
+<li>《侦探伽利略》（神探伽利略系列第1部）&lt;探侦ガリレオ&gt;</li>
+<li>《秘密》（第52届日本推理作家协会奖、第120 届直木奖入围）</li>
+</ol>
+<h3 id="1999年"><a href="#1999年" class="headerlink" title="1999年"></a>1999年</h3><ol>
+<li>《我杀了他》（加贺恭一郎系列）&lt;私が彼を杀した&gt;</li>
+<li>《白夜行》（第122 届直木奖入围）</li>
+</ol>
+<h3 id="2000年"><a href="#2000年" class="headerlink" title="2000年"></a>2000年</h3><ol>
+<li>《又一个谎言》 （加贺恭一郎系列） &lt;嘘をもうひとつだけ&gt;　刊载于推理杂志220-224期<ol>
+<li>又一个谎言 / 嘘をもうひとつだけ</li>
+<li>寒冷的灼热 / 冷たい灼热</li>
+<li>第二个希望 / 第二の希望</li>
+<li>疯狂计算 / 狂った计算</li>
+<li>朋友的忠告 / 友の助言</li>
+</ol>
+</li>
+<li>《预知梦》（神探伽利略系列第2部）&lt;予知梦&gt;（2007年拍摄日剧《神探伽利略》6-10集，福山雅治、柴崎幸主演）</li>
+</ol>
+<h3 id="2001年"><a href="#2001年" class="headerlink" title="2001年"></a>2001年</h3><ol>
+<li>《单恋》&lt;片想い&gt; （第125 届直木奖入围）</li>
+<li>《超·杀人事件》&lt;超·杀人事件　推理作家の苦悩&gt;（「2003年世界奇妙物语春季篇」拍摄其中一个单元故事&lt;超税金对策杀人事件&gt;，西村雅彦、大冢宁宁主演）<ol>
+<li>超税金对策杀人事件 / 超税金対策杀人事件</li>
+<li>超理科杀人事件 / 超理系杀人事件</li>
+<li>超猜凶手小说杀人事件 / 超犯人当て小说杀人事件（问题篇·解决篇）</li>
+<li>超高龄化社会杀人事件 / 超高齢化社会杀人事件</li>
+<li>超预告小说杀人事件 / 超予告小说杀人事件</li>
+<li>超长篇小说杀人事件 / 超长编小说杀人事件</li>
+<li>魔风馆杀人事件 / 魔风馆杀人事件（超最终回·ラスト五枚）</li>
+<li>超读书机器杀人事件 / 超読书机械杀人事件</li>
+</ol>
+</li>
+<li>《圣诞阿姨》 /サンタのおばさん（絵本：絵は杉田比吕美）</li>
+</ol>
+<h3 id="2002年"><a href="#2002年" class="headerlink" title="2002年"></a>2002年</h3><ol>
+<li>《湖畔》&lt;レイクサイド&gt;（2002年拍摄电影，药师丸博子、丰川悦司、役所广司主演）</li>
+<li>《时生》&lt;トキオ&gt;（2004年拍摄日剧，樱井翔主演，剧名为「给父亲的口信」）</li>
+<li>《绑架游戏》&lt;ゲームの名は诱拐&gt;（2003年拍摄电影、藤木直人、仲间由纪惠主演）</li>
+</ol>
+<h3 id="2003年"><a href="#2003年" class="headerlink" title="2003年"></a>2003年</h3><ol>
+<li>《信》&lt;手纸&gt;（第129 届直木奖入围）（2005年拍摄电影，山田孝之、泽尻英龙华主演）</li>
+<li>《我是非常勤》&lt;おれは非情勤&gt; （注：本书书名和「 非常勤」（中文意为兼任）同音，是创作者特别设定的双关语趣味）</li>
+<li>《杀人之门》&lt;杀人の门&gt;</li>
+</ol>
+<h3 id="2004年"><a href="#2004年" class="headerlink" title="2004年"></a>2004年</h3><ol>
+<li>《幻夜》（第131 届直木奖入围）（2010年秋季档日剧，深田恭子、冢本高史主演）</li>
+<li>《挑战？》（散文集）&lt;ちゃれんじ&gt;（散文集）</li>
+<li>《彷徨之刃》&lt;さまよう刃&gt;（2009年改编为电影，竹野内丰主演）</li>
+</ol>
+<h3 id="2005年"><a href="#2005年" class="headerlink" title="2005年"></a>2005年</h3><ol>
+<li>《黑笑小说》<ol>
+<li>又一次助跑 / もうひとつの助走</li>
+<li>线香花火 / 线香花火</li>
+<li>过去的人 / 过去の人</li>
+<li>评审会 / 选考会</li>
+<li>巨乳妄想综合征 / 巨乳妄想症候群</li>
+<li>无能药 / インポグラ</li>
+<li>显微眼 / みえすぎ</li>
+<li>钟情喷雾 / モテモテ·スプレー</li>
+<li>灰姑娘白夜行 / シンデレラ白夜行</li>
+<li>跟踪狂入门 / ストーカー入门</li>
+<li>临界家族 / 临界家族</li>
+<li>不笑的人 / 笑わない男</li>
+<li>奇迹之照 / 奇迹の一枚</li>
+</ol>
+</li>
+<li>《嫌疑犯X的献身》（神探伽利略系列第3部）&lt;容疑者Xの献身&gt;</li>
+<li>《科学》（散文集）&lt;さいえんす&gt;</li>
+</ol>
+<h3 id="2006年"><a href="#2006年" class="headerlink" title="2006年"></a>2006年</h3><ol>
+<li>《梦回都灵》（散文集）&lt;梦はトリノをかけめぐる&gt;</li>
+<li>《红手指》（加贺恭一郎系列） &lt;赤い指&gt;（2011年冬季档日剧SP，阿部宽、黑木明纱主演）</li>
+<li>《使命与心的极限》&lt;使命と魂のリミット&gt; （2011秋季档日剧SP，石原里美、速水重道主演）</li>
+</ol>
+<h3 id="2007年"><a href="#2007年" class="headerlink" title="2007年"></a>2007年</h3><ol>
+<li>《也许是最后的寒暄》&lt;たぶん最後の御挨拶&gt;（散文集）</li>
+<li>《黎明之街》&lt;夜明けの街で&gt;（2011年拍摄电影，深田恭子、岸谷五朗主演）</li>
+<li>《濒死之眼》&lt;ダイイング·アイイ&gt;</li>
+</ol>
+<h3 id="2008年"><a href="#2008年" class="headerlink" title="2008年"></a>2008年</h3><ol>
+<li>《流星之绊》&lt;流星の绊&gt;（2008年拍摄日剧，二宫和也、锦户亮、户田惠梨香主演）</li>
+<li>《伽利略的苦恼》（神探伽利略系列第4部）&lt;ガリレオの苦悩&gt;</li>
+<li>《圣女的救济》（神探伽利略系列第5部）&lt;圣女の救済&gt;</li>
+</ol>
+<h3 id="2009年"><a href="#2009年" class="headerlink" title="2009年"></a>2009年</h3><ol>
+<li>《悖论13》台版译《异变13秒》&lt;パラドックス13&gt;</li>
+<li>《新参者》（加贺恭一郎系列）（2010年拍摄日剧，阿部宽、黑木明纱主演）</li>
+<li>《美丽的凶器》</li>
+</ol>
+<h3 id="2010年"><a href="#2010年" class="headerlink" title="2010年"></a>2010年</h3><ol>
+<li>《布谷鸟的蛋是谁的》&lt;カッコウの卵は谁のもの&gt; 在《小说宝石》上连载时原题《フェイク》</li>
+<li>《白金数据》&lt;プラチナデータ&gt;（2012年拍摄电影，二宫和也主演）</li>
+<li>《白银杰克》&lt; 白银ジャック&gt;</li>
+</ol>
+<h3 id="2011年"><a href="#2011年" class="headerlink" title="2011年"></a>2011年</h3><ol>
+<li>《你旁边是谁》&lt;あの顷の谁か&gt;<ol>
+<li>全是字谜 / シャレードがいっぱい（2012年日剧《东野圭吾推理系列》第六集，长泽雅美主演）</li>
+<li>Reiko和玲子 / 玲子とレイコ（2012年日剧《东野圭吾推理系列》第四集，观月阿丽莎主演）</li>
+<li>再生魔术之女 / 再生魔术の女 （2012年日剧《东野圭吾推理系列》第十一集，铃木京香主演）</li>
+<li>再见，“爸爸” / さよなら『お父さん』</li>
+<li>名侦探退场 / 名探侦退场 </li>
+<li>母老虎 / 女も虎も</li>
+<li>好困，我不想死 / りたい死にたくない </li>
+<li>20年的约定 / 二十年目の约束（2012年日剧《东野圭吾推理系列》第十集，筱原凉子主演）</li>
+</ol>
+</li>
+<li>《麒麟之翼》（加贺恭一郎系列）&lt;麒麟の翼&gt;（加贺恭一郎系列）</li>
+<li>《牛奶箱的回答》&lt;回答は牛乳箱に&gt;（短篇 出自《小说 野性时代》 第89号）</li>
+<li>《听心》&lt;心聴&gt;（短篇 出自《オール读物》2011年04月号）</li>
+<li>《盛夏的方程式》（神探伽利略系列第6部）&lt;真夏の方程式&gt;</li>
+<li>《假面舞馆》&lt;マスカレード·ホテル&gt; 暂定2012年9月9日出版</li>
+<li>《歪笑小说》</li>
+</ol>
+<h3 id="2012年"><a href="#2012年" class="headerlink" title="2012年"></a>2012年</h3><ol>
+<li>《虚像的小丑》（神探伽利略系列第7部）&lt;虚像の道化师 ガリレオ 7&gt;</li>
+<li>《杂货店的奇迹》</li>
+<li>《那个时候的谁》</li>
+<li>《禁断的魔术》（神探伽利略系列第8部）&lt;禁断の魔术 ガリレオ8&gt;</li>
+</ol>
+<h3 id="2013年"><a href="#2013年" class="headerlink" title="2013年"></a>2013年</h3><ol>
+<li>《梦幻花》（むげんばな）</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近看了几篇 东野圭吾 的小说, 都还蛮有意思的。 像 《嫌疑人X的献身》, 《流星之绊》,《毕业》啊 等等,好多都记不住名字了。&lt;/p&gt;
+&lt;p&gt;于是决定把他的全集整理一下,留着有空都看一遍~&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;加贺恭一郎系列&quot;&gt;&lt;a href=&quot;#加贺恭一
+    
+    </summary>
+    
+      <category term="文学" scheme="http://blog.ochukai.me/categories/%E6%96%87%E5%AD%A6/"/>
+    
+    
+      <category term="文学" scheme="http://blog.ochukai.me/tags/%E6%96%87%E5%AD%A6/"/>
+    
+      <category term="日本文学" scheme="http://blog.ochukai.me/tags/%E6%97%A5%E6%9C%AC%E6%96%87%E5%AD%A6/"/>
+    
+      <category term="东野圭吾" scheme="http://blog.ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE/"/>
+    
+      <category term="东野圭吾作品全集" scheme="http://blog.ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE%E4%BD%9C%E5%93%81%E5%85%A8%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Splice 和 Slice 的区别</title>
+    <link href="http://blog.ochukai.me/ths-difference-between-splice-and-slice/"/>
+    <id>http://blog.ochukai.me/ths-difference-between-splice-and-slice/</id>
+    <published>2016-07-11T02:52:16.000Z</published>
+    <updated>2016-11-22T01:40:09.766Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前写过一遍介绍 <code>splice()</code> 方法的，这一次又遇到了 <code>slice()</code>, 这两个太像了, 首先看这两个意思吧：</p>
+<blockquote>
+<p>splice [splais]<br>n. 接合；结婚<br>vt. 拼接；接合；使结婚</p>
+</blockquote>
+<p>和  </p>
+<blockquote>
+<p>slice [slais]<br>n. 薄片；部分；菜刀，火铲<br>vt. 切下；把…分成部分；将…切成薄片<br>vi. 切开；割破</p>
+</blockquote>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><code>slice()</code> 方法可从已有的数组中返回选定的元素。这个函数有两个参数 <code>slice(start, end)</code> 会返回一个从 <code>start</code> 到 <code>end</code> 之前元素的新数组， 如果 <code>end</code> 是<code>负数</code>，就从数组末尾倒着数, 如果 end 没有设置，就返回从 start 到数组末尾组成的新数组咯~</p>
+<p>总之这是一个返回新数组的函数，知识返回而已，不会改变原来的数组，而 <code>splice</code> 方法则会改变原来的数组.</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var arr = new Array(<span class="number">3</span>)</div><div class="line">arr[<span class="number">0</span>] = <span class="string">"George"</span></div><div class="line">arr[<span class="number">1</span>] = <span class="string">"John"</span></div><div class="line">arr[<span class="number">2</span>] = <span class="string">"Thomas"</span></div><div class="line">arr[<span class="number">3</span>] = <span class="string">"James"</span></div><div class="line">arr[<span class="number">4</span>] = <span class="string">"Adrew"</span></div><div class="line">arr[<span class="number">5</span>] = <span class="string">"Martin"</span></div><div class="line"></div><div class="line">console.log(arr.slice(<span class="number">4</span>)) <span class="comment">// ["Adrew", "Martin"] == arr.slice(4, 6)</span></div><div class="line">console.log(arr.slice(<span class="number">0</span>, <span class="number">-4</span>)) <span class="comment">// ["George", "John"] == arr.slice(0, 2)</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前写过一遍介绍 &lt;code&gt;splice()&lt;/code&gt; 方法的，这一次又遇到了 &lt;code&gt;slice()&lt;/code&gt;, 这两个太像了, 首先看这两个意思吧：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;splice [splais]&lt;br&gt;n. 接合；结婚&lt;br&gt;vt
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+    
+    
+      <category term="splice" scheme="http://blog.ochukai.me/tags/splice/"/>
+    
+      <category term="slice" scheme="http://blog.ochukai.me/tags/slice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>上层滚动 下层不摇滚</title>
+    <link href="http://blog.ochukai.me/prevent-deep-div-scroll-with-the-top-element/"/>
+    <id>http://blog.ochukai.me/prevent-deep-div-scroll-with-the-top-element/</id>
+    <published>2016-06-23T03:12:27.000Z</published>
+    <updated>2016-11-22T01:40:09.751Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近写手机页面颇多, 经常有弹出框, 或者下拉列表, 如果弹框或者下拉列表的内容太多,出现了滚动条, 恰好外面的内容也很多,也有滚动条的话,就会出现一种情况:</p>
+<p><img src="../images/scroll-1.png" alt="例子"></p>
+<p>比如上图, 当用力划一下屏幕, 下拉框滚到底了之后, <strong>body</strong> 随之也开始滚, 很讨厌。出现过好多次了, 而且测试逼我太紧~</p>
+<h2 id="我要解决这个问题啊"><a href="#我要解决这个问题啊" class="headerlink" title="我要解决这个问题啊"></a>我要解决这个问题啊</h2><p>其实很简单, 只要弹出下拉列表的时候让下层的元素不能滚动就好了。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.modal-open</span> &#123; </div><div class="line">  <span class="attribute">overflow</span>: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>js 的话就这么写:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">$div</span>) </span>&#123;</div><div class="line">  $(<span class="string">'body'</span>).addClass(<span class="string">'modal-open'</span>);</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params">$div</span>) </span>&#123;</div><div class="line">  $(<span class="string">'body'</span>).removeClass(<span class="string">'modal-open'</span>);</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近写手机页面颇多, 经常有弹出框, 或者下拉列表, 如果弹框或者下拉列表的内容太多,出现了滚动条, 恰好外面的内容也很多,也有滚动条的话,就会出现一种情况:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../images/scroll-1.png&quot; alt=&quot;例子&quot;&gt;&lt;/p&gt;
+&lt;p
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Zepto 插件写法</title>
+    <link href="http://blog.ochukai.me/zepto-plugin/"/>
+    <id>http://blog.ochukai.me/zepto-plugin/</id>
+    <published>2016-06-20T06:32:33.000Z</published>
+    <updated>2016-11-22T01:40:09.782Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般是这样的…  比较水, 并没有怎么写过.</p>
+<p>我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">+<span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span>;</div><div class="line"></div><div class="line">  <span class="comment">// BUTTON PUBLIC CLASS DEFINITION</span></div><div class="line">  <span class="comment">// ==============================</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> Button = <span class="function"><span class="keyword">function</span> (<span class="params">element, options</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.$element  = $(element);</div><div class="line">    <span class="keyword">this</span>.options   = $.extend(&#123;&#125;, Button.DEFAULTS, options);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  Button.DEFAULTS = &#123;</div><div class="line">    <span class="attr">loadingText</span>: <span class="string">'loading...'</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  Button.prototype.setState = <span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line">  Button.prototype.toggle = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">// BUTTON PLUGIN DEFINITION</span></div><div class="line">  <span class="comment">// ========================</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Plugin</span>(<span class="params">option</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> $<span class="keyword">this</span>    = $(<span class="keyword">this</span>),</div><div class="line">          lookup   = $.fn.button.lookup,</div><div class="line">          instance = lookup[$<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>)];</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (!instance) &#123;</div><div class="line">        lookup[++lookup.i] = (instance = <span class="keyword">new</span> Button(<span class="keyword">this</span>, options));</div><div class="line">        $<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>, lookup.i);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">// button method</span></div><div class="line">      <span class="comment">// if (option == 'toggle') &#123;</span></div><div class="line">      <span class="comment">//   data.toggle();</span></div><div class="line">      <span class="comment">// &#125; else if (option) &#123;</span></div><div class="line">      <span class="comment">//   data.setState(option);</span></div><div class="line">      <span class="comment">// &#125;</span></div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> old = $.fn.button;</div><div class="line"></div><div class="line">  $.fn.button             = Plugin;</div><div class="line">  $.fn.button.lookup      = &#123; <span class="attr">i</span>: <span class="number">0</span> &#125;;</div><div class="line">  $.fn.button.Constructor = Button;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">// BUTTON NO CONFLICT</span></div><div class="line">  <span class="comment">// ==================</span></div><div class="line"></div><div class="line">  $.fn.button.noConflict = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $.fn.button = old;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">&#125; (Zepto);</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一般是这样的…  比较水, 并没有怎么写过.&lt;/p&gt;
+&lt;p&gt;我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+    
+    
+      <category term="zepto" scheme="http://blog.ochukai.me/tags/zepto/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 formData 提交表单和上传图片</title>
+    <link href="http://blog.ochukai.me/formdata-in-action/"/>
+    <id>http://blog.ochukai.me/formdata-in-action/</id>
+    <published>2016-04-11T07:34:57.000Z</published>
+    <updated>2016-11-22T01:40:09.735Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~</p>
+<p>图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。</p>
+<p>然后我就想到了可以用 FormData 来做，因为之前好像用过，感觉很方便。</p>
+<h3 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h3><blockquote>
+<p>The FormData interface provides a way to easily construct a set of <code>key/value</code> pairs representing form fields and their values, which can then be easily sent using the <code>XMLHttpRequest.send()</code> method. It uses the same format a form would use if the encoding type were set to “multipart/form-data”.</p>
+</blockquote>
+<p>如果使用 jQuery 提交 formData 的话，大致像这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">  <span class="attr">url</span>        : url,</div><div class="line">  <span class="attr">type</span>       : <span class="string">'POST'</span>,</div><div class="line">  <span class="attr">data</span>       : formData,</div><div class="line">  <span class="comment">// 下面这两条需要特别注意</span></div><div class="line">  processData: <span class="literal">false</span>,</div><div class="line">  <span class="attr">contentType</span>: <span class="literal">false</span>,</div><div class="line">  success(data) &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;,</div><div class="line">  error(xhr) &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>就是把 formData 作为 data 发送到后台就好了，如果要构造一个 formData 对象的话，也很简单呢<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData();</div><div class="line">formData.append(<span class="string">'ticket_id'</span>, <span class="number">1</span>);</div></pre></td></tr></table></figure></p>
+<p>如果放文件在 formData 里面的话呢，也没有太复杂的地方：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// html</span></div><div class="line"><span class="comment">// &lt;input</span></div><div class="line"><span class="comment">//   ref="input-image"</span></div><div class="line"><span class="comment">//   accept="image/*"</span></div><div class="line"><span class="comment">//   onChange=&#123; this.onImageSelected &#125;</span></div><div class="line"><span class="comment">//   type="file"</span></div><div class="line"><span class="comment">// /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// ....</span></div><div class="line">isImage: <span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</div><div class="line">  <span class="comment">// (!src.type.match(/image.*/)</span></div><div class="line">  <span class="keyword">var</span> type = <span class="string">'|'</span> + file.type.slice(file.type.lastIndexOf(<span class="string">'/'</span>) + <span class="number">1</span>) + <span class="string">'|'</span>;</div><div class="line">  <span class="keyword">return</span> <span class="string">'|jpg|png|jpeg|bmp|gif|'</span>.indexOf(type) !== <span class="number">-1</span>;</div><div class="line">&#125;,</div><div class="line"></div><div class="line">onImageSelected(e) &#123;</div><div class="line">  <span class="keyword">var</span> file = e.target.files[<span class="number">0</span>];</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'select image'</span>, file);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.isImage(file)) &#123;</div><div class="line">    Modal.error(&#123; <span class="attr">title</span>: <span class="string">'请选择一张图片'</span> &#125;);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">this</span>.props.onImageSelected(file);</div><div class="line">&#125;</div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="comment">// 放多个也可以~</span></div><div class="line">formData.append(<span class="string">'file1'</span>, file1)</div><div class="line">formData.append(<span class="string">'file2'</span>, file2)</div></pre></td></tr></table></figure></p>
+<p>对了，因为我把上传文件的 input 隐藏掉了，显示出来了是一个 加号 的图标，所以如果要触发 input 的点击事件的话：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">onItemClick() &#123;</div><div class="line">  <span class="keyword">const</span> input = findDOMNode(<span class="keyword">this</span>.refs[<span class="string">'input-image'</span>]);</div><div class="line">  input.click();</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<h3 id="生成-formData"><a href="#生成-formData" class="headerlink" title="生成 formData"></a>生成 formData</h3><p>一个一个的 append 可能速度太慢了，而且需要每个都写一遍，其实生成的 formData 的方式还是蛮多的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</div><div class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData(form);</div><div class="line"></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</div><div class="line"><span class="keyword">var</span> formdata = form.getFormData();</div></pre></td></tr></table></figure></p>
+<p>好了，没了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~&lt;/p&gt;
+&lt;p&gt;图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。&lt;/p&gt;
+&lt;p&gt;然后我就想到了可以用 FormDat
+    
+    </summary>
+    
+      <category term="form" scheme="http://blog.ochukai.me/categories/form/"/>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/form/javascript/"/>
+    
+    
+      <category term="formData" scheme="http://blog.ochukai.me/tags/formdata/"/>
+    
+      <category term="ajax" scheme="http://blog.ochukai.me/tags/ajax/"/>
+    
+      <category term="image upload" scheme="http://blog.ochukai.me/tags/image-upload/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>菜单下面的小精灵</title>
+    <link href="http://blog.ochukai.me/menu-with-moved-elfish/"/>
+    <id>http://blog.ochukai.me/menu-with-moved-elfish/</id>
+    <published>2016-03-21T08:05:51.000Z</published>
+    <updated>2016-11-22T01:40:09.751Z</updated>
+    
+    <content type="html"><![CDATA[<p>有些网站的导航下面会有一到杠，鼠标在各个导航之间移动的时候，这一道杠也会跟着动，很好看，就像这个</p>
+<p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>我把她叫做小精灵。</p>
+<hr>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>实现这个其实不难，当鼠标移动到某一个菜单上面时，小精灵滑入（至于方向，如果鼠标从右边进入菜单，那就从右向左滑），然后当鼠标移出时，小精灵跟着也移出菜单， 同时如果鼠标恰好移进了另一个菜单，下一个菜单的进入动画也开始播放，连续起来的话就像是小精灵跟着过来了。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>菜单的话当然是用 ul 来实现了<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>我的<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>导航栏<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>非常<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛逼<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="小精灵"><a href="#小精灵" class="headerlink" title="小精灵"></a>小精灵</h3><p>这个小精灵该怎么实现呢, 开始时我打算用 <code>border</code> 来实现，试了一下之后才发现，并不理想，因为当鼠标 hover 时，border 变化，内容也会随着动，很丑。</p>
+<p>于是我就想用 <code>after</code> 这个伪元素来实现，因为之前并没用过，感觉蛮新鲜的。</p>
+<p>使用 <code>after</code> 最重要的地方也是前提，就是 <code>content: &#39;&#39;</code>，如果没有这一句，不管怎么修饰 <code>after</code> 的样式，都是徒劳。</p>
+<p>写完之后的样子大概是这样<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">float</span>:left;</div><div class="line">  <span class="attribute">display</span>: inline-block;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">20px</span>;</div><div class="line">  <span class="attribute">cursor</span>: pointer;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">  <span class="attribute">overflow</span>: hidden;</div><div class="line"></div><div class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">3px</span>;</div><div class="line">    <span class="attribute">position</span>: absolute;</div><div class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><p>根据上面的原理，如果想实现的话，大概只需要写四个动画</p>
+<ul>
+<li>小精灵从右向左进入菜单</li>
+<li>小精灵从右向左移出菜单</li>
+<li>小精灵从左向右进入菜单</li>
+<li>小精灵从左向右移出菜单</li>
+</ul>
+<p>我打算使用 <code>width</code> 的变化来模拟小精灵的滑动效果，假如是从左向右， css 就像下面这样：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@keyframes slide-in &#123;</div><div class="line">  from &#123; width: 0; &#125;</div><div class="line">  to &#123; width: 100%; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.slide-in-from-left:after,</div><div class="line">.slide-out-from-left:after &#123;</div><div class="line">  left: 0; // 初始位置在左边，宽度为 0，宽度逐渐变大</div><div class="line">&#125;</div><div class="line"></div><div class="line">.slide-in-from-left:after,</div><div class="line">.slide-in-from-right:after &#123;</div><div class="line">  animation-name: slide-in;</div><div class="line">  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><p>css 写完了，不过我要识别鼠标进入或离开的方向，也就是要判断鼠标是从左边进入还是从右边进入，是从左边移出还是从右边移出。</p>
+<p>于是， 要写一些 js 来判断</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> classList = [</div><div class="line">        <span class="string">'slide-in-from-left'</span>,</div><div class="line">        <span class="string">'slide-in-from-right'</span>,</div><div class="line">        <span class="string">'slide-out-from-right'</span>,</div><div class="line">        <span class="string">'slide-out-from-left'</span></div><div class="line">      ].join(<span class="string">' '</span>);</div><div class="line"></div><div class="line">  $(<span class="string">'ul.nav'</span>)</div><div class="line">    .on(<span class="string">'mouseenter'</span>, <span class="string">'li'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">      <span class="keyword">var</span> width = $<span class="keyword">this</span>.outerWidth();</div><div class="line">      <span class="keyword">var</span> xx = e.offsetX;</div><div class="line">      <span class="keyword">var</span> className = (xx &lt; (width / <span class="number">2</span>))</div><div class="line">                    ? <span class="string">'slide-in-from-left'</span></div><div class="line">                    : <span class="string">'slide-in-from-right'</span>;</div><div class="line"></div><div class="line">      $<span class="keyword">this</span>.removeClass(classList).addClass(className);      </div><div class="line">    &#125;)</div><div class="line">    .on(<span class="string">'mouseleave'</span>, <span class="string">'li'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">      <span class="keyword">var</span> width = $<span class="keyword">this</span>.outerWidth();</div><div class="line">      <span class="keyword">var</span> xx = e.offsetX;</div><div class="line">      <span class="keyword">var</span> className = (xx &lt; (width / <span class="number">2</span>))</div><div class="line">                    ? <span class="string">'slide-out-from-left'</span></div><div class="line">                    : <span class="string">'slide-out-from-right'</span>;</div><div class="line">      $<span class="keyword">this</span>.removeClass(classList).addClass(className);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这样就写完了，再把开头的例子放上吧。</p>
+<p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>谢谢。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有些网站的导航下面会有一到杠，鼠标在各个导航之间移动的时候，这一道杠也会跟着动，很好看，就像这个&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;PNbGZQ&quot; data-default-t
+    
+    </summary>
+    
+      <category term="CSS Animation" scheme="http://blog.ochukai.me/categories/css-animation/"/>
+    
+      <category term="CSS" scheme="http://blog.ochukai.me/categories/css-animation/css/"/>
+    
+    
+      <category term="nav" scheme="http://blog.ochukai.me/tags/nav/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Queue Anim 列表</title>
+    <link href="http://blog.ochukai.me/css-animation-queue-list/"/>
+    <id>http://blog.ochukai.me/css-animation-queue-list/</id>
+    <published>2016-03-03T09:45:24.000Z</published>
+    <updated>2016-11-22T01:40:09.735Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h1><p>基本写法是一个开始状态和一个结束状态：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">keyframes</span> demo-anim &#123;</div><div class="line">  <span class="selector-tag">from</span> &#123;</div><div class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="selector-tag">to</span> &#123;</div><div class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p></p><p data-height="268" data-theme-id="0" data-slug-hash="QNbBOy" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/QNbBOy/" target="_blank" rel="external">QNbBOy</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<blockquote>
+<p>其中 <code>animation-iteration-count: number or infinite;</code> 可以设置循环次数，infinite为无限次</p>
+</blockquote>
+<p>还可以定义的很详细：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">keyframes</span> demo-anim &#123;</div><div class="line">  <span class="selector-tag">from</span> &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(0, 0);</div><div class="line">  &#125;</div><div class="line">  20% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(20, 20);</div><div class="line">  &#125;</div><div class="line">  40% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(40, 0);</div><div class="line">  &#125;</div><div class="line">  60% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(60, 20);</div><div class="line">  &#125;</div><div class="line">  80% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(80, 0);</div><div class="line">  &#125;</div><div class="line">  <span class="selector-tag">to</span> &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(100, 20);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="animation-fill-mode"><a href="#animation-fill-mode" class="headerlink" title="animation-fill-mode"></a>animation-fill-mode</h1><blockquote>
+<p>animation-fill-mode : none | forwards | backwards | both;</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>none</td>
+<td>不改变默认行为。</td>
+</tr>
+<tr>
+<td>forward</td>
+<td>当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。</td>
+</tr>
+<tr>
+<td>backwards</td>
+<td>在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。</td>
+</tr>
+<tr>
+<td>both</td>
+<td>向前和向后填充模式都被应用。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>用到的知识点就是上面两个，下面开始写。</p>
+</blockquote>
+<h1 id="Queue-in-List"><a href="#Queue-in-List" class="headerlink" title="Queue-in List"></a>Queue-in List</h1><p>我要写的效果是一个列表，当列表显示时，其子项逐个出现，从右向左滑入，透明度也由浅变深。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先写一个使 li 从左向右滑入的效果，然后再给需要稍晚滑入的 li 加上 <code>animation-delay</code> 就好了。</p>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 定义 li 样式 */</span></div><div class="line"><span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">2px</span>;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>; <span class="comment">/* 默认是隐藏的 */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 定义动画 */</span></div><div class="line">@<span class="keyword">keyframes</span> queue-in &#123;</div><div class="line">  <span class="selector-tag">from</span> &#123;</div><div class="line">    <span class="comment">/* 开始时 在左边 */</span></div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(40px);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="selector-tag">to</span> &#123;</div><div class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 调用动画 */</span></div><div class="line"><span class="selector-class">.list-queue-in</span> &gt; <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">animation-name</span>: queue-in;</div><div class="line">  <span class="attribute">animation-duration</span>: .<span class="number">3s</span>;</div><div class="line">  <span class="comment">/* 这一行就表示动画结束时元素的状态就是动画的最后一帧 */</span></div><div class="line">  <span class="attribute">animation-fill-mode</span>: forwards;</div><div class="line">  <span class="attribute">animation-timing-function</span>: ease-in;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>这是 进入状态时的 html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-queue-in"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-0"</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-1"</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-2"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-3"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-4"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这样的话，li 已经可以从右向左滑入了，但是，是在一起滑入的，我需要他们分开~</p>
+</blockquote>
+<h2 id="animation-delay"><a href="#animation-delay" class="headerlink" title="animation-delay"></a>animation-delay</h2><p><code>list-ad-0</code> 这个东西就是提前定义好的 <code>animation-delay</code>，比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.list-ad-0</span> &#123;</div><div class="line">  <span class="attribute">-webkit-animation-delay</span>: <span class="number">0s</span>;</div><div class="line">          <span class="attribute">animation-delay</span>: <span class="number">0s</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.list-ad-1</span> &#123;</div><div class="line">  <span class="attribute">-webkit-animation-delay</span>: <span class="number">0.1s</span>;</div><div class="line">          <span class="attribute">animation-delay</span>: <span class="number">0.1s</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后，他们就可以一个接一个的滑了~</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>所有的代码都在这里，就是这样的效果：</p>
+<p></p><p data-height="268" data-theme-id="0" data-slug-hash="zqYgxb" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/zqYgxb/" target="_blank" rel="external">zqYgxb</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;keyframes&quot;&gt;&lt;a href=&quot;#keyframes&quot; class=&quot;headerlink&quot; title=&quot;@keyframes&quot;&gt;&lt;/a&gt;@keyframes&lt;/h1&gt;&lt;p&gt;基本写法是一个开始状态和一个结束状态：&lt;br&gt;&lt;figure class=&quot;hi
+    
+    </summary>
+    
+      <category term="CSS" scheme="http://blog.ochukai.me/categories/css/"/>
+    
+    
+      <category term="css" scheme="http://blog.ochukai.me/tags/css/"/>
+    
+      <category term="animation" scheme="http://blog.ochukai.me/tags/animation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>戦艦の女の子 の 航母 - 诶塞克斯</title>
+    <link href="http://blog.ochukai.me/esekesu-senkanno-onnanoko/"/>
+    <id>http://blog.ochukai.me/esekesu-senkanno-onnanoko/</id>
+    <published>2016-03-03T05:49:03.000Z</published>
+    <updated>2016-11-22T01:40:09.735Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="战舰少女"><a href="#战舰少女" class="headerlink" title="战舰少女"></a>战舰少女</h2><p>首先让我们认识一下这个游戏的名字：</p>
+<blockquote>
+<p>戦艦の女の子 【せんかんのおんなのこ】【senkannoonnanoko】</p>
+</blockquote>
+<h2 id="航空母舰"><a href="#航空母舰" class="headerlink" title="航空母舰"></a>航空母舰</h2><p>还有航空母舰这个单词</p>
+<blockquote>
+<p>航空母艦日【こうくうぼかん】【koukuubokann】  </p>
+<p>航空母舰。（航空機を搭載し、これを発着させるための飛行甲板および格納庫・修理設備などを備えた軍艦。今日、水上兵力の中核。略称、空母。）</p>
+</blockquote>
+<h2 id="埃塞克斯"><a href="#埃塞克斯" class="headerlink" title="埃塞克斯"></a>埃塞克斯</h2><p>下面进入正题，就是我很喜欢但是还咩有得到的 - 埃塞克斯</p>
+<p><img src="..//images/aise-normal.png" alt="正常"><br><img src="..//images/aise-broken.png" alt="正常"></p>
+<h2 id="建造公式"><a href="#建造公式" class="headerlink" title="建造公式"></a>建造公式</h2><ol>
+<li>标准航母公式：400,600,600,400（基本上赌航母都用这个）</li>
+<li>低费航母公式：300,30,400,300（当资源不足时可用）</li>
+<li>常用玄学公式：400 600 650 430（目前出货率极高的公式）</li>
+<li>500 130 600 400（据说出货率更高~）</li>
+</ol>
+<h2 id="建造时间"><a href="#建造时间" class="headerlink" title="建造时间"></a>建造时间</h2><p>4 个小时</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;战舰少女&quot;&gt;&lt;a href=&quot;#战舰少女&quot; class=&quot;headerlink&quot; title=&quot;战舰少女&quot;&gt;&lt;/a&gt;战舰少女&lt;/h2&gt;&lt;p&gt;首先让我们认识一下这个游戏的名字：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;戦艦の女の子 【せんかんのおんなのこ】【senk
+    
+    </summary>
+    
+      <category term="戦艦の女の子" scheme="http://blog.ochukai.me/categories/%E6%88%A6%E8%89%A6%E3%81%AE%E5%A5%B3%E3%81%AE%E5%AD%90/"/>
+    
+    
+      <category term="埃塞克斯" scheme="http://blog.ochukai.me/tags/%E5%9F%83%E5%A1%9E%E5%85%8B%E6%96%AF/"/>
+    
+      <category term="航母" scheme="http://blog.ochukai.me/tags/%E8%88%AA%E6%AF%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Scss 里面的 for 循环</title>
+    <link href="http://blog.ochukai.me/for-in-scss/"/>
+    <id>http://blog.ochukai.me/for-in-scss/</id>
+    <published>2016-03-03T05:40:35.000Z</published>
+    <updated>2016-11-22T01:40:09.735Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图<br><img src="../images/li-queue-in.png" alt=""></p>
+<p>做这个效果用到了 css 的 animation 中 <code>animation-delay</code>，给 li 设置入场动画后，再给 li 设置 <code>animation-delay</code>，像这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.li-animation-delay-1</span> &#123;</div><div class="line">  <span class="attribute">animation-delay</span>: <span class="number">0.1s</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>并且每一个 li 的 animation-delay 都比前一个 li 的长 .1s，也就达到了后面的 li 的入场动画后播放的效果。</p>
+<p>因为 li 的数量也不确定，所以我打算批量生成一些 <code>li-animation-delay-*</code>, 查了一下 scss 正好有 for 的用法：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">for</span> <span class="variable">$index</span> from 0 to 10 &#123;</div><div class="line">  <span class="selector-class">.list-ad-</span>#&#123;<span class="variable">$index</span>&#125; &#123;</div><div class="line">    <span class="attribute">animation-delay</span>: <span class="variable">$index</span> * <span class="number">0.1</span>#&#123;s&#125;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中，<code>#{***}</code> 的作用的把字符串原封不动的输出。<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#&#123;s&#125; --&gt; s</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图&lt;br&gt;&lt;img src=&quot;../images/li-queue-in.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;做这个效果用到了 css 的 animation 中 &lt;code&gt;animation-delay&lt;
+    
+    </summary>
+    
+      <category term="SASS" scheme="http://blog.ochukai.me/categories/sass/"/>
+    
+    
+      <category term="scss" scheme="http://blog.ochukai.me/tags/scss/"/>
+    
+      <category term="for" scheme="http://blog.ochukai.me/tags/for/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在微信网页上的电话号码</title>
+    <link href="http://blog.ochukai.me/telephone-number-not-recognize-in-wx/"/>
+    <id>http://blog.ochukai.me/telephone-number-not-recognize-in-wx/</id>
+    <published>2016-02-26T10:36:25.000Z</published>
+    <updated>2016-11-22T01:40:09.766Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="电话好不不想被识别"><a href="#电话好不不想被识别" class="headerlink" title="电话好不不想被识别"></a>电话好不不想被识别</h3><p>在网页中的比较长的数字会被微信浏览器自动识别为电话号码，稍不注意可能就使页面变得很难看，与是，在 header 里面加上下面两个 meta 就电话号码就不会被识别了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-rim-auto-match"</span> <span class="attr">content</span>=<span class="string">"none"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="如果要识别呢？"><a href="#如果要识别呢？" class="headerlink" title="如果要识别呢？"></a>如果要识别呢？</h3><p>加一个 <code>tel//***</code> 就可以了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"telephone"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>苹果妹妹专线<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel://4000630086"</span>&gt;</span>400-063-0086<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;电话好不不想被识别&quot;&gt;&lt;a href=&quot;#电话好不不想被识别&quot; class=&quot;headerlink&quot; title=&quot;电话好不不想被识别&quot;&gt;&lt;/a&gt;电话好不不想被识别&lt;/h3&gt;&lt;p&gt;在网页中的比较长的数字会被微信浏览器自动识别为电话号码，稍不注意可能就使页面变得很难
+    
+    </summary>
+    
+      <category term="微信开发" scheme="http://blog.ochukai.me/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="微信开发" scheme="http://blog.ochukai.me/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>杀死正在占有你端口的小程序</title>
+    <link href="http://blog.ochukai.me/kill-process/"/>
+    <id>http://blog.ochukai.me/kill-process/</id>
+    <published>2016-02-25T10:38:07.000Z</published>
+    <updated>2016-12-08T11:50:26.299Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">0 errors found</div><div class="line">February 25, 2016 - 18:25:21</div><div class="line">Django version 1.6.7, using settings <span class="string">'green.settings'</span></div><div class="line">Starting development server at http://0.0.0.0:8000/</div><div class="line">Quit the server with CONTROL-C.</div><div class="line">Error: That port is already <span class="keyword">in</span> use.</div></pre></td></tr></table></figure></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ps</span> aux | <span class="keyword">grep</span> <span class="keyword">python</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(kkh)➜  green git:(feature/shopping_mall_womens_day) ✗ ps aux | grep python</div><div class="line">Oliver          23232   0.0  0.0  2434840    752 s002  S+    5:25下午   0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn python</div><div class="line">Oliver          23103   0.0  0.8  2550628  66364 s002  S     5:23下午   0:02.23 /Users/Oliver/dev/kkh/bin/python manage.py runserver 0.0.0.0:8000</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">kill</span> 23103</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://blog.ochukai.me/categories/linux/"/>
+    
+    
+      <category term="端口占用" scheme="http://blog.ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>战舰少女基础知识及部分公式</title>
+    <link href="http://blog.ochukai.me/battleship-girls/"/>
+    <id>http://blog.ochukai.me/battleship-girls/</id>
+    <published>2016-02-22T16:07:25.000Z</published>
+    <updated>2016-11-22T01:40:09.735Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>缩写</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>战列舰</td>
+<td>BB</td>
+<td>大炮巨舰的典范，高火力、高血量、高护甲。是游戏中后期推图的主力。</td>
+</tr>
+<tr>
+<td>战列巡洋舰</td>
+<td>BC</td>
+<td>战列舰的缩减版本，火力、血量、护甲略低于战列舰，拥有相对高的防空属性，优点是全部是高速舰，推图上有优势。</td>
+</tr>
+<tr>
+<td>正规航母</td>
+<td>CV</td>
+<td>高索敌，有开幕战，多一轮攻击，受装备影响大，夜间无法攻击。</td>
+</tr>
+<tr>
+<td>轻型航母</td>
+<td>CVL</td>
+<td>正规航母的缩水版，装甲低下，可反潜，搭载数量低，作用是前期舰队补充。</td>
+</tr>
+<tr>
+<td>浅水重炮舰</td>
+<td>BM</td>
+<td>游戏中只有两艘，火力高，可以装长距离的主炮，白天可以来两发，消耗低，本来可以用来打捞保姆，之后有改过，护甲变低，基本上没人用了。</td>
+</tr>
+<tr>
+<td>潜艇</td>
+<td>SS</td>
+<td>同样为数不多，低闪避，高鱼雷，只有具备反潜能力的舰船才能打到，夜战能力高!升到11级后有开幕雷击的能力。</td>
+</tr>
+<tr>
+<td>重巡洋舰</td>
+<td>CA</td>
+<td>夜战优秀，闪避中上，部分能够发射鱼雷，消耗较，欺负小学生的神器。</td>
+</tr>
+<tr>
+<td>轻巡洋舰</td>
+<td>CL</td>
+<td>大部分反潜优秀，属性在重巡和驱逐之间，闪避出色，依旧适合欺负小学生。</td>
+</tr>
+<tr>
+<td>驱逐舰</td>
+<td>DD</td>
+<td>属性低，消耗低，闪避高，夜战出色，鱼雷战优秀。小学生作为入门舰船，也是必须练的船，一般用来推图带路和完成远征的特定条件。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>炮潜</strong><br>在2015夏季活动中加入的新舰船—絮库夫的舰船种类，虽然会潜水，但是却没有开幕雷击，没多大用处。  </p>
+<p><strong>补给舰</strong><br>目前唯一一艘<strong>苏赫巴托尔</strong>，萌萌哒，幸运高，闪避高，技能可以打捞到更好的船，1-5通关奖励。</p>
+</blockquote>
+<h2 id="驱逐"><a href="#驱逐" class="headerlink" title="驱逐"></a>驱逐</h2><blockquote>
+<p>空想、绫波、Z1、萤火虫、Z31、Z16、晓、响、雷、电、敷波和标枪</p>
+<p>高星稀有驱逐: 塔什干、奥班农、拉菲等</p>
+<p>以及Z系的其他驱逐</p>
+</blockquote>
+<h2 id="战列"><a href="#战列" class="headerlink" title="战列"></a>战列</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>改造战列</td>
+<td>威尔士亲王改、俾斯麦改、罗德尼改、安德烈亚多利亚改、纳尔逊改、内华达改、俄克拉荷马改</td>
+</tr>
+<tr>
+<td>高星稀有</td>
+<td>黎塞留、前卫、提尔比茨、华盛顿</td>
+</tr>
+<tr>
+<td>四星</td>
+<td>科罗拉多、马里兰，西弗吉尼亚</td>
+</tr>
+</tbody>
+</table>
+<h2 id="轻巡"><a href="#轻巡" class="headerlink" title="轻巡"></a>轻巡</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>海伦娜改</td>
+<td>可以给全队增加索敌和命中</td>
+</tr>
+<tr>
+<td>夕张改</td>
+<td>觉醒技能后，可以使性能提升很多</td>
+</tr>
+<tr>
+<td>奥希金斯改</td>
+<td></td>
+</tr>
+<tr>
+<td>宁海改</td>
+<td>经验宝宝，技能可以增加战斗经验</td>
+</tr>
+<tr>
+<td>平海改</td>
+<td></td>
+</tr>
+<tr>
+<td>天龙改</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>5星轻巡天狼星，贝尔法斯特<br>4星的基洛夫，以及中国船逸仙、重庆（曙光女神改）</p>
+</blockquote>
+<h2 id="热门"><a href="#热门" class="headerlink" title="热门"></a>热门</h2><p>埃塞克斯，马汉，M1，睦月，企业号航母，狮，宁海，威奇塔改，拉菲，青叶</p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th>第一</th>
+<th>第二</th>
+<th>产物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>战列</td>
+<td>400 80 650 130</td>
+<td>630 600 650 230</td>
+<td>黎塞留、前卫、安德烈亚多利亚、提尔比茨、俾斯麦、华盛顿</td>
+</tr>
+<tr>
+<td>航母轻母</td>
+<td>400 600 600 400</td>
+<td>500 130 600 400</td>
+<td>赤城、加贺、追赶者</td>
+</tr>
+<tr>
+<td>轻巡</td>
+<td>200 30 200 100</td>
+<td>130 130 130 130</td>
+<td>贝尔法斯特、爱丁堡、逸仙、平海、宁海、基洛夫、埃姆登、莱比锡</td>
+</tr>
+<tr>
+<td>驱逐</td>
+<td>130 30 130 30</td>
+<td>130 130 130 130</td>
+<td>拉菲、空想、塔什干（拉菲用3663出货率还是蛮不错的）</td>
+</tr>
+<tr>
+<td>潜艇</td>
+<td>30 60 60 30</td>
+<td>250 30 250 30</td>
+<td>大青花鱼</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用公式产出分析"><a href="#常用公式产出分析" class="headerlink" title="常用公式产出分析"></a>常用公式产出分析</h2><ol>
+<li><p>400 80 650 130(前卫公式)<br>当前用的最多的战列公式，出所有战列，所有战巡，所有重巡，4星以上轻巡，重炮以及空想和拉菲这两艘驱逐;屏蔽了航母，轻母，其余轻巡，驱逐以及大青花鱼。</p>
+</li>
+<li><p>630 600 650 230(黑猫公式)<br>据说是最容易出北宅和猫?出所有战列，所有战巡，所有重巡，重炮以及空想;屏蔽了航母，轻母，所有轻巡，其余驱逐以及大青花鱼。</p>
+</li>
+<li><p>400 600 600 400(标准航母公式)<br>最早常见的航母公式，出航母，轻母，重巡，4星轻巡以及空想;屏蔽战列，战巡，其余轻巡，其余驱逐，重炮以及大青花鱼。</p>
+</li>
+<li><p>400 130 500 130(稀有轻巡公式)<br>可以用来赌贝爷(贝尔法斯特)，当然其他4星轻巡也是可以的。出战巡，重巡，稀有轻巡，重炮以及空想;屏蔽战列，航母，轻母，3星以下轻巡，其余驱逐和大青花鱼。</p>
+</li>
+<li><p>500 130 600 400(航母公式)<br>新型航母公式，相比标准航母公式，屏蔽了轻巡，一定程度上提高了吃喝、追赶的出货率。出航母，轻母，重巡以及空想;屏蔽其余战列，轻巡，重炮，其余驱逐以及大青花鱼。</p>
+</li>
+<li><p>130 30 130 30(小船通用公式)<br>小船指得是轻巡驱逐潜艇。屏蔽其余舰种船只。如果要鱼的话30 60 60 30就够了。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;类型&quot;&gt;&lt;a href=&quot;#类型&quot; class=&quot;headerlink&quot; title=&quot;类型&quot;&gt;&lt;/a&gt;类型&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;缩写&lt;/th&gt;
+&lt;th&gt;特点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;
+    
+    </summary>
+    
+      <category term="戦艦の女の子" scheme="http://blog.ochukai.me/categories/%E6%88%A6%E8%89%A6%E3%81%AE%E5%A5%B3%E3%81%AE%E5%AD%90/"/>
+    
+    
+      <category term="建造公式" scheme="http://blog.ochukai.me/tags/%E5%BB%BA%E9%80%A0%E5%85%AC%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript 中 Timestamp 与 Date 的转化</title>
+    <link href="http://blog.ochukai.me/use-js-to-convert-ts-to-data/"/>
+    <id>http://blog.ochukai.me/use-js-to-convert-ts-to-data/</id>
+    <published>2015-12-02T03:10:44.000Z</published>
+    <updated>2016-11-22T01:40:09.766Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"meta"</span>: &#123;</div><div class="line">        <span class="attr">"has_next_msg"</span>: <span class="literal">false</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"objects"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"text"</span>: <span class="string">"111"</span>,</div><div class="line">            <span class="attr">"from_user_type"</span>: <span class="string">"PAT"</span>,</div><div class="line">            <span class="attr">"pic"</span>: <span class="string">""</span>,</div><div class="line">            <span class="attr">"ts"</span>: <span class="number">1419939065</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>ts</code> 那个属性我不太熟悉，不过我觉得应该是 timestamp 的意思吧。后来才知道，<code>ts</code> 就是该条消息的发送时间戳（timestamp），显示这条信息的时候应该显示为日期。</p>
+<h2 id="把-Date-转化为-Timestamp"><a href="#把-Date-转化为-Timestamp" class="headerlink" title="把 Date 转化为 Timestamp"></a>把 Date 转化为 Timestamp</h2><p>我们都知道，在 js 里面把 date 转化为 timestamp 的方法比较简单，而且方法也有好多种，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// get the timestamp in seconds</span></div><div class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>);</div><div class="line"></div><div class="line"><span class="comment">// or with a slightly way</span></div><div class="line"><span class="built_in">Date</span>.now() / <span class="number">1000</span> | <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">// Year 2038 problem? lol...</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'Jan 1, 2039'</span>) / <span class="number">1000</span> | <span class="number">0</span> <span class="comment">// -2117514496 </span></div><div class="line"></div><div class="line"><span class="comment">/*----------*/</span></div><div class="line"><span class="built_in">Math</span>.round(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()/<span class="number">1000</span>);</div><div class="line"></div><div class="line">+<span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1000</span> | <span class="number">0</span></div><div class="line"></div><div class="line">~~(<span class="built_in">Date</span>.now() / <span class="number">1000</span>)</div><div class="line"></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1e3</span> | <span class="number">0</span></div></pre></td></tr></table></figure>
+<h2 id="把-Timestamp-转化为-Date"><a href="#把-Timestamp-转化为-Date" class="headerlink" title="把 Timestamp 转化为 Date"></a>把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Date</span>.prototype.format = <span class="function"><span class="keyword">function</span>(<span class="params">format</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> o = &#123;</div><div class="line">        <span class="string">'M+'</span>: <span class="keyword">this</span>.getMonth() + <span class="number">1</span>,          <span class="comment">// month</span></div><div class="line">        <span class="string">'d+'</span>: <span class="keyword">this</span>.getDate(),                 <span class="comment">// day</span></div><div class="line">        <span class="string">'h+'</span>: <span class="keyword">this</span>.getHours(),                  <span class="comment">// hour</span></div><div class="line">        <span class="string">'m+'</span>: <span class="keyword">this</span>.getMinutes(),                  <span class="comment">// minute</span></div><div class="line">        <span class="string">'s+'</span>: <span class="keyword">this</span>.getSeconds(),                    <span class="comment">// second     </span></div><div class="line">        <span class="string">'q+'</span>: <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth() + <span class="number">3</span>) / <span class="number">3</span>),  <span class="comment">// quarter</span></div><div class="line">        <span class="string">'S'</span> : <span class="keyword">this</span>.getMilliseconds()                 <span class="comment">// millisecond</span></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// year</span></div><div class="line">    <span class="keyword">if</span> (<span class="regexp">/(y+)/</span>.test(format) || <span class="regexp">/(Y+)/</span>.test(format)) &#123;</div><div class="line">        format = format.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear() + <span class="string">''</span>)</div><div class="line">                       .substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> o) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'('</span> + k + <span class="string">')'</span>).test(format)) &#123;</div><div class="line">            <span class="keyword">var</span> first = <span class="built_in">RegExp</span>.$<span class="number">1</span>;</div><div class="line">            <span class="keyword">var</span> str = first.length === <span class="number">1</span></div><div class="line">                    ? o[k]</div><div class="line">                    : (<span class="string">'00'</span> + o[k]).substr((<span class="string">''</span> + o[k]).length); <span class="comment">// nb</span></div><div class="line">            format = format.replace(first, str);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> format;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tsToDate</span>(<span class="params">timestamp</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>)).format(<span class="string">'yyyy-MM-dd hh:mm:ss'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// test it</span></div><div class="line">&gt; tsToDate(<span class="number">1448967948</span>)</div><div class="line">&lt; <span class="string">"2015-12-01 19:05:48"</span></div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;问题产生&quot;&gt;&lt;a href=&quot;#问题产生&quot; class=&quot;headerlink&quot; title=&quot;问题产生&quot;&gt;&lt;/a&gt;问题产生&lt;/h2&gt;&lt;p&gt;今天在处理一个接口时，发现返回的格式是这样的：&lt;br&gt;&lt;figure class=&quot;highlight json&quot;&gt;&lt;tab
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+    
+    
+      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+    
+      <category term="ts" scheme="http://blog.ochukai.me/tags/ts/"/>
+    
+      <category term="date" scheme="http://blog.ochukai.me/tags/date/"/>
+    
+      <category term="format" scheme="http://blog.ochukai.me/tags/format/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>编写一个可以兼容 AMD 和 CMD 的 js 模块</title>
+    <link href="http://blog.ochukai.me/write-a-compatible-js-module/"/>
+    <id>http://blog.ochukai.me/write-a-compatible-js-module/</id>
+    <published>2015-11-29T12:11:07.000Z</published>
+    <updated>2016-11-22T01:40:09.766Z</updated>
+    
+    <content type="html"><![CDATA[<p>没什么好解释的，直接看代码吧。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">factory</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</div><div class="line">        <span class="comment">// AMD. Register as an anonymous module.</span></div><div class="line">        <span class="comment">//define(['jquery', 'underscore'], factory);</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</div><div class="line">        <span class="comment">// Node/CommonJS style for Browserify/Seajs</span></div><div class="line">        <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'jquery'</span>), <span class="built_in">require</span>(<span class="string">'underscore'</span>));</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// Browser globals</span></div><div class="line">        factory(jQuery, _);</div><div class="line">        <span class="comment">//factory();</span></div><div class="line">    &#125;</div><div class="line">&#125;(<span class="function"><span class="keyword">function</span> (<span class="params">$, _</span>) </span>&#123;</div><div class="line">    <span class="comment">//doSomething...</span></div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<p>还有一种写法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// from: http://segmentfault.com/a/1190000003732752</span></div><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">MyModule</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// ...</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> moduleName = MyModule;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</div><div class="line">        <span class="built_in">module</span>.exports = moduleName;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; (define.amd || define.cmd)) &#123;</div><div class="line">        define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> moduleName; &#125;);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">this</span>.moduleName = moduleName;</div><div class="line">    &#125;</div><div class="line">&#125;).call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span> || (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;没什么好解释的，直接看代码吧。&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;di
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+    
+    
+      <category term="compatible module" scheme="http://blog.ochukai.me/tags/compatible-module/"/>
+    
+      <category term="AMD" scheme="http://blog.ochukai.me/tags/amd/"/>
+    
+      <category term="CMD" scheme="http://blog.ochukai.me/tags/cmd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>图片加载错误时显示默认图片</title>
+    <link href="http://blog.ochukai.me/show-a-default-image-when-the-image-is-broken/"/>
+    <id>http://blog.ochukai.me/show-a-default-image-when-the-image-is-broken/</id>
+    <published>2015-11-27T10:24:36.000Z</published>
+    <updated>2016-11-22T01:40:09.766Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="直接写"><a href="#直接写" class="headerlink" title="直接写"></a>直接写</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">imgError</span>(<span class="params">image</span>) </span>&#123;</div><div class="line">    image.onerror = <span class="literal">null</span>; <span class="comment">// prevent event bubble</span></div><div class="line">    image.src = <span class="string">"/images/noimage.gif"</span>;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"image.png"</span> <span class="attr">onerror</span>=<span class="string">"imgError(this);"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="使用-jQuery"><a href="#使用-jQuery" class="headerlink" title="使用 jQuery"></a>使用 jQuery</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"img"</span>).error(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).unbind(<span class="string">"error"</span>).attr(<span class="string">"src"</span>, <span class="string">"broken.gif"</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//If you use this technique you can use the "one" method to avoid needing to unbind the event: </span></div><div class="line">$(<span class="string">'img'</span>).one(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">  <span class="keyword">this</span>.src = <span class="string">'broken.gif'</span>; </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="还有一种写法"><a href="#还有一种写法" class="headerlink" title="还有一种写法"></a>还有一种写法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">window</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="string">'img'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.complete </div><div class="line">        || <span class="keyword">typeof</span> <span class="keyword">this</span>.naturalWidth == <span class="string">"undefined"</span> </div><div class="line">        || <span class="keyword">this</span>.naturalWidth == <span class="number">0</span>) &#123;</div><div class="line">      <span class="comment">// image was broken, replace with your new image</span></div><div class="line">      <span class="keyword">this</span>.src = <span class="string">'broken.gif'</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;直接写&quot;&gt;&lt;a href=&quot;#直接写&quot; class=&quot;headerlink&quot; title=&quot;直接写&quot;&gt;&lt;/a&gt;直接写&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div 
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+    
+    
+      <category term="imgage error" scheme="http://blog.ochukai.me/tags/imgage-error/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GIT - remember password in window &amp; linux.</title>
+    <link href="http://blog.ochukai.me/git-remember-password-in-window-and-linux/"/>
+    <id>http://blog.ochukai.me/git-remember-password-in-window-and-linux/</id>
+    <published>2015-11-23T02:46:44.000Z</published>
+    <updated>2016-11-22T01:40:09.735Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式</span></div><div class="line">mv git-credentials .git-credentials</div></pre></td></tr></table></figure>
+<p>然后编辑 <strong>.git-credentials</strong><br><figure class="highlight roboconf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># github 是这样的格式</span></div><div class="line">https://&#123;<span class="attribute">username&#125;</span>:&#123;password&#125;@github<span class="variable">.com</span> </div><div class="line"></div><div class="line"># git<span class="variable">.oschina</span><span class="variable">.net</span> 是这样的</div><div class="line">https://&#123;username&#125;:&#123;password&#125;@git<span class="variable">.oschina</span><span class="variable">.net</span></div></pre></td></tr></table></figure></p>
+<p>最后一步是<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global credential.helper store</div></pre></td></tr></table></figure></p>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><blockquote>
+<p>在此之前或许要添加 ssh-key (<a href="https://help.github.com/articles/generating-ssh-keys/#platform-linux" target="_blank" rel="external">https://help.github.com/articles/generating-ssh-keys/#platform-linux</a>)</p>
+</blockquote>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git config --<span class="keyword">global</span> credential.helper cache</div><div class="line"><span class="meta"># 默认缓存密码15分钟，可以改得更长, 比如1小时</span></div><div class="line">$ git config --<span class="keyword">global</span> credential.helper <span class="string">'cache --timeout=3600'</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Window&quot;&gt;&lt;a href=&quot;#Window&quot; class=&quot;headerlink&quot; title=&quot;Window&quot;&gt;&lt;/a&gt;Window&lt;/h1&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter
+    
+    </summary>
+    
+      <category term="GIT" scheme="http://blog.ochukai.me/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://blog.ochukai.me/tags/git/"/>
+    
+      <category term="记住密码" scheme="http://blog.ochukai.me/tags/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Baseview in Backbone</title>
+    <link href="http://blog.ochukai.me/baseview-in-backbone/"/>
+    <id>http://blog.ochukai.me/baseview-in-backbone/</id>
+    <published>2015-11-12T16:36:15.000Z</published>
+    <updated>2016-11-22T01:40:09.720Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天研究了好久的 Backbone，一直搞不明白，怎么通过 router 的改变来切换 view。</p>
+<h2 id="过程跌宕起伏"><a href="#过程跌宕起伏" class="headerlink" title="过程跌宕起伏"></a>过程跌宕起伏</h2><p>事情是这样的，都知道 backbone 有 model, collection, view, router 这些基本概念，今天我要写一个简单的网页，有两个 nav 项，因为用了 backbone，自然就想到了单页应用，就是单击其中某一个的时候，显示这一个 nav 项对应的内容。</p>
+<p>这就用到了 router 的事件，每当 router 改变时，重新 render 整个页面。（我是这么想的，也不是整个，router 变了有些内容必然会跟着变。）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appView = <span class="keyword">this</span>;</div><div class="line">Backbone.history.on(<span class="string">'route'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">router, name</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'current route:'</span>, name);</div><div class="line">    appView.render();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>另外，在 router 里面我定义了一个变量，用来表明哪一个 nav 项被点击。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">Backbone.Router.extend(&#123;</div><div class="line"></div><div class="line">    <span class="comment">// ... other methods</span></div><div class="line"></div><div class="line">    routes: &#123;</div><div class="line">        <span class="string">''</span>: <span class="string">'chat'</span>, <span class="comment">// default to #chat</span></div><div class="line">        <span class="string">'chat'</span>: <span class="string">'chat'</span>,</div><div class="line">        <span class="string">'broadcast'</span>: <span class="string">'broadcast'</span>,</div><div class="line">        <span class="string">'*nothingMatched'</span>: <span class="string">'pageNotFoundRoute'</span> <span class="comment">// 404</span></div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">chat</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"chat page loaded."</span>);</div><div class="line">        <span class="built_in">window</span>.App.currentRouter = <span class="string">'chat'</span>;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">broadcast</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'broadcast page loaded.'</span>);</div><div class="line">        <span class="built_in">window</span>.App.currentRouter = <span class="string">'broadcast'</span>;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">pageNotFoundRoute</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'pageNotFoundRoute'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>事实证明，我的想法是有一点点正确的，因为运行顺序是这样的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">in</span> appView initialize.</div><div class="line">doctor-router.js:11 Route initialize</div><div class="line">doctor-router.js:22 chat page loaded.    <span class="comment"># 首先，进入 router 的处理方法</span></div><div class="line">app.js:31 current route: chat            <span class="comment"># 然后，响应 router 的 change 事件</span></div><div class="line">app.js:58 <span class="keyword">in</span> appView render.             <span class="comment"># 最后，appView 的 render 方法根据 route name</span></div><div class="line">                                         <span class="comment"># render对应的 view</span></div></pre></td></tr></table></figure></p>
+<p>render 的时候，首先要 <strong>remove</strong> 当前的view，然后 render 新的view。我是这么写的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.siderView) &#123;</div><div class="line">    <span class="comment">// 删掉当前的</span></div><div class="line">    <span class="keyword">this</span>.siderView.remove();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (App.currentRouter === <span class="string">'chat'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> ChatSiderView();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (App.currentRouter === <span class="string">'broadcast'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> DoctorProfileView();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// render 新的 view</span></div><div class="line"><span class="keyword">this</span>.siderView.render();</div></pre></td></tr></table></figure></p>
+<p>运行之后我发现，这样点击下一个 nav 的时候， view 变成了空白的。后来审查元素，发现 el 那个节点整个被删掉了，因为他们两个共同放在同一个 el 下面。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// view 1</span></div><div class="line"><span class="keyword">var</span> DoctorProfileView = Backbone.View.extend(&#123;</div><div class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</div><div class="line">    <span class="attr">className</span>:  <span class="string">'doctor_profile'</span></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// view 2</span></div><div class="line"><span class="keyword">var</span> ChatSiderView = BaseView.extend(&#123;</div><div class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>因为是新手，而且这是第一次用 backbone，所以还不知道 $el 就是 juqery 对象（其实问题不在这里），所以我就开始了漫无目的的搜索。</p>
+<p>其实办法肯定是有的，就是让他俩不共用同一个 el 节点，每次 render 完了之后，添加到要显示的地方，remove 的时候也只会删掉他自己，况且还可以用 hide。</p>
+<h2 id="有了一线希望"><a href="#有了一线希望" class="headerlink" title="有了一线希望"></a>有了一线希望</h2><p>终于，我看到网上有人写了这么一句：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.$el.empty();</div></pre></td></tr></table></figure></p>
+<p>然后我顺藤摸瓜看起了 backbone 的源代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Creating a Backbone.View creates its initial element outside of the DOM,</span></div><div class="line"><span class="comment">// if an existing element is not provided...</span></div><div class="line"><span class="keyword">var</span> View = Backbone.View = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.cid = _.uniqueId(<span class="string">'view'</span>);</div><div class="line">    _.extend(<span class="keyword">this</span>, _.pick(options, viewOptions));</div><div class="line">    <span class="keyword">this</span>._ensureElement();</div><div class="line">    <span class="keyword">this</span>.initialize.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Ensure that the View has a DOM element to render into.</span></div><div class="line"><span class="comment">// If `this.el` is a string, pass it through `$()`, take the first</span></div><div class="line"><span class="comment">// matching element, and re-assign it to `el`. Otherwise, create</span></div><div class="line"><span class="comment">// an element from the `id`, `className` and `tagName` properties.</span></div><div class="line">_ensureElement: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.el) &#123;</div><div class="line">      <span class="comment">// ...</span></div><div class="line">      <span class="comment">// omit this because we pass 'el' as options to the View.</span></div><div class="line">      <span class="comment">// ...</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">this</span>.setElement(_.result(<span class="keyword">this</span>, <span class="string">'el'</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Change the view's element (`this.el` property) and re-delegate the</span></div><div class="line"><span class="comment">// view's events on the new element.</span></div><div class="line">setElement: <span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.undelegateEvents();</div><div class="line">    <span class="keyword">this</span>._setElement(element);</div><div class="line">    <span class="keyword">this</span>.delegateEvents();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Creates the `this.el` and `this.$el` references for this view using the</span></div><div class="line"><span class="comment">// given `el`. `el` can be a CSS selector or an HTML string, a jQuery</span></div><div class="line"><span class="comment">// context or an element. Subclasses can override this to utilize an</span></div><div class="line"><span class="comment">// alternative DOM manipulation API and are only required to set the</span></div><div class="line"><span class="comment">// `this.el` property.</span></div><div class="line">_setElement: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.$el = el <span class="keyword">instanceof</span> Backbone.$</div><div class="line">             ? el</div><div class="line">             : Backbone.$(el);</div><div class="line">    <span class="keyword">this</span>.el = <span class="keyword">this</span>.$el[<span class="number">0</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面这一段就是说，如果我们传入了 el 那么 backbone 会自动设置 $el（通过命名就能看出这是一个 jquery 对象咯）, 并且绑定我们在 events 定义的事件到这上面。</p>
+<p>然后还有 backbone 的 remove view 的方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Remove this view by taking the element out of the DOM, and removing any</span></div><div class="line"><span class="comment">// applicable Backbone.Events listeners.</span></div><div class="line">remove: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>._removeElement();</div><div class="line">    <span class="keyword">this</span>.stopListening();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;,</div><div class="line"></div><div class="line"><span class="comment">// Remove this view's element from the document and all event listeners</span></div><div class="line"><span class="comment">// attached to it. Exposed for subclasses using an alternative DOM</span></div><div class="line"><span class="comment">// manipulation API.</span></div><div class="line">_removeElement: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.$el.remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>解除事件监听，删掉元素。</p>
+<h2 id="最终的-hide-方法"><a href="#最终的-hide-方法" class="headerlink" title="最终的 hide 方法"></a>最终的 hide 方法</h2><p>于是，我模仿着写了一个 hide 方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hide: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.undelegateEvents();</div><div class="line">    <span class="keyword">this</span>.$el.empty();</div><div class="line">    <span class="keyword">this</span>.stopListening();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>好像很简单，哈哈， 顺便把 appView 里面也改掉：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.siderView) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView.hide();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (!App.currentRouter || App.currentRouter === <span class="string">'chat'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> ChatSiderView();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (App.currentRouter === <span class="string">'broadcast'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> DoctorProfileView();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">this</span>.siderView.render();</div></pre></td></tr></table></figure></p>
+<p>运行之后，切换 view 正常了。耶！</p>
+<p>然后我想让我的view 都具有 hide 这个方法，恰好 backbone 很好的面向对象，于是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*global define*/</span></div><div class="line">define([</div><div class="line">    <span class="string">'jquery'</span>,</div><div class="line">    <span class="string">'underscore'</span>,</div><div class="line">    <span class="string">'backbone'</span></div><div class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">$, _, Backbone</span>) </span>&#123;</div><div class="line"><span class="meta">    'use strict'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> BaseView = Backbone.View.extend(&#123;</div><div class="line"></div><div class="line">        <span class="attr">hide</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.undelegateEvents();</div><div class="line">            <span class="keyword">this</span>.$el.empty();</div><div class="line">            <span class="keyword">this</span>.stopListening();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> BaseView;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// how to use</span></div><div class="line"><span class="keyword">var</span> ChatSiderView = BaseView.extend(&#123;</div><div class="line"></div><div class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</div><div class="line"></div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>感觉非常顺畅。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>频繁的删除dom元素，速度肯定是慢的，恰好我的网页很简单，所以看不出明显的缺点，网上也是推荐使用 <code>display：none</code> 和 <code>display：block</code> 来切换 view， 等我以后再研究吧。</p>
+<p>以上。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;今天研究了好久的 Backbone，一直搞不明白，怎么通过 router 的改变来切换 view。&lt;/p&gt;
+&lt;h2 id=&quot;过程跌宕起伏&quot;&gt;
+    
+    </summary>
+    
+      <category term="Backbone" scheme="http://blog.ochukai.me/categories/backbone/"/>
+    
+    
+      <category term="backbone" scheme="http://blog.ochukai.me/tags/backbone/"/>
+    
+      <category term="base" scheme="http://blog.ochukai.me/tags/base/"/>
+    
+      <category term="view" scheme="http://blog.ochukai.me/tags/view/"/>
+    
+  </entry>
+  
+</feed>
