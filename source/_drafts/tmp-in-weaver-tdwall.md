@@ -64,6 +64,40 @@ isRepeatShow      tinyint(4)  NULL 是否开启图片循环展示到前台
 
 ```
 /eb/tdwall/setting/logo/getSettingById
-
 /eb/tdwall/setting/td/getSettingById
+```
+
+```sql
+-- default
+id              varchar(32)  NOT NULL
+tdwallid        varchar(32)  NULL
+
+-- title
+titletype       tinyint(4)   NULL 0 使用文字 1 使用图片
+title           varchar(500) NULL 标题文字
+fontsize        tinyint(4)   NULL 文字字体大小, 单位 PX
+fontcolor       varchar(20)  NULL 字体颜色
+-- or 
+titleimage      varchar(32)  NULL 标题图片
+
+-- background
+backgroundtype  tinyint(4)   NULL 0 使用背景颜色 1 使用背景图片
+backgroundimg   varchar(32)  NULL 背景图片
+backgroundcolor varchar(20)  NULL 背景颜色
+
+-- qrcode
+ifshowqrcode    tinyint(4)   NULL 0 不显示签到二维码 1 显示二维码
+```
+
+```
+/eb/tdwall/setting/td/saveOrUpdate
+/eb/tdwall/setting/logo/saveOrUpdate
+/eb/tdwall/setting/default/saveOrUpdate
+```
+
+
+```
+  onGoToScreen(id) {
+    window.open(`${contextPath}/eb/lottery/activity/bigscreen?activityId=${id}`);
+  },
 ```
