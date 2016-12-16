@@ -1,6 +1,126 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Zepto 插件写法 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-06-20T06:32:33.000Z" class="post__time">June 20, 2016</time><h1 class="post__title"><a href="/zepto-plugin/">Zepto 插件写法</a></h1><div class="post__main echo"><p>一般是这样的…  比较水, 并没有怎么写过.</p>
 <p>我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">+<span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span>;</div><div class="line"></div><div class="line">  <span class="comment">// BUTTON PUBLIC CLASS DEFINITION</span></div><div class="line">  <span class="comment">// ==============================</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> Button = <span class="function"><span class="keyword">function</span> (<span class="params">element, options</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.$element  = $(element);</div><div class="line">    <span class="keyword">this</span>.options   = $.extend(&#123;&#125;, Button.DEFAULTS, options);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  Button.DEFAULTS = &#123;</div><div class="line">    <span class="attr">loadingText</span>: <span class="string">'loading...'</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  Button.prototype.setState = <span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line">  Button.prototype.toggle = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">// BUTTON PLUGIN DEFINITION</span></div><div class="line">  <span class="comment">// ========================</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Plugin</span>(<span class="params">option</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> $<span class="keyword">this</span>    = $(<span class="keyword">this</span>),</div><div class="line">          lookup   = $.fn.button.lookup,</div><div class="line">          instance = lookup[$<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>)];</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (!instance) &#123;</div><div class="line">        lookup[++lookup.i] = (instance = <span class="keyword">new</span> Button(<span class="keyword">this</span>, options));</div><div class="line">        $<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>, lookup.i);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">// button method</span></div><div class="line">      <span class="comment">// if (option == 'toggle') &#123;</span></div><div class="line">      <span class="comment">//   data.toggle();</span></div><div class="line">      <span class="comment">// &#125; else if (option) &#123;</span></div><div class="line">      <span class="comment">//   data.setState(option);</span></div><div class="line">      <span class="comment">// &#125;</span></div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> old = $.fn.button;</div><div class="line"></div><div class="line">  $.fn.button             = Plugin;</div><div class="line">  $.fn.button.lookup      = &#123; <span class="attr">i</span>: <span class="number">0</span> &#125;;</div><div class="line">  $.fn.button.Constructor = Button;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">// BUTTON NO CONFLICT</span></div><div class="line">  <span class="comment">// ==================</span></div><div class="line"></div><div class="line">  $.fn.button.noConflict = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $.fn.button = old;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">&#125; (Zepto);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+<span class="line">37</span>
+<span class="line">38</span>
+<span class="line">39</span>
+<span class="line">40</span>
+<span class="line">41</span>
+<span class="line">42</span>
+<span class="line">43</span>
+<span class="line">44</span>
+<span class="line">45</span>
+<span class="line">46</span>
+<span class="line">47</span>
+<span class="line">48</span>
+<span class="line">49</span>
+<span class="line">50</span>
+<span class="line">51</span>
+<span class="line">52</span>
+<span class="line">53</span>
+<span class="line">54</span>
+<span class="line">55</span>
+<span class="line">56</span>
+<span class="line">57</span>
+<span class="line">58</span>
+<span class="line">59</span>
+<span class="line">60</span>
+</pre></td><td class="code"><pre><span class="line"></span>
+<span class="line">+<span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>&#123;</span>
+<span class="line"><span class="meta">  'use strict'</span>;</span>
+<span class="line"></span>
+<span class="line">  <span class="comment">// BUTTON PUBLIC CLASS DEFINITION</span></span>
+<span class="line">  <span class="comment">// ==============================</span></span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">var</span> Button = <span class="function"><span class="keyword">function</span> (<span class="params">element, options</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>.$element  = $(element);</span>
+<span class="line">    <span class="keyword">this</span>.options   = $.extend(&#123;&#125;, Button.DEFAULTS, options);</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  Button.DEFAULTS = &#123;</span>
+<span class="line">    <span class="attr">loadingText</span>: <span class="string">'loading...'</span>;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  Button.prototype.setState = <span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;&#125;;</span>
+<span class="line"></span>
+<span class="line">  Button.prototype.toggle = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">  <span class="comment">// BUTTON PLUGIN DEFINITION</span></span>
+<span class="line">  <span class="comment">// ========================</span></span>
+<span class="line"></span>
+<span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Plugin</span>(<span class="params">option</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">      <span class="keyword">var</span> $<span class="keyword">this</span>    = $(<span class="keyword">this</span>),</span>
+<span class="line">          lookup   = $.fn.button.lookup,</span>
+<span class="line">          instance = lookup[$<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>)];</span>
+<span class="line"></span>
+<span class="line">      <span class="keyword">if</span> (!instance) &#123;</span>
+<span class="line">        lookup[++lookup.i] = (instance = <span class="keyword">new</span> Button(<span class="keyword">this</span>, options));</span>
+<span class="line">        $<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>, lookup.i);</span>
+<span class="line">      &#125;</span>
+<span class="line"></span>
+<span class="line">      <span class="comment">// button method</span></span>
+<span class="line">      <span class="comment">// if (option == 'toggle') &#123;</span></span>
+<span class="line">      <span class="comment">//   data.toggle();</span></span>
+<span class="line">      <span class="comment">// &#125; else if (option) &#123;</span></span>
+<span class="line">      <span class="comment">//   data.setState(option);</span></span>
+<span class="line">      <span class="comment">// &#125;</span></span>
+<span class="line">    &#125;);</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">var</span> old = $.fn.button;</span>
+<span class="line"></span>
+<span class="line">  $.fn.button             = Plugin;</span>
+<span class="line">  $.fn.button.lookup      = &#123; <span class="attr">i</span>: <span class="number">0</span> &#125;;</span>
+<span class="line">  $.fn.button.Constructor = Button;</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">  <span class="comment">// BUTTON NO CONFLICT</span></span>
+<span class="line">  <span class="comment">// ==================</span></span>
+<span class="line"></span>
+<span class="line">  $.fn.button.noConflict = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">    $.fn.button = old;</span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span>
+<span class="line">  &#125;;</span>
+<span class="line"></span>
+<span class="line">&#125; (Zepto);</span>
+</pre></td></tr></table></figure>
 </div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/zepto/" class="post__tag__link">zepto</a></li></ul></footer></article><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/prevent-deep-div-scroll-with-the-top-element/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/formdata-in-action/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","embed");
 </script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));

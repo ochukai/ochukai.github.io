@@ -1,22 +1,352 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Baseview in Backbone - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2015-11-12T16:36:15.000Z" class="post__time">November 13, 2015</time><h1 class="post__title"><a href="/baseview-in-backbone/">Baseview in Backbone</a></h1><div class="post__main echo"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天研究了好久的 Backbone，一直搞不明白，怎么通过 router 的改变来切换 view。</p>
 <h2 id="过程跌宕起伏"><a href="#过程跌宕起伏" class="headerlink" title="过程跌宕起伏"></a>过程跌宕起伏</h2><p>事情是这样的，都知道 backbone 有 model, collection, view, router 这些基本概念，今天我要写一个简单的网页，有两个 nav 项，因为用了 backbone，自然就想到了单页应用，就是单击其中某一个的时候，显示这一个 nav 项对应的内容。</p>
 <p>这就用到了 router 的事件，每当 router 改变时，重新 render 整个页面。（我是这么想的，也不是整个，router 变了有些内容必然会跟着变。）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appView = <span class="keyword">this</span>;</div><div class="line">Backbone.history.on(<span class="string">'route'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">router, name</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'current route:'</span>, name);</div><div class="line">    appView.render();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>另外，在 router 里面我定义了一个变量，用来表明哪一个 nav 项被点击。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">Backbone.Router.extend(&#123;</div><div class="line"></div><div class="line">    <span class="comment">// ... other methods</span></div><div class="line"></div><div class="line">    routes: &#123;</div><div class="line">        <span class="string">''</span>: <span class="string">'chat'</span>, <span class="comment">// default to #chat</span></div><div class="line">        <span class="string">'chat'</span>: <span class="string">'chat'</span>,</div><div class="line">        <span class="string">'broadcast'</span>: <span class="string">'broadcast'</span>,</div><div class="line">        <span class="string">'*nothingMatched'</span>: <span class="string">'pageNotFoundRoute'</span> <span class="comment">// 404</span></div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">chat</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"chat page loaded."</span>);</div><div class="line">        <span class="built_in">window</span>.App.currentRouter = <span class="string">'chat'</span>;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">broadcast</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'broadcast page loaded.'</span>);</div><div class="line">        <span class="built_in">window</span>.App.currentRouter = <span class="string">'broadcast'</span>;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">pageNotFoundRoute</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'pageNotFoundRoute'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>事实证明，我的想法是有一点点正确的，因为运行顺序是这样的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">in</span> appView initialize.</div><div class="line">doctor-router.js:11 Route initialize</div><div class="line">doctor-router.js:22 chat page loaded.    <span class="comment"># 首先，进入 router 的处理方法</span></div><div class="line">app.js:31 current route: chat            <span class="comment"># 然后，响应 router 的 change 事件</span></div><div class="line">app.js:58 <span class="keyword">in</span> appView render.             <span class="comment"># 最后，appView 的 render 方法根据 route name</span></div><div class="line">                                         <span class="comment"># render对应的 view</span></div></pre></td></tr></table></figure></p>
-<p>render 的时候，首先要 <strong>remove</strong> 当前的view，然后 render 新的view。我是这么写的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.siderView) &#123;</div><div class="line">    <span class="comment">// 删掉当前的</span></div><div class="line">    <span class="keyword">this</span>.siderView.remove();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (App.currentRouter === <span class="string">'chat'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> ChatSiderView();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (App.currentRouter === <span class="string">'broadcast'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> DoctorProfileView();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// render 新的 view</span></div><div class="line"><span class="keyword">this</span>.siderView.render();</div></pre></td></tr></table></figure></p>
-<p>运行之后我发现，这样点击下一个 nav 的时候， view 变成了空白的。后来审查元素，发现 el 那个节点整个被删掉了，因为他们两个共同放在同一个 el 下面。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// view 1</span></div><div class="line"><span class="keyword">var</span> DoctorProfileView = Backbone.View.extend(&#123;</div><div class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</div><div class="line">    <span class="attr">className</span>:  <span class="string">'doctor_profile'</span></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// view 2</span></div><div class="line"><span class="keyword">var</span> ChatSiderView = BaseView.extend(&#123;</div><div class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> appView = <span class="keyword">this</span>;</span>
+<span class="line">Backbone.history.on(<span class="string">'route'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">router, name</span>) </span>&#123;</span>
+<span class="line">    <span class="built_in">console</span>.log(<span class="string">'current route:'</span>, name);</span>
+<span class="line">    appView.render();</span>
+<span class="line">&#125;);</span>
+</pre></td></tr></table></figure>
+<p>另外，在 router 里面我定义了一个变量，用来表明哪一个 nav 项被点击。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+</pre></td><td class="code"><pre><span class="line">Backbone.Router.extend(&#123;</span>
+<span class="line"></span>
+<span class="line">    <span class="comment">// ... other methods</span></span>
+<span class="line"></span>
+<span class="line">    routes: &#123;</span>
+<span class="line">        <span class="string">''</span>: <span class="string">'chat'</span>, <span class="comment">// default to #chat</span></span>
+<span class="line">        <span class="string">'chat'</span>: <span class="string">'chat'</span>,</span>
+<span class="line">        <span class="string">'broadcast'</span>: <span class="string">'broadcast'</span>,</span>
+<span class="line">        <span class="string">'*nothingMatched'</span>: <span class="string">'pageNotFoundRoute'</span> <span class="comment">// 404</span></span>
+<span class="line">    &#125;,</span>
+<span class="line"></span>
+<span class="line">    <span class="attr">chat</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">        <span class="built_in">console</span>.log(<span class="string">"chat page loaded."</span>);</span>
+<span class="line">        <span class="built_in">window</span>.App.currentRouter = <span class="string">'chat'</span>;</span>
+<span class="line">    &#125;,</span>
+<span class="line"></span>
+<span class="line">    <span class="attr">broadcast</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">        <span class="built_in">console</span>.log(<span class="string">'broadcast page loaded.'</span>);</span>
+<span class="line">        <span class="built_in">window</span>.App.currentRouter = <span class="string">'broadcast'</span>;</span>
+<span class="line">    &#125;,</span>
+<span class="line"></span>
+<span class="line">    <span class="attr">pageNotFoundRoute</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
+<span class="line">        <span class="built_in">console</span>.log(<span class="string">'pageNotFoundRoute'</span>);</span>
+<span class="line">    &#125;</span>
+<span class="line"></span>
+<span class="line">&#125;);</span>
+</pre></td></tr></table></figure></p>
+<p>事实证明，我的想法是有一点点正确的，因为运行顺序是这样的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">in</span> appView initialize.</span>
+<span class="line">doctor-router.js:11 Route initialize</span>
+<span class="line">doctor-router.js:22 chat page loaded.    <span class="comment"># 首先，进入 router 的处理方法</span></span>
+<span class="line">app.js:31 current route: chat            <span class="comment"># 然后，响应 router 的 change 事件</span></span>
+<span class="line">app.js:58 <span class="keyword">in</span> appView render.             <span class="comment"># 最后，appView 的 render 方法根据 route name</span></span>
+<span class="line">                                         <span class="comment"># render对应的 view</span></span>
+</pre></td></tr></table></figure></p>
+<p>render 的时候，首先要 <strong>remove</strong> 当前的view，然后 render 新的view。我是这么写的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.siderView) &#123;</span>
+<span class="line">    <span class="comment">// 删掉当前的</span></span>
+<span class="line">    <span class="keyword">this</span>.siderView.remove();</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">if</span> (App.currentRouter === <span class="string">'chat'</span>) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> ChatSiderView();</span>
+<span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (App.currentRouter === <span class="string">'broadcast'</span>) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> DoctorProfileView();</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// render 新的 view</span></span>
+<span class="line"><span class="keyword">this</span>.siderView.render();</span>
+</pre></td></tr></table></figure></p>
+<p>运行之后我发现，这样点击下一个 nav 的时候， view 变成了空白的。后来审查元素，发现 el 那个节点整个被删掉了，因为他们两个共同放在同一个 el 下面。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// view 1</span></span>
+<span class="line"><span class="keyword">var</span> DoctorProfileView = Backbone.View.extend(&#123;</span>
+<span class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</span>
+<span class="line">    <span class="attr">className</span>:  <span class="string">'doctor_profile'</span></span>
+<span class="line">    <span class="comment">// ...</span></span>
+<span class="line">&#125;);</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// view 2</span></span>
+<span class="line"><span class="keyword">var</span> ChatSiderView = BaseView.extend(&#123;</span>
+<span class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</span>
+<span class="line">    <span class="comment">// ...</span></span>
+<span class="line">&#125;);</span>
+</pre></td></tr></table></figure></p>
 <p>因为是新手，而且这是第一次用 backbone，所以还不知道 $el 就是 juqery 对象（其实问题不在这里），所以我就开始了漫无目的的搜索。</p>
 <p>其实办法肯定是有的，就是让他俩不共用同一个 el 节点，每次 render 完了之后，添加到要显示的地方，remove 的时候也只会删掉他自己，况且还可以用 hide。</p>
-<h2 id="有了一线希望"><a href="#有了一线希望" class="headerlink" title="有了一线希望"></a>有了一线希望</h2><p>终于，我看到网上有人写了这么一句：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.$el.empty();</div></pre></td></tr></table></figure></p>
-<p>然后我顺藤摸瓜看起了 backbone 的源代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Creating a Backbone.View creates its initial element outside of the DOM,</span></div><div class="line"><span class="comment">// if an existing element is not provided...</span></div><div class="line"><span class="keyword">var</span> View = Backbone.View = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.cid = _.uniqueId(<span class="string">'view'</span>);</div><div class="line">    _.extend(<span class="keyword">this</span>, _.pick(options, viewOptions));</div><div class="line">    <span class="keyword">this</span>._ensureElement();</div><div class="line">    <span class="keyword">this</span>.initialize.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Ensure that the View has a DOM element to render into.</span></div><div class="line"><span class="comment">// If `this.el` is a string, pass it through `$()`, take the first</span></div><div class="line"><span class="comment">// matching element, and re-assign it to `el`. Otherwise, create</span></div><div class="line"><span class="comment">// an element from the `id`, `className` and `tagName` properties.</span></div><div class="line">_ensureElement: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.el) &#123;</div><div class="line">      <span class="comment">// ...</span></div><div class="line">      <span class="comment">// omit this because we pass 'el' as options to the View.</span></div><div class="line">      <span class="comment">// ...</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">this</span>.setElement(_.result(<span class="keyword">this</span>, <span class="string">'el'</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Change the view's element (`this.el` property) and re-delegate the</span></div><div class="line"><span class="comment">// view's events on the new element.</span></div><div class="line">setElement: <span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.undelegateEvents();</div><div class="line">    <span class="keyword">this</span>._setElement(element);</div><div class="line">    <span class="keyword">this</span>.delegateEvents();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Creates the `this.el` and `this.$el` references for this view using the</span></div><div class="line"><span class="comment">// given `el`. `el` can be a CSS selector or an HTML string, a jQuery</span></div><div class="line"><span class="comment">// context or an element. Subclasses can override this to utilize an</span></div><div class="line"><span class="comment">// alternative DOM manipulation API and are only required to set the</span></div><div class="line"><span class="comment">// `this.el` property.</span></div><div class="line">_setElement: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.$el = el <span class="keyword">instanceof</span> Backbone.$</div><div class="line">             ? el</div><div class="line">             : Backbone.$(el);</div><div class="line">    <span class="keyword">this</span>.el = <span class="keyword">this</span>.$el[<span class="number">0</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="有了一线希望"><a href="#有了一线希望" class="headerlink" title="有了一线希望"></a>有了一线希望</h2><p>终于，我看到网上有人写了这么一句：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$el.empty();</span>
+</pre></td></tr></table></figure></p>
+<p>然后我顺藤摸瓜看起了 backbone 的源代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+<span class="line">37</span>
+<span class="line">38</span>
+<span class="line">39</span>
+<span class="line">40</span>
+<span class="line">41</span>
+<span class="line">42</span>
+<span class="line">43</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// Creating a Backbone.View creates its initial element outside of the DOM,</span></span>
+<span class="line"><span class="comment">// if an existing element is not provided...</span></span>
+<span class="line"><span class="keyword">var</span> View = Backbone.View = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>.cid = _.uniqueId(<span class="string">'view'</span>);</span>
+<span class="line">    _.extend(<span class="keyword">this</span>, _.pick(options, viewOptions));</span>
+<span class="line">    <span class="keyword">this</span>._ensureElement();</span>
+<span class="line">    <span class="keyword">this</span>.initialize.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span>
+<span class="line">&#125;;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// Ensure that the View has a DOM element to render into.</span></span>
+<span class="line"><span class="comment">// If `this.el` is a string, pass it through `$()`, take the first</span></span>
+<span class="line"><span class="comment">// matching element, and re-assign it to `el`. Otherwise, create</span></span>
+<span class="line"><span class="comment">// an element from the `id`, `className` and `tagName` properties.</span></span>
+<span class="line">_ensureElement: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.el) &#123;</span>
+<span class="line">      <span class="comment">// ...</span></span>
+<span class="line">      <span class="comment">// omit this because we pass 'el' as options to the View.</span></span>
+<span class="line">      <span class="comment">// ...</span></span>
+<span class="line">    &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">        <span class="keyword">this</span>.setElement(_.result(<span class="keyword">this</span>, <span class="string">'el'</span>));</span>
+<span class="line">    &#125;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// Change the view's element (`this.el` property) and re-delegate the</span></span>
+<span class="line"><span class="comment">// view's events on the new element.</span></span>
+<span class="line">setElement: <span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>.undelegateEvents();</span>
+<span class="line">    <span class="keyword">this</span>._setElement(element);</span>
+<span class="line">    <span class="keyword">this</span>.delegateEvents();</span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// Creates the `this.el` and `this.$el` references for this view using the</span></span>
+<span class="line"><span class="comment">// given `el`. `el` can be a CSS selector or an HTML string, a jQuery</span></span>
+<span class="line"><span class="comment">// context or an element. Subclasses can override this to utilize an</span></span>
+<span class="line"><span class="comment">// alternative DOM manipulation API and are only required to set the</span></span>
+<span class="line"><span class="comment">// `this.el` property.</span></span>
+<span class="line">_setElement: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>.$el = el <span class="keyword">instanceof</span> Backbone.$</span>
+<span class="line">             ? el</span>
+<span class="line">             : Backbone.$(el);</span>
+<span class="line">    <span class="keyword">this</span>.el = <span class="keyword">this</span>.$el[<span class="number">0</span>];</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure></p>
 <p>上面这一段就是说，如果我们传入了 el 那么 backbone 会自动设置 $el（通过命名就能看出这是一个 jquery 对象咯）, 并且绑定我们在 events 定义的事件到这上面。</p>
-<p>然后还有 backbone 的 remove view 的方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Remove this view by taking the element out of the DOM, and removing any</span></div><div class="line"><span class="comment">// applicable Backbone.Events listeners.</span></div><div class="line">remove: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>._removeElement();</div><div class="line">    <span class="keyword">this</span>.stopListening();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;,</div><div class="line"></div><div class="line"><span class="comment">// Remove this view's element from the document and all event listeners</span></div><div class="line"><span class="comment">// attached to it. Exposed for subclasses using an alternative DOM</span></div><div class="line"><span class="comment">// manipulation API.</span></div><div class="line">_removeElement: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.$el.remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后还有 backbone 的 remove view 的方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// Remove this view by taking the element out of the DOM, and removing any</span></span>
+<span class="line"><span class="comment">// applicable Backbone.Events listeners.</span></span>
+<span class="line">remove: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>._removeElement();</span>
+<span class="line">    <span class="keyword">this</span>.stopListening();</span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span>
+<span class="line">&#125;,</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// Remove this view's element from the document and all event listeners</span></span>
+<span class="line"><span class="comment">// attached to it. Exposed for subclasses using an alternative DOM</span></span>
+<span class="line"><span class="comment">// manipulation API.</span></span>
+<span class="line">_removeElement: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>.$el.remove();</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure></p>
 <p>解除事件监听，删掉元素。</p>
-<h2 id="最终的-hide-方法"><a href="#最终的-hide-方法" class="headerlink" title="最终的 hide 方法"></a>最终的 hide 方法</h2><p>于是，我模仿着写了一个 hide 方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hide: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.undelegateEvents();</div><div class="line">    <span class="keyword">this</span>.$el.empty();</div><div class="line">    <span class="keyword">this</span>.stopListening();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>好像很简单，哈哈， 顺便把 appView 里面也改掉：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.siderView) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView.hide();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (!App.currentRouter || App.currentRouter === <span class="string">'chat'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> ChatSiderView();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (App.currentRouter === <span class="string">'broadcast'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> DoctorProfileView();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">this</span>.siderView.render();</div></pre></td></tr></table></figure></p>
+<h2 id="最终的-hide-方法"><a href="#最终的-hide-方法" class="headerlink" title="最终的 hide 方法"></a>最终的 hide 方法</h2><p>于是，我模仿着写了一个 hide 方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line">hide: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>.undelegateEvents();</span>
+<span class="line">    <span class="keyword">this</span>.$el.empty();</span>
+<span class="line">    <span class="keyword">this</span>.stopListening();</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure></p>
+<p>好像很简单，哈哈， 顺便把 appView 里面也改掉：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.siderView) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.siderView.hide();</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">if</span> (!App.currentRouter || App.currentRouter === <span class="string">'chat'</span>) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> ChatSiderView();</span>
+<span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (App.currentRouter === <span class="string">'broadcast'</span>) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.siderView = <span class="keyword">new</span> DoctorProfileView();</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">this</span>.siderView.render();</span>
+</pre></td></tr></table></figure></p>
 <p>运行之后，切换 view 正常了。耶！</p>
-<p>然后我想让我的view 都具有 hide 这个方法，恰好 backbone 很好的面向对象，于是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*global define*/</span></div><div class="line">define([</div><div class="line">    <span class="string">'jquery'</span>,</div><div class="line">    <span class="string">'underscore'</span>,</div><div class="line">    <span class="string">'backbone'</span></div><div class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">$, _, Backbone</span>) </span>&#123;</div><div class="line"><span class="meta">    'use strict'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> BaseView = Backbone.View.extend(&#123;</div><div class="line"></div><div class="line">        <span class="attr">hide</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.undelegateEvents();</div><div class="line">            <span class="keyword">this</span>.$el.empty();</div><div class="line">            <span class="keyword">this</span>.stopListening();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> BaseView;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// how to use</span></div><div class="line"><span class="keyword">var</span> ChatSiderView = BaseView.extend(&#123;</div><div class="line"></div><div class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</div><div class="line"></div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>然后我想让我的view 都具有 hide 这个方法，恰好 backbone 很好的面向对象，于是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">/*global define*/</span></span>
+<span class="line">define([</span>
+<span class="line">    <span class="string">'jquery'</span>,</span>
+<span class="line">    <span class="string">'underscore'</span>,</span>
+<span class="line">    <span class="string">'backbone'</span></span>
+<span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">$, _, Backbone</span>) </span>&#123;</span>
+<span class="line"><span class="meta">    'use strict'</span>;</span>
+<span class="line"></span>
+<span class="line">    <span class="keyword">var</span> BaseView = Backbone.View.extend(&#123;</span>
+<span class="line"></span>
+<span class="line">        <span class="attr">hide</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">            <span class="keyword">this</span>.undelegateEvents();</span>
+<span class="line">            <span class="keyword">this</span>.$el.empty();</span>
+<span class="line">            <span class="keyword">this</span>.stopListening();</span>
+<span class="line">        &#125;</span>
+<span class="line"></span>
+<span class="line">    &#125;);</span>
+<span class="line"></span>
+<span class="line">    <span class="keyword">return</span> BaseView;</span>
+<span class="line"></span>
+<span class="line">&#125;);</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// how to use</span></span>
+<span class="line"><span class="keyword">var</span> ChatSiderView = BaseView.extend(&#123;</span>
+<span class="line"></span>
+<span class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</span>
+<span class="line"></span>
+<span class="line">    <span class="comment">//...</span></span>
+<span class="line">&#125;);</span>
+</pre></td></tr></table></figure></p>
 <p>感觉非常顺畅。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>频繁的删除dom元素，速度肯定是慢的，恰好我的网页很简单，所以看不出明显的缺点，网上也是推荐使用 <code>display：none</code> 和 <code>display：block</code> 来切换 view， 等我以后再研究吧。</p>
 <p>以上。</p>

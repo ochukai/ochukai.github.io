@@ -2,9 +2,33 @@
 <p><img src="../images/scroll-1.png" alt="例子"></p>
 <p>比如上图, 当用力划一下屏幕, 下拉框滚到底了之后, <strong>body</strong> 随之也开始滚, 很讨厌。出现过好多次了, 而且测试逼我太紧~</p>
 <h2 id="我要解决这个问题啊"><a href="#我要解决这个问题啊" class="headerlink" title="我要解决这个问题啊"></a>我要解决这个问题啊</h2><p>其实很简单, 只要弹出下拉列表的时候让下层的元素不能滚动就好了。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.modal-open</span> &#123; </div><div class="line">  <span class="attribute">overflow</span>: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.modal-open</span> &#123; </span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
 <p>js 的话就这么写:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">$div</span>) </span>&#123;</div><div class="line">  $(<span class="string">'body'</span>).addClass(<span class="string">'modal-open'</span>);</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params">$div</span>) </span>&#123;</div><div class="line">  $(<span class="string">'body'</span>).removeClass(<span class="string">'modal-open'</span>);</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">$div</span>) </span>&#123;</span>
+<span class="line">  $(<span class="string">'body'</span>).addClass(<span class="string">'modal-open'</span>);</span>
+<span class="line">  <span class="comment">// ...</span></span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params">$div</span>) </span>&#123;</span>
+<span class="line">  $(<span class="string">'body'</span>).removeClass(<span class="string">'modal-open'</span>);</span>
+<span class="line">  <span class="comment">// ...</span></span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
 <p>以上。</p>
 </div></header><footer class="post__foot u-cf"></footer></article><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/ths-difference-between-splice-and-slice/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/zepto-plugin/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","embed");
