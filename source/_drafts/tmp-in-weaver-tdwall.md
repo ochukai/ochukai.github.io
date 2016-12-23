@@ -87,6 +87,10 @@ backgroundcolor varchar(20)  NULL 背景颜色
 
 -- qrcode
 ifshowqrcode    tinyint(4)   NULL 0 不显示签到二维码 1 显示二维码
+
+encryptname     tinyint(4)   DEFAULT 0 COMMENT '名字是否加密处理0否1是',
+namecolor       varchar(20)  DEFAULT '#fff' COMMENT '显示的名字和时间颜色',
+  
 ```
 
 ```
