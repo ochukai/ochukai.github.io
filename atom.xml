@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2016-12-16T06:58:09.484Z</updated>
+  <updated>2016-12-23T07:37:41.376Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -14,6 +14,728 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修改 WebStorm 里面丑陋的 Markdown 样式</title>
+    <link href="http://blog.ochukai.me/correct-ugly-markdown-css-in-webstorm/"/>
+    <id>http://blog.ochukai.me/correct-ugly-markdown-css-in-webstorm/</id>
+    <published>2016-12-23T07:27:27.000Z</published>
+    <updated>2016-12-23T07:37:41.376Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！</p>
+<p>今天突然发现有一个设置项可以自定义 markdown 的样式，</p>
+<p><img src="../images/webstorm-md-css-1.png" alt="设置"></p>
+<p>就是右边方框里面的选项，取消 webstorm 默认的， 然后添加自己的 css，下面的css 是我找来的，还可以看：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+<span class="line">37</span>
+<span class="line">38</span>
+<span class="line">39</span>
+<span class="line">40</span>
+<span class="line">41</span>
+<span class="line">42</span>
+<span class="line">43</span>
+<span class="line">44</span>
+<span class="line">45</span>
+<span class="line">46</span>
+<span class="line">47</span>
+<span class="line">48</span>
+<span class="line">49</span>
+<span class="line">50</span>
+<span class="line">51</span>
+<span class="line">52</span>
+<span class="line">53</span>
+<span class="line">54</span>
+<span class="line">55</span>
+<span class="line">56</span>
+<span class="line">57</span>
+<span class="line">58</span>
+<span class="line">59</span>
+<span class="line">60</span>
+<span class="line">61</span>
+<span class="line">62</span>
+<span class="line">63</span>
+<span class="line">64</span>
+<span class="line">65</span>
+<span class="line">66</span>
+<span class="line">67</span>
+<span class="line">68</span>
+<span class="line">69</span>
+<span class="line">70</span>
+<span class="line">71</span>
+<span class="line">72</span>
+<span class="line">73</span>
+<span class="line">74</span>
+<span class="line">75</span>
+<span class="line">76</span>
+<span class="line">77</span>
+<span class="line">78</span>
+<span class="line">79</span>
+<span class="line">80</span>
+<span class="line">81</span>
+<span class="line">82</span>
+<span class="line">83</span>
+<span class="line">84</span>
+<span class="line">85</span>
+<span class="line">86</span>
+<span class="line">87</span>
+<span class="line">88</span>
+<span class="line">89</span>
+<span class="line">90</span>
+<span class="line">91</span>
+<span class="line">92</span>
+<span class="line">93</span>
+<span class="line">94</span>
+<span class="line">95</span>
+<span class="line">96</span>
+<span class="line">97</span>
+<span class="line">98</span>
+<span class="line">99</span>
+<span class="line">100</span>
+<span class="line">101</span>
+<span class="line">102</span>
+<span class="line">103</span>
+<span class="line">104</span>
+<span class="line">105</span>
+<span class="line">106</span>
+<span class="line">107</span>
+<span class="line">108</span>
+<span class="line">109</span>
+<span class="line">110</span>
+<span class="line">111</span>
+<span class="line">112</span>
+<span class="line">113</span>
+<span class="line">114</span>
+<span class="line">115</span>
+<span class="line">116</span>
+<span class="line">117</span>
+<span class="line">118</span>
+<span class="line">119</span>
+<span class="line">120</span>
+<span class="line">121</span>
+<span class="line">122</span>
+<span class="line">123</span>
+<span class="line">124</span>
+<span class="line">125</span>
+<span class="line">126</span>
+<span class="line">127</span>
+<span class="line">128</span>
+<span class="line">129</span>
+<span class="line">130</span>
+<span class="line">131</span>
+<span class="line">132</span>
+<span class="line">133</span>
+<span class="line">134</span>
+<span class="line">135</span>
+<span class="line">136</span>
+<span class="line">137</span>
+<span class="line">138</span>
+<span class="line">139</span>
+<span class="line">140</span>
+<span class="line">141</span>
+<span class="line">142</span>
+<span class="line">143</span>
+<span class="line">144</span>
+<span class="line">145</span>
+<span class="line">146</span>
+<span class="line">147</span>
+<span class="line">148</span>
+<span class="line">149</span>
+<span class="line">150</span>
+<span class="line">151</span>
+<span class="line">152</span>
+<span class="line">153</span>
+<span class="line">154</span>
+<span class="line">155</span>
+<span class="line">156</span>
+<span class="line">157</span>
+<span class="line">158</span>
+<span class="line">159</span>
+<span class="line">160</span>
+<span class="line">161</span>
+<span class="line">162</span>
+<span class="line">163</span>
+<span class="line">164</span>
+<span class="line">165</span>
+<span class="line">166</span>
+<span class="line">167</span>
+<span class="line">168</span>
+<span class="line">169</span>
+<span class="line">170</span>
+<span class="line">171</span>
+<span class="line">172</span>
+<span class="line">173</span>
+<span class="line">174</span>
+<span class="line">175</span>
+<span class="line">176</span>
+<span class="line">177</span>
+<span class="line">178</span>
+<span class="line">179</span>
+<span class="line">180</span>
+<span class="line">181</span>
+<span class="line">182</span>
+<span class="line">183</span>
+<span class="line">184</span>
+<span class="line">185</span>
+<span class="line">186</span>
+<span class="line">187</span>
+<span class="line">188</span>
+<span class="line">189</span>
+<span class="line">190</span>
+<span class="line">191</span>
+<span class="line">192</span>
+<span class="line">193</span>
+<span class="line">194</span>
+<span class="line">195</span>
+<span class="line">196</span>
+<span class="line">197</span>
+<span class="line">198</span>
+<span class="line">199</span>
+<span class="line">200</span>
+<span class="line">201</span>
+<span class="line">202</span>
+<span class="line">203</span>
+<span class="line">204</span>
+<span class="line">205</span>
+<span class="line">206</span>
+<span class="line">207</span>
+<span class="line">208</span>
+<span class="line">209</span>
+<span class="line">210</span>
+<span class="line">211</span>
+<span class="line">212</span>
+<span class="line">213</span>
+<span class="line">214</span>
+<span class="line">215</span>
+<span class="line">216</span>
+<span class="line">217</span>
+<span class="line">218</span>
+<span class="line">219</span>
+<span class="line">220</span>
+<span class="line">221</span>
+<span class="line">222</span>
+<span class="line">223</span>
+<span class="line">224</span>
+<span class="line">225</span>
+<span class="line">226</span>
+<span class="line">227</span>
+<span class="line">228</span>
+<span class="line">229</span>
+<span class="line">230</span>
+<span class="line">231</span>
+<span class="line">232</span>
+<span class="line">233</span>
+<span class="line">234</span>
+<span class="line">235</span>
+<span class="line">236</span>
+<span class="line">237</span>
+<span class="line">238</span>
+<span class="line">239</span>
+<span class="line">240</span>
+<span class="line">241</span>
+<span class="line">242</span>
+<span class="line">243</span>
+<span class="line">244</span>
+<span class="line">245</span>
+<span class="line">246</span>
+<span class="line">247</span>
+<span class="line">248</span>
+<span class="line">249</span>
+<span class="line">250</span>
+<span class="line">251</span>
+<span class="line">252</span>
+<span class="line">253</span>
+<span class="line">254</span>
+<span class="line">255</span>
+<span class="line">256</span>
+<span class="line">257</span>
+<span class="line">258</span>
+<span class="line">259</span>
+<span class="line">260</span>
+<span class="line">261</span>
+<span class="line">262</span>
+<span class="line">263</span>
+<span class="line">264</span>
+<span class="line">265</span>
+<span class="line">266</span>
+<span class="line">267</span>
+<span class="line">268</span>
+<span class="line">269</span>
+<span class="line">270</span>
+<span class="line">271</span>
+<span class="line">272</span>
+<span class="line">273</span>
+<span class="line">274</span>
+<span class="line">275</span>
+<span class="line">276</span>
+<span class="line">277</span>
+<span class="line">278</span>
+<span class="line">279</span>
+</pre></td><td class="code"><pre><span class="line">body&#123;</span>
+<span class="line">    background-color: #fff;</span>
+<span class="line">    margin: 0 auto;</span>
+<span class="line">    font-family: Georgia, Palatino, serif;</span>
+<span class="line">    color: #333333;</span>
+<span class="line">    line-height: 120%;</span>
+<span class="line">    max-width: 960px;</span>
+<span class="line">    padding: 30px;</span>
+<span class="line">    font-size: 12px;</span>
+<span class="line">&#125;</span>
+<span class="line">h1, h2, h3, h4 &#123;</span>
+<span class="line">    color: #111111;</span>
+<span class="line">    font-weight: 400;</span>
+<span class="line">&#125;</span>
+<span class="line">h1, h2, h3, h4, h5, p &#123;</span>
+<span class="line">    margin-bottom: 18px;</span>
+<span class="line">    padding: 0;</span>
+<span class="line">&#125;</span>
+<span class="line">h1 &#123;</span>
+<span class="line">    font-size: 36px;</span>
+<span class="line">&#125;</span>
+<span class="line">h2 &#123;</span>
+<span class="line">    font-size: 24px;</span>
+<span class="line">    margin: 18px 0 6px;</span>
+<span class="line">&#125;</span>
+<span class="line">h3 &#123;</span>
+<span class="line">    font-size: 20px;</span>
+<span class="line">&#125;</span>
+<span class="line">h4 &#123;</span>
+<span class="line">    font-size: 16px;</span>
+<span class="line">&#125;</span>
+<span class="line">h5 &#123;</span>
+<span class="line">    font-size: 14px;</span>
+<span class="line">&#125;</span>
+<span class="line">h6 &#123;</span>
+<span class="line">    font-size: 12px;</span>
+<span class="line">&#125;</span>
+<span class="line">a &#123;</span>
+<span class="line">    color: #0099ff;</span>
+<span class="line">    margin: 0;</span>
+<span class="line">    padding: 0;</span>
+<span class="line">    vertical-align: baseline;</span>
+<span class="line">&#125;</span>
+<span class="line">a:hover &#123;</span>
+<span class="line">    text-decoration: none;</span>
+<span class="line">    color: #ff6600;</span>
+<span class="line">&#125;</span>
+<span class="line">a:visited &#123;</span>
+<span class="line">    color: purple;</span>
+<span class="line">&#125;</span>
+<span class="line">ul, ol &#123;</span>
+<span class="line">    padding: 0;</span>
+<span class="line">    margin-left: 18px;</span>
+<span class="line">    margin-bottom: 18px;</span>
+<span class="line">&#125;</span>
+<span class="line">li &#123;</span>
+<span class="line">    line-height: 18px;</span>
+<span class="line">&#125;</span>
+<span class="line">li ul, li ul &#123;</span>
+<span class="line">    margin-left: 18px;</span>
+<span class="line">&#125;</span>
+<span class="line">p, ul, ol &#123;</span>
+<span class="line">    font-size: 12px;</span>
+<span class="line">    line-height: 1.5;</span>
+<span class="line">    max-width: 540px;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">blockquote &#123;</span>
+<span class="line">   padding: 12px 12px 12px 15px;</span>
+<span class="line">   margin-bottom: 16px;</span>
+<span class="line">   font-family:georgia,serif;</span>
+<span class="line">   font-style: italic;</span>
+<span class="line">   border-left: 2px solid #d9d9d9;</span>
+<span class="line">&#125;</span>
+<span class="line">blockquote p &#123;</span>
+<span class="line">   font-size: 12px;</span>
+<span class="line">   font-weight: 300;</span>
+<span class="line">   line-height: 1.2;</span>
+<span class="line">   margin-bottom: 0;</span>
+<span class="line">   font-style: italic;</span>
+<span class="line">&#125;</span>
+<span class="line">code, pre &#123;</span>
+<span class="line">   font-family: Monaco, Andale Mono, Courier New, monospace;</span>
+<span class="line">&#125;</span>
+<span class="line">code &#123;</span>
+<span class="line">   background-color: #fee9cc;</span>
+<span class="line">   color: #000000;</span>
+<span class="line">   padding: 1px 3px;</span>
+<span class="line">   font-size: 12px;</span>
+<span class="line">   border-radius: 3px;</span>
+<span class="line">&#125;</span>
+<span class="line">pre &#123;</span>
+<span class="line">   display: block;</span>
+<span class="line">   padding: 14px;</span>
+<span class="line">   margin: 0 0 18px;</span>
+<span class="line">   line-height: 16px;</span>
+<span class="line">   font-size: 11px;</span>
+<span class="line">   border: 1px solid #d9d9d9;</span>
+<span class="line">   white-space: pre-wrap;</span>
+<span class="line">   word-wrap: break-word;</span>
+<span class="line">&#125;</span>
+<span class="line">pre code &#123;</span>
+<span class="line">   background-color: #ffffff;</span>
+<span class="line">   color:#666666;</span>
+<span class="line">   font-size: 11px;</span>
+<span class="line">   padding: 0;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">aside &#123;</span>
+<span class="line">    display: block;</span>
+<span class="line">    float: right;</span>
+<span class="line">    width: 390px;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">hr &#123;</span>
+<span class="line">    width: 540px;</span>
+<span class="line">    text-align: left;</span>
+<span class="line">    margin: 0 auto 0 0;</span>
+<span class="line">    color: #999999;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">/* Code below this line is copyright Twitter Inc. */</span>
+<span class="line"></span>
+<span class="line">button,</span>
+<span class="line">input,</span>
+<span class="line">select,</span>
+<span class="line">textarea &#123;</span>
+<span class="line">  font-size: 100%;</span>
+<span class="line">  margin: 0;</span>
+<span class="line">  vertical-align: baseline;</span>
+<span class="line">  *vertical-align: middle;</span>
+<span class="line">&#125;</span>
+<span class="line">button, input &#123;</span>
+<span class="line">  line-height: normal;</span>
+<span class="line">  *overflow: visible;</span>
+<span class="line">&#125;</span>
+<span class="line">button::-moz-focus-inner, input::-moz-focus-inner &#123;</span>
+<span class="line">  border: 0;</span>
+<span class="line">  padding: 0;</span>
+<span class="line">&#125;</span>
+<span class="line">button,</span>
+<span class="line">input[type="button"],</span>
+<span class="line">input[type="reset"],</span>
+<span class="line">input[type="submit"] &#123;</span>
+<span class="line">  cursor: pointer;</span>
+<span class="line">  -webkit-appearance: button;</span>
+<span class="line">&#125;</span>
+<span class="line">input[type=checkbox], input[type=radio] &#123;</span>
+<span class="line">  cursor: pointer;</span>
+<span class="line">&#125;</span>
+<span class="line">/* override default chrome &amp; firefox settings */</span>
+<span class="line">input:not([type="image"]), textarea &#123;</span>
+<span class="line">  -webkit-box-sizing: content-box;</span>
+<span class="line">  -moz-box-sizing: content-box;</span>
+<span class="line">  box-sizing: content-box;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">input[type="search"] &#123;</span>
+<span class="line">  -webkit-appearance: textfield;</span>
+<span class="line">  -webkit-box-sizing: content-box;</span>
+<span class="line">  -moz-box-sizing: content-box;</span>
+<span class="line">  box-sizing: content-box;</span>
+<span class="line">&#125;</span>
+<span class="line">input[type="search"]::-webkit-search-decoration &#123;</span>
+<span class="line">  -webkit-appearance: none;</span>
+<span class="line">&#125;</span>
+<span class="line">label,</span>
+<span class="line">input,</span>
+<span class="line">select,</span>
+<span class="line">textarea &#123;</span>
+<span class="line">  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;</span>
+<span class="line">  font-size: 13px;</span>
+<span class="line">  font-weight: normal;</span>
+<span class="line">  line-height: normal;</span>
+<span class="line">  margin-bottom: 18px;</span>
+<span class="line">&#125;</span>
+<span class="line">input[type=checkbox], input[type=radio] &#123;</span>
+<span class="line">  cursor: pointer;</span>
+<span class="line">  margin-bottom: 0;</span>
+<span class="line">&#125;</span>
+<span class="line">input[type=text],</span>
+<span class="line">input[type=password],</span>
+<span class="line">textarea,</span>
+<span class="line">select &#123;</span>
+<span class="line">  display: inline-block;</span>
+<span class="line">  width: 210px;</span>
+<span class="line">  padding: 4px;</span>
+<span class="line">  font-size: 13px;</span>
+<span class="line">  font-weight: normal;</span>
+<span class="line">  line-height: 18px;</span>
+<span class="line">  height: 18px;</span>
+<span class="line">  color: #808080;</span>
+<span class="line">  border: 1px solid #ccc;</span>
+<span class="line">  -webkit-border-radius: 3px;</span>
+<span class="line">  -moz-border-radius: 3px;</span>
+<span class="line">  border-radius: 3px;</span>
+<span class="line">&#125;</span>
+<span class="line">select, input[type=file] &#123;</span>
+<span class="line">  height: 27px;</span>
+<span class="line">  line-height: 27px;</span>
+<span class="line">&#125;</span>
+<span class="line">textarea &#123;</span>
+<span class="line">  height: auto;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">/* grey out placeholders */</span>
+<span class="line">:-moz-placeholder &#123;</span>
+<span class="line">  color: #bfbfbf;</span>
+<span class="line">&#125;</span>
+<span class="line">::-webkit-input-placeholder &#123;</span>
+<span class="line">  color: #bfbfbf;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">input[type=text],</span>
+<span class="line">input[type=password],</span>
+<span class="line">select,</span>
+<span class="line">textarea &#123;</span>
+<span class="line">  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;</span>
+<span class="line">  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;</span>
+<span class="line">  transition: border linear 0.2s, box-shadow linear 0.2s;</span>
+<span class="line">  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
+<span class="line">  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
+<span class="line">  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
+<span class="line">&#125;</span>
+<span class="line">input[type=text]:focus, input[type=password]:focus, textarea:focus &#123;</span>
+<span class="line">  outline: none;</span>
+<span class="line">  border-color: rgba(82, 168, 236, 0.8);</span>
+<span class="line">  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
+<span class="line">  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
+<span class="line">  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">/* buttons */</span>
+<span class="line">button &#123;</span>
+<span class="line">  display: inline-block;</span>
+<span class="line">  padding: 4px 14px;</span>
+<span class="line">  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;</span>
+<span class="line">  font-size: 13px;</span>
+<span class="line">  line-height: 18px;</span>
+<span class="line">  -webkit-border-radius: 4px;</span>
+<span class="line">  -moz-border-radius: 4px;</span>
+<span class="line">  border-radius: 4px;</span>
+<span class="line">  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
+<span class="line">  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
+<span class="line">  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
+<span class="line">  background-color: #0064cd;</span>
+<span class="line">  background-repeat: repeat-x;</span>
+<span class="line">  background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));</span>
+<span class="line">  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);</span>
+<span class="line">  background-image: -ms-linear-gradient(top, #049cdb, #0064cd);</span>
+<span class="line">  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));</span>
+<span class="line">  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);</span>
+<span class="line">  background-image: -o-linear-gradient(top, #049cdb, #0064cd);</span>
+<span class="line">  background-image: linear-gradient(top, #049cdb, #0064cd);</span>
+<span class="line">  color: #fff;</span>
+<span class="line">  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);</span>
+<span class="line">  border: 1px solid #004b9a;</span>
+<span class="line">  border-bottom-color: #003f81;</span>
+<span class="line">  -webkit-transition: 0.1s linear all;</span>
+<span class="line">  -moz-transition: 0.1s linear all;</span>
+<span class="line">  transition: 0.1s linear all;</span>
+<span class="line">  border-color: #0064cd #0064cd #003f81;</span>
+<span class="line">  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);</span>
+<span class="line">&#125;</span>
+<span class="line">button:hover &#123;</span>
+<span class="line">  color: #fff;</span>
+<span class="line">  background-position: 0 -15px;</span>
+<span class="line">  text-decoration: none;</span>
+<span class="line">&#125;</span>
+<span class="line">button:active &#123;</span>
+<span class="line">  -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
+<span class="line">  -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
+<span class="line">  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
+<span class="line">&#125;</span>
+<span class="line">button::-moz-focus-inner &#123;</span>
+<span class="line">  padding: 0;</span>
+<span class="line">  border: 0;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！&lt;/p&gt;
+&lt;p&gt;今天突然发现有一个设置项可以自定义 markdown 的样式，&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../images/webstorm-md-cs
+    
+    </summary>
+    
+      <category term="WebStorm" scheme="http://blog.ochukai.me/categories/webstorm/"/>
+    
+    
+      <category term="markdown" scheme="http://blog.ochukai.me/tags/markdown/"/>
+    
+      <category term="webstrom" scheme="http://blog.ochukai.me/tags/webstrom/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript 中的 Decorator</title>
+    <link href="http://blog.ochukai.me/decorator-in-js/"/>
+    <id>http://blog.ochukai.me/decorator-in-js/</id>
+    <published>2016-12-21T01:33:38.000Z</published>
+    <updated>2016-12-21T02:36:53.476Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+</pre></td><td class="code"><pre><span class="line">@sortable</span>
+<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoHOCItem</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span>
+<span class="line"></span>
+<span class="line">  render() &#123;</span>
+<span class="line">    <span class="keyword">return</span> (</span>
+<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
+<span class="line">        &#123; this.props.children &#125;</span>
+<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
+<span class="line">    );</span>
+<span class="line">  &#125;</span>
+<span class="line">  </span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure></p>
+<p>查了一下之后发现这是 es7 的新语法，叫 <a href="https://github.com/wycats/javascript-decorators" target="_blank" rel="external">Decorator</a>。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>如果要定义一个 Decorator 的话，不难，其实每一个 decorator 就是一个 function，有三个参数，像这样</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> log = <span class="function">(<span class="params">target, name, descriptor</span>) =&gt;</span> &#123;</span>
+<span class="line">  <span class="built_in">console</span>.log(target, name, descriptor);</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">const</span> method = descriptor.value;</span>
+<span class="line">  descriptor.value = <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span>
+<span class="line">    logger.info(<span class="string">`before function execute: <span class="subst">$&#123;name&#125;</span>(<span class="subst">$&#123;args&#125;</span>) = ?`</span>);</span>
+<span class="line">    <span class="keyword">return</span> method.apply(target, args);</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
+<p>三个参数还是比较好理解的</p>
+<p>然后要用这个 decorator 的时候</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+</pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
+<span class="line"></span>
+<span class="line">  @log</span>
+<span class="line">  add(a, b) &#123;</span>
+<span class="line">    <span class="keyword">return</span> a + b;</span>
+<span class="line">  &#125;</span>
+<span class="line">   </span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">let</span> my = <span class="keyword">new</span> Example();</span>
+<span class="line">my.add(<span class="number">2</span>, <span class="number">3</span>);</span>
+</pre></td></tr></table></figure>
+<p>这好像跟 Java 的 Annotation 形式差不多。 但是功能却跟 Python 的 Decorator 一样。</p>
+<p>下面是运行时的输出</p>
+<p><img src="..//images/decorator-1.png" alt="正常"></p>
+<p>所以呢，decorator 的三个参数分别是</p>
+<ol>
+<li>target 目标方法所在的类</li>
+<li>name 方法名</li>
+<li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点再上一个例子中已经用过了。</li>
+</ol>
+<h2 id="用在-class-上面"><a href="#用在-class-上面" class="headerlink" title="用在 class 上面"></a>用在 class 上面</h2><p>因为我最开始见到 decorator 是看到</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+</pre></td><td class="code"><pre><span class="line">@sortable</span>
+<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoHOCItem</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;<span class="comment">/*...*/</span>&#125;</span>
+</pre></td></tr></table></figure>
+<p>这时， decorator 是用在 class 上面的，当 decorator 用在 class 上面的时候只有第一个参数有值，比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+</pre></td><td class="code"><pre><span class="line">@log</span>
+<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
+<span class="line"></span>
+<span class="line">  @log</span>
+<span class="line">  add(a, b) &#123; <span class="keyword">return</span> a + b; &#125;</span>
+<span class="line">   </span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
+<p>只会输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+</pre></td><td class="code"><pre><span class="line"># 也就是 name, descriptor 都是 undefined</span>
+<span class="line">2016-12-21 10:28:26.617 function Example() &#123;</span>
+<span class="line">        _classCallCheck(this, Example);</span>
+<span class="line">    &#125; undefined undefined</span>
+</pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：&lt;br&gt;&lt;figure class=&quot;highlight jsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
+&lt;span clas
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+    
+    
+      <category term="decorator" scheme="http://blog.ochukai.me/tags/decorator/"/>
+    
+  </entry>
   
   <entry>
     <title>使用命令行更新 Win10 的密钥</title>
@@ -2044,131 +2766,6 @@
       <category term="AMD" scheme="http://blog.ochukai.me/tags/amd/"/>
     
       <category term="CMD" scheme="http://blog.ochukai.me/tags/cmd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图片加载错误时显示默认图片</title>
-    <link href="http://blog.ochukai.me/show-a-default-image-when-the-image-is-broken/"/>
-    <id>http://blog.ochukai.me/show-a-default-image-when-the-image-is-broken/</id>
-    <published>2015-11-27T10:24:36.000Z</published>
-    <updated>2016-11-22T01:40:09.766Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="直接写"><a href="#直接写" class="headerlink" title="直接写"></a>直接写</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">imgError</span>(<span class="params">image</span>) </span>&#123;</span>
-<span class="line">    image.onerror = <span class="literal">null</span>; <span class="comment">// prevent event bubble</span></span>
-<span class="line">    image.src = <span class="string">"/images/noimage.gif"</span>;</span>
-<span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"image.png"</span> <span class="attr">onerror</span>=<span class="string">"imgError(this);"</span>/&gt;</span></span>
-</pre></td></tr></table></figure>
-<h2 id="使用-jQuery"><a href="#使用-jQuery" class="headerlink" title="使用 jQuery"></a>使用 jQuery</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-</pre></td><td class="code"><pre><span class="line">$(<span class="string">"img"</span>).error(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
-<span class="line">    $(<span class="keyword">this</span>).unbind(<span class="string">"error"</span>).attr(<span class="string">"src"</span>, <span class="string">"broken.gif"</span>);</span>
-<span class="line">&#125;);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">//If you use this technique you can use the "one" method to avoid needing to unbind the event: </span></span>
-<span class="line">$(<span class="string">'img'</span>).one(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span>
-<span class="line">  <span class="keyword">this</span>.src = <span class="string">'broken.gif'</span>; </span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
-<h2 id="还有一种写法"><a href="#还有一种写法" class="headerlink" title="还有一种写法"></a>还有一种写法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-</pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line">  $(<span class="string">'img'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.complete </span>
-<span class="line">        || <span class="keyword">typeof</span> <span class="keyword">this</span>.naturalWidth == <span class="string">"undefined"</span> </span>
-<span class="line">        || <span class="keyword">this</span>.naturalWidth == <span class="number">0</span>) &#123;</span>
-<span class="line">      <span class="comment">// image was broken, replace with your new image</span></span>
-<span class="line">      <span class="keyword">this</span>.src = <span class="string">'broken.gif'</span>;</span>
-<span class="line">    &#125;</span>
-<span class="line">  &#125;);</span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;直接写&quot;&gt;&lt;a href=&quot;#直接写&quot; class=&quot;headerlink&quot; title=&quot;直接写&quot;&gt;&lt;/a&gt;直接写&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
-    
-    
-      <category term="imgage error" scheme="http://blog.ochukai.me/tags/imgage-error/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GIT - remember password in window &amp; linux.</title>
-    <link href="http://blog.ochukai.me/git-remember-password-in-window-and-linux/"/>
-    <id>http://blog.ochukai.me/git-remember-password-in-window-and-linux/</id>
-    <published>2015-11-23T02:46:44.000Z</published>
-    <updated>2016-11-22T01:40:09.735Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment"># 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式</span></span>
-<span class="line">mv git-credentials .git-credentials</span>
-</pre></td></tr></table></figure>
-<p>然后编辑 <strong>.git-credentials</strong><br><figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment"># github 是这样的格式</span></span>
-<span class="line">https://&#123;<span class="attribute">username&#125;</span>:&#123;password&#125;@github<span class="variable">.com</span> </span>
-<span class="line"></span>
-<span class="line"># git<span class="variable">.oschina</span><span class="variable">.net</span> 是这样的</span>
-<span class="line">https://&#123;username&#125;:&#123;password&#125;@git<span class="variable">.oschina</span><span class="variable">.net</span></span>
-</pre></td></tr></table></figure></p>
-<p>最后一步是<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span>
-</pre></td></tr></table></figure></p>
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><blockquote>
-<p>在此之前或许要添加 ssh-key (<a href="https://help.github.com/articles/generating-ssh-keys/#platform-linux" target="_blank" rel="external">https://help.github.com/articles/generating-ssh-keys/#platform-linux</a>)</p>
-</blockquote>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line">$ git config --<span class="keyword">global</span> credential.helper cache</span>
-<span class="line"><span class="meta"># 默认缓存密码15分钟，可以改得更长, 比如1小时</span></span>
-<span class="line">$ git config --<span class="keyword">global</span> credential.helper <span class="string">'cache --timeout=3600'</span></span>
-</pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Window&quot;&gt;&lt;a href=&quot;#Window&quot; class=&quot;headerlink&quot; title=&quot;Window&quot;&gt;&lt;/a&gt;Window&lt;/h1&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter
-    
-    </summary>
-    
-      <category term="GIT" scheme="http://blog.ochukai.me/categories/git/"/>
-    
-    
-      <category term="git" scheme="http://blog.ochukai.me/tags/git/"/>
-    
-      <category term="记住密码" scheme="http://blog.ochukai.me/tags/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/"/>
     
   </entry>
   
