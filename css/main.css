@@ -417,7 +417,7 @@ video {
   font-size: 0.85em;
   line-height: 1.1;
   vertical-align: text-bottom;
-  font-family: "heiti", "微软雅黑";
+  font-family: consolas, "微软雅黑";
 }
 .echo kbd {
   box-shadow: 0 1px 0px #ccc, 0 0 0 2px #fff inset;
@@ -622,6 +622,9 @@ video {
 }
 .post__main {
   margin-top: 60px;
+}
+.post__main .headerlink {
+  display: inline-block;
 }
 .post__main .highlight {
   margin: 1.6em -60px;

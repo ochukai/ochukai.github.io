@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2016-12-23T07:37:41.376Z</updated>
+  <updated>2016-12-30T03:55:16.592Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -14,6 +14,191 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript 绑定 this</title>
+    <link href="http://blog.ochukai.me/js-bind-this/"/>
+    <id>http://blog.ochukai.me/js-bind-this/</id>
+    <published>2016-12-30T02:28:20.000Z</published>
+    <updated>2016-12-30T03:55:16.592Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实这篇文章主要是介绍这个东西 <a href="https://github.com/tc39/proposal-bind-operator" target="_blank" rel="external">Proposal Bind Operator</a> 或者 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:bind_operator" target="_blank" rel="external">bind_operator</a>。</p>
+<p>也是在一个很偶然的机会看到了，git 上面的一个项目用到了这个用法，为什么自己发现不了这些东西呢？</p>
+<h2 id="传统的-this-绑定"><a href="#传统的-this-绑定" class="headerlink" title="传统的 this 绑定"></a>传统的 this 绑定</h2><h3 id="在函数外面暂存一个变量"><a href="#在函数外面暂存一个变量" class="headerlink" title="在函数外面暂存一个变量"></a>在函数外面暂存一个变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// 别名</span></span>
+<span class="line"><span class="keyword">var</span> self = <span class="keyword">this</span>;</span>
+<span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">this</span>.doSomething();</span>
+<span class="line">&#125;, <span class="number">1000</span>);</span>
+</pre></td></tr></table></figure>
+<h3 id="使用-bind-函数-amp-箭头函数"><a href="#使用-bind-函数-amp-箭头函数" class="headerlink" title="使用 bind 函数 &amp; 箭头函数"></a>使用 bind 函数 &amp; 箭头函数</h3><p>在使用 <code>class *** extends React.Component {}</code> 的写法声明 React 组件的时候，组件的方法都不会被自动绑定 this 了，下面的两种方法比较常见：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// bind</span></span>
+<span class="line">setTimeout(</span>
+<span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>.doSomething();</span>
+<span class="line">  &#125;.bind(<span class="keyword">this</span>), </span>
+<span class="line">  <span class="number">1000</span></span>
+<span class="line">);</span>
+</pre></td></tr></table></figure>
+<p>使用 <code>bind</code> 方法显得稍微有点长，不太好看，不过很好用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// var _this = this;</span></span>
+<span class="line"></span>
+<span class="line"><span class="comment">// bind</span></span>
+<span class="line">setTimeout(</span>
+<span class="line">  <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span>
+<span class="line">    <span class="comment">// _this.doSomething();</span></span>
+<span class="line">    <span class="keyword">this</span>.doSomething();</span>
+<span class="line">  &#125;, </span>
+<span class="line">  <span class="number">1000</span></span>
+<span class="line">);</span>
+</pre></td></tr></table></figure>
+<p>箭头函数在经过<code>babel</code>编译后， 差不多就是注释的部分了， 还是用的暂存的办法保存了 <code>this</code>，但是写法就简单了太多。</p>
+<h3 id=""><a href="#" class="headerlink" title="::"></a>::</h3><p>看到这种语法之后，感觉其他的都弱爆了。</p>
+<p>在 React 里面，可以这么写</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// &#123; title: '******************', onConfirm: this.handleSave.bind(this) &#125;,</span></span>
+<span class="line">&lt;Popconfirm title=<span class="string">"确定要保存吗？"</span> onConfirm=&#123;::<span class="keyword">this</span>.handleSave&#125;&gt;</span>
+<span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">type</span>=<span class="string">"ghost"</span> &gt;</span>保存<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span></span>
+<span class="line">&lt;<span class="regexp">/Popconfirm&gt;</span></span>
+</pre></td></tr></table></figure>
+<p>可以看到，注释部分表示的编译后的代码，就是用 <code>bind</code> 实现的。</p>
+<p>双冒号前面的对象就是 <code>bind</code> 的参数， 如果没有就是当前的 <code>this</code>, 毕竟这种做法就是用来做绑定的。</p>
+<p>但是有一个问题，就是像这样的需求不好实现，</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line">&lt;Button</span>
+<span class="line">  type=<span class="string">"ghost"</span></span>
+<span class="line">  icon=<span class="string">"edit"</span></span>
+<span class="line">  onClick=&#123;<span class="keyword">this</span>.handleEdit.bind(<span class="keyword">this</span>, item)&#125;</span>
+<span class="line">/&gt;</span>
+</pre></td></tr></table></figure>
+<p>然后就是黑人问号脸，我试了几种形式 (当然不能用 bind 方法，否则这 :: 没有意义了)</p>
+<ul>
+<li>[this, item]::this.handleEdit</li>
+<li>(this, item)::this.handleEdit  // hhh</li>
+<li>this::this.handleEdit(item)    // hhh</li>
+</ul>
+<p>感觉唯一靠谱的就是第一种写法了， 编译之后</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+</pre></td><td class="code"><pre><span class="line">_react2.default.createElement(</span>
+<span class="line">  _button2.default,</span>
+<span class="line">  &#123; </span>
+<span class="line">    <span class="attr">type</span>: <span class="string">'ghost'</span>, </span>
+<span class="line">    <span class="attr">icon</span>: <span class="string">'edit'</span>, </span>
+<span class="line">    <span class="attr">onClick</span>: (_context = [<span class="keyword">this</span>, item], <span class="keyword">this</span>.handleEdit).bind(_context) </span>
+<span class="line">  &#125;,</span>
+<span class="line">  <span class="string">''</span></span>
+<span class="line">)</span>
+</pre></td></tr></table></figure>
+<p>这样 bind 之后的方法内的 this 是一个数组，要想获取到真正的 this, 在 handleEdit 中还需要做</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleEdit</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">  <span class="comment">// this: [this, item]</span></span>
+<span class="line">  <span class="comment">// 感觉好尴尬~</span></span>
+<span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>[<span class="number">0</span>]);</span>
+<span class="line">  <span class="comment">// const [ _this, item ] = this;</span></span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
+<blockquote>
+<p>所以呢 在需要绑定 this 并且要添加额外参数的时候，就不要用 <strong>::</strong> 了。老老实实用 <strong>bind</strong> 就好了。</p>
+</blockquote>
+<h2 id="箭头函数声明在-class-里面"><a href="#箭头函数声明在-class-里面" class="headerlink" title="箭头函数声明在 class 里面"></a>箭头函数声明在 class 里面</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+</pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span>
+<span class="line"></span>
+<span class="line">  handleButtonClick = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span>
+<span class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">loading</span>: <span class="literal">true</span> &#125;);</span>
+<span class="line">  &#125;;</span>
+<span class="line"></span>
+<span class="line">  render() &#123;</span>
+<span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleButtonClick&#125;</span>&gt;</span>;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">// var Example = React.createClass(&#123;</span>
+<span class="line">//</span>
+<span class="line">//   handleButtonClick: function(e) &#123;</span>
+<span class="line">//     this.setState(&#123; loading: true &#125;);</span>
+<span class="line">//   &#125;,</span>
+<span class="line">//   ...</span>
+<span class="line">// &#125;);</span></span>
+</pre></td></tr></table></figure>
+<p>这样应该是最简单的方式了，因为是自动绑定 this 的（与注释中的代码效果是一样的）。</p>
+<p>以上。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实这篇文章主要是介绍这个东西 &lt;a href=&quot;https://github.com/tc39/proposal-bind-operator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Proposal Bind Operator&lt;/a&gt; 或者 &lt;a 
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+    
+    
+      <category term="this" scheme="http://blog.ochukai.me/tags/this/"/>
+    
+      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>修改 WebStorm 里面丑陋的 Markdown 样式</title>
@@ -950,11 +1135,11 @@
       <category term="[object Object]" scheme="http://blog.ochukai.me/categories/javascript/object-object/"/>
     
     
+      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+    
       <category term="splice" scheme="http://blog.ochukai.me/tags/splice/"/>
     
       <category term="array" scheme="http://blog.ochukai.me/tags/array/"/>
-    
-      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
     
   </entry>
   
@@ -1302,7 +1487,7 @@
 </blockquote>
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><code>slice()</code> 方法可从已有的数组中返回选定的元素。这个函数有两个参数 <code>slice(start, end)</code> 会返回一个从 <code>start</code> 到 <code>end</code> 之前元素的新数组， 如果 <code>end</code> 是<code>负数</code>，就从数组末尾倒着数, 如果 end 没有设置，就返回从 start 到数组末尾组成的新数组咯~</p>
 <p>总之这是一个返回新数组的函数，知识返回而已，不会改变原来的数组，而 <code>splice</code> 方法则会改变原来的数组.</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1312,16 +1497,16 @@
 <span class="line">8</span>
 <span class="line">9</span>
 <span class="line">10</span>
-</pre></td><td class="code"><pre><span class="line">var arr = new Array(<span class="number">3</span>)</span>
-<span class="line">arr[<span class="number">0</span>] = <span class="string">"George"</span></span>
-<span class="line">arr[<span class="number">1</span>] = <span class="string">"John"</span></span>
-<span class="line">arr[<span class="number">2</span>] = <span class="string">"Thomas"</span></span>
-<span class="line">arr[<span class="number">3</span>] = <span class="string">"James"</span></span>
-<span class="line">arr[<span class="number">4</span>] = <span class="string">"Adrew"</span></span>
-<span class="line">arr[<span class="number">5</span>] = <span class="string">"Martin"</span></span>
+</pre></td><td class="code"><pre><span class="line">var arr = new Array(3)</span>
+<span class="line">arr[0] = &quot;George&quot;</span>
+<span class="line">arr[1] = &quot;John&quot;</span>
+<span class="line">arr[2] = &quot;Thomas&quot;</span>
+<span class="line">arr[3] = &quot;James&quot;</span>
+<span class="line">arr[4] = &quot;Adrew&quot;</span>
+<span class="line">arr[5] = &quot;Martin&quot;</span>
 <span class="line"></span>
-<span class="line">console.log(arr.slice(<span class="number">4</span>)) <span class="comment">// ["Adrew", "Martin"] == arr.slice(4, 6)</span></span>
-<span class="line">console.log(arr.slice(<span class="number">0</span>, <span class="number">-4</span>)) <span class="comment">// ["George", "John"] == arr.slice(0, 2)</span></span>
+<span class="line">console.log(arr.slice(4)) // [&quot;Adrew&quot;, &quot;Martin&quot;] == arr.slice(4, 6)</span>
+<span class="line">console.log(arr.slice(0, -4)) // [&quot;George&quot;, &quot;John&quot;] == arr.slice(0, 2)</span>
 </pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
@@ -2187,7 +2372,7 @@
 <span class="line">  &#125;</span>
 <span class="line">&#125;</span>
 </pre></td></tr></table></figure>
-<p>其中，<code>#{***}</code> 的作用的把字符串原封不动的输出。<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<p>其中，<code>#{***}</code> 的作用的把字符串原封不动的输出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 </pre></td><td class="code"><pre><span class="line">#&#123;s&#125; --&gt; s</span>
 </pre></td></tr></table></figure></p>
 ]]></content>
@@ -2266,8 +2451,8 @@
 <span class="line">Quit the server with CONTROL-C.</span>
 <span class="line">Error: That port is already <span class="keyword">in</span> use.</span>
 </pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line"><span class="keyword">ps</span> aux | <span class="keyword">grep</span> <span class="keyword">python</span></span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">ps aux | grep python</span>
 </pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
@@ -2671,101 +2856,6 @@
       <category term="date" scheme="http://blog.ochukai.me/tags/date/"/>
     
       <category term="format" scheme="http://blog.ochukai.me/tags/format/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>编写一个可以兼容 AMD 和 CMD 的 js 模块</title>
-    <link href="http://blog.ochukai.me/write-a-compatible-js-module/"/>
-    <id>http://blog.ochukai.me/write-a-compatible-js-module/</id>
-    <published>2015-11-29T12:11:07.000Z</published>
-    <updated>2016-11-22T01:40:09.766Z</updated>
-    
-    <content type="html"><![CDATA[<p>没什么好解释的，直接看代码吧。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-</pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">factory</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</span>
-<span class="line">        <span class="comment">// AMD. Register as an anonymous module.</span></span>
-<span class="line">        <span class="comment">//define(['jquery', 'underscore'], factory);</span></span>
-<span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</span>
-<span class="line">        <span class="comment">// Node/CommonJS style for Browserify/Seajs</span></span>
-<span class="line">        <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'jquery'</span>), <span class="built_in">require</span>(<span class="string">'underscore'</span>));</span>
-<span class="line">    &#125; <span class="keyword">else</span> &#123;</span>
-<span class="line">        <span class="comment">// Browser globals</span></span>
-<span class="line">        factory(jQuery, _);</span>
-<span class="line">        <span class="comment">//factory();</span></span>
-<span class="line">    &#125;</span>
-<span class="line">&#125;(<span class="function"><span class="keyword">function</span> (<span class="params">$, _</span>) </span>&#123;</span>
-<span class="line">    <span class="comment">//doSomething...</span></span>
-<span class="line">&#125;));</span>
-</pre></td></tr></table></figure>
-<p>还有一种写法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// from: http://segmentfault.com/a/1190000003732752</span></span>
-<span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span>
-<span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">MyModule</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line">        <span class="comment">// ...</span></span>
-<span class="line">    &#125;</span>
-<span class="line">    </span>
-<span class="line">    <span class="keyword">var</span> moduleName = MyModule;</span>
-<span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</span>
-<span class="line">        <span class="built_in">module</span>.exports = moduleName;</span>
-<span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; (define.amd || define.cmd)) &#123;</span>
-<span class="line">        define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> moduleName; &#125;);</span>
-<span class="line">    &#125; <span class="keyword">else</span> &#123;</span>
-<span class="line">        <span class="keyword">this</span>.moduleName = moduleName;</span>
-<span class="line">    &#125;</span>
-<span class="line">&#125;).call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span> || (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global);</span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;没什么好解释的，直接看代码吧。&lt;/p&gt;
-&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;line&quot;&gt;2&lt;/spa
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
-    
-    
-      <category term="compatible module" scheme="http://blog.ochukai.me/tags/compatible-module/"/>
-    
-      <category term="AMD" scheme="http://blog.ochukai.me/tags/amd/"/>
-    
-      <category term="CMD" scheme="http://blog.ochukai.me/tags/cmd/"/>
     
   </entry>
   

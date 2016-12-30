@@ -8,7 +8,7 @@
 </blockquote>
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><code>slice()</code> 方法可从已有的数组中返回选定的元素。这个函数有两个参数 <code>slice(start, end)</code> 会返回一个从 <code>start</code> 到 <code>end</code> 之前元素的新数组， 如果 <code>end</code> 是<code>负数</code>，就从数组末尾倒着数, 如果 end 没有设置，就返回从 start 到数组末尾组成的新数组咯~</p>
 <p>总之这是一个返回新数组的函数，知识返回而已，不会改变原来的数组，而 <code>splice</code> 方法则会改变原来的数组.</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -18,16 +18,16 @@
 <span class="line">8</span>
 <span class="line">9</span>
 <span class="line">10</span>
-</pre></td><td class="code"><pre><span class="line">var arr = new Array(<span class="number">3</span>)</span>
-<span class="line">arr[<span class="number">0</span>] = <span class="string">"George"</span></span>
-<span class="line">arr[<span class="number">1</span>] = <span class="string">"John"</span></span>
-<span class="line">arr[<span class="number">2</span>] = <span class="string">"Thomas"</span></span>
-<span class="line">arr[<span class="number">3</span>] = <span class="string">"James"</span></span>
-<span class="line">arr[<span class="number">4</span>] = <span class="string">"Adrew"</span></span>
-<span class="line">arr[<span class="number">5</span>] = <span class="string">"Martin"</span></span>
+</pre></td><td class="code"><pre><span class="line">var arr = new Array(3)</span>
+<span class="line">arr[0] = &quot;George&quot;</span>
+<span class="line">arr[1] = &quot;John&quot;</span>
+<span class="line">arr[2] = &quot;Thomas&quot;</span>
+<span class="line">arr[3] = &quot;James&quot;</span>
+<span class="line">arr[4] = &quot;Adrew&quot;</span>
+<span class="line">arr[5] = &quot;Martin&quot;</span>
 <span class="line"></span>
-<span class="line">console.log(arr.slice(<span class="number">4</span>)) <span class="comment">// ["Adrew", "Martin"] == arr.slice(4, 6)</span></span>
-<span class="line">console.log(arr.slice(<span class="number">0</span>, <span class="number">-4</span>)) <span class="comment">// ["George", "John"] == arr.slice(0, 2)</span></span>
+<span class="line">console.log(arr.slice(4)) // [&quot;Adrew&quot;, &quot;Martin&quot;] == arr.slice(4, 6)</span>
+<span class="line">console.log(arr.slice(0, -4)) // [&quot;George&quot;, &quot;John&quot;] == arr.slice(0, 2)</span>
 </pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/splice/" class="post__tag__link">splice</a></li><li class="post__tag__item"><a href="/tags/slice/" class="post__tag__link">slice</a></li></ul></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","count");
 </script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 ga('create','UA-73840162-1');
