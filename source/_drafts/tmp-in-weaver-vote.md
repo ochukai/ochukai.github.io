@@ -3,6 +3,8 @@ tags:
   - null
 categories:
   - null
+draft: 'true'
+date: 2016-11-24 17:39:33
 ---
 
 ```sql
@@ -16,6 +18,7 @@ CREATE TABLE eb_vote (
 
   start_time        datetime       NULL  '开始时间',
   end_time          datetime       NULL  '结束时间',
+  status
 
   vote_count        tinyint(4)     NULL  '每人允许投票数',
   repeat_vote       tinyint(4)     NULL  '是否允许重复投票：0-否、1-是',
@@ -49,6 +52,28 @@ CREATE TABLE eb_vote_screen_setting (
   is_default        tinyint(4)    NULL  '默认设置：0-否、1-是',
   relate_vote_id    varchar(32)   NULL  '投票id'
 )
+```
+
+```
+  /eb/vote/save
+  /eb/vote/remove
+  /eb/vote/query
+  /eb/vote/queryById
+
+  /eb/vote/item/save
+  /eb/vote/item/remove
+  /eb/vote/item/query
+  /eb/vote/item/queryById
+
+  /eb/vote/user/save
+  /eb/vote/user/remove
+  /eb/vote/user/query
+  /eb/vote/user/queryById
+
+  /eb/vote/bigscreen/save
+  /eb/vote/bigscreen/remove
+  /eb/vote/bigscreen/query
+  /eb/vote/bigscreen/queryById
 ```
 
 

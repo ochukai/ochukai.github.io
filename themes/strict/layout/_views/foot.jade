@@ -1,4 +1,5 @@
-if theme.disqus_shortname
+
+if theme.disqus_shortname && !env.debug
   - var disqus_type = page.comments ? 'embed' : 'count'
   script.
     (function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","#{theme.disqus_shortname}","#{disqus_type}");
@@ -9,7 +10,7 @@ if theme.google_analytics
     ga('create','#{theme.google_analytics}');
     ga('send','pageview');
 
-script(src='http://code.jquery.com/jquery-2.2.1.min.js')
+script(src='http://code.jquery.com/jquery-3.1.1.min.js')
 script(src='/js/main.js')
     
 block foot
