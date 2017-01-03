@@ -24,81 +24,50 @@
     
     <content type="html"><![CDATA[<p>其实这篇文章主要是介绍这个东西 <a href="https://github.com/tc39/proposal-bind-operator" target="_blank" rel="external">Proposal Bind Operator</a> 或者 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:bind_operator" target="_blank" rel="external">bind_operator</a>。</p>
 <p>也是在一个很偶然的机会看到了，git 上面的一个项目用到了这个用法，为什么自己发现不了这些东西呢？</p>
-<h2 id="传统的-this-绑定"><a href="#传统的-this-绑定" class="headerlink" title="传统的 this 绑定"></a>传统的 this 绑定</h2><h3 id="在函数外面暂存一个变量"><a href="#在函数外面暂存一个变量" class="headerlink" title="在函数外面暂存一个变量"></a>在函数外面暂存一个变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// 别名</span></span>
-<span class="line"><span class="keyword">var</span> self = <span class="keyword">this</span>;</span>
-<span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line">  <span class="keyword">this</span>.doSomething();</span>
-<span class="line">&#125;, <span class="number">1000</span>);</span>
-</pre></td></tr></table></figure>
+<h2 id="传统的-this-绑定"><a href="#传统的-this-绑定" class="headerlink" title="传统的 this 绑定"></a>传统的 this 绑定</h2><h3 id="在函数外面暂存一个变量"><a href="#在函数外面暂存一个变量" class="headerlink" title="在函数外面暂存一个变量"></a>在函数外面暂存一个变量</h3><pre><code class="js">// 别名
+var self = this;
+setTimeout(function() {
+  this.doSomething();
+}, 1000);
+</code></pre>
 <h3 id="使用-bind-函数-amp-箭头函数"><a href="#使用-bind-函数-amp-箭头函数" class="headerlink" title="使用 bind 函数 &amp; 箭头函数"></a>使用 bind 函数 &amp; 箭头函数</h3><p>在使用 <code>class *** extends React.Component {}</code> 的写法声明 React 组件的时候，组件的方法都不会被自动绑定 this 了，下面的两种方法比较常见：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// bind</span></span>
-<span class="line">setTimeout(</span>
-<span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">this</span>.doSomething();</span>
-<span class="line">  &#125;.bind(<span class="keyword">this</span>), </span>
-<span class="line">  <span class="number">1000</span></span>
-<span class="line">);</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">// bind
+setTimeout(
+  function() {
+    this.doSomething();
+  }.bind(this), 
+  1000
+);
+</code></pre>
 <p>使用 <code>bind</code> 方法显得稍微有点长，不太好看，不过很好用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// var _this = this;</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// bind</span></span>
-<span class="line">setTimeout(</span>
-<span class="line">  <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span>
-<span class="line">    <span class="comment">// _this.doSomething();</span></span>
-<span class="line">    <span class="keyword">this</span>.doSomething();</span>
-<span class="line">  &#125;, </span>
-<span class="line">  <span class="number">1000</span></span>
-<span class="line">);</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">// var _this = this;
+
+// bind
+setTimeout(
+  () =&gt; {
+    // _this.doSomething();
+    this.doSomething();
+  }, 
+  1000
+);
+</code></pre>
 <p>箭头函数在经过<code>babel</code>编译后， 差不多就是注释的部分了， 还是用的暂存的办法保存了 <code>this</code>，但是写法就简单了太多。</p>
 <h3 id=""><a href="#" class="headerlink" title="::"></a>::</h3><p>看到这种语法之后，感觉其他的都弱爆了。</p>
 <p>在 React 里面，可以这么写</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// &#123; title: '******************', onConfirm: this.handleSave.bind(this) &#125;,</span></span>
-<span class="line">&lt;Popconfirm title=<span class="string">"确定要保存吗？"</span> onConfirm=&#123;::<span class="keyword">this</span>.handleSave&#125;&gt;</span>
-<span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">type</span>=<span class="string">"ghost"</span> &gt;</span>保存<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span></span>
-<span class="line">&lt;<span class="regexp">/Popconfirm&gt;</span></span>
-</pre></td></tr></table></figure>
+<pre><code class="jsx">// { title: &#39;******************&#39;, onConfirm: this.handleSave.bind(this) },
+&lt;Popconfirm title=&quot;确定要保存吗？&quot; onConfirm={::this.handleSave}&gt;
+  &lt;Button type=&quot;ghost&quot; &gt;保存&lt;/Button&gt;
+&lt;/Popconfirm&gt;
+</code></pre>
 <p>可以看到，注释部分表示的编译后的代码，就是用 <code>bind</code> 实现的。</p>
 <p>双冒号前面的对象就是 <code>bind</code> 的参数， 如果没有就是当前的 <code>this</code>, 毕竟这种做法就是用来做绑定的。</p>
 <p>但是有一个问题，就是像这样的需求不好实现，</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line">&lt;Button</span>
-<span class="line">  type=<span class="string">"ghost"</span></span>
-<span class="line">  icon=<span class="string">"edit"</span></span>
-<span class="line">  onClick=&#123;<span class="keyword">this</span>.handleEdit.bind(<span class="keyword">this</span>, item)&#125;</span>
-<span class="line">/&gt;</span>
-</pre></td></tr></table></figure>
+<pre><code class="jsx">&lt;Button
+  type=&quot;ghost&quot;
+  icon=&quot;edit&quot;
+  onClick={this.handleEdit.bind(this, item)}
+/&gt;
+</code></pre>
 <p>然后就是黑人问号脸，我试了几种形式 (当然不能用 bind 方法，否则这 :: 没有意义了)</p>
 <ul>
 <li>[this, item]::this.handleEdit</li>
@@ -106,81 +75,47 @@
 <li>this::this.handleEdit(item)    // hhh</li>
 </ul>
 <p>感觉唯一靠谱的就是第一种写法了， 编译之后</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-</pre></td><td class="code"><pre><span class="line">_react2.default.createElement(</span>
-<span class="line">  _button2.default,</span>
-<span class="line">  &#123; </span>
-<span class="line">    <span class="attr">type</span>: <span class="string">'ghost'</span>, </span>
-<span class="line">    <span class="attr">icon</span>: <span class="string">'edit'</span>, </span>
-<span class="line">    <span class="attr">onClick</span>: (_context = [<span class="keyword">this</span>, item], <span class="keyword">this</span>.handleEdit).bind(_context) </span>
-<span class="line">  &#125;,</span>
-<span class="line">  <span class="string">''</span></span>
-<span class="line">)</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">_react2.default.createElement(
+  _button2.default,
+  { 
+    type: &#39;ghost&#39;, 
+    icon: &#39;edit&#39;, 
+    onClick: (_context = [this, item], this.handleEdit).bind(_context) 
+  },
+  &#39;&#39;
+)
+</code></pre>
 <p>这样 bind 之后的方法内的 this 是一个数组，要想获取到真正的 this, 在 handleEdit 中还需要做</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleEdit</span> (<span class="params"></span>) </span>&#123;</span>
-<span class="line">  <span class="comment">// this: [this, item]</span></span>
-<span class="line">  <span class="comment">// 感觉好尴尬~</span></span>
-<span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>[<span class="number">0</span>]);</span>
-<span class="line">  <span class="comment">// const [ _this, item ] = this;</span></span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">function handleEdit () {
+  // this: [this, item]
+  // 感觉好尴尬~
+  console.log(this[0]);
+  // const [ _this, item ] = this;
+}
+</code></pre>
 <blockquote>
 <p>所以呢 在需要绑定 this 并且要添加额外参数的时候，就不要用 <strong>::</strong> 了。老老实实用 <strong>bind</strong> 就好了。</p>
 </blockquote>
-<h2 id="箭头函数声明在-class-里面"><a href="#箭头函数声明在-class-里面" class="headerlink" title="箭头函数声明在 class 里面"></a>箭头函数声明在 class 里面</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-</pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span>
-<span class="line"></span>
-<span class="line">  handleButtonClick = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span>
-<span class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">loading</span>: <span class="literal">true</span> &#125;);</span>
-<span class="line">  &#125;;</span>
-<span class="line"></span>
-<span class="line">  render() &#123;</span>
-<span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleButtonClick&#125;</span>&gt;</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">// var Example = React.createClass(&#123;</span>
-<span class="line">//</span>
-<span class="line">//   handleButtonClick: function(e) &#123;</span>
-<span class="line">//     this.setState(&#123; loading: true &#125;);</span>
-<span class="line">//   &#125;,</span>
-<span class="line">//   ...</span>
-<span class="line">// &#125;);</span></span>
-</pre></td></tr></table></figure>
+<h2 id="箭头函数声明在-class-里面"><a href="#箭头函数声明在-class-里面" class="headerlink" title="箭头函数声明在 class 里面"></a>箭头函数声明在 class 里面</h2><pre><code class="jsx">class Example extends React.Component {
+
+  handleButtonClick = (e) =&gt; {
+    this.setState({ loading: true });
+  };
+
+  render() {
+    return &lt;Button onClick={this.handleButtonClick}&gt;;
+  }
+
+}
+
+// var Example = React.createClass({
+//
+//   handleButtonClick: function(e) {
+//     this.setState({ loading: true });
+//   },
+//   ...
+// });
+</code></pre>
 <p>这样应该是最简单的方式了，因为是自动绑定 this 的（与注释中的代码效果是一样的）。</p>
 <p>以上。</p>
 ]]></content>
@@ -210,565 +145,287 @@
     <content type="html"><![CDATA[<p>一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！</p>
 <p>今天突然发现有一个设置项可以自定义 markdown 的样式，</p>
 <p><img src="../images/webstorm-md-css-1.png" alt="设置"></p>
-<p>就是右边方框里面的选项，取消 webstorm 默认的， 然后添加自己的 css，下面的css 是我找来的，还可以看：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-<span class="line">32</span>
-<span class="line">33</span>
-<span class="line">34</span>
-<span class="line">35</span>
-<span class="line">36</span>
-<span class="line">37</span>
-<span class="line">38</span>
-<span class="line">39</span>
-<span class="line">40</span>
-<span class="line">41</span>
-<span class="line">42</span>
-<span class="line">43</span>
-<span class="line">44</span>
-<span class="line">45</span>
-<span class="line">46</span>
-<span class="line">47</span>
-<span class="line">48</span>
-<span class="line">49</span>
-<span class="line">50</span>
-<span class="line">51</span>
-<span class="line">52</span>
-<span class="line">53</span>
-<span class="line">54</span>
-<span class="line">55</span>
-<span class="line">56</span>
-<span class="line">57</span>
-<span class="line">58</span>
-<span class="line">59</span>
-<span class="line">60</span>
-<span class="line">61</span>
-<span class="line">62</span>
-<span class="line">63</span>
-<span class="line">64</span>
-<span class="line">65</span>
-<span class="line">66</span>
-<span class="line">67</span>
-<span class="line">68</span>
-<span class="line">69</span>
-<span class="line">70</span>
-<span class="line">71</span>
-<span class="line">72</span>
-<span class="line">73</span>
-<span class="line">74</span>
-<span class="line">75</span>
-<span class="line">76</span>
-<span class="line">77</span>
-<span class="line">78</span>
-<span class="line">79</span>
-<span class="line">80</span>
-<span class="line">81</span>
-<span class="line">82</span>
-<span class="line">83</span>
-<span class="line">84</span>
-<span class="line">85</span>
-<span class="line">86</span>
-<span class="line">87</span>
-<span class="line">88</span>
-<span class="line">89</span>
-<span class="line">90</span>
-<span class="line">91</span>
-<span class="line">92</span>
-<span class="line">93</span>
-<span class="line">94</span>
-<span class="line">95</span>
-<span class="line">96</span>
-<span class="line">97</span>
-<span class="line">98</span>
-<span class="line">99</span>
-<span class="line">100</span>
-<span class="line">101</span>
-<span class="line">102</span>
-<span class="line">103</span>
-<span class="line">104</span>
-<span class="line">105</span>
-<span class="line">106</span>
-<span class="line">107</span>
-<span class="line">108</span>
-<span class="line">109</span>
-<span class="line">110</span>
-<span class="line">111</span>
-<span class="line">112</span>
-<span class="line">113</span>
-<span class="line">114</span>
-<span class="line">115</span>
-<span class="line">116</span>
-<span class="line">117</span>
-<span class="line">118</span>
-<span class="line">119</span>
-<span class="line">120</span>
-<span class="line">121</span>
-<span class="line">122</span>
-<span class="line">123</span>
-<span class="line">124</span>
-<span class="line">125</span>
-<span class="line">126</span>
-<span class="line">127</span>
-<span class="line">128</span>
-<span class="line">129</span>
-<span class="line">130</span>
-<span class="line">131</span>
-<span class="line">132</span>
-<span class="line">133</span>
-<span class="line">134</span>
-<span class="line">135</span>
-<span class="line">136</span>
-<span class="line">137</span>
-<span class="line">138</span>
-<span class="line">139</span>
-<span class="line">140</span>
-<span class="line">141</span>
-<span class="line">142</span>
-<span class="line">143</span>
-<span class="line">144</span>
-<span class="line">145</span>
-<span class="line">146</span>
-<span class="line">147</span>
-<span class="line">148</span>
-<span class="line">149</span>
-<span class="line">150</span>
-<span class="line">151</span>
-<span class="line">152</span>
-<span class="line">153</span>
-<span class="line">154</span>
-<span class="line">155</span>
-<span class="line">156</span>
-<span class="line">157</span>
-<span class="line">158</span>
-<span class="line">159</span>
-<span class="line">160</span>
-<span class="line">161</span>
-<span class="line">162</span>
-<span class="line">163</span>
-<span class="line">164</span>
-<span class="line">165</span>
-<span class="line">166</span>
-<span class="line">167</span>
-<span class="line">168</span>
-<span class="line">169</span>
-<span class="line">170</span>
-<span class="line">171</span>
-<span class="line">172</span>
-<span class="line">173</span>
-<span class="line">174</span>
-<span class="line">175</span>
-<span class="line">176</span>
-<span class="line">177</span>
-<span class="line">178</span>
-<span class="line">179</span>
-<span class="line">180</span>
-<span class="line">181</span>
-<span class="line">182</span>
-<span class="line">183</span>
-<span class="line">184</span>
-<span class="line">185</span>
-<span class="line">186</span>
-<span class="line">187</span>
-<span class="line">188</span>
-<span class="line">189</span>
-<span class="line">190</span>
-<span class="line">191</span>
-<span class="line">192</span>
-<span class="line">193</span>
-<span class="line">194</span>
-<span class="line">195</span>
-<span class="line">196</span>
-<span class="line">197</span>
-<span class="line">198</span>
-<span class="line">199</span>
-<span class="line">200</span>
-<span class="line">201</span>
-<span class="line">202</span>
-<span class="line">203</span>
-<span class="line">204</span>
-<span class="line">205</span>
-<span class="line">206</span>
-<span class="line">207</span>
-<span class="line">208</span>
-<span class="line">209</span>
-<span class="line">210</span>
-<span class="line">211</span>
-<span class="line">212</span>
-<span class="line">213</span>
-<span class="line">214</span>
-<span class="line">215</span>
-<span class="line">216</span>
-<span class="line">217</span>
-<span class="line">218</span>
-<span class="line">219</span>
-<span class="line">220</span>
-<span class="line">221</span>
-<span class="line">222</span>
-<span class="line">223</span>
-<span class="line">224</span>
-<span class="line">225</span>
-<span class="line">226</span>
-<span class="line">227</span>
-<span class="line">228</span>
-<span class="line">229</span>
-<span class="line">230</span>
-<span class="line">231</span>
-<span class="line">232</span>
-<span class="line">233</span>
-<span class="line">234</span>
-<span class="line">235</span>
-<span class="line">236</span>
-<span class="line">237</span>
-<span class="line">238</span>
-<span class="line">239</span>
-<span class="line">240</span>
-<span class="line">241</span>
-<span class="line">242</span>
-<span class="line">243</span>
-<span class="line">244</span>
-<span class="line">245</span>
-<span class="line">246</span>
-<span class="line">247</span>
-<span class="line">248</span>
-<span class="line">249</span>
-<span class="line">250</span>
-<span class="line">251</span>
-<span class="line">252</span>
-<span class="line">253</span>
-<span class="line">254</span>
-<span class="line">255</span>
-<span class="line">256</span>
-<span class="line">257</span>
-<span class="line">258</span>
-<span class="line">259</span>
-<span class="line">260</span>
-<span class="line">261</span>
-<span class="line">262</span>
-<span class="line">263</span>
-<span class="line">264</span>
-<span class="line">265</span>
-<span class="line">266</span>
-<span class="line">267</span>
-<span class="line">268</span>
-<span class="line">269</span>
-<span class="line">270</span>
-<span class="line">271</span>
-<span class="line">272</span>
-<span class="line">273</span>
-<span class="line">274</span>
-<span class="line">275</span>
-<span class="line">276</span>
-<span class="line">277</span>
-<span class="line">278</span>
-<span class="line">279</span>
-</pre></td><td class="code"><pre><span class="line">body&#123;</span>
-<span class="line">    background-color: #fff;</span>
-<span class="line">    margin: 0 auto;</span>
-<span class="line">    font-family: Georgia, Palatino, serif;</span>
-<span class="line">    color: #333333;</span>
-<span class="line">    line-height: 120%;</span>
-<span class="line">    max-width: 960px;</span>
-<span class="line">    padding: 30px;</span>
-<span class="line">    font-size: 12px;</span>
-<span class="line">&#125;</span>
-<span class="line">h1, h2, h3, h4 &#123;</span>
-<span class="line">    color: #111111;</span>
-<span class="line">    font-weight: 400;</span>
-<span class="line">&#125;</span>
-<span class="line">h1, h2, h3, h4, h5, p &#123;</span>
-<span class="line">    margin-bottom: 18px;</span>
-<span class="line">    padding: 0;</span>
-<span class="line">&#125;</span>
-<span class="line">h1 &#123;</span>
-<span class="line">    font-size: 36px;</span>
-<span class="line">&#125;</span>
-<span class="line">h2 &#123;</span>
-<span class="line">    font-size: 24px;</span>
-<span class="line">    margin: 18px 0 6px;</span>
-<span class="line">&#125;</span>
-<span class="line">h3 &#123;</span>
-<span class="line">    font-size: 20px;</span>
-<span class="line">&#125;</span>
-<span class="line">h4 &#123;</span>
-<span class="line">    font-size: 16px;</span>
-<span class="line">&#125;</span>
-<span class="line">h5 &#123;</span>
-<span class="line">    font-size: 14px;</span>
-<span class="line">&#125;</span>
-<span class="line">h6 &#123;</span>
-<span class="line">    font-size: 12px;</span>
-<span class="line">&#125;</span>
-<span class="line">a &#123;</span>
-<span class="line">    color: #0099ff;</span>
-<span class="line">    margin: 0;</span>
-<span class="line">    padding: 0;</span>
-<span class="line">    vertical-align: baseline;</span>
-<span class="line">&#125;</span>
-<span class="line">a:hover &#123;</span>
-<span class="line">    text-decoration: none;</span>
-<span class="line">    color: #ff6600;</span>
-<span class="line">&#125;</span>
-<span class="line">a:visited &#123;</span>
-<span class="line">    color: purple;</span>
-<span class="line">&#125;</span>
-<span class="line">ul, ol &#123;</span>
-<span class="line">    padding: 0;</span>
-<span class="line">    margin-left: 18px;</span>
-<span class="line">    margin-bottom: 18px;</span>
-<span class="line">&#125;</span>
-<span class="line">li &#123;</span>
-<span class="line">    line-height: 18px;</span>
-<span class="line">&#125;</span>
-<span class="line">li ul, li ul &#123;</span>
-<span class="line">    margin-left: 18px;</span>
-<span class="line">&#125;</span>
-<span class="line">p, ul, ol &#123;</span>
-<span class="line">    font-size: 12px;</span>
-<span class="line">    line-height: 1.5;</span>
-<span class="line">    max-width: 540px;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">blockquote &#123;</span>
-<span class="line">   padding: 12px 12px 12px 15px;</span>
-<span class="line">   margin-bottom: 16px;</span>
-<span class="line">   font-family:georgia,serif;</span>
-<span class="line">   font-style: italic;</span>
-<span class="line">   border-left: 2px solid #d9d9d9;</span>
-<span class="line">&#125;</span>
-<span class="line">blockquote p &#123;</span>
-<span class="line">   font-size: 12px;</span>
-<span class="line">   font-weight: 300;</span>
-<span class="line">   line-height: 1.2;</span>
-<span class="line">   margin-bottom: 0;</span>
-<span class="line">   font-style: italic;</span>
-<span class="line">&#125;</span>
-<span class="line">code, pre &#123;</span>
-<span class="line">   font-family: Monaco, Andale Mono, Courier New, monospace;</span>
-<span class="line">&#125;</span>
-<span class="line">code &#123;</span>
-<span class="line">   background-color: #fee9cc;</span>
-<span class="line">   color: #000000;</span>
-<span class="line">   padding: 1px 3px;</span>
-<span class="line">   font-size: 12px;</span>
-<span class="line">   border-radius: 3px;</span>
-<span class="line">&#125;</span>
-<span class="line">pre &#123;</span>
-<span class="line">   display: block;</span>
-<span class="line">   padding: 14px;</span>
-<span class="line">   margin: 0 0 18px;</span>
-<span class="line">   line-height: 16px;</span>
-<span class="line">   font-size: 11px;</span>
-<span class="line">   border: 1px solid #d9d9d9;</span>
-<span class="line">   white-space: pre-wrap;</span>
-<span class="line">   word-wrap: break-word;</span>
-<span class="line">&#125;</span>
-<span class="line">pre code &#123;</span>
-<span class="line">   background-color: #ffffff;</span>
-<span class="line">   color:#666666;</span>
-<span class="line">   font-size: 11px;</span>
-<span class="line">   padding: 0;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">aside &#123;</span>
-<span class="line">    display: block;</span>
-<span class="line">    float: right;</span>
-<span class="line">    width: 390px;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line">hr &#123;</span>
-<span class="line">    width: 540px;</span>
-<span class="line">    text-align: left;</span>
-<span class="line">    margin: 0 auto 0 0;</span>
-<span class="line">    color: #999999;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">/* Code below this line is copyright Twitter Inc. */</span>
-<span class="line"></span>
-<span class="line">button,</span>
-<span class="line">input,</span>
-<span class="line">select,</span>
-<span class="line">textarea &#123;</span>
-<span class="line">  font-size: 100%;</span>
-<span class="line">  margin: 0;</span>
-<span class="line">  vertical-align: baseline;</span>
-<span class="line">  *vertical-align: middle;</span>
-<span class="line">&#125;</span>
-<span class="line">button, input &#123;</span>
-<span class="line">  line-height: normal;</span>
-<span class="line">  *overflow: visible;</span>
-<span class="line">&#125;</span>
-<span class="line">button::-moz-focus-inner, input::-moz-focus-inner &#123;</span>
-<span class="line">  border: 0;</span>
-<span class="line">  padding: 0;</span>
-<span class="line">&#125;</span>
-<span class="line">button,</span>
-<span class="line">input[type="button"],</span>
-<span class="line">input[type="reset"],</span>
-<span class="line">input[type="submit"] &#123;</span>
-<span class="line">  cursor: pointer;</span>
-<span class="line">  -webkit-appearance: button;</span>
-<span class="line">&#125;</span>
-<span class="line">input[type=checkbox], input[type=radio] &#123;</span>
-<span class="line">  cursor: pointer;</span>
-<span class="line">&#125;</span>
-<span class="line">/* override default chrome &amp; firefox settings */</span>
-<span class="line">input:not([type="image"]), textarea &#123;</span>
-<span class="line">  -webkit-box-sizing: content-box;</span>
-<span class="line">  -moz-box-sizing: content-box;</span>
-<span class="line">  box-sizing: content-box;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">input[type="search"] &#123;</span>
-<span class="line">  -webkit-appearance: textfield;</span>
-<span class="line">  -webkit-box-sizing: content-box;</span>
-<span class="line">  -moz-box-sizing: content-box;</span>
-<span class="line">  box-sizing: content-box;</span>
-<span class="line">&#125;</span>
-<span class="line">input[type="search"]::-webkit-search-decoration &#123;</span>
-<span class="line">  -webkit-appearance: none;</span>
-<span class="line">&#125;</span>
-<span class="line">label,</span>
-<span class="line">input,</span>
-<span class="line">select,</span>
-<span class="line">textarea &#123;</span>
-<span class="line">  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;</span>
-<span class="line">  font-size: 13px;</span>
-<span class="line">  font-weight: normal;</span>
-<span class="line">  line-height: normal;</span>
-<span class="line">  margin-bottom: 18px;</span>
-<span class="line">&#125;</span>
-<span class="line">input[type=checkbox], input[type=radio] &#123;</span>
-<span class="line">  cursor: pointer;</span>
-<span class="line">  margin-bottom: 0;</span>
-<span class="line">&#125;</span>
-<span class="line">input[type=text],</span>
-<span class="line">input[type=password],</span>
-<span class="line">textarea,</span>
-<span class="line">select &#123;</span>
-<span class="line">  display: inline-block;</span>
-<span class="line">  width: 210px;</span>
-<span class="line">  padding: 4px;</span>
-<span class="line">  font-size: 13px;</span>
-<span class="line">  font-weight: normal;</span>
-<span class="line">  line-height: 18px;</span>
-<span class="line">  height: 18px;</span>
-<span class="line">  color: #808080;</span>
-<span class="line">  border: 1px solid #ccc;</span>
-<span class="line">  -webkit-border-radius: 3px;</span>
-<span class="line">  -moz-border-radius: 3px;</span>
-<span class="line">  border-radius: 3px;</span>
-<span class="line">&#125;</span>
-<span class="line">select, input[type=file] &#123;</span>
-<span class="line">  height: 27px;</span>
-<span class="line">  line-height: 27px;</span>
-<span class="line">&#125;</span>
-<span class="line">textarea &#123;</span>
-<span class="line">  height: auto;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">/* grey out placeholders */</span>
-<span class="line">:-moz-placeholder &#123;</span>
-<span class="line">  color: #bfbfbf;</span>
-<span class="line">&#125;</span>
-<span class="line">::-webkit-input-placeholder &#123;</span>
-<span class="line">  color: #bfbfbf;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">input[type=text],</span>
-<span class="line">input[type=password],</span>
-<span class="line">select,</span>
-<span class="line">textarea &#123;</span>
-<span class="line">  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;</span>
-<span class="line">  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;</span>
-<span class="line">  transition: border linear 0.2s, box-shadow linear 0.2s;</span>
-<span class="line">  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
-<span class="line">  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
-<span class="line">  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
-<span class="line">&#125;</span>
-<span class="line">input[type=text]:focus, input[type=password]:focus, textarea:focus &#123;</span>
-<span class="line">  outline: none;</span>
-<span class="line">  border-color: rgba(82, 168, 236, 0.8);</span>
-<span class="line">  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
-<span class="line">  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
-<span class="line">  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">/* buttons */</span>
-<span class="line">button &#123;</span>
-<span class="line">  display: inline-block;</span>
-<span class="line">  padding: 4px 14px;</span>
-<span class="line">  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;</span>
-<span class="line">  font-size: 13px;</span>
-<span class="line">  line-height: 18px;</span>
-<span class="line">  -webkit-border-radius: 4px;</span>
-<span class="line">  -moz-border-radius: 4px;</span>
-<span class="line">  border-radius: 4px;</span>
-<span class="line">  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  background-color: #0064cd;</span>
-<span class="line">  background-repeat: repeat-x;</span>
-<span class="line">  background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));</span>
-<span class="line">  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  background-image: -ms-linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));</span>
-<span class="line">  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  background-image: -o-linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  background-image: linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  color: #fff;</span>
-<span class="line">  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);</span>
-<span class="line">  border: 1px solid #004b9a;</span>
-<span class="line">  border-bottom-color: #003f81;</span>
-<span class="line">  -webkit-transition: 0.1s linear all;</span>
-<span class="line">  -moz-transition: 0.1s linear all;</span>
-<span class="line">  transition: 0.1s linear all;</span>
-<span class="line">  border-color: #0064cd #0064cd #003f81;</span>
-<span class="line">  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);</span>
-<span class="line">&#125;</span>
-<span class="line">button:hover &#123;</span>
-<span class="line">  color: #fff;</span>
-<span class="line">  background-position: 0 -15px;</span>
-<span class="line">  text-decoration: none;</span>
-<span class="line">&#125;</span>
-<span class="line">button:active &#123;</span>
-<span class="line">  -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">&#125;</span>
-<span class="line">button::-moz-focus-inner &#123;</span>
-<span class="line">  padding: 0;</span>
-<span class="line">  border: 0;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
+<p>就是右边方框里面的选项，取消 webstorm 默认的， 然后添加自己的 css，下面的css 是我找来的，还可以看：</p>
+<pre><code class="css">body{
+    background-color: #fff;
+    margin: 0 auto;
+    font-family: Georgia, Palatino, serif;
+    color: #333333;
+    line-height: 120%;
+    max-width: 960px;
+    padding: 30px;
+    font-size: 12px;
+}
+h1, h2, h3, h4 {
+    color: #111111;
+    font-weight: 400;
+}
+h1, h2, h3, h4, h5, p {
+    margin-bottom: 18px;
+    padding: 0;
+}
+h1 {
+    font-size: 36px;
+}
+h2 {
+    font-size: 24px;
+    margin: 18px 0 6px;
+}
+h3 {
+    font-size: 20px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 12px;
+}
+a {
+    color: #0099ff;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+a:hover {
+    text-decoration: none;
+    color: #ff6600;
+}
+a:visited {
+    color: purple;
+}
+ul, ol {
+    padding: 0;
+    margin-left: 18px;
+    margin-bottom: 18px;
+}
+li {
+    line-height: 18px;
+}
+li ul, li ul {
+    margin-left: 18px;
+}
+p, ul, ol {
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 540px;
+}
+
+blockquote {
+   padding: 12px 12px 12px 15px;
+   margin-bottom: 16px;
+   font-family:georgia,serif;
+   font-style: italic;
+   border-left: 2px solid #d9d9d9;
+}
+blockquote p {
+   font-size: 12px;
+   font-weight: 300;
+   line-height: 1.2;
+   margin-bottom: 0;
+   font-style: italic;
+}
+code, pre {
+   font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+   background-color: #fee9cc;
+   color: #000000;
+   padding: 1px 3px;
+   font-size: 12px;
+   border-radius: 3px;
+}
+pre {
+   display: block;
+   padding: 14px;
+   margin: 0 0 18px;
+   line-height: 16px;
+   font-size: 11px;
+   border: 1px solid #d9d9d9;
+   white-space: pre-wrap;
+   word-wrap: break-word;
+}
+pre code {
+   background-color: #ffffff;
+   color:#666666;
+   font-size: 11px;
+   padding: 0;
+}
+
+aside {
+    display: block;
+    float: right;
+    width: 390px;
+}
+
+
+hr {
+    width: 540px;
+    text-align: left;
+    margin: 0 auto 0 0;
+    color: #999999;
+}
+
+/* Code below this line is copyright Twitter Inc. */
+
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+button, input {
+  line-height: normal;
+  *overflow: visible;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+button,
+input[type=&quot;button&quot;],
+input[type=&quot;reset&quot;],
+input[type=&quot;submit&quot;] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+input[type=checkbox], input[type=radio] {
+  cursor: pointer;
+}
+/* override default chrome &amp; firefox settings */
+input:not([type=&quot;image&quot;]), textarea {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type=&quot;search&quot;] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type=&quot;search&quot;]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+label,
+input,
+select,
+textarea {
+  font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: normal;
+  margin-bottom: 18px;
+}
+input[type=checkbox], input[type=radio] {
+  cursor: pointer;
+  margin-bottom: 0;
+}
+input[type=text],
+input[type=password],
+textarea,
+select {
+  display: inline-block;
+  width: 210px;
+  padding: 4px;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  height: 18px;
+  color: #808080;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+select, input[type=file] {
+  height: 27px;
+  line-height: 27px;
+}
+textarea {
+  height: auto;
+}
+
+/* grey out placeholders */
+:-moz-placeholder {
+  color: #bfbfbf;
+}
+::-webkit-input-placeholder {
+  color: #bfbfbf;
+}
+
+input[type=text],
+input[type=password],
+select,
+textarea {
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+  outline: none;
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+/* buttons */
+button {
+  display: inline-block;
+  padding: 4px 14px;
+  font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #0064cd;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+  background-image: linear-gradient(top, #049cdb, #0064cd);
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid #004b9a;
+  border-bottom-color: #003f81;
+  -webkit-transition: 0.1s linear all;
+  -moz-transition: 0.1s linear all;
+  transition: 0.1s linear all;
+  border-color: #0064cd #0064cd #003f81;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+button:hover {
+  color: #fff;
+  background-position: 0 -15px;
+  text-decoration: none;
+}
+button:active {
+  -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+</code></pre>
 ]]></content>
     
     <summary type="html">
@@ -795,77 +452,46 @@
     <published>2016-12-21T01:33:38.000Z</published>
     <updated>2016-12-21T02:36:53.476Z</updated>
     
-    <content type="html"><![CDATA[<p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-</pre></td><td class="code"><pre><span class="line">@sortable</span>
-<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoHOCItem</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span>
-<span class="line"></span>
-<span class="line">  render() &#123;</span>
-<span class="line">    <span class="keyword">return</span> (</span>
-<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
-<span class="line">        &#123; this.props.children &#125;</span>
-<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
-<span class="line">    );</span>
-<span class="line">  &#125;</span>
-<span class="line">  </span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：</p>
+<pre><code class="jsx">@sortable
+class DemoHOCItem extends React.Component {
+
+  render() {
+    return (
+      &lt;div { ...this.props }&gt;
+        { this.props.children }
+      &lt;/div&gt;
+    );
+  }
+
+}
+</code></pre>
 <p>查了一下之后发现这是 es7 的新语法，叫 <a href="https://github.com/wycats/javascript-decorators" target="_blank" rel="external">Decorator</a>。</p>
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>如果要定义一个 Decorator 的话，不难，其实每一个 decorator 就是一个 function，有三个参数，像这样</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-</pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> log = <span class="function">(<span class="params">target, name, descriptor</span>) =&gt;</span> &#123;</span>
-<span class="line">  <span class="built_in">console</span>.log(target, name, descriptor);</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">const</span> method = descriptor.value;</span>
-<span class="line">  descriptor.value = <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span>
-<span class="line">    logger.info(<span class="string">`before function execute: <span class="subst">$&#123;name&#125;</span>(<span class="subst">$&#123;args&#125;</span>) = ?`</span>);</span>
-<span class="line">    <span class="keyword">return</span> method.apply(target, args);</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">let log = (target, name, descriptor) =&gt; {
+  console.log(target, name, descriptor);
+
+  const method = descriptor.value;
+  descriptor.value = (...args) =&gt; {
+    logger.info(`before function execute: ${name}(${args}) = ?`);
+    return method.apply(target, args);
+  }
+}
+</code></pre>
 <p>三个参数还是比较好理解的</p>
 <p>然后要用这个 decorator 的时候</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-</pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
-<span class="line"></span>
-<span class="line">  @log</span>
-<span class="line">  add(a, b) &#123;</span>
-<span class="line">    <span class="keyword">return</span> a + b;</span>
-<span class="line">  &#125;</span>
-<span class="line">   </span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="keyword">let</span> my = <span class="keyword">new</span> Example();</span>
-<span class="line">my.add(<span class="number">2</span>, <span class="number">3</span>);</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">class Example {
+
+  @log
+  add(a, b) {
+    return a + b;
+  }
+
+}
+
+let my = new Example();
+my.add(2, 3);
+</code></pre>
 <p>这好像跟 Java 的 Annotation 形式差不多。 但是功能却跟 Python 的 Decorator 一样。</p>
 <p>下面是运行时的输出</p>
 <p><img src="..//images/decorator-1.png" alt="正常"></p>
@@ -876,42 +502,34 @@
 <li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点再上一个例子中已经用过了。</li>
 </ol>
 <h2 id="用在-class-上面"><a href="#用在-class-上面" class="headerlink" title="用在 class 上面"></a>用在 class 上面</h2><p>因为我最开始见到 decorator 是看到</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line">@sortable</span>
-<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoHOCItem</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;<span class="comment">/*...*/</span>&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="jsx">@sortable
+class DemoHOCItem extends React.Component {/*...*/}
+</code></pre>
 <p>这时， decorator 是用在 class 上面的，当 decorator 用在 class 上面的时候只有第一个参数有值，比如</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-</pre></td><td class="code"><pre><span class="line">@log</span>
-<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
-<span class="line"></span>
-<span class="line">  @log</span>
-<span class="line">  add(a, b) &#123; <span class="keyword">return</span> a + b; &#125;</span>
-<span class="line">   </span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">@log
+class Example {
+
+  @log
+  add(a, b) { return a + b; }
+
+}
+</code></pre>
 <p>只会输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line"># 也就是 name, descriptor 都是 undefined</span>
-<span class="line">2016-12-21 10:28:26.617 function Example() &#123;</span>
-<span class="line">        _classCallCheck(this, Example);</span>
-<span class="line">    &#125; undefined undefined</span>
-</pre></td></tr></table></figure>]]></content>
+<pre><code class="shell"># 也就是 name, descriptor 都是 undefined
+2016-12-21 10:28:26.617 function Example() {
+        _classCallCheck(this, Example);
+    } undefined undefined
+</code></pre>
+]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：&lt;br&gt;&lt;figure class=&quot;highlight jsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
-&lt;span clas
+      &lt;p&gt;昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;jsx&quot;&gt;@sortable
+class DemoHOCItem extends React.Component {
+
+  render() {
+    return 
     
     </summary>
     
@@ -930,22 +548,22 @@
     <updated>2016-12-16T06:58:09.484Z</updated>
     
     <content type="html"><![CDATA[<p>今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line"># 设置密钥</span>
-<span class="line">slmgr /ipk DDCGG-9N3QJ-2B23T-C***V-XD72F</span>
-<span class="line"></span>
-<span class="line"># 检查是否已激活</span>
-<span class="line">slmgr.vbs -ato</span>
-</pre></td></tr></table></figure>]]></content>
+<pre><code class="shell"># 设置密钥
+slmgr /ipk DDCGG-9N3QJ-2B23T-C***V-XD72F
+
+# 检查是否已激活
+slmgr.vbs -ato
+</code></pre>
+]]></content>
     
     <summary type="html">
     
       &lt;p&gt;今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;
+&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;# 设置密钥
+slmgr /ipk DDCGG-9N3QJ-2B23T-C***V-XD72F
+
+# 检查是否已激活
+s
     
     </summary>
     
@@ -999,66 +617,42 @@
     <published>2016-11-22T01:49:57.000Z</published>
     <updated>2016-12-08T11:50:20.425Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="查看被谁占用"><a href="#查看被谁占用" class="headerlink" title="查看被谁占用"></a>查看被谁占用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-</pre></td><td class="code"><pre><span class="line">netstat -ano | findstr 8989</span>
-<span class="line">  </span>
-<span class="line"># C:\Users\Administrator&gt;netstat -ano | findstr 8989</span>
-<span class="line">#   TCP    0.0.0.0:8989           0.0.0.0:0              LISTENING       6360</span>
-<span class="line">#   TCP    [::]:8989              [::]:0                 LISTENING       6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53638            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53640            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53641            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53645            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53646            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53652            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53653            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53654            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:53638            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53640            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53641            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53645            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53646            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53652            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53653            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53654            [::1]:8989             ESTABLISHED     5440</span>
-</pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">tasklist | findstr 8989//查看pid为3036的是什么程序在用</span>
-</pre></td></tr></table></figure>
-<h2 id="杀死某进程"><a href="#杀死某进程" class="headerlink" title="杀死某进程"></a>杀死某进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line"># /T 包括子进程</span>
-<span class="line"># /F 强制</span>
-<span class="line">  </span>
-<span class="line">taskkill /T /F /PID 8989</span>
-</pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h2 id="查看被谁占用"><a href="#查看被谁占用" class="headerlink" title="查看被谁占用"></a>查看被谁占用</h2><pre><code class="shell">netstat -ano | findstr 8989
+
+# C:\Users\Administrator&gt;netstat -ano | findstr 8989
+#   TCP    0.0.0.0:8989           0.0.0.0:0              LISTENING       6360
+#   TCP    [::]:8989              [::]:0                 LISTENING       6360
+#   TCP    [::1]:8989             [::1]:53638            ESTABLISHED     6360
+#   TCP    [::1]:8989             [::1]:53640            ESTABLISHED     6360
+#   TCP    [::1]:8989             [::1]:53641            ESTABLISHED     6360
+#   TCP    [::1]:8989             [::1]:53645            ESTABLISHED     6360
+#   TCP    [::1]:8989             [::1]:53646            ESTABLISHED     6360
+#   TCP    [::1]:8989             [::1]:53652            ESTABLISHED     6360
+#   TCP    [::1]:8989             [::1]:53653            ESTABLISHED     6360
+#   TCP    [::1]:8989             [::1]:53654            ESTABLISHED     6360
+#   TCP    [::1]:53638            [::1]:8989             ESTABLISHED     5440
+#   TCP    [::1]:53640            [::1]:8989             ESTABLISHED     5440
+#   TCP    [::1]:53641            [::1]:8989             ESTABLISHED     5440
+#   TCP    [::1]:53645            [::1]:8989             ESTABLISHED     5440
+#   TCP    [::1]:53646            [::1]:8989             ESTABLISHED     5440
+#   TCP    [::1]:53652            [::1]:8989             ESTABLISHED     5440
+#   TCP    [::1]:53653            [::1]:8989             ESTABLISHED     5440
+#   TCP    [::1]:53654            [::1]:8989             ESTABLISHED     5440
+</code></pre>
+<pre><code class="shell">tasklist | findstr 8989//查看pid为3036的是什么程序在用
+</code></pre>
+<h2 id="杀死某进程"><a href="#杀死某进程" class="headerlink" title="杀死某进程"></a>杀死某进程</h2><pre><code class="shell"># /T 包括子进程
+# /F 强制
+
+taskkill /T /F /PID 8989
+</code></pre>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;查看被谁占用&quot;&gt;&lt;a href=&quot;#查看被谁占用&quot; class=&quot;headerlink&quot; title=&quot;查看被谁占用&quot;&gt;&lt;/a&gt;查看被谁占用&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut
+      &lt;h2 id=&quot;查看被谁占用&quot;&gt;&lt;a href=&quot;#查看被谁占用&quot; class=&quot;headerlink&quot; title=&quot;查看被谁占用&quot;&gt;&lt;/a&gt;查看被谁占用&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;netstat -ano | findstr 8989
+
+# C
     
     </summary>
     
@@ -1079,9 +673,8 @@
     <content type="html"><![CDATA[<blockquote>
 <p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p>
 </blockquote>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">arrayObject.splice(index, how-many, item1, item2, ...itemX)</span>
-</pre></td></tr></table></figure>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><pre><code class="js">  arrayObject.splice(index, how-many, item1, item2, ...itemX)
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -1104,21 +697,18 @@
 </tr>
 </tbody>
 </table>
-<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span>
-<span class="line">arrr.splice(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
-</pre></td></tr></table></figure></p>
-<p>删除第三个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span>
-<span class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></span>
-</pre></td></tr></table></figure></p>
-<p>删除后面两个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span>
-<span class="line">                  <span class="comment">// arrr: [0, 1]</span></span>
-</pre></td></tr></table></figure></p>
+<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p>
+<pre><code class="js">var arrr = [1,2,3,4];   // arrr: [1, 2, 3, 4]
+arrr.splice(0, 0, 0);   // arrr: [0, 1, 2, 3, 4]
+</code></pre>
+<p>删除第三个</p>
+<pre><code class="js">arrr.splice(3, 1) // return [3] 删除的元素会做为返回返回值
+                  // arrr: [0, 1, 2, 4]
+</code></pre>
+<p>删除后面两个</p>
+<pre><code class="js">arrr.splice(2, 2) // return [2， 4]
+                  // arrr: [0, 1]
+</code></pre>
 ]]></content>
     
     <summary type="html">
@@ -1487,27 +1077,17 @@
 </blockquote>
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><code>slice()</code> 方法可从已有的数组中返回选定的元素。这个函数有两个参数 <code>slice(start, end)</code> 会返回一个从 <code>start</code> 到 <code>end</code> 之前元素的新数组， 如果 <code>end</code> 是<code>负数</code>，就从数组末尾倒着数, 如果 end 没有设置，就返回从 start 到数组末尾组成的新数组咯~</p>
 <p>总之这是一个返回新数组的函数，知识返回而已，不会改变原来的数组，而 <code>splice</code> 方法则会改变原来的数组.</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-</pre></td><td class="code"><pre><span class="line">var arr = new Array(3)</span>
-<span class="line">arr[0] = &quot;George&quot;</span>
-<span class="line">arr[1] = &quot;John&quot;</span>
-<span class="line">arr[2] = &quot;Thomas&quot;</span>
-<span class="line">arr[3] = &quot;James&quot;</span>
-<span class="line">arr[4] = &quot;Adrew&quot;</span>
-<span class="line">arr[5] = &quot;Martin&quot;</span>
-<span class="line"></span>
-<span class="line">console.log(arr.slice(4)) // [&quot;Adrew&quot;, &quot;Martin&quot;] == arr.slice(4, 6)</span>
-<span class="line">console.log(arr.slice(0, -4)) // [&quot;George&quot;, &quot;John&quot;] == arr.slice(0, 2)</span>
-</pre></td></tr></table></figure>]]></content>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code>var arr = new Array(3)
+arr[0] = &quot;George&quot;
+arr[1] = &quot;John&quot;
+arr[2] = &quot;Thomas&quot;
+arr[3] = &quot;James&quot;
+arr[4] = &quot;Adrew&quot;
+arr[5] = &quot;Martin&quot;
+
+console.log(arr.slice(4)) // [&quot;Adrew&quot;, &quot;Martin&quot;] == arr.slice(4, 6)
+console.log(arr.slice(0, -4)) // [&quot;George&quot;, &quot;John&quot;] == arr.slice(0, 2)
+</code></pre>]]></content>
     
     <summary type="html">
     
@@ -1537,33 +1117,21 @@
 <p><img src="../images/scroll-1.png" alt="例子"></p>
 <p>比如上图, 当用力划一下屏幕, 下拉框滚到底了之后, <strong>body</strong> 随之也开始滚, 很讨厌。出现过好多次了, 而且测试逼我太紧~</p>
 <h2 id="我要解决这个问题啊"><a href="#我要解决这个问题啊" class="headerlink" title="我要解决这个问题啊"></a>我要解决这个问题啊</h2><p>其实很简单, 只要弹出下拉列表的时候让下层的元素不能滚动就好了。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.modal-open</span> &#123; </span>
-<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="css">.modal-open { 
+  overflow: hidden;
+}
+</code></pre>
 <p>js 的话就这么写:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">$div</span>) </span>&#123;</span>
-<span class="line">  $(<span class="string">'body'</span>).addClass(<span class="string">'modal-open'</span>);</span>
-<span class="line">  <span class="comment">// ...</span></span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params">$div</span>) </span>&#123;</span>
-<span class="line">  $(<span class="string">'body'</span>).removeClass(<span class="string">'modal-open'</span>);</span>
-<span class="line">  <span class="comment">// ...</span></span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">  function show($div) {
+    $(&#39;body&#39;).addClass(&#39;modal-open&#39;);
+    // ...
+  }
+
+  function hide($div) {
+    $(&#39;body&#39;).removeClass(&#39;modal-open&#39;);
+    // ...
+  }
+</code></pre>
 <p>以上。</p>
 ]]></content>
     
@@ -1587,134 +1155,76 @@
     
     <content type="html"><![CDATA[<p>一般是这样的…  比较水, 并没有怎么写过.</p>
 <p>我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-<span class="line">32</span>
-<span class="line">33</span>
-<span class="line">34</span>
-<span class="line">35</span>
-<span class="line">36</span>
-<span class="line">37</span>
-<span class="line">38</span>
-<span class="line">39</span>
-<span class="line">40</span>
-<span class="line">41</span>
-<span class="line">42</span>
-<span class="line">43</span>
-<span class="line">44</span>
-<span class="line">45</span>
-<span class="line">46</span>
-<span class="line">47</span>
-<span class="line">48</span>
-<span class="line">49</span>
-<span class="line">50</span>
-<span class="line">51</span>
-<span class="line">52</span>
-<span class="line">53</span>
-<span class="line">54</span>
-<span class="line">55</span>
-<span class="line">56</span>
-<span class="line">57</span>
-<span class="line">58</span>
-<span class="line">59</span>
-<span class="line">60</span>
-</pre></td><td class="code"><pre><span class="line"></span>
-<span class="line">+<span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>&#123;</span>
-<span class="line"><span class="meta">  'use strict'</span>;</span>
-<span class="line"></span>
-<span class="line">  <span class="comment">// BUTTON PUBLIC CLASS DEFINITION</span></span>
-<span class="line">  <span class="comment">// ==============================</span></span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">var</span> Button = <span class="function"><span class="keyword">function</span> (<span class="params">element, options</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">this</span>.$element  = $(element);</span>
-<span class="line">    <span class="keyword">this</span>.options   = $.extend(&#123;&#125;, Button.DEFAULTS, options);</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  Button.DEFAULTS = &#123;</span>
-<span class="line">    <span class="attr">loadingText</span>: <span class="string">'loading...'</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  Button.prototype.setState = <span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;&#125;;</span>
-<span class="line"></span>
-<span class="line">  Button.prototype.toggle = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line">  <span class="comment">// BUTTON PLUGIN DEFINITION</span></span>
-<span class="line">  <span class="comment">// ========================</span></span>
-<span class="line"></span>
-<span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Plugin</span>(<span class="params">option</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
-<span class="line">      <span class="keyword">var</span> $<span class="keyword">this</span>    = $(<span class="keyword">this</span>),</span>
-<span class="line">          lookup   = $.fn.button.lookup,</span>
-<span class="line">          instance = lookup[$<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>)];</span>
-<span class="line"></span>
-<span class="line">      <span class="keyword">if</span> (!instance) &#123;</span>
-<span class="line">        lookup[++lookup.i] = (instance = <span class="keyword">new</span> Button(<span class="keyword">this</span>, options));</span>
-<span class="line">        $<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>, lookup.i);</span>
-<span class="line">      &#125;</span>
-<span class="line"></span>
-<span class="line">      <span class="comment">// button method</span></span>
-<span class="line">      <span class="comment">// if (option == 'toggle') &#123;</span></span>
-<span class="line">      <span class="comment">//   data.toggle();</span></span>
-<span class="line">      <span class="comment">// &#125; else if (option) &#123;</span></span>
-<span class="line">      <span class="comment">//   data.setState(option);</span></span>
-<span class="line">      <span class="comment">// &#125;</span></span>
-<span class="line">    &#125;);</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">var</span> old = $.fn.button;</span>
-<span class="line"></span>
-<span class="line">  $.fn.button             = Plugin;</span>
-<span class="line">  $.fn.button.lookup      = &#123; <span class="attr">i</span>: <span class="number">0</span> &#125;;</span>
-<span class="line">  $.fn.button.Constructor = Button;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line">  <span class="comment">// BUTTON NO CONFLICT</span></span>
-<span class="line">  <span class="comment">// ==================</span></span>
-<span class="line"></span>
-<span class="line">  $.fn.button.noConflict = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
-<span class="line">    $.fn.button = old;</span>
-<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span>
-<span class="line">  &#125;;</span>
-<span class="line"></span>
-<span class="line">&#125; (Zepto);</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">
++function ($) {
+  &#39;use strict&#39;;
+
+  // BUTTON PUBLIC CLASS DEFINITION
+  // ==============================
+
+  var Button = function (element, options) {
+    this.$element  = $(element);
+    this.options   = $.extend({}, Button.DEFAULTS, options);
+  }
+
+  Button.DEFAULTS = {
+    loadingText: &#39;loading...&#39;;
+  }
+
+  Button.prototype.setState = function (state) {};
+
+  Button.prototype.toggle = function () {};
+
+
+  // BUTTON PLUGIN DEFINITION
+  // ========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this    = $(this),
+          lookup   = $.fn.button.lookup,
+          instance = lookup[$this.data(&#39;bs.button&#39;)];
+
+      if (!instance) {
+        lookup[++lookup.i] = (instance = new Button(this, options));
+        $this.data(&#39;bs.button&#39;, lookup.i);
+      }
+
+      // button method
+      // if (option == &#39;toggle&#39;) {
+      //   data.toggle();
+      // } else if (option) {
+      //   data.setState(option);
+      // }
+    });
+  }
+
+  var old = $.fn.button;
+
+  $.fn.button             = Plugin;
+  $.fn.button.lookup      = { i: 0 };
+  $.fn.button.Constructor = Button;
+
+
+  // BUTTON NO CONFLICT
+  // ==================
+
+  $.fn.button.noConflict = function () {
+    $.fn.button = old;
+    return this;
+  };
+
+} (Zepto);
+</code></pre>
 ]]></content>
     
     <summary type="html">
     
       &lt;p&gt;一般是这样的…  比较水, 并没有怎么写过.&lt;/p&gt;
 &lt;p&gt;我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。&lt;/p&gt;
-&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;
++function ($) {
+  &amp;#3
     
     </summary>
     
@@ -1738,129 +1248,75 @@
 <h3 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h3><blockquote>
 <p>The FormData interface provides a way to easily construct a set of <code>key/value</code> pairs representing form fields and their values, which can then be easily sent using the <code>XMLHttpRequest.send()</code> method. It uses the same format a form would use if the encoding type were set to “multipart/form-data”.</p>
 </blockquote>
-<p>如果使用 jQuery 提交 formData 的话，大致像这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-</pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span>
-<span class="line">  <span class="attr">url</span>        : url,</span>
-<span class="line">  <span class="attr">type</span>       : <span class="string">'POST'</span>,</span>
-<span class="line">  <span class="attr">data</span>       : formData,</span>
-<span class="line">  <span class="comment">// 下面这两条需要特别注意</span></span>
-<span class="line">  processData: <span class="literal">false</span>,</span>
-<span class="line">  <span class="attr">contentType</span>: <span class="literal">false</span>,</span>
-<span class="line">  success(data) &#123;</span>
-<span class="line">    <span class="comment">// ...</span></span>
-<span class="line">  &#125;,</span>
-<span class="line">  error(xhr) &#123;</span>
-<span class="line">    <span class="comment">// ...</span></span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure></p>
-<p>就是把 formData 作为 data 发送到后台就好了，如果要构造一个 formData 对象的话，也很简单呢<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"></span>
-<span class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData();</span>
-<span class="line">formData.append(<span class="string">'ticket_id'</span>, <span class="number">1</span>);</span>
-</pre></td></tr></table></figure></p>
-<p>如果放文件在 formData 里面的话呢，也没有太复杂的地方：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// html</span></span>
-<span class="line"><span class="comment">// &lt;input</span></span>
-<span class="line"><span class="comment">//   ref="input-image"</span></span>
-<span class="line"><span class="comment">//   accept="image/*"</span></span>
-<span class="line"><span class="comment">//   onChange=&#123; this.onImageSelected &#125;</span></span>
-<span class="line"><span class="comment">//   type="file"</span></span>
-<span class="line"><span class="comment">// /&gt;</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// ....</span></span>
-<span class="line">isImage: <span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</span>
-<span class="line">  <span class="comment">// (!src.type.match(/image.*/)</span></span>
-<span class="line">  <span class="keyword">var</span> type = <span class="string">'|'</span> + file.type.slice(file.type.lastIndexOf(<span class="string">'/'</span>) + <span class="number">1</span>) + <span class="string">'|'</span>;</span>
-<span class="line">  <span class="keyword">return</span> <span class="string">'|jpg|png|jpeg|bmp|gif|'</span>.indexOf(type) !== <span class="number">-1</span>;</span>
-<span class="line">&#125;,</span>
-<span class="line"></span>
-<span class="line">onImageSelected(e) &#123;</span>
-<span class="line">  <span class="keyword">var</span> file = e.target.files[<span class="number">0</span>];</span>
-<span class="line">  <span class="built_in">console</span>.log(<span class="string">'select image'</span>, file);</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.isImage(file)) &#123;</span>
-<span class="line">    Modal.error(&#123; <span class="attr">title</span>: <span class="string">'请选择一张图片'</span> &#125;);</span>
-<span class="line">    <span class="keyword">return</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">this</span>.props.onImageSelected(file);</span>
-<span class="line">&#125;</span>
-<span class="line"><span class="comment">// ...</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 放多个也可以~</span></span>
-<span class="line">formData.append(<span class="string">'file1'</span>, file1)</span>
-<span class="line">formData.append(<span class="string">'file2'</span>, file2)</span>
-</pre></td></tr></table></figure></p>
-<p>对了，因为我把上传文件的 input 隐藏掉了，显示出来了是一个 加号 的图标，所以如果要触发 input 的点击事件的话：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line">onItemClick() &#123;</span>
-<span class="line">  <span class="keyword">const</span> input = findDOMNode(<span class="keyword">this</span>.refs[<span class="string">'input-image'</span>]);</span>
-<span class="line">  input.click();</span>
-<span class="line">&#125;,</span>
-</pre></td></tr></table></figure></p>
-<h3 id="生成-formData"><a href="#生成-formData" class="headerlink" title="生成 formData"></a>生成 formData</h3><p>一个一个的 append 可能速度太慢了，而且需要每个都写一遍，其实生成的 formData 的方式还是蛮多的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span>
-<span class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</span>
-<span class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData(form);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 2</span></span>
-<span class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</span>
-<span class="line"><span class="keyword">var</span> formdata = form.getFormData();</span>
-</pre></td></tr></table></figure></p>
+<p>如果使用 jQuery 提交 formData 的话，大致像这样：</p>
+<pre><code class="js">$.ajax({
+  url        : url,
+  type       : &#39;POST&#39;,
+  data       : formData,
+  // 下面这两条需要特别注意
+  processData: false,
+  contentType: false,
+  success(data) {
+    // ...
+  },
+  error(xhr) {
+    // ...
+  }
+});
+</code></pre>
+<p>就是把 formData 作为 data 发送到后台就好了，如果要构造一个 formData 对象的话，也很简单呢</p>
+<pre><code class="js">
+var formdata = new FormData();
+formData.append(&#39;ticket_id&#39;, 1);
+</code></pre>
+<p>如果放文件在 formData 里面的话呢，也没有太复杂的地方：</p>
+<pre><code class="js">// html
+// &lt;input
+//   ref=&quot;input-image&quot;
+//   accept=&quot;image/*&quot;
+//   onChange={ this.onImageSelected }
+//   type=&quot;file&quot;
+// /&gt;
+
+// ....
+isImage: function (file) {
+  // (!src.type.match(/image.*/)
+  var type = &#39;|&#39; + file.type.slice(file.type.lastIndexOf(&#39;/&#39;) + 1) + &#39;|&#39;;
+  return &#39;|jpg|png|jpeg|bmp|gif|&#39;.indexOf(type) !== -1;
+},
+
+onImageSelected(e) {
+  var file = e.target.files[0];
+  console.log(&#39;select image&#39;, file);
+
+  if (!this.isImage(file)) {
+    Modal.error({ title: &#39;请选择一张图片&#39; });
+    return;
+  }
+
+  this.props.onImageSelected(file);
+}
+// ...
+
+// 放多个也可以~
+formData.append(&#39;file1&#39;, file1)
+formData.append(&#39;file2&#39;, file2)
+</code></pre>
+<p>对了，因为我把上传文件的 input 隐藏掉了，显示出来了是一个 加号 的图标，所以如果要触发 input 的点击事件的话：</p>
+<pre><code class="js">onItemClick() {
+  const input = findDOMNode(this.refs[&#39;input-image&#39;]);
+  input.click();
+},
+</code></pre>
+<h3 id="生成-formData"><a href="#生成-formData" class="headerlink" title="生成 formData"></a>生成 formData</h3><p>一个一个的 append 可能速度太慢了，而且需要每个都写一遍，其实生成的 formData 的方式还是蛮多的：</p>
+<pre><code class="js">// 1
+var form =  document.getElementById(&quot;form&quot;);
+var formdata = new FormData(form);
+
+// 2
+var form =  document.getElementById(&quot;form&quot;);
+var formdata = form.getFormData();
+</code></pre>
 <p>好了，没了。</p>
 ]]></content>
     
@@ -1899,53 +1355,34 @@
 <p>我把她叫做小精灵。</p>
 <hr>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>实现这个其实不难，当鼠标移动到某一个菜单上面时，小精灵滑入（至于方向，如果鼠标从右边进入菜单，那就从右向左滑），然后当鼠标移出时，小精灵跟着也移出菜单， 同时如果鼠标恰好移进了另一个菜单，下一个菜单的进入动画也开始播放，连续起来的话就像是小精灵跟着过来了。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>菜单的话当然是用 ul 来实现了<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav"</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>我的<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>导航栏<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>非常<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛逼<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>
-</pre></td></tr></table></figure></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>菜单的话当然是用 ul 来实现了</p>
+<pre><code class="html">&lt;ul class=&quot;nav&quot;&gt;
+  &lt;li&gt;我的&lt;/li&gt;
+  &lt;li&gt;导航栏&lt;/li&gt;
+  &lt;li&gt;非常&lt;/li&gt;
+  &lt;li&gt;牛逼&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
 <h3 id="小精灵"><a href="#小精灵" class="headerlink" title="小精灵"></a>小精灵</h3><p>这个小精灵该怎么实现呢, 开始时我打算用 <code>border</code> 来实现，试了一下之后才发现，并不理想，因为当鼠标 hover 时，border 变化，内容也会随着动，很丑。</p>
 <p>于是我就想用 <code>after</code> 这个伪元素来实现，因为之前并没用过，感觉蛮新鲜的。</p>
 <p>使用 <code>after</code> 最重要的地方也是前提，就是 <code>content: &#39;&#39;</code>，如果没有这一句，不管怎么修饰 <code>after</code> 的样式，都是徒劳。</p>
-<p>写完之后的样子大概是这样<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-</pre></td><td class="code"><pre><span class="line">&gt; <span class="selector-tag">li</span> &#123;</span>
-<span class="line">  <span class="attribute">float</span>:left;</span>
-<span class="line">  <span class="attribute">display</span>: inline-block;</span>
-<span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">20px</span>;</span>
-<span class="line">  <span class="attribute">cursor</span>: pointer;</span>
-<span class="line">  <span class="attribute">position</span>: relative;</span>
-<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
-<span class="line"></span>
-<span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:after</span> &#123;</span>
-<span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span>
-<span class="line">    <span class="attribute">height</span>: <span class="number">3px</span>;</span>
-<span class="line">    <span class="attribute">position</span>: absolute;</span>
-<span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
+<p>写完之后的样子大概是这样</p>
+<pre><code class="less">  &gt; li {
+    float:left;
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    &amp;:after {
+      content: &#39;&#39;;
+      height: 3px;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+</code></pre>
 <h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><p>根据上面的原理，如果想实现的话，大概只需要写四个动画</p>
 <ul>
 <li>小精灵从右向左进入菜单</li>
@@ -1954,102 +1391,56 @@
 <li>小精灵从左向右移出菜单</li>
 </ul>
 <p>我打算使用 <code>width</code> 的变化来模拟小精灵的滑动效果，假如是从左向右， css 就像下面这样：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-</pre></td><td class="code"><pre><span class="line">@keyframes slide-in &#123;</span>
-<span class="line">  from &#123; width: 0; &#125;</span>
-<span class="line">  to &#123; width: 100%; &#125;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">.slide-in-from-left:after,</span>
-<span class="line">.slide-out-from-left:after &#123;</span>
-<span class="line">  left: 0; // 初始位置在左边，宽度为 0，宽度逐渐变大</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">.slide-in-from-left:after,</span>
-<span class="line">.slide-in-from-right:after &#123;</span>
-<span class="line">  animation-name: slide-in;</span>
-<span class="line">  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="css">@keyframes slide-in {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.slide-in-from-left:after,
+.slide-out-from-left:after {
+  left: 0; // 初始位置在左边，宽度为 0，宽度逐渐变大
+}
+
+.slide-in-from-left:after,
+.slide-in-from-right:after {
+  animation-name: slide-in;
+  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+</code></pre>
 <h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><p>css 写完了，不过我要识别鼠标进入或离开的方向，也就是要判断鼠标是从左边进入还是从右边进入，是从左边移出还是从右边移出。</p>
 <p>于是， 要写一些 js 来判断</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-</pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">var</span> classList = [</span>
-<span class="line">        <span class="string">'slide-in-from-left'</span>,</span>
-<span class="line">        <span class="string">'slide-in-from-right'</span>,</span>
-<span class="line">        <span class="string">'slide-out-from-right'</span>,</span>
-<span class="line">        <span class="string">'slide-out-from-left'</span></span>
-<span class="line">      ].join(<span class="string">' '</span>);</span>
-<span class="line"></span>
-<span class="line">  $(<span class="string">'ul.nav'</span>)</span>
-<span class="line">    .on(<span class="string">'mouseenter'</span>, <span class="string">'li'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span>
-<span class="line">      <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</span>
-<span class="line">      <span class="keyword">var</span> width = $<span class="keyword">this</span>.outerWidth();</span>
-<span class="line">      <span class="keyword">var</span> xx = e.offsetX;</span>
-<span class="line">      <span class="keyword">var</span> className = (xx &lt; (width / <span class="number">2</span>))</span>
-<span class="line">                    ? <span class="string">'slide-in-from-left'</span></span>
-<span class="line">                    : <span class="string">'slide-in-from-right'</span>;</span>
-<span class="line"></span>
-<span class="line">      $<span class="keyword">this</span>.removeClass(classList).addClass(className);      </span>
-<span class="line">    &#125;)</span>
-<span class="line">    .on(<span class="string">'mouseleave'</span>, <span class="string">'li'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span>
-<span class="line">      <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</span>
-<span class="line">      <span class="keyword">var</span> width = $<span class="keyword">this</span>.outerWidth();</span>
-<span class="line">      <span class="keyword">var</span> xx = e.offsetX;</span>
-<span class="line">      <span class="keyword">var</span> className = (xx &lt; (width / <span class="number">2</span>))</span>
-<span class="line">                    ? <span class="string">'slide-out-from-left'</span></span>
-<span class="line">                    : <span class="string">'slide-out-from-right'</span>;</span>
-<span class="line">      $<span class="keyword">this</span>.removeClass(classList).addClass(className);</span>
-<span class="line">    &#125;);</span>
-<span class="line"></span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
+<pre><code class="js">$(function() {
+
+  var classList = [
+        &#39;slide-in-from-left&#39;,
+        &#39;slide-in-from-right&#39;,
+        &#39;slide-out-from-right&#39;,
+        &#39;slide-out-from-left&#39;
+      ].join(&#39; &#39;);
+
+  $(&#39;ul.nav&#39;)
+    .on(&#39;mouseenter&#39;, &#39;li&#39;, function(e) {
+      var $this = $(this);
+      var width = $this.outerWidth();
+      var xx = e.offsetX;
+      var className = (xx &lt; (width / 2))
+                    ? &#39;slide-in-from-left&#39;
+                    : &#39;slide-in-from-right&#39;;
+
+      $this.removeClass(classList).addClass(className);      
+    })
+    .on(&#39;mouseleave&#39;, &#39;li&#39;, function(e) {
+      var $this = $(this);
+      var width = $this.outerWidth();
+      var xx = e.offsetX;
+      var className = (xx &lt; (width / 2))
+                    ? &#39;slide-out-from-left&#39;
+                    : &#39;slide-out-from-right&#39;;
+      $this.removeClass(classList).addClass(className);
+    });
+
+});
+</code></pre>
 <p>这样就写完了，再把开头的例子放上吧。</p>
 <p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
@@ -2080,70 +1471,44 @@
     <published>2016-03-03T09:45:24.000Z</published>
     <updated>2016-11-22T01:40:09.735Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h1><p>基本写法是一个开始状态和一个结束状态：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-</pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> demo-anim &#123;</span>
-<span class="line">  <span class="selector-tag">from</span> &#123;</span>
-<span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line">  <span class="selector-tag">to</span> &#123;</span>
-<span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<h1 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h1><p>基本写法是一个开始状态和一个结束状态：</p>
+<pre><code class="css">@keyframes demo-anim {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+</code></pre>
 <p></p><p data-height="268" data-theme-id="0" data-slug-hash="QNbBOy" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/QNbBOy/" target="_blank" rel="external">QNbBOy</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 <blockquote>
 <p>其中 <code>animation-iteration-count: number or infinite;</code> 可以设置循环次数，infinite为无限次</p>
 </blockquote>
-<p>还可以定义的很详细：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-</pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> demo-anim &#123;</span>
-<span class="line">  <span class="selector-tag">from</span> &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(0, 0);</span>
-<span class="line">  &#125;</span>
-<span class="line">  20% &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(20, 20);</span>
-<span class="line">  &#125;</span>
-<span class="line">  40% &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(40, 0);</span>
-<span class="line">  &#125;</span>
-<span class="line">  60% &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(60, 20);</span>
-<span class="line">  &#125;</span>
-<span class="line">  80% &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(80, 0);</span>
-<span class="line">  &#125;</span>
-<span class="line">  <span class="selector-tag">to</span> &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(100, 20);</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
+<p>还可以定义的很详细：</p>
+<pre><code class="css">@keyframes demo-anim {
+  from {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(20, 20);
+  }
+  40% {
+    transform: translate(40, 0);
+  }
+  60% {
+    transform: translate(60, 20);
+  }
+  80% {
+    transform: translate(80, 0);
+  }
+  to {
+    transform: translate(100, 20);
+  }
+}
+</code></pre>
 <h1 id="animation-fill-mode"><a href="#animation-fill-mode" class="headerlink" title="animation-fill-mode"></a>animation-fill-mode</h1><blockquote>
 <p>animation-fill-mode : none | forwards | backwards | both;</p>
 </blockquote>
@@ -2178,106 +1543,60 @@
 </blockquote>
 <h1 id="Queue-in-List"><a href="#Queue-in-List" class="headerlink" title="Queue-in List"></a>Queue-in List</h1><p>我要写的效果是一个列表，当列表显示时，其子项逐个出现，从右向左滑入，透明度也由浅变深。</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先写一个使 li 从左向右滑入的效果，然后再给需要稍晚滑入的 li 加上 <code>animation-delay</code> 就好了。</p>
-<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义 li 样式 */</span></span>
-<span class="line"><span class="selector-tag">li</span> &#123;</span>
-<span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span>
-<span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span>
-<span class="line">  <span class="attribute">margin-top</span>: <span class="number">2px</span>;</span>
-<span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>; <span class="comment">/* 默认是隐藏的 */</span></span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="comment">/* 定义动画 */</span></span>
-<span class="line">@<span class="keyword">keyframes</span> queue-in &#123;</span>
-<span class="line">  <span class="selector-tag">from</span> &#123;</span>
-<span class="line">    <span class="comment">/* 开始时 在左边 */</span></span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(40px);</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  <span class="selector-tag">to</span> &#123;</span>
-<span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0);</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="comment">/* 调用动画 */</span></span>
-<span class="line"><span class="selector-class">.list-queue-in</span> &gt; <span class="selector-tag">li</span> &#123;</span>
-<span class="line">  <span class="attribute">animation-name</span>: queue-in;</span>
-<span class="line">  <span class="attribute">animation-duration</span>: .<span class="number">3s</span>;</span>
-<span class="line">  <span class="comment">/* 这一行就表示动画结束时元素的状态就是动画的最后一帧 */</span></span>
-<span class="line">  <span class="attribute">animation-fill-mode</span>: forwards;</span>
-<span class="line">  <span class="attribute">animation-timing-function</span>: ease-in;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><pre><code class="css">/* 定义 li 样式 */
+li {
+  width: 200px;
+  height: 30px;
+  background-color: #ccc;
+  margin-top: 2px;
+  opacity: 0; /* 默认是隐藏的 */
+}
+
+/* 定义动画 */
+@keyframes queue-in {
+  from {
+    /* 开始时 在左边 */
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 调用动画 */
+.list-queue-in &gt; li {
+  animation-name: queue-in;
+  animation-duration: .3s;
+  /* 这一行就表示动画结束时元素的状态就是动画的最后一帧 */
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+</code></pre>
 <h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>这是 进入状态时的 html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-queue-in"</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-0"</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-1"</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-2"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-3"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-4"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>
-</pre></td></tr></table></figure>
+<pre><code class="html">&lt;ul class=&quot;list-queue-in&quot;&gt;
+  &lt;li class=&quot;list-ad-0&quot; key=&quot;0&quot;&gt;1&lt;/li&gt;
+  &lt;li class=&quot;list-ad-1&quot; key=&quot;1&quot;&gt;2&lt;/li&gt;
+  &lt;li class=&quot;list-ad-2&quot; key=&quot;2&quot;&gt;3&lt;/li&gt;
+  &lt;li class=&quot;list-ad-3&quot; key=&quot;2&quot;&gt;4&lt;/li&gt;
+  &lt;li class=&quot;list-ad-4&quot; key=&quot;2&quot;&gt;5&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
 <blockquote>
 <p>这样的话，li 已经可以从右向左滑入了，但是，是在一起滑入的，我需要他们分开~</p>
 </blockquote>
 <h2 id="animation-delay"><a href="#animation-delay" class="headerlink" title="animation-delay"></a>animation-delay</h2><p><code>list-ad-0</code> 这个东西就是提前定义好的 <code>animation-delay</code>，比如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.list-ad-0</span> &#123;</span>
-<span class="line">  <span class="attribute">-webkit-animation-delay</span>: <span class="number">0s</span>;</span>
-<span class="line">          <span class="attribute">animation-delay</span>: <span class="number">0s</span>;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="selector-class">.list-ad-1</span> &#123;</span>
-<span class="line">  <span class="attribute">-webkit-animation-delay</span>: <span class="number">0.1s</span>;</span>
-<span class="line">          <span class="attribute">animation-delay</span>: <span class="number">0.1s</span>;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="css">.list-ad-0 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+.list-ad-1 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+</code></pre>
 <p>然后，他们就可以一个接一个的滑了~</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>所有的代码都在这里，就是这样的效果：</p>
 <p></p><p data-height="268" data-theme-id="0" data-slug-hash="zqYgxb" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/zqYgxb/" target="_blank" rel="external">zqYgxb</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
@@ -2286,7 +1605,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;keyframes&quot;&gt;&lt;a href=&quot;#keyframes&quot; class=&quot;headerlink&quot; title=&quot;@keyframes&quot;&gt;&lt;/a&gt;@keyframes&lt;/h1&gt;&lt;p&gt;基本写法是一个开始状态和一个结束状态：&lt;br&gt;&lt;figure class=&quot;hi
+      &lt;h1 id=&quot;keyframes&quot;&gt;&lt;a href=&quot;#keyframes&quot; class=&quot;headerlink&quot; title=&quot;@keyframes&quot;&gt;&lt;/a&gt;@keyframes&lt;/h1&gt;&lt;p&gt;基本写法是一个开始状态和一个结束状态：&lt;/p&gt;
+&lt;pre&gt;&lt;code class
     
     </summary>
     
@@ -2352,30 +1672,21 @@
     
     <content type="html"><![CDATA[<p>最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图<br><img src="../images/li-queue-in.png" alt=""></p>
 <p>做这个效果用到了 css 的 animation 中 <code>animation-delay</code>，给 li 设置入场动画后，再给 li 设置 <code>animation-delay</code>，像这样：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.li-animation-delay-1</span> &#123;</span>
-<span class="line">  <span class="attribute">animation-delay</span>: <span class="number">0.1s</span>;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
+<pre><code class="css">.li-animation-delay-1 {
+  animation-delay: 0.1s;
+}
+</code></pre>
 <p>并且每一个 li 的 animation-delay 都比前一个 li 的长 .1s，也就达到了后面的 li 的入场动画后播放的效果。</p>
 <p>因为 li 的数量也不确定，所以我打算批量生成一些 <code>li-animation-delay-*</code>, 查了一下 scss 正好有 for 的用法：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> <span class="variable">$index</span> from 0 to 10 &#123;</span>
-<span class="line">  <span class="selector-class">.list-ad-</span>#&#123;<span class="variable">$index</span>&#125; &#123;</span>
-<span class="line">    <span class="attribute">animation-delay</span>: <span class="variable">$index</span> * <span class="number">0.1</span>#&#123;s&#125;;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<p>其中，<code>#{***}</code> 的作用的把字符串原封不动的输出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">#&#123;s&#125; --&gt; s</span>
-</pre></td></tr></table></figure></p>
-]]></content>
+<pre><code class="scss">@for $index from 0 to 10 {
+  .list-ad-#{$index} {
+    animation-delay: $index * 0.1#{s};
+  }
+}
+</code></pre>
+<p>其中，<code>#{***}</code> 的作用的把字符串原封不动的输出。</p>
+<pre><code>#{s} --&gt; s
+</code></pre>]]></content>
     
     <summary type="html">
     
@@ -2401,21 +1712,15 @@
     <updated>2016-11-22T01:40:09.766Z</updated>
     
     <content type="html"><![CDATA[<h3 id="电话好不不想被识别"><a href="#电话好不不想被识别" class="headerlink" title="电话好不不想被识别"></a>电话好不不想被识别</h3><p>在网页中的比较长的数字会被微信浏览器自动识别为电话号码，稍不注意可能就使页面变得很难看，与是，在 header 里面加上下面两个 meta 就电话号码就不会被识别了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span>/&gt;</span></span>
-<span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-rim-auto-match"</span> <span class="attr">content</span>=<span class="string">"none"</span>&gt;</span></span>
-</pre></td></tr></table></figure>
+<pre><code class="html">&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;/&gt;
+&lt;meta http-equiv=&quot;x-rim-auto-match&quot; content=&quot;none&quot;&gt;
+</code></pre>
 <h3 id="如果要识别呢？"><a href="#如果要识别呢？" class="headerlink" title="如果要识别呢？"></a>如果要识别呢？</h3><p>加一个 <code>tel//***</code> 就可以了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"telephone"</span>&gt;</span></span>
-<span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>苹果妹妹专线<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>
-<span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel://4000630086"</span>&gt;</span>400-063-0086<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>
-<span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>
-</pre></td></tr></table></figure>
+<pre><code class="html">&lt;div class=&quot;telephone&quot;&gt;
+    &lt;p&gt;苹果妹妹专线&lt;/p&gt;
+    &lt;a href=&quot;tel://4000630086&quot;&gt;400-063-0086&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
 ]]></content>
     
     <summary type="html">
@@ -2438,37 +1743,29 @@
     <published>2016-02-25T10:38:07.000Z</published>
     <updated>2016-12-08T11:50:26.299Z</updated>
     
-    <content type="html"><![CDATA[<p>最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-</pre></td><td class="code"><pre><span class="line">0 errors found</span>
-<span class="line">February 25, 2016 - 18:25:21</span>
-<span class="line">Django version 1.6.7, using settings <span class="string">'green.settings'</span></span>
-<span class="line">Starting development server at http://0.0.0.0:8000/</span>
-<span class="line">Quit the server with CONTROL-C.</span>
-<span class="line">Error: That port is already <span class="keyword">in</span> use.</span>
-</pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">ps aux | grep python</span>
-</pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line">(kkh)➜  green git:(feature/shopping_mall_womens_day) ✗ ps aux | grep python</span>
-<span class="line">Oliver          23232   0.0  0.0  2434840    752 s002  S+    5:25下午   0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn python</span>
-<span class="line">Oliver          23103   0.0  0.8  2550628  66364 s002  S     5:23下午   0:02.23 /Users/Oliver/dev/kkh/bin/python manage.py runserver 0.0.0.0:8000</span>
-</pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> 23103</span>
-</pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<p>最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样</p>
+<pre><code class="bash">0 errors found
+February 25, 2016 - 18:25:21
+Django version 1.6.7, using settings &#39;green.settings&#39;
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Error: That port is already in use.
+</code></pre>
+<pre><code>ps aux | grep python
+</code></pre><pre><code class="shell">(kkh)➜  green git:(feature/shopping_mall_womens_day) ✗ ps aux | grep python
+Oliver          23232   0.0  0.0  2434840    752 s002  S+    5:25下午   0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn python
+Oliver          23103   0.0  0.8  2550628  66364 s002  S     5:23下午   0:02.23 /Users/Oliver/dev/kkh/bin/python manage.py runserver 0.0.0.0:8000
+</code></pre>
+<pre><code class="bash">kill 23103
+</code></pre>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line
+      &lt;p&gt;最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;0 errors found
+February 25, 2016 - 18:25:21
+Django version
     
     </summary>
     
@@ -2697,152 +1994,88 @@
     <published>2015-12-02T03:10:44.000Z</published>
     <updated>2016-11-22T01:40:09.766Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-</pre></td><td class="code"><pre><span class="line">&#123;</span>
-<span class="line">    <span class="attr">"meta"</span>: &#123;</span>
-<span class="line">        <span class="attr">"has_next_msg"</span>: <span class="literal">false</span></span>
-<span class="line">    &#125;,</span>
-<span class="line">    <span class="attr">"objects"</span>: [</span>
-<span class="line">        &#123;</span>
-<span class="line">            <span class="attr">"text"</span>: <span class="string">"111"</span>,</span>
-<span class="line">            <span class="attr">"from_user_type"</span>: <span class="string">"PAT"</span>,</span>
-<span class="line">            <span class="attr">"pic"</span>: <span class="string">""</span>,</span>
-<span class="line">            <span class="attr">"ts"</span>: <span class="number">1419939065</span></span>
-<span class="line">        &#125;</span>
-<span class="line">    ]</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：</p>
+<pre><code class="json">{
+    &quot;meta&quot;: {
+        &quot;has_next_msg&quot;: false
+    },
+    &quot;objects&quot;: [
+        {
+            &quot;text&quot;: &quot;111&quot;,
+            &quot;from_user_type&quot;: &quot;PAT&quot;,
+            &quot;pic&quot;: &quot;&quot;,
+            &quot;ts&quot;: 1419939065
+        }
+    ]
+}
+</code></pre>
 <p><code>ts</code> 那个属性我不太熟悉，不过我觉得应该是 timestamp 的意思吧。后来才知道，<code>ts</code> 就是该条消息的发送时间戳（timestamp），显示这条信息的时候应该显示为日期。</p>
 <h2 id="把-Date-转化为-Timestamp"><a href="#把-Date-转化为-Timestamp" class="headerlink" title="把 Date 转化为 Timestamp"></a>把 Date 转化为 Timestamp</h2><p>我们都知道，在 js 里面把 date 转化为 timestamp 的方法比较简单，而且方法也有好多种，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// get the timestamp in seconds</span></span>
-<span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// or with a slightly way</span></span>
-<span class="line"><span class="built_in">Date</span>.now() / <span class="number">1000</span> | <span class="number">0</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// Year 2038 problem? lol...</span></span>
-<span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'Jan 1, 2039'</span>) / <span class="number">1000</span> | <span class="number">0</span> <span class="comment">// -2117514496 </span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">/*----------*/</span></span>
-<span class="line"><span class="built_in">Math</span>.round(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()/<span class="number">1000</span>);</span>
-<span class="line"></span>
-<span class="line">+<span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1000</span> | <span class="number">0</span></span>
-<span class="line"></span>
-<span class="line">~~(<span class="built_in">Date</span>.now() / <span class="number">1000</span>)</span>
-<span class="line"></span>
-<span class="line"><span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1e3</span> | <span class="number">0</span></span>
-</pre></td></tr></table></figure>
-<h2 id="把-Timestamp-转化为-Date"><a href="#把-Timestamp-转化为-Date" class="headerlink" title="把 Timestamp 转化为 Date"></a>把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-<span class="line">32</span>
-<span class="line">33</span>
-<span class="line">34</span>
-<span class="line">35</span>
-<span class="line">36</span>
-<span class="line">37</span>
-<span class="line">38</span>
-</pre></td><td class="code"><pre><span class="line"><span class="built_in">Date</span>.prototype.format = <span class="function"><span class="keyword">function</span>(<span class="params">format</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">var</span> o = &#123;</span>
-<span class="line">        <span class="string">'M+'</span>: <span class="keyword">this</span>.getMonth() + <span class="number">1</span>,          <span class="comment">// month</span></span>
-<span class="line">        <span class="string">'d+'</span>: <span class="keyword">this</span>.getDate(),                 <span class="comment">// day</span></span>
-<span class="line">        <span class="string">'h+'</span>: <span class="keyword">this</span>.getHours(),                  <span class="comment">// hour</span></span>
-<span class="line">        <span class="string">'m+'</span>: <span class="keyword">this</span>.getMinutes(),                  <span class="comment">// minute</span></span>
-<span class="line">        <span class="string">'s+'</span>: <span class="keyword">this</span>.getSeconds(),                    <span class="comment">// second     </span></span>
-<span class="line">        <span class="string">'q+'</span>: <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth() + <span class="number">3</span>) / <span class="number">3</span>),  <span class="comment">// quarter</span></span>
-<span class="line">        <span class="string">'S'</span> : <span class="keyword">this</span>.getMilliseconds()                 <span class="comment">// millisecond</span></span>
-<span class="line">    &#125;;</span>
-<span class="line"></span>
-<span class="line">    <span class="comment">// year</span></span>
-<span class="line">    <span class="keyword">if</span> (<span class="regexp">/(y+)/</span>.test(format) || <span class="regexp">/(Y+)/</span>.test(format)) &#123;</span>
-<span class="line">        format = format.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear() + <span class="string">''</span>)</span>
-<span class="line">                       .substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</span>
-<span class="line">    &#125;</span>
-<span class="line"></span>
-<span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> o) &#123;</span>
-<span class="line">        <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'('</span> + k + <span class="string">')'</span>).test(format)) &#123;</span>
-<span class="line">            <span class="keyword">var</span> first = <span class="built_in">RegExp</span>.$<span class="number">1</span>;</span>
-<span class="line">            <span class="keyword">var</span> str = first.length === <span class="number">1</span></span>
-<span class="line">                    ? o[k]</span>
-<span class="line">                    : (<span class="string">'00'</span> + o[k]).substr((<span class="string">''</span> + o[k]).length); <span class="comment">// nb</span></span>
-<span class="line">            format = format.replace(first, str);</span>
-<span class="line">        &#125;</span>
-<span class="line">    &#125;</span>
-<span class="line"></span>
-<span class="line">    <span class="keyword">return</span> format;</span>
-<span class="line">&#125;;</span>
-<span class="line"></span>
-<span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tsToDate</span>(<span class="params">timestamp</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>)).format(<span class="string">'yyyy-MM-dd hh:mm:ss'</span>);</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// test it</span></span>
-<span class="line">&gt; tsToDate(<span class="number">1448967948</span>)</span>
-<span class="line">&lt; <span class="string">"2015-12-01 19:05:48"</span></span>
-</pre></td></tr></table></figure></p>
+<pre><code class="js">// get the timestamp in seconds
+Math.floor(Date.now() / 1000);
+
+// or with a slightly way
+Date.now() / 1000 | 0
+
+// Year 2038 problem? lol...
+new Date(&#39;Jan 1, 2039&#39;) / 1000 | 0 // -2117514496 
+
+/*----------*/
+Math.round(new Date().getTime()/1000);
+
++new Date / 1000 | 0
+
+~~(Date.now() / 1000)
+
+new Date / 1e3 | 0
+</code></pre>
+<h2 id="把-Timestamp-转化为-Date"><a href="#把-Timestamp-转化为-Date" class="headerlink" title="把 Timestamp 转化为 Date"></a>把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：</p>
+<pre><code class="js">Date.prototype.format = function(format) {
+    var o = {
+        &#39;M+&#39;: this.getMonth() + 1,          // month
+        &#39;d+&#39;: this.getDate(),                 // day
+        &#39;h+&#39;: this.getHours(),                  // hour
+        &#39;m+&#39;: this.getMinutes(),                  // minute
+        &#39;s+&#39;: this.getSeconds(),                    // second     
+        &#39;q+&#39;: Math.floor((this.getMonth() + 3) / 3),  // quarter
+        &#39;S&#39; : this.getMilliseconds()                 // millisecond
+    };
+
+    // year
+    if (/(y+)/.test(format) || /(Y+)/.test(format)) {
+        format = format.replace(RegExp.$1, (this.getFullYear() + &#39;&#39;)
+                       .substr(4 - RegExp.$1.length));
+    }
+
+    for (var k in o) {
+        if (new RegExp(&#39;(&#39; + k + &#39;)&#39;).test(format)) {
+            var first = RegExp.$1;
+            var str = first.length === 1
+                    ? o[k]
+                    : (&#39;00&#39; + o[k]).substr((&#39;&#39; + o[k]).length); // nb
+            format = format.replace(first, str);
+        }
+    }
+
+    return format;
+};
+
+function tsToDate(timestamp) {
+    return (new Date(timestamp * 1000)).format(&#39;yyyy-MM-dd hh:mm:ss&#39;);
+}
+
+
+// test it
+&gt; tsToDate(1448967948)
+&lt; &quot;2015-12-01 19:05:48&quot;
+</code></pre>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;问题产生&quot;&gt;&lt;a href=&quot;#问题产生&quot; class=&quot;headerlink&quot; title=&quot;问题产生&quot;&gt;&lt;/a&gt;问题产生&lt;/h2&gt;&lt;p&gt;今天在处理一个接口时，发现返回的格式是这样的：&lt;br&gt;&lt;figure class=&quot;highlight json&quot;&gt;&lt;tab
+      &lt;h2 id=&quot;问题产生&quot;&gt;&lt;a href=&quot;#问题产生&quot; class=&quot;headerlink&quot; title=&quot;问题产生&quot;&gt;&lt;/a&gt;问题产生&lt;/h2&gt;&lt;p&gt;今天在处理一个接口时，发现返回的格式是这样的：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;json&quot;&gt;{
+    &amp;quo
     
     </summary>
     

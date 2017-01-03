@@ -1,55 +1,32 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>图片加载错误时显示默认图片 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2015-11-27T10:24:36.000Z" class="post__time">November 27, 2015</time><h1 class="post__title"><a href="/show-a-default-image-when-the-image-is-broken/">图片加载错误时显示默认图片</a></h1><div class="post__main echo"><h2 id="直接写"><a href="#直接写" class="headerlink" title="直接写"></a>直接写</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">imgError</span>(<span class="params">image</span>) </span>&#123;</span>
-<span class="line">    image.onerror = <span class="literal">null</span>; <span class="comment">// prevent event bubble</span></span>
-<span class="line">    image.src = <span class="string">"/images/noimage.gif"</span>;</span>
-<span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"image.png"</span> <span class="attr">onerror</span>=<span class="string">"imgError(this);"</span>/&gt;</span></span>
-</pre></td></tr></table></figure>
-<h2 id="使用-jQuery"><a href="#使用-jQuery" class="headerlink" title="使用 jQuery"></a>使用 jQuery</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-</pre></td><td class="code"><pre><span class="line">$(<span class="string">"img"</span>).error(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
-<span class="line">    $(<span class="keyword">this</span>).unbind(<span class="string">"error"</span>).attr(<span class="string">"src"</span>, <span class="string">"broken.gif"</span>);</span>
-<span class="line">&#125;);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">//If you use this technique you can use the "one" method to avoid needing to unbind the event: </span></span>
-<span class="line">$(<span class="string">'img'</span>).one(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span>
-<span class="line">  <span class="keyword">this</span>.src = <span class="string">'broken.gif'</span>; </span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
-<h2 id="还有一种写法"><a href="#还有一种写法" class="headerlink" title="还有一种写法"></a>还有一种写法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-</pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line">  $(<span class="string">'img'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.complete </span>
-<span class="line">        || <span class="keyword">typeof</span> <span class="keyword">this</span>.naturalWidth == <span class="string">"undefined"</span> </span>
-<span class="line">        || <span class="keyword">this</span>.naturalWidth == <span class="number">0</span>) &#123;</span>
-<span class="line">      <span class="comment">// image was broken, replace with your new image</span></span>
-<span class="line">      <span class="keyword">this</span>.src = <span class="string">'broken.gif'</span>;</span>
-<span class="line">    &#125;</span>
-<span class="line">  &#125;);</span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/imgage-error/" class="post__tag__link">imgage error</a></li></ul></footer></article><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>图片加载错误时显示默认图片 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2015-11-27T10:24:36.000Z" class="post__time">November 27, 2015</time><h1 class="post__title"><a href="/show-a-default-image-when-the-image-is-broken/">图片加载错误时显示默认图片</a></h1><div class="post__main echo"><h2 id="直接写"><a href="#直接写" class="headerlink" title="直接写"></a>直接写</h2><pre><code class="js">function imgError(image) {
+    image.onerror = null; // prevent event bubble
+    image.src = &quot;/images/noimage.gif&quot;;
+    return true;
+}
+</code></pre>
+<pre><code class="html">&lt;img src=&quot;image.png&quot; onerror=&quot;imgError(this);&quot;/&gt;
+</code></pre>
+<h2 id="使用-jQuery"><a href="#使用-jQuery" class="headerlink" title="使用 jQuery"></a>使用 jQuery</h2><pre><code class="js">$(&quot;img&quot;).error(function () {
+    $(this).unbind(&quot;error&quot;).attr(&quot;src&quot;, &quot;broken.gif&quot;);
+});
+
+//If you use this technique you can use the &quot;one&quot; method to avoid needing to unbind the event: 
+$(&#39;img&#39;).one(&#39;error&#39;, function() { 
+  this.src = &#39;broken.gif&#39;; 
+});
+</code></pre>
+<h2 id="还有一种写法"><a href="#还有一种写法" class="headerlink" title="还有一种写法"></a>还有一种写法</h2><pre><code class="js">$(window).load(function() {
+  $(&#39;img&#39;).each(function() {
+    if (!this.complete 
+        || typeof this.naturalWidth == &quot;undefined&quot; 
+        || this.naturalWidth == 0) {
+      // image was broken, replace with your new image
+      this.src = &#39;broken.gif&#39;;
+    }
+  });
+});
+</code></pre>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/imgage-error/" class="post__tag__link">imgage error</a></li></ul></footer></article><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/write-a-compatible-js-module/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/git-remember-password-in-window-and-linux/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","embed");
 </script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 ga('create','UA-73840162-1');

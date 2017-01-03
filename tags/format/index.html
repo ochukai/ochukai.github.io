@@ -1,144 +1,78 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>format - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2015-12-02T03:10:44.000Z" class="post__time">December 2, 2015</time><h1 class="post__title"><a href="/use-js-to-convert-ts-to-data/">JavaScript 中 Timestamp 与 Date 的转化</a></h1><div class="post__main echo"><h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-</pre></td><td class="code"><pre><span class="line">&#123;</span>
-<span class="line">    <span class="attr">"meta"</span>: &#123;</span>
-<span class="line">        <span class="attr">"has_next_msg"</span>: <span class="literal">false</span></span>
-<span class="line">    &#125;,</span>
-<span class="line">    <span class="attr">"objects"</span>: [</span>
-<span class="line">        &#123;</span>
-<span class="line">            <span class="attr">"text"</span>: <span class="string">"111"</span>,</span>
-<span class="line">            <span class="attr">"from_user_type"</span>: <span class="string">"PAT"</span>,</span>
-<span class="line">            <span class="attr">"pic"</span>: <span class="string">""</span>,</span>
-<span class="line">            <span class="attr">"ts"</span>: <span class="number">1419939065</span></span>
-<span class="line">        &#125;</span>
-<span class="line">    ]</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>format - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2015-12-02T03:10:44.000Z" class="post__time">December 2, 2015</time><h1 class="post__title"><a href="/use-js-to-convert-ts-to-data/">JavaScript 中 Timestamp 与 Date 的转化</a></h1><div class="post__main echo"><h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：</p>
+<pre><code class="json">{
+    &quot;meta&quot;: {
+        &quot;has_next_msg&quot;: false
+    },
+    &quot;objects&quot;: [
+        {
+            &quot;text&quot;: &quot;111&quot;,
+            &quot;from_user_type&quot;: &quot;PAT&quot;,
+            &quot;pic&quot;: &quot;&quot;,
+            &quot;ts&quot;: 1419939065
+        }
+    ]
+}
+</code></pre>
 <p><code>ts</code> 那个属性我不太熟悉，不过我觉得应该是 timestamp 的意思吧。后来才知道，<code>ts</code> 就是该条消息的发送时间戳（timestamp），显示这条信息的时候应该显示为日期。</p>
 <h2 id="把-Date-转化为-Timestamp"><a href="#把-Date-转化为-Timestamp" class="headerlink" title="把 Date 转化为 Timestamp"></a>把 Date 转化为 Timestamp</h2><p>我们都知道，在 js 里面把 date 转化为 timestamp 的方法比较简单，而且方法也有好多种，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// get the timestamp in seconds</span></span>
-<span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// or with a slightly way</span></span>
-<span class="line"><span class="built_in">Date</span>.now() / <span class="number">1000</span> | <span class="number">0</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// Year 2038 problem? lol...</span></span>
-<span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'Jan 1, 2039'</span>) / <span class="number">1000</span> | <span class="number">0</span> <span class="comment">// -2117514496 </span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">/*----------*/</span></span>
-<span class="line"><span class="built_in">Math</span>.round(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()/<span class="number">1000</span>);</span>
-<span class="line"></span>
-<span class="line">+<span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1000</span> | <span class="number">0</span></span>
-<span class="line"></span>
-<span class="line">~~(<span class="built_in">Date</span>.now() / <span class="number">1000</span>)</span>
-<span class="line"></span>
-<span class="line"><span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1e3</span> | <span class="number">0</span></span>
-</pre></td></tr></table></figure>
-<h2 id="把-Timestamp-转化为-Date"><a href="#把-Timestamp-转化为-Date" class="headerlink" title="把 Timestamp 转化为 Date"></a>把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-<span class="line">32</span>
-<span class="line">33</span>
-<span class="line">34</span>
-<span class="line">35</span>
-<span class="line">36</span>
-<span class="line">37</span>
-<span class="line">38</span>
-</pre></td><td class="code"><pre><span class="line"><span class="built_in">Date</span>.prototype.format = <span class="function"><span class="keyword">function</span>(<span class="params">format</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">var</span> o = &#123;</span>
-<span class="line">        <span class="string">'M+'</span>: <span class="keyword">this</span>.getMonth() + <span class="number">1</span>,          <span class="comment">// month</span></span>
-<span class="line">        <span class="string">'d+'</span>: <span class="keyword">this</span>.getDate(),                 <span class="comment">// day</span></span>
-<span class="line">        <span class="string">'h+'</span>: <span class="keyword">this</span>.getHours(),                  <span class="comment">// hour</span></span>
-<span class="line">        <span class="string">'m+'</span>: <span class="keyword">this</span>.getMinutes(),                  <span class="comment">// minute</span></span>
-<span class="line">        <span class="string">'s+'</span>: <span class="keyword">this</span>.getSeconds(),                    <span class="comment">// second     </span></span>
-<span class="line">        <span class="string">'q+'</span>: <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth() + <span class="number">3</span>) / <span class="number">3</span>),  <span class="comment">// quarter</span></span>
-<span class="line">        <span class="string">'S'</span> : <span class="keyword">this</span>.getMilliseconds()                 <span class="comment">// millisecond</span></span>
-<span class="line">    &#125;;</span>
-<span class="line"></span>
-<span class="line">    <span class="comment">// year</span></span>
-<span class="line">    <span class="keyword">if</span> (<span class="regexp">/(y+)/</span>.test(format) || <span class="regexp">/(Y+)/</span>.test(format)) &#123;</span>
-<span class="line">        format = format.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear() + <span class="string">''</span>)</span>
-<span class="line">                       .substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</span>
-<span class="line">    &#125;</span>
-<span class="line"></span>
-<span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> o) &#123;</span>
-<span class="line">        <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'('</span> + k + <span class="string">')'</span>).test(format)) &#123;</span>
-<span class="line">            <span class="keyword">var</span> first = <span class="built_in">RegExp</span>.$<span class="number">1</span>;</span>
-<span class="line">            <span class="keyword">var</span> str = first.length === <span class="number">1</span></span>
-<span class="line">                    ? o[k]</span>
-<span class="line">                    : (<span class="string">'00'</span> + o[k]).substr((<span class="string">''</span> + o[k]).length); <span class="comment">// nb</span></span>
-<span class="line">            format = format.replace(first, str);</span>
-<span class="line">        &#125;</span>
-<span class="line">    &#125;</span>
-<span class="line"></span>
-<span class="line">    <span class="keyword">return</span> format;</span>
-<span class="line">&#125;;</span>
-<span class="line"></span>
-<span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tsToDate</span>(<span class="params">timestamp</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>)).format(<span class="string">'yyyy-MM-dd hh:mm:ss'</span>);</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// test it</span></span>
-<span class="line">&gt; tsToDate(<span class="number">1448967948</span>)</span>
-<span class="line">&lt; <span class="string">"2015-12-01 19:05:48"</span></span>
-</pre></td></tr></table></figure></p>
+<pre><code class="js">// get the timestamp in seconds
+Math.floor(Date.now() / 1000);
+
+// or with a slightly way
+Date.now() / 1000 | 0
+
+// Year 2038 problem? lol...
+new Date(&#39;Jan 1, 2039&#39;) / 1000 | 0 // -2117514496 
+
+/*----------*/
+Math.round(new Date().getTime()/1000);
+
++new Date / 1000 | 0
+
+~~(Date.now() / 1000)
+
+new Date / 1e3 | 0
+</code></pre>
+<h2 id="把-Timestamp-转化为-Date"><a href="#把-Timestamp-转化为-Date" class="headerlink" title="把 Timestamp 转化为 Date"></a>把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：</p>
+<pre><code class="js">Date.prototype.format = function(format) {
+    var o = {
+        &#39;M+&#39;: this.getMonth() + 1,          // month
+        &#39;d+&#39;: this.getDate(),                 // day
+        &#39;h+&#39;: this.getHours(),                  // hour
+        &#39;m+&#39;: this.getMinutes(),                  // minute
+        &#39;s+&#39;: this.getSeconds(),                    // second     
+        &#39;q+&#39;: Math.floor((this.getMonth() + 3) / 3),  // quarter
+        &#39;S&#39; : this.getMilliseconds()                 // millisecond
+    };
+
+    // year
+    if (/(y+)/.test(format) || /(Y+)/.test(format)) {
+        format = format.replace(RegExp.$1, (this.getFullYear() + &#39;&#39;)
+                       .substr(4 - RegExp.$1.length));
+    }
+
+    for (var k in o) {
+        if (new RegExp(&#39;(&#39; + k + &#39;)&#39;).test(format)) {
+            var first = RegExp.$1;
+            var str = first.length === 1
+                    ? o[k]
+                    : (&#39;00&#39; + o[k]).substr((&#39;&#39; + o[k]).length); // nb
+            format = format.replace(first, str);
+        }
+    }
+
+    return format;
+};
+
+function tsToDate(timestamp) {
+    return (new Date(timestamp * 1000)).format(&#39;yyyy-MM-dd hh:mm:ss&#39;);
+}
+
+
+// test it
+&gt; tsToDate(1448967948)
+&lt; &quot;2015-12-01 19:05:48&quot;
+</code></pre>
 </div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li><li class="post__tag__item"><a href="/tags/ts/" class="post__tag__link">ts</a></li><li class="post__tag__item"><a href="/tags/date/" class="post__tag__link">date</a></li><li class="post__tag__item"><a href="/tags/format/" class="post__tag__link">format</a></li></ul></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","count");
 </script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 ga('create','UA-73840162-1');
