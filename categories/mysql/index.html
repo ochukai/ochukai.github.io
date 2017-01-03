@@ -1,42 +1,75 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>MySQL - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2015-08-09T05:25:28.000Z" class="post__time">August 9, 2015</time><h1 class="post__title"><a href="/wamp-mysql-chinese-question-mark/">wamp mysql 中文显示为？</a></h1><div class="post__main echo"><p>发现中文显示为“？”，然后我看了一下 mysql.ini，添加了两行</p>
-<pre><code>[mysqld]
-port=3306
-#下面的两行是添加的
-character_set_client=utf8
-character_set_server=utf8
-</code></pre><p>后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。</p>
-<pre><code class="sql">mysql&gt; show variables like &#39;character%&#39;;
-+--------------------------+----------------------------------------------------
-+
-| Variable_name            | Value
-|
-+--------------------------+----------------------------------------------------
-+
-| character_set_client     | gbk
-|
-| character_set_connection | gbk
-|
-| character_set_database   | utf8
-|
-| character_set_filesystem | binary
-|
-| character_set_results    | gbk
-|
-| character_set_server     | utf8
-|
-| character_set_system     | utf8
-|
-| character_sets_dir       | E:\Soft\wamp\bin\mysql\mysql5.6.12\share\charsets\
-|
-+--------------------------+----------------------------------------------------
-</code></pre>
-</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/mysql/" class="post__tag__link">mysql</a></li><li class="post__tag__item"><a href="/tags/中文乱码/" class="post__tag__link">中文乱码</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2015-07-31T15:32:13.000Z" class="post__time">July 31, 2015</time><h1 class="post__title"><a href="/modify-wamp-mysql-password/">修改 wamp 中 mysql 默认空密码</a></h1><div class="post__main echo"><pre><code class="sql">use mysql
-
-update user set password=PASSWORD(&#39;hooray&#39;) where user=&#39;root&#39;;
-
-flush privileges;
-</code></pre>
-</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/mysql/" class="post__tag__link">mysql</a></li><li class="post__tag__item"><a href="/tags/paswword/" class="post__tag__link">paswword</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2014-12-28T13:23:42.000Z" class="post__time">December 28, 2014</time><h1 class="post__title"><a href="/navicat-10-1-7-key/">Navicat 10.1.7 的注册码</a></h1><div class="post__main echo"><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line">[mysqld]</span>
+<span class="line">port=3306</span>
+<span class="line">#下面的两行是添加的</span>
+<span class="line">character_set_client=utf8</span>
+<span class="line">character_set_server=utf8</span>
+</pre></td></tr></table></figure>
+<p>后来再看 mysql 中的信息发现这样了，不过中文问题已经解决了。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+</pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like 'character%';</span>
+<span class="line">+--------------------------+----------------------------------------------------</span>
+<span class="line">+</span>
+<span class="line">| Variable_name            | Value</span>
+<span class="line">|</span>
+<span class="line">+--------------------------+----------------------------------------------------</span>
+<span class="line">+</span>
+<span class="line">| character_set_client     | gbk</span>
+<span class="line">|</span>
+<span class="line">| character_set_connection | gbk</span>
+<span class="line">|</span>
+<span class="line">| character_set_database   | utf8</span>
+<span class="line">|</span>
+<span class="line">| character_set_filesystem | binary</span>
+<span class="line">|</span>
+<span class="line">| character_set_results    | gbk</span>
+<span class="line">|</span>
+<span class="line">| character_set_server     | utf8</span>
+<span class="line">|</span>
+<span class="line">| character_set_system     | utf8</span>
+<span class="line">|</span>
+<span class="line">| character_sets_dir       | E:\Soft\wamp\bin\mysql\mysql5.6.12\share\charsets\</span>
+<span class="line">|</span>
+<span class="line">+--------------------------+----------------------------------------------------</span>
+</pre></td></tr></table></figure></p>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/mysql/" class="post__tag__link">mysql</a></li><li class="post__tag__item"><a href="/tags/中文乱码/" class="post__tag__link">中文乱码</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2015-07-31T15:32:13.000Z" class="post__time">July 31, 2015</time><h1 class="post__title"><a href="/modify-wamp-mysql-password/">修改 wamp 中 mysql 默认空密码</a></h1><div class="post__main echo"><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> mysql</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">PASSWORD</span>(<span class="string">'hooray'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span>
+</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/mysql/" class="post__tag__link">mysql</a></li><li class="post__tag__item"><a href="/tags/paswword/" class="post__tag__link">paswword</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2014-12-28T13:23:42.000Z" class="post__time">December 28, 2014</time><h1 class="post__title"><a href="/navicat-10-1-7-key/">Navicat 10.1.7 的注册码</a></h1><div class="post__main echo"><blockquote>
 <p>NAVN-LNXG-XHHX-5NOO<br>名和组织随便写。</p>
 </blockquote>
 </div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/mysql/" class="post__tag__link">mysql</a></li><li class="post__tag__item"><a href="/tags/navicat/" class="post__tag__link">navicat</a></li></ul></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","count");

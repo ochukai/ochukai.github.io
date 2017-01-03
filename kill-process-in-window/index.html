@@ -1,32 +1,58 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>在 window 里面杀死某个进程 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-11-22T01:49:57.000Z" class="post__time">November 22, 2016</time><h1 class="post__title"><a href="/kill-process-in-window/">在 window 里面杀死某个进程</a></h1><div class="post__main echo"><h2 id="查看被谁占用"><a href="#查看被谁占用" class="headerlink" title="查看被谁占用"></a>查看被谁占用</h2><pre><code class="shell">netstat -ano | findstr 8989
-
-# C:\Users\Administrator&gt;netstat -ano | findstr 8989
-#   TCP    0.0.0.0:8989           0.0.0.0:0              LISTENING       6360
-#   TCP    [::]:8989              [::]:0                 LISTENING       6360
-#   TCP    [::1]:8989             [::1]:53638            ESTABLISHED     6360
-#   TCP    [::1]:8989             [::1]:53640            ESTABLISHED     6360
-#   TCP    [::1]:8989             [::1]:53641            ESTABLISHED     6360
-#   TCP    [::1]:8989             [::1]:53645            ESTABLISHED     6360
-#   TCP    [::1]:8989             [::1]:53646            ESTABLISHED     6360
-#   TCP    [::1]:8989             [::1]:53652            ESTABLISHED     6360
-#   TCP    [::1]:8989             [::1]:53653            ESTABLISHED     6360
-#   TCP    [::1]:8989             [::1]:53654            ESTABLISHED     6360
-#   TCP    [::1]:53638            [::1]:8989             ESTABLISHED     5440
-#   TCP    [::1]:53640            [::1]:8989             ESTABLISHED     5440
-#   TCP    [::1]:53641            [::1]:8989             ESTABLISHED     5440
-#   TCP    [::1]:53645            [::1]:8989             ESTABLISHED     5440
-#   TCP    [::1]:53646            [::1]:8989             ESTABLISHED     5440
-#   TCP    [::1]:53652            [::1]:8989             ESTABLISHED     5440
-#   TCP    [::1]:53653            [::1]:8989             ESTABLISHED     5440
-#   TCP    [::1]:53654            [::1]:8989             ESTABLISHED     5440
-</code></pre>
-<pre><code class="shell">tasklist | findstr 8989//查看pid为3036的是什么程序在用
-</code></pre>
-<h2 id="杀死某进程"><a href="#杀死某进程" class="headerlink" title="杀死某进程"></a>杀死某进程</h2><pre><code class="shell"># /T 包括子进程
-# /F 强制
-
-taskkill /T /F /PID 8989
-</code></pre>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>在 window 里面杀死某个进程 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-11-22T01:49:57.000Z" class="post__time">November 22, 2016</time><h1 class="post__title"><a href="/kill-process-in-window/">在 window 里面杀死某个进程</a></h1><div class="post__main echo"><h2 id="查看被谁占用"><a href="#查看被谁占用" class="headerlink" title="查看被谁占用"></a>查看被谁占用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+</pre></td><td class="code"><pre><span class="line">netstat -ano | findstr 8989</span>
+<span class="line">  </span>
+<span class="line"># C:\Users\Administrator&gt;netstat -ano | findstr 8989</span>
+<span class="line">#   TCP    0.0.0.0:8989           0.0.0.0:0              LISTENING       6360</span>
+<span class="line">#   TCP    [::]:8989              [::]:0                 LISTENING       6360</span>
+<span class="line">#   TCP    [::1]:8989             [::1]:53638            ESTABLISHED     6360</span>
+<span class="line">#   TCP    [::1]:8989             [::1]:53640            ESTABLISHED     6360</span>
+<span class="line">#   TCP    [::1]:8989             [::1]:53641            ESTABLISHED     6360</span>
+<span class="line">#   TCP    [::1]:8989             [::1]:53645            ESTABLISHED     6360</span>
+<span class="line">#   TCP    [::1]:8989             [::1]:53646            ESTABLISHED     6360</span>
+<span class="line">#   TCP    [::1]:8989             [::1]:53652            ESTABLISHED     6360</span>
+<span class="line">#   TCP    [::1]:8989             [::1]:53653            ESTABLISHED     6360</span>
+<span class="line">#   TCP    [::1]:8989             [::1]:53654            ESTABLISHED     6360</span>
+<span class="line">#   TCP    [::1]:53638            [::1]:8989             ESTABLISHED     5440</span>
+<span class="line">#   TCP    [::1]:53640            [::1]:8989             ESTABLISHED     5440</span>
+<span class="line">#   TCP    [::1]:53641            [::1]:8989             ESTABLISHED     5440</span>
+<span class="line">#   TCP    [::1]:53645            [::1]:8989             ESTABLISHED     5440</span>
+<span class="line">#   TCP    [::1]:53646            [::1]:8989             ESTABLISHED     5440</span>
+<span class="line">#   TCP    [::1]:53652            [::1]:8989             ESTABLISHED     5440</span>
+<span class="line">#   TCP    [::1]:53653            [::1]:8989             ESTABLISHED     5440</span>
+<span class="line">#   TCP    [::1]:53654            [::1]:8989             ESTABLISHED     5440</span>
+</pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">tasklist | findstr 8989//查看pid为3036的是什么程序在用</span>
+</pre></td></tr></table></figure>
+<h2 id="杀死某进程"><a href="#杀死某进程" class="headerlink" title="杀死某进程"></a>杀死某进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+</pre></td><td class="code"><pre><span class="line"># /T 包括子进程</span>
+<span class="line"># /F 强制</span>
+<span class="line">  </span>
+<span class="line">taskkill /T /F /PID 8989</span>
+</pre></td></tr></table></figure>
 </div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/端口占用/" class="post__tag__link">端口占用</a></li></ul></footer></article><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/webpack-dev-server-vs-webstorm/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/splice-in-javascript/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","embed");
 </script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
