@@ -425,7 +425,7 @@ video {
 .echo blockquote {
   padding: 1.6em;
   border-left: 5px solid #ddd;
-  background-color: #eee;
+  background-color: #fafafa;
 }
 .highlight {
   overflow: auto;
@@ -443,9 +443,11 @@ video {
 .highlight figcaption a {
   float: right;
 }
-.highlight .comment,
-.highlight .title {
+.highlight .comment {
   color: #b0bec5;
+}
+.highlight .title {
+  color: #399c9c;
 }
 .highlight .variable,
 .highlight .attribute,
@@ -569,7 +571,7 @@ video {
   margin: 30px 0;
   padding: 60px;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid #f0f0f0;
 }
 .foot {
   margin-bottom: 30px;
@@ -593,7 +595,7 @@ video {
 .post {
   overflow: hidden;
   margin-top: 30px;
-  border: 1px solid #ddd;
+  border: 1px solid #f0f0f0;
 }
 .post__head {
   margin: 60px;
@@ -659,16 +661,16 @@ video {
 }
 .post__main blockquote {
   margin: 1.6em -60px;
-  padding: 30px 60px;
-  border-left: 5px solid #ddd;
-  background-color: #eee;
+  padding: 30px 45px;
+  border-left: 10px solid #399c9c;
+  background-color: #fafafa;
 }
 .post__main img {
   margin: 1.6em auto;
 }
 .post__foot {
-  padding: 30px 60px;
-  border-top: 1px solid #ddd;
+  padding: 15px 60px;
+  border-top: 1px solid #f0f0f0;
   background-color: #fafafa;
 }
 .post__foot-link,
@@ -693,7 +695,7 @@ video {
 }
 .post__more {
   padding: 10px 20px;
-  border: 1px solid #bbb;
+  border: 1px solid #f0f0f0;
   border-radius: 3px;
   background-color: #ccc;
   color: #fff;
@@ -728,6 +730,7 @@ video {
 @media (max-width: 767px) {
   body {
     margin: 20px;
+    font-size: font-size: 0.75rem;;
   }
   .head,
   .main,
@@ -764,12 +767,20 @@ video {
   .post {
     margin-top: 20px;
   }
-  .post__head,
+  .post__head.archive,
+  .post__head {
+    margin: 20px 5px;
+  }
   .post__main {
-    margin: 20px;
+    margin: 20px 5px;
+  }
+  .post__title,
+  .post__time {
+    margin: 5px;
   }
   .post__title {
-    margin-top: 2px;
+    font-size: 22.4px;
+    font-size: 1.4rem;
   }
   .post__main blockquote,
   .post__main .highlight {
@@ -778,7 +789,7 @@ video {
   }
   .post__foot {
     position: relative;
-    padding: 10px;
+    padding: 10px 5px;
   }
   .post__more {
     box-sizing: border-box;
