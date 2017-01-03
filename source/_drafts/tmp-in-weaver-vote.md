@@ -177,3 +177,14 @@ ReactDOM.render(<WrappedDynamicFieldSet />, mountNode);
 
 ```
 
+```js
+swapArrayItemPosition(arr, src, to) {
+  if (!arr || !isNumeric(src) || !isNumeric(to)) {
+    return arr;
+  }
+
+  const srcEl = arr.splice(src, 1)[0];
+  arr.splice(to, 0, srcEl);
+  return arr;
+}
+```

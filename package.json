@@ -5,22 +5,24 @@
   "hexo": {
     "version": "3.2.2"
   },
+  "scripts": {
+    "deploy": "hexo clean && hexo generate && hexo deploy"
+  },
   "dependencies": {
     "hexo": "^3.2.0",
-    "hexo-admin": "^2.1.0",
-    "hexo-deployer-git": "0.0.4",
-    "hexo-generator-archive": "^0.1.2",
-    "hexo-generator-category": "^0.1.2",
+    "hexo-deployer-git": "^0.2.0",
+    "hexo-generator-archive": "*",
+    "hexo-generator-category": "*",
     "hexo-generator-feed": "^1.0.3",
-    "hexo-generator-index": "^0.1.2",
-    "hexo-generator-seo-friendly-sitemap": "0.0.11",
+    "hexo-generator-index": "^0.2.0",
+    "hexo-generator-seo-friendly-sitemap": "0.0.20",
     "hexo-generator-sitemap": "^1.0.1",
-    "hexo-generator-tag": "^0.1.1",
-    "hexo-migrator-wordpress": "^0.1.2",
-    "hexo-renderer-ejs": "^0.2.0",
-    "hexo-renderer-jade": "^0.1.0",
-    "hexo-renderer-marked": "^0.2.11",
+    "hexo-generator-tag": "^0.2.0",
+    "hexo-hey": "^0.4.1",
+    "hexo-renderer-ejs": "*",
+    "hexo-renderer-jade": "^0.3.0",
+    "hexo-renderer-marked": "*",
     "hexo-renderer-stylus": "*",
-    "hexo-server": "^0.1.2"
+    "hexo-server": "^0.2.0"
   }
 }

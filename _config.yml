@@ -44,9 +44,10 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   auto_detect: false
   tab_replace: true
+  # line_number: false
 
 # Category & Tag
 default_category: uncategorized
@@ -85,3 +86,15 @@ deploy:
   type: git
   repo: https://github.com/ochukai/ochukai.github.io.git
   branch: master
+
+# livereload
+livereload:
+  port: 35729
+
+# Admin
+admin:
+    name: oliver
+    password: xiaoyee
+    secret: ochukai
+    # expire: 60*1
+    # cors: http://localhost:3000
