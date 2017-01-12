@@ -793,7 +793,7 @@
     <link href="http://blog.ochukai.me/decorator-in-js/"/>
     <id>http://blog.ochukai.me/decorator-in-js/</id>
     <published>2016-12-21T01:33:38.000Z</published>
-    <updated>2016-12-21T02:36:53.476Z</updated>
+    <updated>2017-01-04T01:53:41.838Z</updated>
     
     <content type="html"><![CDATA[<p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
@@ -873,7 +873,7 @@
 <ol>
 <li>target 目标方法所在的类</li>
 <li>name 方法名</li>
-<li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点再上一个例子中已经用过了。</li>
+<li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点在上一个例子中已经看到了。</li>
 </ol>
 <h2 id="用在-class-上面"><a href="#用在-class-上面" class="headerlink" title="用在 class 上面"></a>用在 class 上面</h2><p>因为我最开始见到 decorator 是看到</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -886,15 +886,9 @@
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
 </pre></td><td class="code"><pre><span class="line">@log</span>
 <span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
-<span class="line"></span>
-<span class="line">  @log</span>
 <span class="line">  add(a, b) &#123; <span class="keyword">return</span> a + b; &#125;</span>
-<span class="line">   </span>
 <span class="line">&#125;</span>
 </pre></td></tr></table></figure>
 <p>只会输出</p>
@@ -1074,7 +1068,7 @@
     <link href="http://blog.ochukai.me/splice-in-javascript/"/>
     <id>http://blog.ochukai.me/splice-in-javascript/</id>
     <published>2016-11-22T01:40:09.766Z</published>
-    <updated>2016-11-22T01:40:09.766Z</updated>
+    <updated>2017-01-04T01:50:26.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p>
@@ -1104,21 +1098,54 @@
 </tr>
 </tbody>
 </table>
-<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
-</pre></td></tr></table></figure></p>
-<p>删除第三个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure>
+<p>删除第三个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
+<span class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span>
 <span class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></span>
-</pre></td></tr></table></figure></p>
-<p>删除后面两个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure>
+<p>删除后面两个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
+<span class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span>
 <span class="line">                  <span class="comment">// arrr: [0, 1]</span></span>
-</pre></td></tr></table></figure></p>
+</pre></td></tr></table></figure>
+<p>替换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// 把第二个元素变成 5</span></span>
+<span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
+<span class="line">arrr.splice(<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>); <span class="comment">// [0, 1, 5, 4]</span></span>
+</pre></td></tr></table></figure>
+<p>交换位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swapArrayItemPosition</span>(<span class="params">arr, one, another</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">var</span> dummy = arr.splice(one, <span class="number">1</span>, arr[another])[<span class="number">0</span>];</span>
+<span class="line">  arr.splice(another, <span class="number">1</span>, dummy);</span>
+<span class="line">  <span class="keyword">return</span> arr;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// arrr = [0, 1, 5, 4]</span></span>
+<span class="line">swapArrayItemPosition(arrr, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// [0, 5, 1, 4]</span></span>
+</pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">

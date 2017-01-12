@@ -26,21 +26,54 @@
 </tr>
 </tbody>
 </table>
-<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
-</pre></td></tr></table></figure></p>
-<p>删除第三个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure>
+<p>删除第三个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
+<span class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span>
 <span class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></span>
-</pre></td></tr></table></figure></p>
-<p>删除后面两个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure>
+<p>删除后面两个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
+<span class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span>
 <span class="line">                  <span class="comment">// arrr: [0, 1]</span></span>
-</pre></td></tr></table></figure></p>
+</pre></td></tr></table></figure>
+<p>替换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// 把第二个元素变成 5</span></span>
+<span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
+<span class="line">arrr.splice(<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>); <span class="comment">// [0, 1, 5, 4]</span></span>
+</pre></td></tr></table></figure>
+<p>交换位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swapArrayItemPosition</span>(<span class="params">arr, one, another</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">var</span> dummy = arr.splice(one, <span class="number">1</span>, arr[another])[<span class="number">0</span>];</span>
+<span class="line">  arr.splice(another, <span class="number">1</span>, dummy);</span>
+<span class="line">  <span class="keyword">return</span> arr;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// arrr = [0, 1, 5, 4]</span></span>
+<span class="line">swapArrayItemPosition(arrr, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// [0, 5, 1, 4]</span></span>
+</pre></td></tr></table></figure>
 </div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li><li class="post__tag__item"><a href="/tags/splice/" class="post__tag__link">splice</a></li><li class="post__tag__item"><a href="/tags/array/" class="post__tag__link">array</a></li></ul></footer></article><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/kill-process-in-window/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/higashino-keigo/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","embed");
 </script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));

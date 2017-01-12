@@ -411,7 +411,7 @@ video {
   padding: 0 0.5em;
   border: 1px solid #f0f0f0;
   border-radius: 3px;
-  background-color: #f7f7f7;
+  background-color: #fafafa;
   text-shadow: 0 1px 0 #fff;
   white-space: nowrap;
   font-size: 0.85em;
@@ -425,8 +425,10 @@ video {
 .echo blockquote {
   margin: 1.6em -60px;
   padding: 10px 45px;
-  border-left: 10px solid #399c9c;
-  background-color: #f0f0f0;
+  border-left: 8px solid #399c9c;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #fefefe;
 }
 .highlight {
   overflow: auto;
@@ -435,6 +437,10 @@ video {
 }
 .highlight .gutter {
   color: #666;
+  display: none;
+}
+.highlight .code {
+  padding: 1em 50px;
 }
 .highlight figcaption {
   margin-bottom: 1em;
@@ -522,11 +528,11 @@ video {
 .main,
 .foot {
   margin: 0 auto;
-  width: 768px;
+  width: 700px;
 }
 .head,
 .foot {
-  padding: 0 60px;
+  padding: 0 50px;
   height: 120px;
   background-color: #399c9c;
   line-height: 120px;
@@ -570,7 +576,7 @@ video {
 }
 .comments {
   margin: 30px 0;
-  padding: 60px;
+  padding: 50px;
   background-color: #fff;
   border: 1px solid #f0f0f0;
 }
@@ -599,10 +605,10 @@ video {
   border: 1px solid #f0f0f0;
 }
 .post__head {
-  margin: 60px;
+  margin: 50px;
 }
 .post__head.archive {
-  margin: 30px 60px;
+  margin: 30px 50px;
 }
 .post__time {
   color: #ccc;
@@ -611,27 +617,27 @@ video {
 }
 .post__title {
   margin-top: 5px;
-  line-height: 1.3;
-  font-size: 25.6px;
-  font-size: 1.6rem;
+  line-height: 1.5;
+  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: normal;
 }
 .post__title > a {
-  color: #66595c;
+  color: #666;
 }
 .post__image {
   display: block;
   margin: 60px 0;
 }
 .post__main {
-  margin-top: 60px;
+  margin-top: 50px;
 }
 .post__main .headerlink {
   display: inline-block;
 }
 .post__main .highlight {
   margin: 1.6em -60px;
-  padding: 15px 30px;
+  padding: 15px;
 }
 .post__main .highlight figcaption {
   padding: 0 30px;

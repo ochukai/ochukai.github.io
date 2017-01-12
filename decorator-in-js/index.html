@@ -76,7 +76,7 @@
 <ol>
 <li>target 目标方法所在的类</li>
 <li>name 方法名</li>
-<li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点再上一个例子中已经用过了。</li>
+<li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点在上一个例子中已经看到了。</li>
 </ol>
 <h2 id="用在-class-上面"><a href="#用在-class-上面" class="headerlink" title="用在 class 上面"></a>用在 class 上面</h2><p>因为我最开始见到 decorator 是看到</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -89,15 +89,9 @@
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
 </pre></td><td class="code"><pre><span class="line">@log</span>
 <span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
-<span class="line"></span>
-<span class="line">  @log</span>
 <span class="line">  add(a, b) &#123; <span class="keyword">return</span> a + b; &#125;</span>
-<span class="line">   </span>
 <span class="line">&#125;</span>
 </pre></td></tr></table></figure>
 <p>只会输出</p>

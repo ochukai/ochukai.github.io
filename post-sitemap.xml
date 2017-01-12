@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://blog.ochukai.me</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/decorator-in-js/</loc>
+        <lastmod>2017-01-04T01:53:41.838Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/splice-in-javascript/</loc>
+        <lastmod>2017-01-04T01:50:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/js-bind-this/</loc>
+        <lastmod>2016-12-30T03:55:16.592Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/correct-ugly-markdown-css-in-webstorm/</loc>
+        <lastmod>2016-12-23T07:37:41.376Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/use-terminal-to-update-win10-key/</loc>
+        <lastmod>2016-12-16T06:58:09.484Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/webpack-dev-server-vs-webstorm/</loc>
+        <lastmod>2016-12-08T11:52:29.532Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/kill-process/</loc>
+        <lastmod>2016-12-08T11:50:26.299Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/kill-process-in-window/</loc>
+        <lastmod>2016-12-08T11:50:20.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/wrong-clearfix-make-me-crazy/</loc>
+        <lastmod>2016-11-22T01:40:09.782Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/zepto-plugin/</loc>
+        <lastmod>2016-11-22T01:40:09.782Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/show-a-default-image-when-the-image-is-broken/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/telephone-number-not-recognize-in-wx/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/ths-difference-between-splice-and-slice/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/use-js-to-convert-ts-to-data/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/wamp-mysql-chinese-question-mark/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/write-a-compatible-js-module/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/higashino-keigo/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/modify-wamp-mysql-password/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/menu-with-moved-elfish/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/navicat-10-1-7-key/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/prevent-deep-div-scroll-with-the-top-element/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/protect-yourself-in-network/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/battleship-girls/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/css-animation-queue-list/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/esekesu-senkanno-onnanoko/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/for-in-scss/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/formdata-in-action/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/git-remember-password-in-window-and-linux/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://blog.ochukai.me/baseview-in-backbone/</loc>
+        <lastmod>2016-11-22T01:40:09.720Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+</urlset>
+<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->
