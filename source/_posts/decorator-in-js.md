@@ -67,7 +67,7 @@ my.add(2, 3);
 所以呢，decorator 的三个参数分别是
 1. target 目标方法所在的类
 2. name 方法名
-3. descriptor 该方法的一些描述， 其中 `value` 就是方法本身，这一点再上一个例子中已经用过了。
+3. descriptor 该方法的一些描述， 其中 `value` 就是方法本身，这一点在上一个例子中已经看到了。
 
 ## 用在 class 上面
 
@@ -83,10 +83,7 @@ class DemoHOCItem extends React.Component {/*...*/}
 ```js
 @log
 class Example {
-
-  @log
   add(a, b) { return a + b; }
-   
 }
 ```
 只会输出

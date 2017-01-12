@@ -28,19 +28,45 @@ item1, ..., itemX | 可选。向数组添加的新项目。
 ## 用法举例
 
 在数组最开始插入一个元素
+
 ```js
-var arrr = [1,2,3,4];   // arrr: [1, 2, 3, 4]
+var arrr = [1, 2, 3, 4];   // arrr: [1, 2, 3, 4]
 arrr.splice(0, 0, 0);   // arrr: [0, 1, 2, 3, 4]
 ```
 
 删除第三个
+
 ```js
+// arrr: [0, 1, 2, 3, 4]
 arrr.splice(3, 1) // return [3] 删除的元素会做为返回返回值
                   // arrr: [0, 1, 2, 4]
 ```
 
 删除后面两个
+
 ```js
+// arrr: [0, 1, 2, 4]
 arrr.splice(2, 2) // return [2， 4]
                   // arrr: [0, 1]
+```
+
+替换
+
+```js
+// 把第二个元素变成 5
+// arrr: [0, 1, 2, 4]
+arrr.splice(2, 1, 5); // [0, 1, 5, 4]
+```
+
+交换位置
+
+```js
+function swapArrayItemPosition(arr, one, another) {
+  var dummy = arr.splice(one, 1, arr[another])[0];
+  arr.splice(another, 1, dummy);
+  return arr;
+}
+
+// arrr = [0, 1, 5, 4]
+swapArrayItemPosition(arrr, 1, 2); // [0, 5, 1, 4]
 ```
