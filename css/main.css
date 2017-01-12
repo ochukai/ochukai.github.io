@@ -627,7 +627,7 @@ video {
 }
 .post__image {
   display: block;
-  margin: 60px 0;
+  margin: 50px 0;
 }
 .post__main {
   margin-top: 50px;
@@ -670,7 +670,7 @@ video {
   margin: 1.6em auto;
 }
 .post__foot {
-  padding: 15px 60px;
+  padding: 15px 50px;
   border-top: 1px solid #f0f0f0;
   background-color: #fafafa;
 }
