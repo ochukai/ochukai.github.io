@@ -21,10 +21,10 @@ mixin post(post, index)
           else
             != post.content
 
-    footer.post__foot.u-cf
-      if post.tags && post.tags.length
+    if post.tags && post.tags.length > 0
+      footer.post__foot.u-cf
         ul.post__tag.u-fl
-          -post.tags.forEach(function(tag){
+          -post.tags.forEach(function(tag) {
             li.post__tag__item: a.post__tag__link(href = config.root + tag.path)
               = tag.name
-          - })
+          -})

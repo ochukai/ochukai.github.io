@@ -16,16 +16,15 @@
 .post__title
   margin-top: 5px
   line-height: 1.5
-
-  // 1.6 * 16
   font-size-rem(24)
   font-weight: normal
+
   > a
     color: #666
 
 .post__image
   display: block
-  margin: 60px 0
+  margin: $margin-left-right 0
 
 .post__main
   margin-top: $margin-left-right
@@ -69,7 +68,7 @@
     margin: 1.6em auto
 
 .post__foot
-  padding: 15px 60px
+  padding: 15px $margin-left-right
   border-top: 1px solid $border-color
   background-color: $background-color
 
@@ -84,8 +83,10 @@
 .post__tag__link
   @extend .post__foot-link
   display: block
+
   &:hover
     color: #9c396b
+
   &:before
     content: "#"
 
@@ -96,5 +97,6 @@
   border-radius: 3px
   background-color: #CCCCCC
   color: #FFFFFF
+
   &:hover
     background-color: #DDDDDD

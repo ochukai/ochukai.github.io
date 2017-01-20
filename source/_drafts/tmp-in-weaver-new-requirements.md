@@ -53,3 +53,12 @@ RHY9K-QYWBC-8DTD9-FXJCH-47RTQ
 正文	     用 Element 快速搭建页面	 14px Small
 正文小	    用 Element 快速搭建页面	13px Extra Small
 辅助文字   用 Element 快速搭建页面	 12px Extra Extra Small
+
+
+这块可以改一下
+
+1、增加个是否自动开始  —如果  是，并且还没开始过的，则 到时间 自动推送秒杀信息
+
+2、大屏幕和列表中的立即开始这个 按钮   是否就不和开始结束时间挂钩判断了？
+
+---
