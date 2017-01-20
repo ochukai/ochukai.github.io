@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2016-12-30T03:55:16.592Z</updated>
+  <updated>2017-01-20T06:41:03.831Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -14,6 +14,160 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Textarea 的高度自动增长</title>
+    <link href="http://blog.ochukai.me/textarea-height-auto-increase/"/>
+    <id>http://blog.ochukai.me/textarea-height-auto-increase/</id>
+    <published>2017-01-20T03:48:10.000Z</published>
+    <updated>2017-01-20T06:41:03.831Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般情况下，textarea 的高度是定死的，rows 指定了之后，高度就不变了，内容多了之后会出现滚动条，这样的设定在大部分的场景下面是够用的， 但是有时就会很丑陋（废话😊）。</p>
+<p>我们都知道 HTML 的元素都有一个 scrollHeight 这个属性，就是当该元素出现滚动条的时候，内容的高度。</p>
+<p>那就方便了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line">$(<span class="string">".weui-textarea"</span>).on(<span class="string">'input propertychange keyup'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">  $(<span class="keyword">this</span>).height(<span class="keyword">this</span>.scrollHeight);</span>
+<span class="line">&#125;);</span>
+</pre></td></tr></table></figure>
+<p>这样就实现了高度自动增加的 Textarea，但当我试着删掉几行，想让它自动降低高度的时候不禁菊花一紧，他不动~</p>
+<p>这就尴尬,,ԾㅂԾ,,了，于是我就找了另外一种方法:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+</pre></td><td class="code"><pre><span class="line">$(<span class="string">'.weui-textarea'</span>).on(<span class="string">'input keyup'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">  <span class="comment">// 尝试滚动一段距离，如果没有滚动条，scrollTop 还是 0</span></span>
+<span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.scrollTop == <span class="number">0</span>) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.scrollTop = <span class="number">1</span>;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">while</span> (<span class="keyword">this</span>.scrollTop == <span class="number">0</span>) &#123;</span>
+<span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rows &gt; minRows) &#123;</span>
+<span class="line">      <span class="keyword">this</span>.rows--;</span>
+<span class="line">    &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">      <span class="keyword">break</span>;</span>
+<span class="line">    &#125;</span>
+<span class="line"></span>
+<span class="line">    <span class="keyword">this</span>.scrollTop = <span class="number">1</span>;</span>
+<span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rows &lt; maxRows) &#123;</span>
+<span class="line">      <span class="keyword">this</span>.style.overflowY = <span class="string">"hidden"</span>;</span>
+<span class="line">    &#125;</span>
+<span class="line"></span>
+<span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.scrollTop &gt; <span class="number">0</span>) &#123;</span>
+<span class="line">      <span class="keyword">this</span>.rows++;</span>
+<span class="line">      <span class="keyword">break</span>;</span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">while</span> (<span class="keyword">this</span>.scrollTop &gt; <span class="number">0</span>) &#123;</span>
+<span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rows &lt; maxRows) &#123;</span>
+<span class="line">      <span class="keyword">this</span>.rows++;</span>
+<span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.scrollTop == <span class="number">0</span>) &#123;</span>
+<span class="line">        <span class="keyword">this</span>.scrollTop = <span class="number">1</span>;</span>
+<span class="line">      &#125;</span>
+<span class="line">    &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">      <span class="keyword">this</span>.style.overflowY = <span class="string">"auto"</span>;</span>
+<span class="line">      <span class="keyword">break</span>;</span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;);</span>
+</pre></td></tr></table></figure>
+<p>这是一个例子~ （换行试试~😏）</p>
+<p><textarea class="weui-textarea" placeholder="这是一个例子~" rows="3" style="resize: none;width: 100%;border: 1px solid pink; border-radius:4px; padding: 5px;font-size:14px;"></textarea></p>
+<script>
+  $(function () {
+
+    var minRows = 3;
+    var maxRows = 10;
+
+    $('.weui-textarea').on('input keyup', function () {
+      // 尝试滚动一段距离，如果没有滚动条，scrollTop 还是 0
+      if (this.scrollTop == 0) {
+        this.scrollTop = 1;
+      }
+
+      while (this.scrollTop == 0) {
+        if (this.rows > minRows) {
+          this.rows--;
+        } else {
+          break;
+        }
+
+        this.scrollTop = 1;
+        if (this.rows < maxRows) {
+          this.style.overflowY = "hidden";
+        }
+
+        if (this.scrollTop > 0) {
+          this.rows++;
+          break;
+        }
+      }
+
+      while (this.scrollTop > 0) {
+        if (this.rows < maxRows) {
+          this.rows++;
+          if (this.scrollTop == 0) {
+            this.scrollTop = 1;
+          }
+        } else {
+          this.style.overflowY = "auto";
+          break;
+        }
+      }
+    });
+
+  });
+</script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一般情况下，textarea 的高度是定死的，rows 指定了之后，高度就不变了，内容多了之后会出现滚动条，这样的设定在大部分的场景下面是够用的， 但是有时就会很丑陋（废话😊）。&lt;/p&gt;
+&lt;p&gt;我们都知道 HTML 的元素都有一个 scrollHeight 这个属性，就是
+    
+    </summary>
+    
+      <category term="HTML" scheme="http://blog.ochukai.me/categories/html/"/>
+    
+    
+      <category term="textarea" scheme="http://blog.ochukai.me/tags/textarea/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript 绑定 this</title>
@@ -2714,175 +2868,6 @@
     
     
       <category term="建造公式" scheme="http://blog.ochukai.me/tags/%E5%BB%BA%E9%80%A0%E5%85%AC%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript 中 Timestamp 与 Date 的转化</title>
-    <link href="http://blog.ochukai.me/use-js-to-convert-ts-to-data/"/>
-    <id>http://blog.ochukai.me/use-js-to-convert-ts-to-data/</id>
-    <published>2015-12-02T03:10:44.000Z</published>
-    <updated>2016-11-22T01:40:09.766Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-</pre></td><td class="code"><pre><span class="line">&#123;</span>
-<span class="line">    <span class="attr">"meta"</span>: &#123;</span>
-<span class="line">        <span class="attr">"has_next_msg"</span>: <span class="literal">false</span></span>
-<span class="line">    &#125;,</span>
-<span class="line">    <span class="attr">"objects"</span>: [</span>
-<span class="line">        &#123;</span>
-<span class="line">            <span class="attr">"text"</span>: <span class="string">"111"</span>,</span>
-<span class="line">            <span class="attr">"from_user_type"</span>: <span class="string">"PAT"</span>,</span>
-<span class="line">            <span class="attr">"pic"</span>: <span class="string">""</span>,</span>
-<span class="line">            <span class="attr">"ts"</span>: <span class="number">1419939065</span></span>
-<span class="line">        &#125;</span>
-<span class="line">    ]</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<p><code>ts</code> 那个属性我不太熟悉，不过我觉得应该是 timestamp 的意思吧。后来才知道，<code>ts</code> 就是该条消息的发送时间戳（timestamp），显示这条信息的时候应该显示为日期。</p>
-<h2 id="把-Date-转化为-Timestamp"><a href="#把-Date-转化为-Timestamp" class="headerlink" title="把 Date 转化为 Timestamp"></a>把 Date 转化为 Timestamp</h2><p>我们都知道，在 js 里面把 date 转化为 timestamp 的方法比较简单，而且方法也有好多种，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// get the timestamp in seconds</span></span>
-<span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// or with a slightly way</span></span>
-<span class="line"><span class="built_in">Date</span>.now() / <span class="number">1000</span> | <span class="number">0</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// Year 2038 problem? lol...</span></span>
-<span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'Jan 1, 2039'</span>) / <span class="number">1000</span> | <span class="number">0</span> <span class="comment">// -2117514496 </span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">/*----------*/</span></span>
-<span class="line"><span class="built_in">Math</span>.round(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()/<span class="number">1000</span>);</span>
-<span class="line"></span>
-<span class="line">+<span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1000</span> | <span class="number">0</span></span>
-<span class="line"></span>
-<span class="line">~~(<span class="built_in">Date</span>.now() / <span class="number">1000</span>)</span>
-<span class="line"></span>
-<span class="line"><span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1e3</span> | <span class="number">0</span></span>
-</pre></td></tr></table></figure>
-<h2 id="把-Timestamp-转化为-Date"><a href="#把-Timestamp-转化为-Date" class="headerlink" title="把 Timestamp 转化为 Date"></a>把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-<span class="line">32</span>
-<span class="line">33</span>
-<span class="line">34</span>
-<span class="line">35</span>
-<span class="line">36</span>
-<span class="line">37</span>
-<span class="line">38</span>
-</pre></td><td class="code"><pre><span class="line"><span class="built_in">Date</span>.prototype.format = <span class="function"><span class="keyword">function</span>(<span class="params">format</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">var</span> o = &#123;</span>
-<span class="line">        <span class="string">'M+'</span>: <span class="keyword">this</span>.getMonth() + <span class="number">1</span>,          <span class="comment">// month</span></span>
-<span class="line">        <span class="string">'d+'</span>: <span class="keyword">this</span>.getDate(),                 <span class="comment">// day</span></span>
-<span class="line">        <span class="string">'h+'</span>: <span class="keyword">this</span>.getHours(),                  <span class="comment">// hour</span></span>
-<span class="line">        <span class="string">'m+'</span>: <span class="keyword">this</span>.getMinutes(),                  <span class="comment">// minute</span></span>
-<span class="line">        <span class="string">'s+'</span>: <span class="keyword">this</span>.getSeconds(),                    <span class="comment">// second     </span></span>
-<span class="line">        <span class="string">'q+'</span>: <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth() + <span class="number">3</span>) / <span class="number">3</span>),  <span class="comment">// quarter</span></span>
-<span class="line">        <span class="string">'S'</span> : <span class="keyword">this</span>.getMilliseconds()                 <span class="comment">// millisecond</span></span>
-<span class="line">    &#125;;</span>
-<span class="line"></span>
-<span class="line">    <span class="comment">// year</span></span>
-<span class="line">    <span class="keyword">if</span> (<span class="regexp">/(y+)/</span>.test(format) || <span class="regexp">/(Y+)/</span>.test(format)) &#123;</span>
-<span class="line">        format = format.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear() + <span class="string">''</span>)</span>
-<span class="line">                       .substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</span>
-<span class="line">    &#125;</span>
-<span class="line"></span>
-<span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> o) &#123;</span>
-<span class="line">        <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'('</span> + k + <span class="string">')'</span>).test(format)) &#123;</span>
-<span class="line">            <span class="keyword">var</span> first = <span class="built_in">RegExp</span>.$<span class="number">1</span>;</span>
-<span class="line">            <span class="keyword">var</span> str = first.length === <span class="number">1</span></span>
-<span class="line">                    ? o[k]</span>
-<span class="line">                    : (<span class="string">'00'</span> + o[k]).substr((<span class="string">''</span> + o[k]).length); <span class="comment">// nb</span></span>
-<span class="line">            format = format.replace(first, str);</span>
-<span class="line">        &#125;</span>
-<span class="line">    &#125;</span>
-<span class="line"></span>
-<span class="line">    <span class="keyword">return</span> format;</span>
-<span class="line">&#125;;</span>
-<span class="line"></span>
-<span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tsToDate</span>(<span class="params">timestamp</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>)).format(<span class="string">'yyyy-MM-dd hh:mm:ss'</span>);</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// test it</span></span>
-<span class="line">&gt; tsToDate(<span class="number">1448967948</span>)</span>
-<span class="line">&lt; <span class="string">"2015-12-01 19:05:48"</span></span>
-</pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;问题产生&quot;&gt;&lt;a href=&quot;#问题产生&quot; class=&quot;headerlink&quot; title=&quot;问题产生&quot;&gt;&lt;/a&gt;问题产生&lt;/h2&gt;&lt;p&gt;今天在处理一个接口时，发现返回的格式是这样的：&lt;br&gt;&lt;figure class=&quot;highlight json&quot;&gt;&lt;tab
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
-    
-    
-      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
-    
-      <category term="ts" scheme="http://blog.ochukai.me/tags/ts/"/>
-    
-      <category term="date" scheme="http://blog.ochukai.me/tags/date/"/>
-    
-      <category term="format" scheme="http://blog.ochukai.me/tags/format/"/>
     
   </entry>
   
