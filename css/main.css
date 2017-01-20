@@ -423,7 +423,7 @@ video {
   box-shadow: 0 1px 0px #ccc, 0 0 0 2px #fff inset;
 }
 .echo blockquote {
-  margin: 1.6em -60px;
+  margin: 1.6em -50px;
   padding: 10px 45px;
   border-left: 8px solid #399c9c;
   border-top: 1px solid #f0f0f0;
