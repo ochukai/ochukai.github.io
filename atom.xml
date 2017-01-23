@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2017-01-20T06:41:03.831Z</updated>
+  <updated>2017-01-23T02:58:10.245Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -14,6 +14,229 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>稍微总结一下 dva 😜</title>
+    <link href="http://blog.ochukai.me/dva-in-action/"/>
+    <id>http://blog.ochukai.me/dva-in-action/</id>
+    <published>2017-01-23T01:28:20.000Z</published>
+    <updated>2017-01-23T02:58:10.245Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇</p>
+<h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p><img src="..//images/dva-flow.png" alt=""></p>
+<p>上面是一张 dva 的图，<code>component，state，dispatch，connect</code> 都是与 redux 一样的概念，不过，dva 把 <strong>action -&gt; reducer</strong> 拆分成了，<strong>action -&gt; model(reducer, effect,subscription)</strong>，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>一个简单的 model 是这样的:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span>
+<span class="line">  <span class="attr">namespace</span>: <span class="string">'example'</span>, <span class="comment">// 这里是命名空间  </span></span>
+<span class="line">  state: &#123;&#125;,</span>
+<span class="line">  <span class="attr">subscriptions</span>: &#123;&#125;,</span>
+<span class="line">  </span>
+<span class="line">  <span class="attr">effects</span>: &#123;</span>
+<span class="line">    * query(&#123; payload &#125;, &#123; select, call, put &#125;) &#123;</span>
+<span class="line">      <span class="comment">//</span></span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;,</span>
+<span class="line"></span>
+<span class="line">  <span class="attr">reducers</span>: &#123;</span>
+<span class="line">    querySuccess(state, &#123; payload &#125;) &#123;</span>
+<span class="line">      <span class="comment">//</span></span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;,</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>
+<h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><p>可以简单的理解为 comboReducer 使用这个值作为 key，而且 namespace 最重要的地方是用在 dispatch（put）的时候</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// 假如 example 的 model 定义了 query 这个 effect 或者 reducer。</span></span>
+<span class="line">dispatch(&#123; <span class="attr">type</span>: <span class="string">'example/query'</span> &#125;)</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 当前 model 中存在名为 querySuccess 的 reducer</span></span>
+<span class="line"><span class="comment">// 然后在 effect 中这样访问 reducer</span></span>
+<span class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'querySuccess'</span> &#125;) </span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 在组件中当然可以直接 dispatch(&#123; type: 'example/someReducer' &#125;)</span></span>
+</pre></td></tr></table></figure>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>就是一个对象</p>
+<h3 id="subscriptions"><a href="#subscriptions" class="headerlink" title="subscriptions"></a>subscriptions</h3><p>顾名思义可以订阅一些事件，待续😆</p>
+<h3 id="effects"><a href="#effects" class="headerlink" title="effects"></a>effects</h3><p>异步操作，这里使用了 <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="external">redux-sagas</a>，先举个例子吧，其实就是异步的action， 但是是使用 sagas 实现的，很好（niu）看（bi）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span>
+<span class="line">* update(&#123; payload &#125;, &#123; call, put &#125;) &#123;</span>
+<span class="line">  <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'showModalLoading'</span> &#125;);</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">yield</span> call(saveTenants, payload);</span>
+<span class="line">  <span class="keyword">if</span> (data.status === <span class="string">'success'</span>) &#123;</span>
+<span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'hideModal'</span> &#125;);</span>
+<span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'query'</span> &#125;); <span class="comment">// 刷新一下列表</span></span>
+<span class="line">  &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'hideModalLoading'</span> &#125;);</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;,</span>
+<span class="line"><span class="comment">// ...</span></span>
+</pre></td></tr></table></figure>
+<p>（感觉丝毫不需要我用文字描述，顺着读完就知道是什么意思了，还是特么异步的）</p>
+<blockquote>
+<p>select, put, call 这些概念是 sagas 里面的</p>
+</blockquote>
+<h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>修改 state 的地方</p>
+<h2 id="dva"><a href="#dva" class="headerlink" title="dva"></a>dva</h2><p>dva 会对 dispatch 做一些处理，比如他要把 <strong>example/query</strong> 分成 example 下面的 query （effect/reducer）。</p>
+<p>所以肯定要注册这个 model，才能让 dva 知道 example 的存在，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dva <span class="keyword">from</span> <span class="string">'dva'</span>;</span>
+<span class="line"><span class="keyword">const</span> app = dva();</span>
+<span class="line"></span>
+<span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/example'</span>));</span>
+</pre></td></tr></table></figure>
+<p>其实 dva 出了 model 这个方法，还有其他的几个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. Init</span></span>
+<span class="line"><span class="keyword">import</span> dva <span class="keyword">from</span> <span class="string">'dva'</span>;</span>
+<span class="line"><span class="keyword">const</span> app = dva();</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 2. Plugins</span></span>
+<span class="line">app.use(&#123;</span>
+<span class="line"><span class="comment">/**</span>
+<span class="line">* called when an effect or subscription emit an error.</span>
+<span class="line">*</span>
+<span class="line">* @param  &#123;string&#125; err       Exception</span>
+<span class="line">* @param  &#123;function&#125; action  the effect or subscription</span>
+<span class="line">*/</span></span>
+<span class="line"><span class="comment">// onError : (err, action) =&gt; &#123;&#125;</span></span>
+<span class="line">&#125;);</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 3. Model</span></span>
+<span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/example'</span>));</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 4. Router</span></span>
+<span class="line">app.router(<span class="built_in">require</span>(<span class="string">'./router'</span>));</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 5. Start</span></span>
+<span class="line">app.start(<span class="string">'#root'</span>);</span>
+</pre></td></tr></table></figure>
+<h2 id="dev-cli"><a href="#dev-cli" class="headerlink" title="dev-cli"></a><a href="https://github.com/dvajs/dva-cli" target="_blank" rel="external">dev-cli</a></h2><p>比较好用的东西，解决了新建 router，component，model 还要添加 dva 的配置的问题，生成 router， component 的同时会直接在 dva 配置中更新。</p>
+<p>例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line">$ dva g route product-list</span>
+<span class="line">$ dva g model products</span>
+<span class="line">$ dva g component Editor</span>
+<span class="line">$ dva g component Users/UserModal</span>
+<span class="line">$ dva g component Header --no-css</span>
+</pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇&lt;/p&gt;
+&lt;h2 id=&quot;几个概念&quot;
+    
+    </summary>
+    
+      <category term="React" scheme="http://blog.ochukai.me/categories/react/"/>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/react/javascript/"/>
+    
+    
+      <category term="dva" scheme="http://blog.ochukai.me/tags/dva/"/>
+    
+      <category term="react" scheme="http://blog.ochukai.me/tags/react/"/>
+    
+      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>删除 .svn 文件夹</title>
+    <link href="http://blog.ochukai.me/remove-svn-folder/"/>
+    <id>http://blog.ochukai.me/remove-svn-folder/</id>
+    <published>2017-01-22T02:09:47.000Z</published>
+    <updated>2017-01-22T02:30:05.297Z</updated>
+    
+    <content type="html"><![CDATA[<p>新建 remove-svn.bat, 放到项目根目录执行就好了。（本来以为 svn 会提供这样的功能，结果还要自己写，😒）</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> on</span>
+<span class="line">@<span class="keyword">for</span> /r . <span class="variable">%%a</span> <span class="keyword">in</span> (.) <span class="keyword">do</span> @<span class="keyword">if</span> <span class="keyword">exist</span> "<span class="variable">%%a</span>\.svn" <span class="built_in">rd</span> /s /q "<span class="variable">%%a</span>\.svn"</span>
+<span class="line">@<span class="built_in">pause</span></span>
+</pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;新建 remove-svn.bat, 放到项目根目录执行就好了。（本来以为 svn 会提供这样的功能，结果还要自己写，😒）&lt;/p&gt;
+&lt;figure class=&quot;highlight bat&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+    
+    </summary>
+    
+      <category term="SVN" scheme="http://blog.ochukai.me/categories/svn/"/>
+    
+    
+      <category term="svn" scheme="http://blog.ochukai.me/tags/svn/"/>
+    
+  </entry>
   
   <entry>
     <title>Textarea 的高度自动增长</title>
@@ -348,9 +571,9 @@
       <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
     
     
-      <category term="this" scheme="http://blog.ochukai.me/tags/this/"/>
-    
       <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+    
+      <category term="this" scheme="http://blog.ochukai.me/tags/this/"/>
     
   </entry>
   
@@ -2609,265 +2832,6 @@
     
     
       <category term="微信开发" scheme="http://blog.ochukai.me/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>杀死正在占有你端口的小程序</title>
-    <link href="http://blog.ochukai.me/kill-process/"/>
-    <id>http://blog.ochukai.me/kill-process/</id>
-    <published>2016-02-25T10:38:07.000Z</published>
-    <updated>2016-12-08T11:50:26.299Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-</pre></td><td class="code"><pre><span class="line">0 errors found</span>
-<span class="line">February 25, 2016 - 18:25:21</span>
-<span class="line">Django version 1.6.7, using settings <span class="string">'green.settings'</span></span>
-<span class="line">Starting development server at http://0.0.0.0:8000/</span>
-<span class="line">Quit the server with CONTROL-C.</span>
-<span class="line">Error: That port is already <span class="keyword">in</span> use.</span>
-</pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">ps aux | grep python</span>
-</pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line">(kkh)➜  green git:(feature/shopping_mall_womens_day) ✗ ps aux | grep python</span>
-<span class="line">Oliver          23232   0.0  0.0  2434840    752 s002  S+    5:25下午   0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn python</span>
-<span class="line">Oliver          23103   0.0  0.8  2550628  66364 s002  S     5:23下午   0:02.23 /Users/Oliver/dev/kkh/bin/python manage.py runserver 0.0.0.0:8000</span>
-</pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> 23103</span>
-</pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://blog.ochukai.me/categories/linux/"/>
-    
-    
-      <category term="端口占用" scheme="http://blog.ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>战舰少女基础知识及部分公式</title>
-    <link href="http://blog.ochukai.me/battleship-girls/"/>
-    <id>http://blog.ochukai.me/battleship-girls/</id>
-    <published>2016-02-22T16:07:25.000Z</published>
-    <updated>2016-11-22T01:40:09.735Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>缩写</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>战列舰</td>
-<td>BB</td>
-<td>大炮巨舰的典范，高火力、高血量、高护甲。是游戏中后期推图的主力。</td>
-</tr>
-<tr>
-<td>战列巡洋舰</td>
-<td>BC</td>
-<td>战列舰的缩减版本，火力、血量、护甲略低于战列舰，拥有相对高的防空属性，优点是全部是高速舰，推图上有优势。</td>
-</tr>
-<tr>
-<td>正规航母</td>
-<td>CV</td>
-<td>高索敌，有开幕战，多一轮攻击，受装备影响大，夜间无法攻击。</td>
-</tr>
-<tr>
-<td>轻型航母</td>
-<td>CVL</td>
-<td>正规航母的缩水版，装甲低下，可反潜，搭载数量低，作用是前期舰队补充。</td>
-</tr>
-<tr>
-<td>浅水重炮舰</td>
-<td>BM</td>
-<td>游戏中只有两艘，火力高，可以装长距离的主炮，白天可以来两发，消耗低，本来可以用来打捞保姆，之后有改过，护甲变低，基本上没人用了。</td>
-</tr>
-<tr>
-<td>潜艇</td>
-<td>SS</td>
-<td>同样为数不多，低闪避，高鱼雷，只有具备反潜能力的舰船才能打到，夜战能力高!升到11级后有开幕雷击的能力。</td>
-</tr>
-<tr>
-<td>重巡洋舰</td>
-<td>CA</td>
-<td>夜战优秀，闪避中上，部分能够发射鱼雷，消耗较，欺负小学生的神器。</td>
-</tr>
-<tr>
-<td>轻巡洋舰</td>
-<td>CL</td>
-<td>大部分反潜优秀，属性在重巡和驱逐之间，闪避出色，依旧适合欺负小学生。</td>
-</tr>
-<tr>
-<td>驱逐舰</td>
-<td>DD</td>
-<td>属性低，消耗低，闪避高，夜战出色，鱼雷战优秀。小学生作为入门舰船，也是必须练的船，一般用来推图带路和完成远征的特定条件。</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>炮潜</strong><br>在2015夏季活动中加入的新舰船—絮库夫的舰船种类，虽然会潜水，但是却没有开幕雷击，没多大用处。  </p>
-<p><strong>补给舰</strong><br>目前唯一一艘<strong>苏赫巴托尔</strong>，萌萌哒，幸运高，闪避高，技能可以打捞到更好的船，1-5通关奖励。</p>
-</blockquote>
-<h2 id="驱逐"><a href="#驱逐" class="headerlink" title="驱逐"></a>驱逐</h2><blockquote>
-<p>空想、绫波、Z1、萤火虫、Z31、Z16、晓、响、雷、电、敷波和标枪</p>
-<p>高星稀有驱逐: 塔什干、奥班农、拉菲等</p>
-<p>以及Z系的其他驱逐</p>
-</blockquote>
-<h2 id="战列"><a href="#战列" class="headerlink" title="战列"></a>战列</h2><table>
-<thead>
-<tr>
-<th>-</th>
-<th>名称</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>改造战列</td>
-<td>威尔士亲王改、俾斯麦改、罗德尼改、安德烈亚多利亚改、纳尔逊改、内华达改、俄克拉荷马改</td>
-</tr>
-<tr>
-<td>高星稀有</td>
-<td>黎塞留、前卫、提尔比茨、华盛顿</td>
-</tr>
-<tr>
-<td>四星</td>
-<td>科罗拉多、马里兰，西弗吉尼亚</td>
-</tr>
-</tbody>
-</table>
-<h2 id="轻巡"><a href="#轻巡" class="headerlink" title="轻巡"></a>轻巡</h2><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>海伦娜改</td>
-<td>可以给全队增加索敌和命中</td>
-</tr>
-<tr>
-<td>夕张改</td>
-<td>觉醒技能后，可以使性能提升很多</td>
-</tr>
-<tr>
-<td>奥希金斯改</td>
-<td></td>
-</tr>
-<tr>
-<td>宁海改</td>
-<td>经验宝宝，技能可以增加战斗经验</td>
-</tr>
-<tr>
-<td>平海改</td>
-<td></td>
-</tr>
-<tr>
-<td>天龙改</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>5星轻巡天狼星，贝尔法斯特<br>4星的基洛夫，以及中国船逸仙、重庆（曙光女神改）</p>
-</blockquote>
-<h2 id="热门"><a href="#热门" class="headerlink" title="热门"></a>热门</h2><p>埃塞克斯，马汉，M1，睦月，企业号航母，狮，宁海，威奇塔改，拉菲，青叶</p>
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><table>
-<thead>
-<tr>
-<th>-</th>
-<th>第一</th>
-<th>第二</th>
-<th>产物</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>战列</td>
-<td>400 80 650 130</td>
-<td>630 600 650 230</td>
-<td>黎塞留、前卫、安德烈亚多利亚、提尔比茨、俾斯麦、华盛顿</td>
-</tr>
-<tr>
-<td>航母轻母</td>
-<td>400 600 600 400</td>
-<td>500 130 600 400</td>
-<td>赤城、加贺、追赶者</td>
-</tr>
-<tr>
-<td>轻巡</td>
-<td>200 30 200 100</td>
-<td>130 130 130 130</td>
-<td>贝尔法斯特、爱丁堡、逸仙、平海、宁海、基洛夫、埃姆登、莱比锡</td>
-</tr>
-<tr>
-<td>驱逐</td>
-<td>130 30 130 30</td>
-<td>130 130 130 130</td>
-<td>拉菲、空想、塔什干（拉菲用3663出货率还是蛮不错的）</td>
-</tr>
-<tr>
-<td>潜艇</td>
-<td>30 60 60 30</td>
-<td>250 30 250 30</td>
-<td>大青花鱼</td>
-</tr>
-</tbody>
-</table>
-<h2 id="常用公式产出分析"><a href="#常用公式产出分析" class="headerlink" title="常用公式产出分析"></a>常用公式产出分析</h2><ol>
-<li><p>400 80 650 130(前卫公式)<br>当前用的最多的战列公式，出所有战列，所有战巡，所有重巡，4星以上轻巡，重炮以及空想和拉菲这两艘驱逐;屏蔽了航母，轻母，其余轻巡，驱逐以及大青花鱼。</p>
-</li>
-<li><p>630 600 650 230(黑猫公式)<br>据说是最容易出北宅和猫?出所有战列，所有战巡，所有重巡，重炮以及空想;屏蔽了航母，轻母，所有轻巡，其余驱逐以及大青花鱼。</p>
-</li>
-<li><p>400 600 600 400(标准航母公式)<br>最早常见的航母公式，出航母，轻母，重巡，4星轻巡以及空想;屏蔽战列，战巡，其余轻巡，其余驱逐，重炮以及大青花鱼。</p>
-</li>
-<li><p>400 130 500 130(稀有轻巡公式)<br>可以用来赌贝爷(贝尔法斯特)，当然其他4星轻巡也是可以的。出战巡，重巡，稀有轻巡，重炮以及空想;屏蔽战列，航母，轻母，3星以下轻巡，其余驱逐和大青花鱼。</p>
-</li>
-<li><p>500 130 600 400(航母公式)<br>新型航母公式，相比标准航母公式，屏蔽了轻巡，一定程度上提高了吃喝、追赶的出货率。出航母，轻母，重巡以及空想;屏蔽其余战列，轻巡，重炮，其余驱逐以及大青花鱼。</p>
-</li>
-<li><p>130 30 130 30(小船通用公式)<br>小船指得是轻巡驱逐潜艇。屏蔽其余舰种船只。如果要鱼的话30 60 60 30就够了。</p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;类型&quot;&gt;&lt;a href=&quot;#类型&quot; class=&quot;headerlink&quot; title=&quot;类型&quot;&gt;&lt;/a&gt;类型&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;类型&lt;/th&gt;
-&lt;th&gt;缩写&lt;/th&gt;
-&lt;th&gt;特点&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;
-    
-    </summary>
-    
-      <category term="戦艦の女の子" scheme="http://blog.ochukai.me/categories/%E6%88%A6%E8%89%A6%E3%81%AE%E5%A5%B3%E3%81%AE%E5%AD%90/"/>
-    
-    
-      <category term="建造公式" scheme="http://blog.ochukai.me/tags/%E5%BB%BA%E9%80%A0%E5%85%AC%E5%BC%8F/"/>
     
   </entry>
   

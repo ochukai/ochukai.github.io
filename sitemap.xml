@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.ochukai.me/dva-in-action/</loc>
+    
+    <lastmod>2017-01-23T02:58:10.245Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.ochukai.me/remove-svn-folder/</loc>
+    
+    <lastmod>2017-01-22T02:30:05.297Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.ochukai.me/textarea-height-auto-increase/</loc>
     
     <lastmod>2017-01-20T06:41:03.831Z</lastmod>
@@ -72,7 +86,7 @@
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/wrong-clearfix-make-me-crazy/</loc>
+    <loc>http://blog.ochukai.me/about/index.html</loc>
     
     <lastmod>2016-11-22T01:40:09.782Z</lastmod>
     
@@ -93,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/about/index.html</loc>
+    <loc>http://blog.ochukai.me/wrong-clearfix-make-me-crazy/</loc>
     
     <lastmod>2016-11-22T01:40:09.782Z</lastmod>
     
@@ -128,13 +142,6 @@
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/use-js-to-convert-ts-to-data/</loc>
-    
-    <lastmod>2016-11-22T01:40:09.766Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.ochukai.me/telephone-number-not-recognize-in-wx/</loc>
     
     <lastmod>2016-11-22T01:40:09.766Z</lastmod>
@@ -142,23 +149,9 @@
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/menu-with-moved-elfish/</loc>
+    <loc>http://blog.ochukai.me/use-js-to-convert-ts-to-data/</loc>
     
-    <lastmod>2016-11-22T01:40:09.751Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.ochukai.me/protect-yourself-in-network/</loc>
-    
-    <lastmod>2016-11-22T01:40:09.751Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.ochukai.me/higashino-keigo/</loc>
-    
-    <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.766Z</lastmod>
     
   </url>
   
@@ -170,7 +163,7 @@
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/modify-wamp-mysql-password/</loc>
+    <loc>http://blog.ochukai.me/menu-with-moved-elfish/</loc>
     
     <lastmod>2016-11-22T01:40:09.751Z</lastmod>
     
@@ -184,23 +177,23 @@
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/formdata-in-action/</loc>
+    <loc>http://blog.ochukai.me/modify-wamp-mysql-password/</loc>
     
-    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.ochukai.me/git-remember-password-in-window-and-linux/</loc>
-    
-    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.751Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/for-in-scss/</loc>
+    <loc>http://blog.ochukai.me/higashino-keigo/</loc>
     
-    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.ochukai.me/protect-yourself-in-network/</loc>
+    
+    <lastmod>2016-11-22T01:40:09.751Z</lastmod>
     
   </url>
   
@@ -212,7 +205,7 @@
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/css-animation-queue-list/</loc>
+    <loc>http://blog.ochukai.me/formdata-in-action/</loc>
     
     <lastmod>2016-11-22T01:40:09.735Z</lastmod>
     
@@ -226,14 +219,35 @@
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/404.html</loc>
+    <loc>http://blog.ochukai.me/for-in-scss/</loc>
+    
+    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.ochukai.me/git-remember-password-in-window-and-linux/</loc>
+    
+    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.ochukai.me/css-animation-queue-list/</loc>
+    
+    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.ochukai.me/README.html</loc>
     
     <lastmod>2016-11-22T01:40:09.720Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.ochukai.me/README.html</loc>
+    <loc>http://blog.ochukai.me/404.html</loc>
     
     <lastmod>2016-11-22T01:40:09.720Z</lastmod>
     
