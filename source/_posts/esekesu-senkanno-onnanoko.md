@@ -20,8 +20,8 @@ date: 2016-03-03 13:49:03
 ## 埃塞克斯
 下面进入正题，就是我很喜欢但是还咩有得到的 - 埃塞克斯
 
-![正常](..//images/aise-normal.png)
-![正常](..//images/aise-broken.png)
+![正常](../images/aise-normal.png)
+![正常](../images/aise-broken.png)
 
 ## 建造公式
 

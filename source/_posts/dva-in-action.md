@@ -13,7 +13,7 @@ date: 2017-01-23 09:28:20
 
 ## 几个概念
 
-![](..//images/dva-flow.png)
+![](../images/dva-flow.png)
 
 上面是一张 dva 的图，`component，state，dispatch，connect` 都是与 redux 一样的概念，不过，dva 把 **action -> reducer** 拆分成了，**action -> model(reducer, effect,subscription)**，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。
 

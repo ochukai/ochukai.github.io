@@ -62,7 +62,7 @@ my.add(2, 3);
 
 下面是运行时的输出
 
-![正常](..//images/decorator-1.png)
+![正常](../images/decorator-1.png)
 
 所以呢，decorator 的三个参数分别是
 1. target 目标方法所在的类

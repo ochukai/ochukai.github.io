@@ -18,7 +18,7 @@ date: 2016-12-08 19:32:09
 
 但是我非常冷静的分析了一下原因，可能是因为webstorm有自动保存的机制， 是不是很机智，一下子就命中了要害（但其实这中间的过程可复杂了）
 
-![正常](..//images/webstorm-save-file.png)
+![正常](../images/webstorm-save-file.png)
 
 如上图， 在 `File -> Settings -> Appearance & Behavior -> System Settings` 里面，取消勾选上面红框的两项。
 

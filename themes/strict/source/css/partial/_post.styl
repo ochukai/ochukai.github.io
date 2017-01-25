@@ -24,6 +24,7 @@
 
 .post__image
   display: block
+  // cursor: pointer
   margin: $margin-left-right 0
 
 .post__main
@@ -31,6 +32,13 @@
 
   .headerlink
     display: inline-block
+
+  img
+    cursor: pointer
+    transition: all .3s
+
+    &:hover
+     box-shadow: 0 0 1px #ccc
 
   .highlight
     margin: 1.6em -60px
