@@ -1,7 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Baseview in Backbone - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2015-11-12T16:36:15.000Z" class="post__time">November 13, 2015</time><h1 class="post__title"><a href="/baseview-in-backbone/">Baseview in Backbone</a></h1><div class="post__main echo"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天研究了好久的 Backbone，一直搞不明白，怎么通过 router 的改变来切换 view。</p>
-<h2 id="过程跌宕起伏"><a href="#过程跌宕起伏" class="headerlink" title="过程跌宕起伏"></a>过程跌宕起伏</h2><p>事情是这样的，都知道 backbone 有 model, collection, view, router 这些基本概念，今天我要写一个简单的网页，有两个 nav 项，因为用了 backbone，自然就想到了单页应用，就是单击其中某一个的时候，显示这一个 nav 项对应的内容。</p>
-<p>这就用到了 router 的事件，每当 router 改变时，重新 render 整个页面。（我是这么想的，也不是整个，router 变了有些内容必然会跟着变。）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Baseview in Backbone - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/jquery-modal.js"></script><style type="text/css">.echo,.echo h2,body{line-height:1.5}.echo h2,.echo td,.head-title,.post__title{font-weight:400}a{background:0 0;color:#258fb8;text-decoration:none}body,figure,h1,h2,p,pre,ul{margin:0}td,ul{padding:0}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background-color:#fff;background-attachment:fixed;background-repeat:no-repeat;background-size:auto;background-position:50% 0;color:#666}article,figure,header,main,nav{display:block}h1{font-size:2em}pre{overflow:auto;font-size:1em}table{border-collapse:collapse;border-spacing:0}body{font-size:14px;font-size:.875rem;font-family:'Helvetica Neue','Hiragino Sans GB','WenQuanYi Micro Hei','Microsoft Yahei',sans-serif}pre{font-family:'Source Code Pro',Consolas,'Liberation Mono',Courier,monospace,serif}ul{list-style:none}.u-fl{float:left}.u-fr{float:right}.echo{font-size:14px;font-size:.875rem}.echo a{color:#258fb8}.echo h2{margin:1em 0;font-size:24px;font-size:1.5rem}.echo p{margin:1em 0;font-size:16px;font-size:1rem}.echo figure,.echo pre,.echo table{margin:1.6em 0}.echo td{border:1px solid #cbcbcb;padding:.5em 1em;text-align:left}.highlight{overflow:auto;background-color:#fafafa;color:#399c9c}.highlight .gutter{color:#666;display:none}.head-nav__item,.post__main .headerlink{display:inline-block}.highlight .code{padding:1em 45px}.highlight .built_in,.highlight .params{color:#ff5370}.highlight .string{color:#91ba61}.highlight .function{color:#80cbc4}.highlight .keyword{color:#c9c}.head-nav__link,.head-title>a{color:#fff}.head,.main{margin:0 auto;width:700px}.head{padding:0 50px;height:120px;background-color:#399c9c;line-height:120px;box-sizing:border-box;margin-top:80px}.main,.post{margin-top:30px}.head-title{font-size:30px;font-size:1.875rem}.head-nav__item{margin-left:20px}.main{margin-bottom:30px}::-webkit-scrollbar{width:5px;height:5px;background-color:#f5f5f5}::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#f5f5f5}::-webkit-scrollbar-thumb{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#399c9c}#oli-back-top{border:1px solid #399c9c;color:#399c9c;width:60px;height:40px;text-align:center;line-height:48px;font-size:35px;position:fixed;bottom:40px;right:40px}.post{overflow:hidden;border:1px solid #f0f0f0}.post__head{margin:50px}.post__time{color:#ccc;font-size:12px;font-size:.75rem}.post__title{margin-top:5px;line-height:1.5;font-size:24px;font-size:1.5rem}.post__title>a{color:#666}.post__main{margin-top:50px}.post__main .highlight{margin:1.6em -60px;padding:15px}.post__main .highlight table{margin:0;width:auto;border:none}.post__main .highlight td{border:none}.post__main .highlight pre{margin:0}.post__main h2{font-size:22.4px;font-size:1.4rem}@media (max-width:1023px){html{background:#fff}.head{margin-top:80px}}@media (min-width:768px) and (max-width:979px){body{margin:30px}.head,.main{width:100%}}@media (max-width:767px){.head{text-align:center}body{margin:20px;font-size:font-size: .75rem}.head,.main{width:100%}.head-nav,.head-title{float:none}.main{margin-top:20px;margin-bottom:20px}.head{padding:20px;height:auto;line-height:inherit;margin-top:40px}.head-nav{margin-top:10px}.head-nav__item{margin:0 5px 0 0}.post{margin-top:20px}.post__head,.post__main{margin:20px 5px}.post__time,.post__title{margin:5px}.post__title{font-size:22.4px;font-size:1.4rem}.post__main .highlight{margin:30px -20px;padding:20px}}</style></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2015-11-12T16:36:15.000Z" class="post__time">November 13, 2015</time><h1 class="post__title"><a href="/baseview-in-backbone/">Baseview in Backbone</a></h1><div class="post__main echo"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天研究了好久的 Backbone，一直搞不明白，怎么通过 router 的改变来切换 view。</p><h2 id="过程跌宕起伏"><a href="#过程跌宕起伏" class="headerlink" title="过程跌宕起伏"></a>过程跌宕起伏</h2><p>事情是这样的，都知道 backbone 有 model, collection, view, router 这些基本概念，今天我要写一个简单的网页，有两个 nav 项，因为用了 backbone，自然就想到了单页应用，就是单击其中某一个的时候，显示这一个 nav 项对应的内容。</p><p>这就用到了 router 的事件，每当 router 改变时，重新 render 整个页面。（我是这么想的，也不是整个，router 变了有些内容必然会跟着变。）</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -11,8 +8,7 @@
 <span class="line">    <span class="built_in">console</span>.log(<span class="string">'current route:'</span>, name);</span>
 <span class="line">    appView.render();</span>
 <span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
-<p>另外，在 router 里面我定义了一个变量，用来表明哪一个 nav 项被点击。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>另外，在 router 里面我定义了一个变量，用来表明哪一个 nav 项被点击。<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -64,8 +60,7 @@
 <span class="line">    &#125;</span>
 <span class="line"></span>
 <span class="line">&#125;);</span>
-</pre></td></tr></table></figure></p>
-<p>事实证明，我的想法是有一点点正确的，因为运行顺序是这样的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>事实证明，我的想法是有一点点正确的，因为运行顺序是这样的：<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -77,8 +72,7 @@
 <span class="line">app.js:31 current route: chat            <span class="comment"># 然后，响应 router 的 change 事件</span></span>
 <span class="line">app.js:58 <span class="keyword">in</span> appView render.             <span class="comment"># 最后，appView 的 render 方法根据 route name</span></span>
 <span class="line">                                         <span class="comment"># render对应的 view</span></span>
-</pre></td></tr></table></figure></p>
-<p>render 的时候，首先要 <strong>remove</strong> 当前的view，然后 render 新的view。我是这么写的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>render 的时候，首先要 <strong>remove</strong> 当前的view，然后 render 新的view。我是这么写的：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -104,8 +98,7 @@
 <span class="line"></span>
 <span class="line"><span class="comment">// render 新的 view</span></span>
 <span class="line"><span class="keyword">this</span>.siderView.render();</span>
-</pre></td></tr></table></figure></p>
-<p>运行之后我发现，这样点击下一个 nav 的时候， view 变成了空白的。后来审查元素，发现 el 那个节点整个被删掉了，因为他们两个共同放在同一个 el 下面。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>运行之后我发现，这样点击下一个 nav 的时候， view 变成了空白的。后来审查元素，发现 el 那个节点整个被删掉了，因为他们两个共同放在同一个 el 下面。<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -129,13 +122,9 @@
 <span class="line">    <span class="attr">el</span>: <span class="string">'.left_aside'</span>,</span>
 <span class="line">    <span class="comment">// ...</span></span>
 <span class="line">&#125;);</span>
-</pre></td></tr></table></figure></p>
-<p>因为是新手，而且这是第一次用 backbone，所以还不知道 $el 就是 juqery 对象（其实问题不在这里），所以我就开始了漫无目的的搜索。</p>
-<p>其实办法肯定是有的，就是让他俩不共用同一个 el 节点，每次 render 完了之后，添加到要显示的地方，remove 的时候也只会删掉他自己，况且还可以用 hide。</p>
-<h2 id="有了一线希望"><a href="#有了一线希望" class="headerlink" title="有了一线希望"></a>有了一线希望</h2><p>终于，我看到网上有人写了这么一句：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>因为是新手，而且这是第一次用 backbone，所以还不知道 $el 就是 juqery 对象（其实问题不在这里），所以我就开始了漫无目的的搜索。</p><p>其实办法肯定是有的，就是让他俩不共用同一个 el 节点，每次 render 完了之后，添加到要显示的地方，remove 的时候也只会删掉他自己，况且还可以用 hide。</p><h2 id="有了一线希望"><a href="#有了一线希望" class="headerlink" title="有了一线希望"></a>有了一线希望</h2><p>终于，我看到网上有人写了这么一句：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 </pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$el.empty();</span>
-</pre></td></tr></table></figure></p>
-<p>然后我顺藤摸瓜看起了 backbone 的源代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>然后我顺藤摸瓜看起了 backbone 的源代码：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -221,9 +210,7 @@
 <span class="line">             : Backbone.$(el);</span>
 <span class="line">    <span class="keyword">this</span>.el = <span class="keyword">this</span>.$el[<span class="number">0</span>];</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<p>上面这一段就是说，如果我们传入了 el 那么 backbone 会自动设置 $el（通过命名就能看出这是一个 jquery 对象咯）, 并且绑定我们在 events 定义的事件到这上面。</p>
-<p>然后还有 backbone 的 remove view 的方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>上面这一段就是说，如果我们传入了 el 那么 backbone 会自动设置 $el（通过命名就能看出这是一个 jquery 对象咯）, 并且绑定我们在 events 定义的事件到这上面。</p><p>然后还有 backbone 的 remove view 的方法：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -251,9 +238,7 @@
 <span class="line">_removeElement: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
 <span class="line">    <span class="keyword">this</span>.$el.remove();</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<p>解除事件监听，删掉元素。</p>
-<h2 id="最终的-hide-方法"><a href="#最终的-hide-方法" class="headerlink" title="最终的 hide 方法"></a>最终的 hide 方法</h2><p>于是，我模仿着写了一个 hide 方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>解除事件监听，删掉元素。</p><h2 id="最终的-hide-方法"><a href="#最终的-hide-方法" class="headerlink" title="最终的 hide 方法"></a>最终的 hide 方法</h2><p>于是，我模仿着写了一个 hide 方法：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -263,8 +248,7 @@
 <span class="line">    <span class="keyword">this</span>.$el.empty();</span>
 <span class="line">    <span class="keyword">this</span>.stopListening();</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<p>好像很简单，哈哈， 顺便把 appView 里面也改掉：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>好像很简单，哈哈， 顺便把 appView 里面也改掉：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -286,9 +270,7 @@
 <span class="line">&#125;</span>
 <span class="line"></span>
 <span class="line"><span class="keyword">this</span>.siderView.render();</span>
-</pre></td></tr></table></figure></p>
-<p>运行之后，切换 view 正常了。耶！</p>
-<p>然后我想让我的view 都具有 hide 这个方法，恰好 backbone 很好的面向对象，于是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>运行之后，切换 view 正常了。耶！</p><p>然后我想让我的view 都具有 hide 这个方法，恰好 backbone 很好的面向对象，于是：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -346,13 +328,4 @@
 <span class="line"></span>
 <span class="line">    <span class="comment">//...</span></span>
 <span class="line">&#125;);</span>
-</pre></td></tr></table></figure></p>
-<p>感觉非常顺畅。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>频繁的删除dom元素，速度肯定是慢的，恰好我的网页很简单，所以看不出明显的缺点，网上也是推荐使用 <code>display：none</code> 和 <code>display：block</code> 来切换 view， 等我以后再研究吧。</p>
-<p>以上。</p>
-</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/backbone/" class="post__tag__link">backbone</a></li><li class="post__tag__item"><a href="/tags/base/" class="post__tag__link">base</a></li><li class="post__tag__item"><a href="/tags/view/" class="post__tag__link">view</a></li></ul></footer></article><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/git-remember-password-in-window-and-linux/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/wrong-clearfix-make-me-crazy/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","embed");
-</script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-ga('create','UA-73840162-1');
-ga('send','pageview');
-</script><script src="/js/main.js"></script><div id="oli-back-top"><span>^</span></div></body></html>
+</pre></td></tr></table></figure><p></p><p>感觉非常顺畅。</p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>频繁的删除dom元素，速度肯定是慢的，恰好我的网页很简单，所以看不出明显的缺点，网上也是推荐使用 <code>display：none</code> 和 <code>display：block</code> 来切换 view， 等我以后再研究吧。</p><p>以上。</p></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/backbone/" class="post__tag__link">backbone</a></li><li class="post__tag__item"><a href="/tags/base/" class="post__tag__link">base</a></li><li class="post__tag__item"><a href="/tags/view/" class="post__tag__link">view</a></li></ul></footer></article><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/git-remember-password-in-window-and-linux/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/wrong-clearfix-make-me-crazy/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>!function(e,t,c,n,s,m){s=e.createElement(t),m=e.getElementsByTagName(t)[0],s.src="//"+c+".disqus.com/"+n+".js",m.parentNode.insertBefore(s,m)}(document,"script","ochukai","embed")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/main.js"></script><div id="oli-back-top"><span>^</span></div></body></html>

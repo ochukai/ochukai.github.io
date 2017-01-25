@@ -1,8 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>js - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2017-01-23T01:28:20.000Z" class="post__time">January 23, 2017</time><h1 class="post__title"><a href="/dva-in-action/">稍微总结一下 dva 😜</a></h1><div class="post__main echo"><p>使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇</p>
-<h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p><img src="..//images/dva-flow.png" alt=""></p>
-<p>上面是一张 dva 的图，<code>component，state，dispatch，connect</code> 都是与 redux 一样的概念，不过，dva 把 <strong>action -&gt; reducer</strong> 拆分成了，<strong>action -&gt; model(reducer, effect,subscription)</strong>，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。</p>
-<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>一个简单的 model 是这样的:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>js - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/jquery-modal.js"></script><style type="text/css">.echo,.echo h2,body{line-height:1.5}.highlight,pre{overflow:auto}a{background:0 0;color:#258fb8;text-decoration:none}img{border:0;vertical-align:middle}body,figure,h1,h2,p,pre,ul{margin:0}td,ul{padding:0}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background-color:#fff;background-attachment:fixed;background-repeat:no-repeat;background-size:auto;background-position:50% 0;color:#666}.echo code,.highlight{background-color:#fafafa}article,figure,header,main,nav{display:block}strong{font-weight:700}.echo h2,.echo td,.head-title,.post__title{font-weight:400}h1{font-size:2em}code,pre{font-size:1em}table{border-collapse:collapse;border-spacing:0}body{font-size:14px;font-size:.875rem;font-family:'Helvetica Neue','Hiragino Sans GB','WenQuanYi Micro Hei','Microsoft Yahei',sans-serif}code,pre{font-family:'Source Code Pro',Consolas,'Liberation Mono',Courier,monospace,serif}ul{list-style:none}.u-fl{float:left}.u-fr{float:right}.echo{font-size:14px;font-size:.875rem}.echo a{color:#258fb8}.echo h2{margin:1em 0;font-size:24px;font-size:1.5rem}.echo p{margin:1em 0;font-size:16px;font-size:1rem}.echo figure,.echo img,.echo pre,.echo table{margin:1.6em 0}.echo img{max-width:100%;height:auto}.echo td{border:1px solid #cbcbcb;padding:.5em 1em;text-align:left}.echo code{display:inline-block;margin:0 .1em;padding:0 .5em;border:1px solid #f0f0f0;border-radius:3px;text-shadow:0 1px 0 #fff;white-space:nowrap;font-size:.85em;line-height:1.1;vertical-align:text-bottom;font-family:consolas,"微软雅黑"}.highlight{color:#399c9c}.highlight .gutter{color:#666;display:none}.head-nav__item,.post__main .headerlink{display:inline-block}.highlight .code{padding:1em 45px}.highlight .comment{color:#b0bec5}.highlight .string{color:#91ba61}.highlight .keyword{color:#c9c}.head-nav__link,.head-title>a{color:#fff}.head,.main{margin:0 auto;width:700px}.head{padding:0 50px;height:120px;background-color:#399c9c;line-height:120px;box-sizing:border-box;margin-top:80px}.main,.post{margin-top:30px}.head-title{font-size:30px;font-size:1.875rem}.head-nav__item{margin-left:20px}.main{margin-bottom:30px}::-webkit-scrollbar{width:5px;height:5px;background-color:#f5f5f5}::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#f5f5f5}::-webkit-scrollbar-thumb{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#399c9c}#oli-back-top{border:1px solid #399c9c;color:#399c9c;width:60px;height:40px;text-align:center;line-height:48px;font-size:35px;position:fixed;bottom:40px;right:40px}.post{overflow:hidden;border:1px solid #f0f0f0}.post__head{margin:50px}.post__time{color:#ccc;font-size:12px;font-size:.75rem}.post__title{margin-top:5px;line-height:1.5;font-size:24px;font-size:1.5rem}.post__title>a{color:#666}.post__main{margin-top:50px}.post__main .highlight{margin:1.6em -60px;padding:15px}.post__main .highlight table{margin:0;width:auto;border:none}.post__main .highlight td{border:none}.post__main .highlight pre{margin:0}.post__main h2{font-size:22.4px;font-size:1.4rem}.post__main img{margin:1.6em auto}@media (max-width:1023px){html{background:#fff}.head{margin-top:80px}}@media (min-width:768px) and (max-width:979px){body{margin:30px}.head,.main{width:100%}}@media (max-width:767px){.head{text-align:center}body{margin:20px;font-size:font-size: .75rem}.head,.main{width:100%}.head-nav,.head-title{float:none}.main{margin-top:20px;margin-bottom:20px}.head{padding:20px;height:auto;line-height:inherit;margin-top:40px}.head-nav{margin-top:10px}.head-nav__item{margin:0 5px 0 0}.post{margin-top:20px}.post__head,.post__main{margin:20px 5px}.post__time,.post__title{margin:5px}.post__title{font-size:22.4px;font-size:1.4rem}.post__main .highlight{margin:30px -20px;padding:20px}}</style></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2017-01-23T01:28:20.000Z" class="post__time">January 23, 2017</time><h1 class="post__title"><a href="/dva-in-action/">稍微总结一下 dva 😜</a></h1><div class="post__main echo"><p>使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇</p><h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p><img src="../images/dva-flow.png" alt=""></p><p>上面是一张 dva 的图，<code>component，state，dispatch，connect</code> 都是与 redux 一样的概念，不过，dva 把 <strong>action -&gt; reducer</strong> 拆分成了，<strong>action -&gt; model(reducer, effect,subscription)</strong>，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。</p><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>一个简单的 model 是这样的:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -36,9 +32,7 @@
 <span class="line">    &#125;</span>
 <span class="line">  &#125;,</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><p>可以简单的理解为 comboReducer 使用这个值作为 key，而且 namespace 最重要的地方是用在 dispatch（put）的时候</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><p>可以简单的理解为 comboReducer 使用这个值作为 key，而且 namespace 最重要的地方是用在 dispatch（put）的时候</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -54,11 +48,7 @@
 <span class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'querySuccess'</span> &#125;) </span>
 <span class="line"></span>
 <span class="line"><span class="comment">// 在组件中当然可以直接 dispatch(&#123; type: 'example/someReducer' &#125;)</span></span>
-</pre></td></tr></table></figure>
-<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>就是一个对象</p>
-<h3 id="subscriptions"><a href="#subscriptions" class="headerlink" title="subscriptions"></a>subscriptions</h3><p>顾名思义可以订阅一些事件，待续😆</p>
-<h3 id="effects"><a href="#effects" class="headerlink" title="effects"></a>effects</h3><p>异步操作，这里使用了 <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="external">redux-sagas</a>，先举个例子吧，其实就是异步的action， 但是是使用 sagas 实现的，很好（niu）看（bi）。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>就是一个对象</p><h3 id="subscriptions"><a href="#subscriptions" class="headerlink" title="subscriptions"></a>subscriptions</h3><p>顾名思义可以订阅一些事件，待续😆</p><h3 id="effects"><a href="#effects" class="headerlink" title="effects"></a>effects</h3><p>异步操作，这里使用了 <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="external">redux-sagas</a>，先举个例子吧，其实就是异步的action， 但是是使用 sagas 实现的，很好（niu）看（bi）。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -84,15 +74,7 @@
 <span class="line">  &#125;</span>
 <span class="line">&#125;,</span>
 <span class="line"><span class="comment">// ...</span></span>
-</pre></td></tr></table></figure>
-<p>（感觉丝毫不需要我用文字描述，顺着读完就知道是什么意思了，还是特么异步的）</p>
-<blockquote>
-<p>select, put, call 这些概念是 sagas 里面的</p>
-</blockquote>
-<h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>修改 state 的地方</p>
-<h2 id="dva"><a href="#dva" class="headerlink" title="dva"></a>dva</h2><p>dva 会对 dispatch 做一些处理，比如他要把 <strong>example/query</strong> 分成 example 下面的 query （effect/reducer）。</p>
-<p>所以肯定要注册这个 model，才能让 dva 知道 example 的存在，</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>（感觉丝毫不需要我用文字描述，顺着读完就知道是什么意思了，还是特么异步的）</p><blockquote><p>select, put, call 这些概念是 sagas 里面的</p></blockquote><h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>修改 state 的地方</p><h2 id="dva"><a href="#dva" class="headerlink" title="dva"></a>dva</h2><p>dva 会对 dispatch 做一些处理，比如他要把 <strong>example/query</strong> 分成 example 下面的 query （effect/reducer）。</p><p>所以肯定要注册这个 model，才能让 dva 知道 example 的存在，</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -100,9 +82,7 @@
 <span class="line"><span class="keyword">const</span> app = dva();</span>
 <span class="line"></span>
 <span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/example'</span>));</span>
-</pre></td></tr></table></figure>
-<p>其实 dva 出了 model 这个方法，还有其他的几个</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>其实 dva 出了 model 这个方法，还有其他的几个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -148,10 +128,7 @@
 <span class="line"></span>
 <span class="line"><span class="comment">// 5. Start</span></span>
 <span class="line">app.start(<span class="string">'#root'</span>);</span>
-</pre></td></tr></table></figure>
-<h2 id="dev-cli"><a href="#dev-cli" class="headerlink" title="dev-cli"></a><a href="https://github.com/dvajs/dva-cli" target="_blank" rel="external">dev-cli</a></h2><p>比较好用的东西，解决了新建 router，component，model 还要添加 dva 的配置的问题，生成 router， component 的同时会直接在 dva 配置中更新。</p>
-<p>例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h2 id="dev-cli"><a href="#dev-cli" class="headerlink" title="dev-cli"></a><a href="https://github.com/dvajs/dva-cli" target="_blank" rel="external">dev-cli</a></h2><p>比较好用的东西，解决了新建 router，component，model 还要添加 dva 的配置的问题，生成 router， component 的同时会直接在 dva 配置中更新。</p><p>例子：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -161,9 +138,7 @@
 <span class="line">$ dva g component Editor</span>
 <span class="line">$ dva g component Users/UserModal</span>
 <span class="line">$ dva g component Header --no-css</span>
-</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/dva/" class="post__tag__link">dva</a></li><li class="post__tag__item"><a href="/tags/react/" class="post__tag__link">react</a></li><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2016-12-30T02:28:20.000Z" class="post__time">December 30, 2016</time><h1 class="post__title"><a href="/js-bind-this/">JavaScript 绑定 this</a></h1><div class="post__main echo"><p>其实这篇文章主要是介绍这个东西 <a href="https://github.com/tc39/proposal-bind-operator" target="_blank" rel="external">Proposal Bind Operator</a> 或者 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:bind_operator" target="_blank" rel="external">bind_operator</a>。</p>
-<p>也是在一个很偶然的机会看到了，git 上面的一个项目用到了这个用法，为什么自己发现不了这些东西呢？</p>
-<h2 id="传统的-this-绑定"><a href="#传统的-this-绑定" class="headerlink" title="传统的 this 绑定"></a>传统的 this 绑定</h2><h3 id="在函数外面暂存一个变量"><a href="#在函数外面暂存一个变量" class="headerlink" title="在函数外面暂存一个变量"></a>在函数外面暂存一个变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/dva/" class="post__tag__link">dva</a></li><li class="post__tag__item"><a href="/tags/react/" class="post__tag__link">react</a></li><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2016-12-30T02:28:20.000Z" class="post__time">December 30, 2016</time><h1 class="post__title"><a href="/js-bind-this/">JavaScript 绑定 this</a></h1><div class="post__main echo"><p>其实这篇文章主要是介绍这个东西 <a href="https://github.com/tc39/proposal-bind-operator" target="_blank" rel="external">Proposal Bind Operator</a> 或者 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:bind_operator" target="_blank" rel="external">bind_operator</a>。</p><p>也是在一个很偶然的机会看到了，git 上面的一个项目用到了这个用法，为什么自己发现不了这些东西呢？</p><h2 id="传统的-this-绑定"><a href="#传统的-this-绑定" class="headerlink" title="传统的 this 绑定"></a>传统的 this 绑定</h2><h3 id="在函数外面暂存一个变量"><a href="#在函数外面暂存一个变量" class="headerlink" title="在函数外面暂存一个变量"></a>在函数外面暂存一个变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -173,9 +148,7 @@
 <span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
 <span class="line">  <span class="keyword">this</span>.doSomething();</span>
 <span class="line">&#125;, <span class="number">1000</span>);</span>
-</pre></td></tr></table></figure>
-<h3 id="使用-bind-函数-amp-箭头函数"><a href="#使用-bind-函数-amp-箭头函数" class="headerlink" title="使用 bind 函数 &amp; 箭头函数"></a>使用 bind 函数 &amp; 箭头函数</h3><p>在使用 <code>class *** extends React.Component {}</code> 的写法声明 React 组件的时候，组件的方法都不会被自动绑定 this 了，下面的两种方法比较常见：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h3 id="使用-bind-函数-amp-箭头函数"><a href="#使用-bind-函数-amp-箭头函数" class="headerlink" title="使用 bind 函数 &amp; 箭头函数"></a>使用 bind 函数 &amp; 箭头函数</h3><p>在使用 <code>class *** extends React.Component {}</code> 的写法声明 React 组件的时候，组件的方法都不会被自动绑定 this 了，下面的两种方法比较常见：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -189,9 +162,7 @@
 <span class="line">  &#125;.bind(<span class="keyword">this</span>), </span>
 <span class="line">  <span class="number">1000</span></span>
 <span class="line">);</span>
-</pre></td></tr></table></figure>
-<p>使用 <code>bind</code> 方法显得稍微有点长，不太好看，不过很好用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>使用 <code>bind</code> 方法显得稍微有点长，不太好看，不过很好用。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -211,11 +182,7 @@
 <span class="line">  &#125;, </span>
 <span class="line">  <span class="number">1000</span></span>
 <span class="line">);</span>
-</pre></td></tr></table></figure>
-<p>箭头函数在经过<code>babel</code>编译后， 差不多就是注释的部分了， 还是用的暂存的办法保存了 <code>this</code>，但是写法就简单了太多。</p>
-<h3 id=""><a href="#" class="headerlink" title="::"></a>::</h3><p>看到这种语法之后，感觉其他的都弱爆了。</p>
-<p>在 React 里面，可以这么写</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>箭头函数在经过<code>babel</code>编译后， 差不多就是注释的部分了， 还是用的暂存的办法保存了 <code>this</code>，但是写法就简单了太多。</p><h3><a href="#" class="headerlink" title="::"></a>::</h3><p>看到这种语法之后，感觉其他的都弱爆了。</p><p>在 React 里面，可以这么写</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -223,11 +190,7 @@
 <span class="line">&lt;Popconfirm title=<span class="string">"确定要保存吗？"</span> onConfirm=&#123;::<span class="keyword">this</span>.handleSave&#125;&gt;</span>
 <span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">type</span>=<span class="string">"ghost"</span> &gt;</span>保存<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span></span>
 <span class="line">&lt;<span class="regexp">/Popconfirm&gt;</span></span>
-</pre></td></tr></table></figure>
-<p>可以看到，注释部分表示的编译后的代码，就是用 <code>bind</code> 实现的。</p>
-<p>双冒号前面的对象就是 <code>bind</code> 的参数， 如果没有就是当前的 <code>this</code>, 毕竟这种做法就是用来做绑定的。</p>
-<p>但是有一个问题，就是像这样的需求不好实现，</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>可以看到，注释部分表示的编译后的代码，就是用 <code>bind</code> 实现的。</p><p>双冒号前面的对象就是 <code>bind</code> 的参数， 如果没有就是当前的 <code>this</code>, 毕竟这种做法就是用来做绑定的。</p><p>但是有一个问题，就是像这样的需求不好实现，</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -237,15 +200,7 @@
 <span class="line">  icon=<span class="string">"edit"</span></span>
 <span class="line">  onClick=&#123;<span class="keyword">this</span>.handleEdit.bind(<span class="keyword">this</span>, item)&#125;</span>
 <span class="line">/&gt;</span>
-</pre></td></tr></table></figure>
-<p>然后就是黑人问号脸，我试了几种形式 (当然不能用 bind 方法，否则这 :: 没有意义了)</p>
-<ul>
-<li>[this, item]::this.handleEdit</li>
-<li>(this, item)::this.handleEdit  // hhh</li>
-<li>this::this.handleEdit(item)    // hhh</li>
-</ul>
-<p>感觉唯一靠谱的就是第一种写法了， 编译之后</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>然后就是黑人问号脸，我试了几种形式 (当然不能用 bind 方法，否则这 :: 没有意义了)</p><ul><li>[this, item]::this.handleEdit</li><li>(this, item)::this.handleEdit // hhh</li><li>this::this.handleEdit(item) // hhh</li></ul><p>感觉唯一靠谱的就是第一种写法了， 编译之后</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -263,9 +218,7 @@
 <span class="line">  &#125;,</span>
 <span class="line">  <span class="string">''</span></span>
 <span class="line">)</span>
-</pre></td></tr></table></figure>
-<p>这样 bind 之后的方法内的 this 是一个数组，要想获取到真正的 this, 在 handleEdit 中还需要做</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>这样 bind 之后的方法内的 this 是一个数组，要想获取到真正的 this, 在 handleEdit 中还需要做</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -277,11 +230,7 @@
 <span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>[<span class="number">0</span>]);</span>
 <span class="line">  <span class="comment">// const [ _this, item ] = this;</span></span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<blockquote>
-<p>所以呢 在需要绑定 this 并且要添加额外参数的时候，就不要用 <strong>::</strong> 了。老老实实用 <strong>bind</strong> 就好了。</p>
-</blockquote>
-<h2 id="箭头函数声明在-class-里面"><a href="#箭头函数声明在-class-里面" class="headerlink" title="箭头函数声明在 class 里面"></a>箭头函数声明在 class 里面</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><blockquote><p>所以呢 在需要绑定 this 并且要添加额外参数的时候，就不要用 <strong>::</strong> 了。老老实实用 <strong>bind</strong> 就好了。</p></blockquote><h2 id="箭头函数声明在-class-里面"><a href="#箭头函数声明在-class-里面" class="headerlink" title="箭头函数声明在 class 里面"></a>箭头函数声明在 class 里面</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -319,69 +268,31 @@
 <span class="line">//   &#125;,</span>
 <span class="line">//   ...</span>
 <span class="line">// &#125;);</span></span>
-</pre></td></tr></table></figure>
-<p>这样应该是最简单的方式了，因为是自动绑定 this 的（与注释中的代码效果是一样的）。</p>
-<p>以上。</p>
-</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li><li class="post__tag__item"><a href="/tags/this/" class="post__tag__link">this</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2016-11-22T01:40:09.766Z" class="post__time">November 22, 2016</time><h1 class="post__title"><a href="/splice-in-javascript/">Javascript 中的 splice 方法</a></h1><div class="post__main echo"><blockquote>
-<p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p>
-</blockquote>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>这样应该是最简单的方式了，因为是自动绑定 this 的（与注释中的代码效果是一样的）。</p><p>以上。</p></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li><li class="post__tag__item"><a href="/tags/this/" class="post__tag__link">this</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2016-11-22T01:40:09.766Z" class="post__time">November 22, 2016</time><h1 class="post__title"><a href="/splice-in-javascript/">Javascript 中的 splice 方法</a></h1><div class="post__main echo"><blockquote><p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p></blockquote><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 </pre></td><td class="code"><pre><span class="line">arrayObject.splice(index, how-many, item1, item2, ...itemX)</span>
-</pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>index</td>
-<td>必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</td>
-</tr>
-<tr>
-<td>how-many</td>
-<td>必需。要删除的项目数量。<code>如果设置为 0，则不会删除项目</code>。</td>
-</tr>
-<tr>
-<td>item1, …, itemX</td>
-<td>可选。向数组添加的新项目。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>index</td><td>必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</td></tr><tr><td>how-many</td><td>必需。要删除的项目数量。<code>如果设置为 0，则不会删除项目</code>。</td></tr><tr><td>item1, …, itemX</td><td>可选。向数组添加的新项目。</td></tr></tbody></table><h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 </pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
-</pre></td></tr></table></figure>
-<p>删除第三个</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>删除第三个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span>
 <span class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></span>
-</pre></td></tr></table></figure>
-<p>删除后面两个</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>删除后面两个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span>
 <span class="line">                  <span class="comment">// arrr: [0, 1]</span></span>
-</pre></td></tr></table></figure>
-<p>替换</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"><span class="comment">// 把第二个元素变成 5</span></span>
 <span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>); <span class="comment">// [0, 1, 5, 4]</span></span>
-</pre></td></tr></table></figure>
-<p>交换位置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>交换位置</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -397,8 +308,7 @@
 <span class="line"></span>
 <span class="line"><span class="comment">// arrr = [0, 1, 5, 4]</span></span>
 <span class="line">swapArrayItemPosition(arrr, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// [0, 5, 1, 4]</span></span>
-</pre></td></tr></table></figure>
-</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li><li class="post__tag__item"><a href="/tags/splice/" class="post__tag__link">splice</a></li><li class="post__tag__item"><a href="/tags/array/" class="post__tag__link">array</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2015-12-02T03:10:44.000Z" class="post__time">December 2, 2015</time><h1 class="post__title"><a href="/use-js-to-convert-ts-to-data/">JavaScript 中 Timestamp 与 Date 的转化</a></h1><div class="post__main echo"><h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li><li class="post__tag__item"><a href="/tags/splice/" class="post__tag__link">splice</a></li><li class="post__tag__item"><a href="/tags/array/" class="post__tag__link">array</a></li></ul></footer></article><article class="post"><header class="post__head"><time datetime="2015-12-02T03:10:44.000Z" class="post__time">December 2, 2015</time><h1 class="post__title"><a href="/use-js-to-convert-ts-to-data/">JavaScript 中 Timestamp 与 Date 的转化</a></h1><div class="post__main echo"><h2 id="问题产生"><a href="#问题产生" class="headerlink" title="问题产生"></a>问题产生</h2><p>今天在处理一个接口时，发现返回的格式是这样的：<br></p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -424,10 +334,7 @@
 <span class="line">        &#125;</span>
 <span class="line">    ]</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<p><code>ts</code> 那个属性我不太熟悉，不过我觉得应该是 timestamp 的意思吧。后来才知道，<code>ts</code> 就是该条消息的发送时间戳（timestamp），显示这条信息的时候应该显示为日期。</p>
-<h2 id="把-Date-转化为-Timestamp"><a href="#把-Date-转化为-Timestamp" class="headerlink" title="把 Date 转化为 Timestamp"></a>把 Date 转化为 Timestamp</h2><p>我们都知道，在 js 里面把 date 转化为 timestamp 的方法比较简单，而且方法也有好多种，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p><code>ts</code> 那个属性我不太熟悉，不过我觉得应该是 timestamp 的意思吧。后来才知道，<code>ts</code> 就是该条消息的发送时间戳（timestamp），显示这条信息的时候应该显示为日期。</p><h2 id="把-Date-转化为-Timestamp"><a href="#把-Date-转化为-Timestamp" class="headerlink" title="把 Date 转化为 Timestamp"></a>把 Date 转化为 Timestamp</h2><p>我们都知道，在 js 里面把 date 转化为 timestamp 的方法比较简单，而且方法也有好多种，比如：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -461,8 +368,7 @@
 <span class="line">~~(<span class="built_in">Date</span>.now() / <span class="number">1000</span>)</span>
 <span class="line"></span>
 <span class="line"><span class="keyword">new</span> <span class="built_in">Date</span> / <span class="number">1e3</span> | <span class="number">0</span></span>
-</pre></td></tr></table></figure>
-<h2 id="把-Timestamp-转化为-Date"><a href="#把-Timestamp-转化为-Date" class="headerlink" title="把 Timestamp 转化为 Date"></a>把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h2 id="把-Timestamp-转化为-Date"><a href="#把-Timestamp-转化为-Date" class="headerlink" title="把 Timestamp 转化为 Date"></a>把 Timestamp 转化为 Date</h2><p>还有一种需求，比如我要把 timestamp 转化为 <code>1991-10-03 06:01:54</code> ，那么就需要先把这个 timestamp 转化为日期， 然后再进行format吧，正好我找到一个比较方便的办法：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -538,9 +444,4 @@
 <span class="line"><span class="comment">// test it</span></span>
 <span class="line">&gt; tsToDate(<span class="number">1448967948</span>)</span>
 <span class="line">&lt; <span class="string">"2015-12-01 19:05:48"</span></span>
-</pre></td></tr></table></figure></p>
-</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li><li class="post__tag__item"><a href="/tags/ts/" class="post__tag__link">ts</a></li><li class="post__tag__item"><a href="/tags/date/" class="post__tag__link">date</a></li><li class="post__tag__item"><a href="/tags/format/" class="post__tag__link">format</a></li></ul></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})(document,"script","ochukai","count");
-</script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-ga('create','UA-73840162-1');
-ga('send','pageview');
-</script><script src="/js/main.js"></script><div id="oli-back-top"><span>^</span></div></body></html>
+</pre></td></tr></table></figure><p></p></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/js/" class="post__tag__link">js</a></li><li class="post__tag__item"><a href="/tags/ts/" class="post__tag__link">ts</a></li><li class="post__tag__item"><a href="/tags/date/" class="post__tag__link">date</a></li><li class="post__tag__item"><a href="/tags/format/" class="post__tag__link">format</a></li></ul></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>!function(e,t,c,n,o,s){o=e.createElement(t),s=e.getElementsByTagName(t)[0],o.src="//"+c+".disqus.com/"+n+".js",s.parentNode.insertBefore(o,s)}(document,"script","ochukai","count")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/main.js"></script><div id="oli-back-top"><span>^</span></div></body></html>

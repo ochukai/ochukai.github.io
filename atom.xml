@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2017-01-23T02:58:10.245Z</updated>
+  <updated>2017-01-24T03:34:19.077Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -16,17 +16,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>test post assets folder</title>
+    <link href="http://blog.ochukai.me/test-post-assets-folder/"/>
+    <id>http://blog.ochukai.me/test-post-assets-folder/</id>
+    <published>2017-01-24T03:34:19.000Z</published>
+    <updated>2017-01-24T03:34:19.077Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>稍微总结一下 dva 😜</title>
     <link href="http://blog.ochukai.me/dva-in-action/"/>
     <id>http://blog.ochukai.me/dva-in-action/</id>
     <published>2017-01-23T01:28:20.000Z</published>
-    <updated>2017-01-23T02:58:10.245Z</updated>
+    <updated>2017-01-24T06:18:01.627Z</updated>
     
-    <content type="html"><![CDATA[<p>使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇</p>
-<h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p><img src="..//images/dva-flow.png" alt=""></p>
-<p>上面是一张 dva 的图，<code>component，state，dispatch，connect</code> 都是与 redux 一样的概念，不过，dva 把 <strong>action -&gt; reducer</strong> 拆分成了，<strong>action -&gt; model(reducer, effect,subscription)</strong>，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。</p>
-<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>一个简单的 model 是这样的:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇</p><h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p><img src="../images/dva-flow.png" alt=""></p><p>上面是一张 dva 的图，<code>component，state，dispatch，connect</code> 都是与 redux 一样的概念，不过，dva 把 <strong>action -&gt; reducer</strong> 拆分成了，<strong>action -&gt; model(reducer, effect,subscription)</strong>，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。</p><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>一个简单的 model 是这样的:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -60,9 +70,7 @@
 <span class="line">    &#125;</span>
 <span class="line">  &#125;,</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><p>可以简单的理解为 comboReducer 使用这个值作为 key，而且 namespace 最重要的地方是用在 dispatch（put）的时候</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><p>可以简单的理解为 comboReducer 使用这个值作为 key，而且 namespace 最重要的地方是用在 dispatch（put）的时候</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -78,11 +86,7 @@
 <span class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'querySuccess'</span> &#125;) </span>
 <span class="line"></span>
 <span class="line"><span class="comment">// 在组件中当然可以直接 dispatch(&#123; type: 'example/someReducer' &#125;)</span></span>
-</pre></td></tr></table></figure>
-<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>就是一个对象</p>
-<h3 id="subscriptions"><a href="#subscriptions" class="headerlink" title="subscriptions"></a>subscriptions</h3><p>顾名思义可以订阅一些事件，待续😆</p>
-<h3 id="effects"><a href="#effects" class="headerlink" title="effects"></a>effects</h3><p>异步操作，这里使用了 <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="external">redux-sagas</a>，先举个例子吧，其实就是异步的action， 但是是使用 sagas 实现的，很好（niu）看（bi）。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>就是一个对象</p><h3 id="subscriptions"><a href="#subscriptions" class="headerlink" title="subscriptions"></a>subscriptions</h3><p>顾名思义可以订阅一些事件，待续😆</p><h3 id="effects"><a href="#effects" class="headerlink" title="effects"></a>effects</h3><p>异步操作，这里使用了 <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="external">redux-sagas</a>，先举个例子吧，其实就是异步的action， 但是是使用 sagas 实现的，很好（niu）看（bi）。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -108,15 +112,7 @@
 <span class="line">  &#125;</span>
 <span class="line">&#125;,</span>
 <span class="line"><span class="comment">// ...</span></span>
-</pre></td></tr></table></figure>
-<p>（感觉丝毫不需要我用文字描述，顺着读完就知道是什么意思了，还是特么异步的）</p>
-<blockquote>
-<p>select, put, call 这些概念是 sagas 里面的</p>
-</blockquote>
-<h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>修改 state 的地方</p>
-<h2 id="dva"><a href="#dva" class="headerlink" title="dva"></a>dva</h2><p>dva 会对 dispatch 做一些处理，比如他要把 <strong>example/query</strong> 分成 example 下面的 query （effect/reducer）。</p>
-<p>所以肯定要注册这个 model，才能让 dva 知道 example 的存在，</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>（感觉丝毫不需要我用文字描述，顺着读完就知道是什么意思了，还是特么异步的）</p><blockquote><p>select, put, call 这些概念是 sagas 里面的</p></blockquote><h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>修改 state 的地方</p><h2 id="dva"><a href="#dva" class="headerlink" title="dva"></a>dva</h2><p>dva 会对 dispatch 做一些处理，比如他要把 <strong>example/query</strong> 分成 example 下面的 query （effect/reducer）。</p><p>所以肯定要注册这个 model，才能让 dva 知道 example 的存在，</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -124,9 +120,7 @@
 <span class="line"><span class="keyword">const</span> app = dva();</span>
 <span class="line"></span>
 <span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/example'</span>));</span>
-</pre></td></tr></table></figure>
-<p>其实 dva 出了 model 这个方法，还有其他的几个</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>其实 dva 出了 model 这个方法，还有其他的几个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -172,10 +166,7 @@
 <span class="line"></span>
 <span class="line"><span class="comment">// 5. Start</span></span>
 <span class="line">app.start(<span class="string">'#root'</span>);</span>
-</pre></td></tr></table></figure>
-<h2 id="dev-cli"><a href="#dev-cli" class="headerlink" title="dev-cli"></a><a href="https://github.com/dvajs/dva-cli" target="_blank" rel="external">dev-cli</a></h2><p>比较好用的东西，解决了新建 router，component，model 还要添加 dva 的配置的问题，生成 router， component 的同时会直接在 dva 配置中更新。</p>
-<p>例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h2 id="dev-cli"><a href="#dev-cli" class="headerlink" title="dev-cli"></a><a href="https://github.com/dvajs/dva-cli" target="_blank" rel="external">dev-cli</a></h2><p>比较好用的东西，解决了新建 router，component，model 还要添加 dva 的配置的问题，生成 router， component 的同时会直接在 dva 配置中更新。</p><p>例子：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -189,8 +180,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇&lt;/p&gt;
-&lt;h2 id=&quot;几个概念&quot;
+      &lt;p&gt;使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇&lt;/p&gt;&lt;h2 id=&quot;几个概念&quot;&gt;
     
     </summary>
     
@@ -214,20 +204,17 @@
     <published>2017-01-22T02:09:47.000Z</published>
     <updated>2017-01-22T02:30:05.297Z</updated>
     
-    <content type="html"><![CDATA[<p>新建 remove-svn.bat, 放到项目根目录执行就好了。（本来以为 svn 会提供这样的功能，结果还要自己写，😒）</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>新建 remove-svn.bat, 放到项目根目录执行就好了。（本来以为 svn 会提供这样的功能，结果还要自己写，😒）</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> on</span>
 <span class="line">@<span class="keyword">for</span> /r . <span class="variable">%%a</span> <span class="keyword">in</span> (.) <span class="keyword">do</span> @<span class="keyword">if</span> <span class="keyword">exist</span> "<span class="variable">%%a</span>\.svn" <span class="built_in">rd</span> /s /q "<span class="variable">%%a</span>\.svn"</span>
 <span class="line">@<span class="built_in">pause</span></span>
-</pre></td></tr></table></figure>
-]]></content>
+</pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;新建 remove-svn.bat, 放到项目根目录执行就好了。（本来以为 svn 会提供这样的功能，结果还要自己写，😒）&lt;/p&gt;
-&lt;figure class=&quot;highlight bat&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+      &lt;p&gt;新建 remove-svn.bat, 放到项目根目录执行就好了。（本来以为 svn 会提供这样的功能，结果还要自己写，😒）&lt;/p&gt;&lt;figure class=&quot;highlight bat&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span 
     
     </summary>
     
@@ -245,19 +232,13 @@
     <published>2017-01-20T03:48:10.000Z</published>
     <updated>2017-01-20T06:41:03.831Z</updated>
     
-    <content type="html"><![CDATA[<p>一般情况下，textarea 的高度是定死的，rows 指定了之后，高度就不变了，内容多了之后会出现滚动条，这样的设定在大部分的场景下面是够用的， 但是有时就会很丑陋（废话😊）。</p>
-<p>我们都知道 HTML 的元素都有一个 scrollHeight 这个属性，就是当该元素出现滚动条的时候，内容的高度。</p>
-<p>那就方便了：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>一般情况下，textarea 的高度是定死的，rows 指定了之后，高度就不变了，内容多了之后会出现滚动条，这样的设定在大部分的场景下面是够用的， 但是有时就会很丑陋（废话😊）。</p><p>我们都知道 HTML 的元素都有一个 scrollHeight 这个属性，就是当该元素出现滚动条的时候，内容的高度。</p><p>那就方便了：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line">$(<span class="string">".weui-textarea"</span>).on(<span class="string">'input propertychange keyup'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
 <span class="line">  $(<span class="keyword">this</span>).height(<span class="keyword">this</span>.scrollHeight);</span>
 <span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
-<p>这样就实现了高度自动增加的 Textarea，但当我试着删掉几行，想让它自动降低高度的时候不禁菊花一紧，他不动~</p>
-<p>这就尴尬,,ԾㅂԾ,,了，于是我就找了另外一种方法:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>这样就实现了高度自动增加的 Textarea，但当我试着删掉几行，想让它自动降低高度的时候不禁菊花一紧，他不动~</p><p>这就尴尬,,ԾㅂԾ,,了，于是我就找了另外一种方法:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -329,59 +310,11 @@
 <span class="line">    &#125;</span>
 <span class="line">  &#125;</span>
 <span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
-<p>这是一个例子~ （换行试试~😏）</p>
-<p><textarea class="weui-textarea" placeholder="这是一个例子~" rows="3" style="resize: none;width: 100%;border: 1px solid pink; border-radius:4px; padding: 5px;font-size:14px;"></textarea></p>
-<script>
-  $(function () {
-
-    var minRows = 3;
-    var maxRows = 10;
-
-    $('.weui-textarea').on('input keyup', function () {
-      // 尝试滚动一段距离，如果没有滚动条，scrollTop 还是 0
-      if (this.scrollTop == 0) {
-        this.scrollTop = 1;
-      }
-
-      while (this.scrollTop == 0) {
-        if (this.rows > minRows) {
-          this.rows--;
-        } else {
-          break;
-        }
-
-        this.scrollTop = 1;
-        if (this.rows < maxRows) {
-          this.style.overflowY = "hidden";
-        }
-
-        if (this.scrollTop > 0) {
-          this.rows++;
-          break;
-        }
-      }
-
-      while (this.scrollTop > 0) {
-        if (this.rows < maxRows) {
-          this.rows++;
-          if (this.scrollTop == 0) {
-            this.scrollTop = 1;
-          }
-        } else {
-          this.style.overflowY = "auto";
-          break;
-        }
-      }
-    });
-
-  });
-</script>]]></content>
+</pre></td></tr></table></figure><p>这是一个例子~ （换行试试~😏）</p><p><textarea class="weui-textarea" placeholder="这是一个例子~" rows="3" style="resize:none;width:100%;border:1px solid pink;border-radius:4px;padding:5px;font-size:14px"></textarea></p><script>$(function(){var o=3,s=10;$(".weui-textarea").on("input keyup",function(){for(0==this.scrollTop&&(this.scrollTop=1);0==this.scrollTop&&this.rows>o;)if(this.rows--,this.scrollTop=1,this.rows<s&&(this.style.overflowY="hidden"),this.scrollTop>0){this.rows++;break}for(;this.scrollTop>0;){if(!(this.rows<s)){this.style.overflowY="auto";break}this.rows++,0==this.scrollTop&&(this.scrollTop=1)}})})</script>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;一般情况下，textarea 的高度是定死的，rows 指定了之后，高度就不变了，内容多了之后会出现滚动条，这样的设定在大部分的场景下面是够用的， 但是有时就会很丑陋（废话😊）。&lt;/p&gt;
-&lt;p&gt;我们都知道 HTML 的元素都有一个 scrollHeight 这个属性，就是
+      &lt;p&gt;一般情况下，textarea 的高度是定死的，rows 指定了之后，高度就不变了，内容多了之后会出现滚动条，这样的设定在大部分的场景下面是够用的， 但是有时就会很丑陋（废话😊）。&lt;/p&gt;&lt;p&gt;我们都知道 HTML 的元素都有一个 scrollHeight 这个属性，就是当
     
     </summary>
     
@@ -399,9 +332,7 @@
     <published>2016-12-30T02:28:20.000Z</published>
     <updated>2016-12-30T03:55:16.592Z</updated>
     
-    <content type="html"><![CDATA[<p>其实这篇文章主要是介绍这个东西 <a href="https://github.com/tc39/proposal-bind-operator" target="_blank" rel="external">Proposal Bind Operator</a> 或者 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:bind_operator" target="_blank" rel="external">bind_operator</a>。</p>
-<p>也是在一个很偶然的机会看到了，git 上面的一个项目用到了这个用法，为什么自己发现不了这些东西呢？</p>
-<h2 id="传统的-this-绑定"><a href="#传统的-this-绑定" class="headerlink" title="传统的 this 绑定"></a>传统的 this 绑定</h2><h3 id="在函数外面暂存一个变量"><a href="#在函数外面暂存一个变量" class="headerlink" title="在函数外面暂存一个变量"></a>在函数外面暂存一个变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>其实这篇文章主要是介绍这个东西 <a href="https://github.com/tc39/proposal-bind-operator" target="_blank" rel="external">Proposal Bind Operator</a> 或者 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:bind_operator" target="_blank" rel="external">bind_operator</a>。</p><p>也是在一个很偶然的机会看到了，git 上面的一个项目用到了这个用法，为什么自己发现不了这些东西呢？</p><h2 id="传统的-this-绑定"><a href="#传统的-this-绑定" class="headerlink" title="传统的 this 绑定"></a>传统的 this 绑定</h2><h3 id="在函数外面暂存一个变量"><a href="#在函数外面暂存一个变量" class="headerlink" title="在函数外面暂存一个变量"></a>在函数外面暂存一个变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -411,9 +342,7 @@
 <span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
 <span class="line">  <span class="keyword">this</span>.doSomething();</span>
 <span class="line">&#125;, <span class="number">1000</span>);</span>
-</pre></td></tr></table></figure>
-<h3 id="使用-bind-函数-amp-箭头函数"><a href="#使用-bind-函数-amp-箭头函数" class="headerlink" title="使用 bind 函数 &amp; 箭头函数"></a>使用 bind 函数 &amp; 箭头函数</h3><p>在使用 <code>class *** extends React.Component {}</code> 的写法声明 React 组件的时候，组件的方法都不会被自动绑定 this 了，下面的两种方法比较常见：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h3 id="使用-bind-函数-amp-箭头函数"><a href="#使用-bind-函数-amp-箭头函数" class="headerlink" title="使用 bind 函数 &amp; 箭头函数"></a>使用 bind 函数 &amp; 箭头函数</h3><p>在使用 <code>class *** extends React.Component {}</code> 的写法声明 React 组件的时候，组件的方法都不会被自动绑定 this 了，下面的两种方法比较常见：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -427,9 +356,7 @@
 <span class="line">  &#125;.bind(<span class="keyword">this</span>), </span>
 <span class="line">  <span class="number">1000</span></span>
 <span class="line">);</span>
-</pre></td></tr></table></figure>
-<p>使用 <code>bind</code> 方法显得稍微有点长，不太好看，不过很好用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>使用 <code>bind</code> 方法显得稍微有点长，不太好看，不过很好用。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -449,11 +376,7 @@
 <span class="line">  &#125;, </span>
 <span class="line">  <span class="number">1000</span></span>
 <span class="line">);</span>
-</pre></td></tr></table></figure>
-<p>箭头函数在经过<code>babel</code>编译后， 差不多就是注释的部分了， 还是用的暂存的办法保存了 <code>this</code>，但是写法就简单了太多。</p>
-<h3 id=""><a href="#" class="headerlink" title="::"></a>::</h3><p>看到这种语法之后，感觉其他的都弱爆了。</p>
-<p>在 React 里面，可以这么写</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>箭头函数在经过<code>babel</code>编译后， 差不多就是注释的部分了， 还是用的暂存的办法保存了 <code>this</code>，但是写法就简单了太多。</p><h3><a href="#" class="headerlink" title="::"></a>::</h3><p>看到这种语法之后，感觉其他的都弱爆了。</p><p>在 React 里面，可以这么写</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -461,11 +384,7 @@
 <span class="line">&lt;Popconfirm title=<span class="string">"确定要保存吗？"</span> onConfirm=&#123;::<span class="keyword">this</span>.handleSave&#125;&gt;</span>
 <span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">type</span>=<span class="string">"ghost"</span> &gt;</span>保存<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span></span>
 <span class="line">&lt;<span class="regexp">/Popconfirm&gt;</span></span>
-</pre></td></tr></table></figure>
-<p>可以看到，注释部分表示的编译后的代码，就是用 <code>bind</code> 实现的。</p>
-<p>双冒号前面的对象就是 <code>bind</code> 的参数， 如果没有就是当前的 <code>this</code>, 毕竟这种做法就是用来做绑定的。</p>
-<p>但是有一个问题，就是像这样的需求不好实现，</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>可以看到，注释部分表示的编译后的代码，就是用 <code>bind</code> 实现的。</p><p>双冒号前面的对象就是 <code>bind</code> 的参数， 如果没有就是当前的 <code>this</code>, 毕竟这种做法就是用来做绑定的。</p><p>但是有一个问题，就是像这样的需求不好实现，</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -475,15 +394,7 @@
 <span class="line">  icon=<span class="string">"edit"</span></span>
 <span class="line">  onClick=&#123;<span class="keyword">this</span>.handleEdit.bind(<span class="keyword">this</span>, item)&#125;</span>
 <span class="line">/&gt;</span>
-</pre></td></tr></table></figure>
-<p>然后就是黑人问号脸，我试了几种形式 (当然不能用 bind 方法，否则这 :: 没有意义了)</p>
-<ul>
-<li>[this, item]::this.handleEdit</li>
-<li>(this, item)::this.handleEdit  // hhh</li>
-<li>this::this.handleEdit(item)    // hhh</li>
-</ul>
-<p>感觉唯一靠谱的就是第一种写法了， 编译之后</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>然后就是黑人问号脸，我试了几种形式 (当然不能用 bind 方法，否则这 :: 没有意义了)</p><ul><li>[this, item]::this.handleEdit</li><li>(this, item)::this.handleEdit // hhh</li><li>this::this.handleEdit(item) // hhh</li></ul><p>感觉唯一靠谱的就是第一种写法了， 编译之后</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -501,9 +412,7 @@
 <span class="line">  &#125;,</span>
 <span class="line">  <span class="string">''</span></span>
 <span class="line">)</span>
-</pre></td></tr></table></figure>
-<p>这样 bind 之后的方法内的 this 是一个数组，要想获取到真正的 this, 在 handleEdit 中还需要做</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>这样 bind 之后的方法内的 this 是一个数组，要想获取到真正的 this, 在 handleEdit 中还需要做</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -515,11 +424,7 @@
 <span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>[<span class="number">0</span>]);</span>
 <span class="line">  <span class="comment">// const [ _this, item ] = this;</span></span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<blockquote>
-<p>所以呢 在需要绑定 this 并且要添加额外参数的时候，就不要用 <strong>::</strong> 了。老老实实用 <strong>bind</strong> 就好了。</p>
-</blockquote>
-<h2 id="箭头函数声明在-class-里面"><a href="#箭头函数声明在-class-里面" class="headerlink" title="箭头函数声明在 class 里面"></a>箭头函数声明在 class 里面</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><blockquote><p>所以呢 在需要绑定 this 并且要添加额外参数的时候，就不要用 <strong>::</strong> 了。老老实实用 <strong>bind</strong> 就好了。</p></blockquote><h2 id="箭头函数声明在-class-里面"><a href="#箭头函数声明在-class-里面" class="headerlink" title="箭头函数声明在 class 里面"></a>箭头函数声明在 class 里面</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -557,10 +462,7 @@
 <span class="line">//   &#125;,</span>
 <span class="line">//   ...</span>
 <span class="line">// &#125;);</span></span>
-</pre></td></tr></table></figure>
-<p>这样应该是最简单的方式了，因为是自动绑定 this 的（与注释中的代码效果是一样的）。</p>
-<p>以上。</p>
-]]></content>
+</pre></td></tr></table></figure><p>这样应该是最简单的方式了，因为是自动绑定 this 的（与注释中的代码效果是一样的）。</p><p>以上。</p>]]></content>
     
     <summary type="html">
     
@@ -584,10 +486,7 @@
     <published>2016-12-23T07:27:27.000Z</published>
     <updated>2016-12-23T07:37:41.376Z</updated>
     
-    <content type="html"><![CDATA[<p>一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！</p>
-<p>今天突然发现有一个设置项可以自定义 markdown 的样式，</p>
-<p><img src="../images/webstorm-md-css-1.png" alt="设置"></p>
-<p>就是右边方框里面的选项，取消 webstorm 默认的， 然后添加自己的 css，下面的css 是我找来的，还可以看：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！</p><p>今天突然发现有一个设置项可以自定义 markdown 的样式，</p><p><img src="../images/webstorm-md-css-1.png" alt="设置"></p><p>就是右边方框里面的选项，取消 webstorm 默认的， 然后添加自己的 css，下面的css 是我找来的，还可以看：<br></p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1145,14 +1044,11 @@
 <span class="line">  padding: 0;</span>
 <span class="line">  border: 0;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-]]></content>
+</pre></td></tr></table></figure><p></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！&lt;/p&gt;
-&lt;p&gt;今天突然发现有一个设置项可以自定义 markdown 的样式，&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;../images/webstorm-md-cs
+      &lt;p&gt;一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！&lt;/p&gt;&lt;p&gt;今天突然发现有一个设置项可以自定义 markdown 的样式，&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;../images/webstorm-md-css-
     
     </summary>
     
@@ -1170,9 +1066,9 @@
     <link href="http://blog.ochukai.me/decorator-in-js/"/>
     <id>http://blog.ochukai.me/decorator-in-js/</id>
     <published>2016-12-21T01:33:38.000Z</published>
-    <updated>2017-01-04T01:53:41.838Z</updated>
+    <updated>2017-01-24T06:24:27.531Z</updated>
     
-    <content type="html"><![CDATA[<p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：<br></p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1189,17 +1085,14 @@
 <span class="line"></span>
 <span class="line">  render() &#123;</span>
 <span class="line">    <span class="keyword">return</span> (</span>
-<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
+<span class="line">      &lt;div &#123; ...this.props &#125;&gt;</span>
 <span class="line">        &#123; this.props.children &#125;</span>
-<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
+<span class="line">      &lt;/div&gt;</span>
 <span class="line">    );</span>
 <span class="line">  &#125;</span>
 <span class="line">  </span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<p>查了一下之后发现这是 es7 的新语法，叫 <a href="https://github.com/wycats/javascript-decorators" target="_blank" rel="external">Decorator</a>。</p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>如果要定义一个 Decorator 的话，不难，其实每一个 decorator 就是一个 function，有三个参数，像这样</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>查了一下之后发现这是 es7 的新语法，叫 <a href="https://github.com/wycats/javascript-decorators" target="_blank" rel="external">Decorator</a>。</p><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>如果要定义一个 Decorator 的话，不难，其实每一个 decorator 就是一个 function，有三个参数，像这样</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1217,10 +1110,7 @@
 <span class="line">    <span class="keyword">return</span> method.apply(target, args);</span>
 <span class="line">  &#125;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<p>三个参数还是比较好理解的</p>
-<p>然后要用这个 decorator 的时候</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>三个参数还是比较好理解的</p><p>然后要用这个 decorator 的时候</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1242,24 +1132,11 @@
 <span class="line"></span>
 <span class="line"><span class="keyword">let</span> my = <span class="keyword">new</span> Example();</span>
 <span class="line">my.add(<span class="number">2</span>, <span class="number">3</span>);</span>
-</pre></td></tr></table></figure>
-<p>这好像跟 Java 的 Annotation 形式差不多。 但是功能却跟 Python 的 Decorator 一样。</p>
-<p>下面是运行时的输出</p>
-<p><img src="..//images/decorator-1.png" alt="正常"></p>
-<p>所以呢，decorator 的三个参数分别是</p>
-<ol>
-<li>target 目标方法所在的类</li>
-<li>name 方法名</li>
-<li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点在上一个例子中已经看到了。</li>
-</ol>
-<h2 id="用在-class-上面"><a href="#用在-class-上面" class="headerlink" title="用在 class 上面"></a>用在 class 上面</h2><p>因为我最开始见到 decorator 是看到</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>这好像跟 Java 的 Annotation 形式差不多。 但是功能却跟 Python 的 Decorator 一样。</p><p>下面是运行时的输出</p><p><img src="../images/decorator-1.png" alt="正常"></p><p>所以呢，decorator 的三个参数分别是</p><ol><li>target 目标方法所在的类</li><li>name 方法名</li><li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点在上一个例子中已经看到了。</li></ol><h2 id="用在-class-上面"><a href="#用在-class-上面" class="headerlink" title="用在 class 上面"></a>用在 class 上面</h2><p>因为我最开始见到 decorator 是看到</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 </pre></td><td class="code"><pre><span class="line">@sortable</span>
 <span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoHOCItem</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;<span class="comment">/*...*/</span>&#125;</span>
-</pre></td></tr></table></figure>
-<p>这时， decorator 是用在 class 上面的，当 decorator 用在 class 上面的时候只有第一个参数有值，比如</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>这时， decorator 是用在 class 上面的，当 decorator 用在 class 上面的时候只有第一个参数有值，比如</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1267,9 +1144,7 @@
 <span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
 <span class="line">  add(a, b) &#123; <span class="keyword">return</span> a + b; &#125;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<p>只会输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>只会输出</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1281,8 +1156,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：&lt;br&gt;&lt;figure class=&quot;highlight jsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
-&lt;span clas
+      &lt;p&gt;昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：&lt;br&gt;&lt;/p&gt;&lt;figure class=&quot;highlight jsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
+&lt;span 
     
     </summary>
     
@@ -1300,8 +1175,7 @@
     <published>2016-12-16T05:02:13.000Z</published>
     <updated>2016-12-16T06:58:09.484Z</updated>
     
-    <content type="html"><![CDATA[<p>今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1315,8 +1189,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;
+      &lt;p&gt;今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置&lt;/p&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;
     
     </summary>
     
@@ -1332,23 +1205,13 @@
     <link href="http://blog.ochukai.me/webpack-dev-server-vs-webstorm/"/>
     <id>http://blog.ochukai.me/webpack-dev-server-vs-webstorm/</id>
     <published>2016-12-08T11:32:09.000Z</published>
-    <updated>2016-12-08T11:52:29.532Z</updated>
+    <updated>2017-01-24T06:24:24.860Z</updated>
     
-    <content type="html"><![CDATA[<p>最近换了公司 ！！！</p>
-<p>重新用上了高大上的 win7 系统，还是熟悉的画面，然后又装上了 WebStorm，准备开始我的性福人生。</p>
-<p>但天有不测风云，在使用一个基于 webpack 构建的项目中，每次修改代码之后，webpack-dev-server 总是不能够自动重新编译，很烦！！！</p>
-<p>这可急坏了宝宝！！！</p>
-<p>但是我非常冷静的分析了一下原因，可能是因为webstorm有自动保存的机制， 是不是很机智，一下子就命中了要害（但其实这中间的过程可复杂了）</p>
-<p><img src="..//images/webstorm-save-file.png" alt="正常"></p>
-<p>如上图， 在 <code>File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings</code> 里面，取消勾选上面红框的两项。</p>
-<p>每次修改之后，<code>ctrl + s</code> 就可以了。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>最近换了公司 ！！！</p><p>重新用上了高大上的 win7 系统，还是熟悉的画面，然后又装上了 WebStorm，准备开始我的性福人生。</p><p>但天有不测风云，在使用一个基于 webpack 构建的项目中，每次修改代码之后，webpack-dev-server 总是不能够自动重新编译，很烦！！！</p><p>这可急坏了宝宝！！！</p><p>但是我非常冷静的分析了一下原因，可能是因为webstorm有自动保存的机制， 是不是很机智，一下子就命中了要害（但其实这中间的过程可复杂了）</p><p><img src="../images/webstorm-save-file.png" alt="正常"></p><p>如上图， 在 <code>File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings</code> 里面，取消勾选上面红框的两项。</p><p>每次修改之后，<code>ctrl + s</code> 就可以了。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;最近换了公司 ！！！&lt;/p&gt;
-&lt;p&gt;重新用上了高大上的 win7 系统，还是熟悉的画面，然后又装上了 WebStorm，准备开始我的性福人生。&lt;/p&gt;
-&lt;p&gt;但天有不测风云，在使用一个基于 webpack 构建的项目中，每次修改代码之后，webpack-dev-server
+      &lt;p&gt;最近换了公司 ！！！&lt;/p&gt;&lt;p&gt;重新用上了高大上的 win7 系统，还是熟悉的画面，然后又装上了 WebStorm，准备开始我的性福人生。&lt;/p&gt;&lt;p&gt;但天有不测风云，在使用一个基于 webpack 构建的项目中，每次修改代码之后，webpack-dev-server 总
     
     </summary>
     
@@ -1412,11 +1275,9 @@
 <span class="line">#   TCP    [::1]:53652            [::1]:8989             ESTABLISHED     5440</span>
 <span class="line">#   TCP    [::1]:53653            [::1]:8989             ESTABLISHED     5440</span>
 <span class="line">#   TCP    [::1]:53654            [::1]:8989             ESTABLISHED     5440</span>
-</pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 </pre></td><td class="code"><pre><span class="line">tasklist | findstr 8989//查看pid为3036的是什么程序在用</span>
-</pre></td></tr></table></figure>
-<h2 id="杀死某进程"><a href="#杀死某进程" class="headerlink" title="杀死某进程"></a>杀死某进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h2 id="杀死某进程"><a href="#杀死某进程" class="headerlink" title="杀死某进程"></a>杀死某进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1424,8 +1285,7 @@
 <span class="line"># /F 强制</span>
 <span class="line">  </span>
 <span class="line">taskkill /T /F /PID 8989</span>
-</pre></td></tr></table></figure>
-]]></content>
+</pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -1447,66 +1307,31 @@
     <published>2016-11-22T01:40:09.766Z</published>
     <updated>2017-01-04T01:50:26.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p>
-</blockquote>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<blockquote><p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p></blockquote><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 </pre></td><td class="code"><pre><span class="line">arrayObject.splice(index, how-many, item1, item2, ...itemX)</span>
-</pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>index</td>
-<td>必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</td>
-</tr>
-<tr>
-<td>how-many</td>
-<td>必需。要删除的项目数量。<code>如果设置为 0，则不会删除项目</code>。</td>
-</tr>
-<tr>
-<td>item1, …, itemX</td>
-<td>可选。向数组添加的新项目。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>index</td><td>必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</td></tr><tr><td>how-many</td><td>必需。要删除的项目数量。<code>如果设置为 0，则不会删除项目</code>。</td></tr><tr><td>item1, …, itemX</td><td>可选。向数组添加的新项目。</td></tr></tbody></table><h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 </pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
-</pre></td></tr></table></figure>
-<p>删除第三个</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>删除第三个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span>
 <span class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></span>
-</pre></td></tr></table></figure>
-<p>删除后面两个</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>删除后面两个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span>
 <span class="line">                  <span class="comment">// arrr: [0, 1]</span></span>
-</pre></td></tr></table></figure>
-<p>替换</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"><span class="comment">// 把第二个元素变成 5</span></span>
 <span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
 <span class="line">arrr.splice(<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>); <span class="comment">// [0, 1, 5, 4]</span></span>
-</pre></td></tr></table></figure>
-<p>交换位置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>交换位置</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1522,15 +1347,11 @@
 <span class="line"></span>
 <span class="line"><span class="comment">// arrr = [0, 1, 5, 4]</span></span>
 <span class="line">swapArrayItemPosition(arrr, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// [0, 5, 1, 4]</span></span>
-</pre></td></tr></table></figure>
-]]></content>
+</pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;
+      &lt;blockquote&gt;&lt;p&gt;splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)&lt;/p&gt;&lt;/blockquote&gt;&lt;h2 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;
     
     </summary>
     
@@ -1552,312 +1373,13 @@
     <link href="http://blog.ochukai.me/higashino-keigo/"/>
     <id>http://blog.ochukai.me/higashino-keigo/</id>
     <published>2016-07-26T08:38:44.000Z</published>
-    <updated>2016-11-22T01:40:09.751Z</updated>
+    <updated>2017-01-24T06:11:26.390Z</updated>
     
-    <content type="html"><![CDATA[<p>最近看了几篇 东野圭吾 的小说, 都还蛮有意思的。 像 《嫌疑人X的献身》, 《流星之绊》,《毕业》啊 等等,好多都记不住名字了。</p>
-<p>于是决定把他的全集整理一下,留着有空都看一遍~</p>
-<hr>
-<h2 id="加贺恭一郎系列"><a href="#加贺恭一郎系列" class="headerlink" title="加贺恭一郎系列"></a>加贺恭一郎系列</h2><ul>
-<li>《毕业——雪月花杀人游戏》（《毕业前杀人游戏》）&lt;卒业―雪月花杀人ゲーム&gt;</li>
-<li>《沉睡的森林》&lt;眠りの森&gt;</li>
-<li>《谁杀了她》&lt;どちらかが彼女を杀した&gt;</li>
-<li>《恶意》</li>
-<li>《我杀了他》&lt;私が彼を杀した&gt;</li>
-<li>《又一个谎言》 &lt;嘘をもうひとつだけ&gt;　刊载于推理杂志220-224期</li>
-<li>《红手指》 &lt;赤い指&gt;（2011年冬季档日剧SP，阿部宽、黑木明纱主演）</li>
-<li>《新参者》（2010年拍摄日剧，阿部宽、黑木明纱主演）</li>
-<li>《麒麟之翼》&lt;麒麟の翼&gt;</li>
-</ul>
-<h2 id="神探伽利略-按列表顺序"><a href="#神探伽利略-按列表顺序" class="headerlink" title="神探伽利略 (按列表顺序)"></a>神探伽利略 (按列表顺序)</h2><ul>
-<li>《侦探伽利略》&lt;探侦ガリレオ&gt;</li>
-<li>《预知梦》&lt;予知梦&gt;</li>
-<li>《嫌疑犯X的献身》&lt;容疑者Xの献身&gt;</li>
-<li>《伽利略的苦恼》&lt;ガリレオの苦悩&gt;</li>
-<li>《圣女的救济》&lt;圣女の救済&gt;</li>
-<li>《盛夏的方程式》&lt;真夏の方程式&gt;</li>
-<li>《虚像的小丑》&lt;虚像の道化师&gt;</li>
-<li>《禁断的魔术》&lt;禁断の魔术&gt;</li>
-</ul>
-<h2 id="毒舌三部曲"><a href="#毒舌三部曲" class="headerlink" title="毒舌三部曲"></a>毒舌三部曲</h2><ul>
-<li>怪笑小说</li>
-<li>毒笑小说</li>
-<li>黑笑小说</li>
-</ul>
-<h2 id="获奖作品"><a href="#获奖作品" class="headerlink" title="获奖作品"></a>获奖作品</h2><ul>
-<li>1983年《人偶之家》第29届江戸川乱歩赏二次予选通过</li>
-<li>1984年《魔球》第30届江戸川乱歩赏最终候补</li>
-<li>1985年《放学后》夺得第31届江户川乱步奖，开始专职写作。</li>
-<li>1988年《学生街杀人事件》第9届吉川英治文学新人赏候补・第41回日本推理作家协会赏（长编）候补</li>
-<li>1990年《鸟人计划》第11届吉川英治文学新人赏候补</li>
-<li>1991年《天使之耳》第44届日本推理作家协会赏（短编集）候补</li>
-<li>1992年《镜之中》第45届日本推理作家协会赏（短编集）候补</li>
-<li>1993年《雪地杀机》第46届日本推理作家协会赏（长编部）候补</li>
-<li>1993年《交通警察之夜》第46届日本推理作家协会赏（短编集）候补</li>
-<li>1996年《天空之蜂》第17届吉川英治文学新人赏候补</li>
-<li>1997年《名侦探的守则》第18届吉川英治文学新人赏候补</li>
-<li>1999年《秘密》第120届直木奖三十五赏候补，第20回吉川英治文学新人赏候补，第52回日本推理作家协会奖</li>
-<li>2000年《白夜行》第122届直木奖三十五赏候补</li>
-<li>2001年《单恋》第125届直木奖三十五赏候补</li>
-<li>2003年《信》第129届直木奖三十五赏候补</li>
-<li>2004年《幻夜》第131届直木三奖十五赏候补</li>
-<li>2006年《嫌疑人X的献身》将第134届直木奖、第6届本格推理小说 大奖及当年度日本三大推理小说排行榜（“这本推理小说了不起！”、“周刊文春推理小说BEST10”、“本格推理小说 BEST10”）第1名一并收入囊中。</li>
-<li>2008年《流星之绊》荣获第43届新风奖。</li>
-<li>2009年《新参者》获“这本推理小说了不起！”、“周刊文春推理小说BEST10”年度第1名。</li>
-<li>2012年《嫌疑犯X的献身》美国图书馆协会最推荐图书（推理部门）、爱伦·坡奖最优秀长编奖候补、巴瑞奖新人赏奖候补</li>
-<li>2012年《浪矢杂货店的奇迹》第7届中央公论文艺奖</li>
-</ul>
-<hr>
-<p>上面的作品今年都看完应该就不错了~ 毕竟做人都是要有目标的嘛,那么更远大的目标呢,就是下面的全部列表了。</p>
-<hr>
-<h2 id="作品列表"><a href="#作品列表" class="headerlink" title="作品列表"></a>作品列表</h2><h3 id="1985年"><a href="#1985年" class="headerlink" title="1985年"></a>1985年</h3><ol>
-<li>《放学后》&lt;放课後&gt; （第31 届江户川乱步奖）</li>
-</ol>
-<h3 id="1986年"><a href="#1986年" class="headerlink" title="1986年"></a>1986年</h3><ol>
-<li>《毕业——雪月花杀人游戏》（加贺恭一郎系列）（《毕业前杀人游戏》）&lt;卒业―雪月花杀人ゲーム&gt;</li>
-<li>《白马山庄杀人事件》&lt;白马山荘杀人事件&gt;</li>
-</ol>
-<h3 id="1987年"><a href="#1987年" class="headerlink" title="1987年"></a>1987年</h3><ol>
-<li>《学生街里的杀人事件》&lt;学生街の杀人&gt;（入围第41届日本推理作家协会赏）</li>
-<li>《十一字杀人》<11文字の杀人></11文字の杀人></li>
-</ol>
-<h3 id="1988年"><a href="#1988年" class="headerlink" title="1988年"></a>1988年</h3><ol>
-<li>《魔球》</li>
-<li>《以眨眼干杯》&lt;ウインクで乾杯&gt; 原名&lt;香子の梦―コンパニオン杀人事件&gt; / 《香子之梦——夥伴杀人事件》</li>
-<li>《浪花少年侦探团》&lt;浪花少年探侦団&gt;</li>
-</ol>
-<h3 id="1989年"><a href="#1989年" class="headerlink" title="1989年"></a>1989年</h3><ol>
-<li>《十字豪宅的小丑》&lt;十字屋敷のピエロ&gt;</li>
-<li>《沉睡的森林》&lt;眠りの森&gt;（加贺恭一郎系列）（特别说明：并不是木村拓哉主演的那部电视剧）</li>
-<li>《鸟人计划》&lt;鸟人计画&gt;（入围第11届吉川英治文学新人奖）</li>
-<li>《杀人现场在云端》&lt;杀人现场は云の上&gt;</li>
-<li>《布鲁特斯的心脏——完全犯罪杀人接力》&lt;ブルータスの心臓―完全犯罪杀人リレー&gt;</li>
-</ol>
-<h3 id="1990年"><a href="#1990年" class="headerlink" title="1990年"></a>1990年</h3><ol>
-<li>《侦探俱乐部》&lt;探侦倶楽部&gt; 原名 &lt;依頼人の娘&gt;《负责人的女儿》<br>本短篇集包括：<ol>
-<li>伪装之夜 / 伪装の夜</li>
-<li>疯狂的电击 / 罠の中</li>
-<li>少女委托人 / 依頼人の娘</li>
-<li>伊豆旅馆的神秘案 / 探侦の使い方</li>
-<li>玫瑰与匕首 / 蔷薇とナイフ</li>
-</ol>
-</li>
-<li>《宿命》（2004年拍摄日剧SP，柏原崇、藤木直人主演）</li>
-<li>《没有凶手的杀人夜》&lt;犯人のいない杀人の夜&gt;（曾刊载于推理杂志）<ol>
-<li>小小的恶作剧故事 / 小さな故意の物语（2012年日剧《东野圭吾推理系列》第八集，三浦春马主演）</li>
-<li>黑暗中的两个人 / 闇の中の二人</li>
-<li>舞女 / 踊り子</li>
-<li>无尽之夜 / エンドレス·ナイト（2012年日剧《东野圭吾推理系列》第三集，松下奈绪主演）</li>
-<li>白色凶器 / 白い凶器（2012年日剧《东野圭吾推理系列》第七集，户田惠梨香主演）</li>
-<li>别了，教练 / さよならコーチ（2012年日剧《东野圭吾推理系列》第一集，唐泽寿明主演）</li>
-<li>没有凶手的杀人夜 / 犯人のいない杀人の夜（2012年日剧《东野圭吾推理系列》第二集，坂口宪二主演）</li>
-</ol>
-</li>
-<li>《面具山庄杀人事件》&lt;仮面山荘杀人事件&gt;</li>
-</ol>
-<h3 id="1991年"><a href="#1991年" class="headerlink" title="1991年"></a>1991年</h3><ol>
-<li>《变身》&lt;变身&gt;（2005年拍摄电影，玉木宏、苍井优主演）</li>
-<li>《回廊亭杀人事件》&lt;回廊亭杀人事件&gt;（2012年06月24日播出日剧SP，主演：常盘贵子）</li>
-<li>《天使之耳》&lt;交通警察の夜&gt;<ol>
-<li>天使之耳/ 天使の耳</li>
-<li>隔离带/ 分离帯</li>
-<li>危险的新叶/ 危険な若叶</li>
-<li>请通过/ 通りゃんせ</li>
-<li>请勿弃物/ 舍てないで</li>
-<li>镜之中/ 镜の中で</li>
-</ol>
-</li>
-</ol>
-<h3 id="1992年"><a href="#1992年" class="headerlink" title="1992年"></a>1992年</h3><ol>
-<li>《雪地杀机》&lt;ある闭ざされた雪の山荘で&gt;</li>
-<li>《美丽的凶器》&lt;美しき凶器&gt;</li>
-</ol>
-<h3 id="1993年"><a href="#1993年" class="headerlink" title="1993年"></a>1993年</h3><ol>
-<li>《同班同学》&lt;同级生&gt;</li>
-<li>《分身》（2012年2月12日播出日剧，主演：长泽雅美）</li>
-<li>《和阿忍老师说再见——浪花少年侦探团·独立篇》&lt;しのぶセンセにサヨナラ―浪花少年探侦団·独立编&gt;</li>
-</ol>
-<h3 id="1994年"><a href="#1994年" class="headerlink" title="1994年"></a>1994年</h3><ol>
-<li>《怪人们》 / 怪しい人びと<ol>
-<li>沉睡的女人 / 寝ていた女</li>
-<li>让我再听一次你的判罚 / もう一度コールしてくれ</li>
-<li>至死方休 / 死んだら働けない</li>
-<li>蜜月之旅 / 甘いはずなのに</li>
-<li>新婚照之谜 / 结婚报告（2012年日剧《东野圭吾推理系列》第九集，广末凉子主演）</li>
-<li>灯塔之上 / 灯台にて</li>
-<li>哥斯达黎加的冷雨 / コスタリカの雨は冷たい</li>
-</ol>
-</li>
-<li>《我以前死去的家》&lt;むかし仆が死んだ家&gt;</li>
-<li>《操纵彩虹的少年》&lt;虹を操る少年&gt;</li>
-</ol>
-<h3 id="1995年"><a href="#1995年" class="headerlink" title="1995年"></a>1995年</h3><ol>
-<li>《平行世界·爱情故事》&lt;パラレルワールド·ラブストーリー&gt;</li>
-<li>《那个时候我们是傻瓜》（散文集）&lt;あの顷ぼくらはアホでした&gt;</li>
-<li>《怪笑小说》<ol>
-<li>郁积电车 / 郁积电车</li>
-<li>追星阿婆 / おっかけバアさん</li>
-<li>一彻老爸 / 一彻おやじ</li>
-<li>逆转同学会 / 逆転同窓会</li>
-<li>超狸理论 / 超たぬき理论</li>
-<li>无人岛大相扑转播 / 无人岛大相扑中継</li>
-<li>尸台社区 / しかばね台分譲住宅</li>
-<li>献给某位老爷爷的线香 / あるジーサンに线香を</li>
-<li>动物家庭 / 动物家族</li>
-</ol>
-</li>
-<li>《天空之蜂》&lt;天空の蜂&gt;（入围第17届吉川英治文学新人奖）</li>
-</ol>
-<h3 id="1996年"><a href="#1996年" class="headerlink" title="1996年"></a>1996年</h3><ol>
-<li>《名侦探的守则》&lt;名探侦の掟&gt;（2009春季日剧，松田翔太主演）</li>
-<li>《谁杀了她》（加贺恭一郎系列）&lt;どちらかが彼女を杀した&gt;</li>
-<li>《毒笑小说》<ol>
-<li>绑架天国 / 诱拐天国</li>
-<li>Angel / エンジェル</li>
-<li>手工贵妇 / 手作りマダム</li>
-<li>程序警察 / マニュアル警察（世界奇妙物语 2000秋季sp，玉置浩二主演，又名《准则警察》）</li>
-<li>爷爷当家 / ホームアローンじいさん</li>
-<li>新郎人偶 / 花婿人形</li>
-<li>女作家 / 女流作家</li>
-<li>杀意使用说明书 / 杀意取扱说明书（世界奇妙物语 2010秋季sp，玉木宏、冢本高史主演）</li>
-<li>补偿 / つぐない</li>
-<li>光荣的证言 / 栄光の证言</li>
-<li>本格推理周边鉴定秀 / 本格推理関连グッズ鉴定ショー</li>
-<li>绑架电话网 / 诱拐电话网</li>
-</ol>
-</li>
-<li>《恶意》（加贺恭一郎系列）</li>
-<li>《名侦探的诅咒》&lt;名探侦の呪缚&gt;</li>
-</ol>
-<h3 id="1998年"><a href="#1998年" class="headerlink" title="1998年"></a>1998年</h3><ol>
-<li>《侦探伽利略》（神探伽利略系列第1部）&lt;探侦ガリレオ&gt;</li>
-<li>《秘密》（第52届日本推理作家协会奖、第120 届直木奖入围）</li>
-</ol>
-<h3 id="1999年"><a href="#1999年" class="headerlink" title="1999年"></a>1999年</h3><ol>
-<li>《我杀了他》（加贺恭一郎系列）&lt;私が彼を杀した&gt;</li>
-<li>《白夜行》（第122 届直木奖入围）</li>
-</ol>
-<h3 id="2000年"><a href="#2000年" class="headerlink" title="2000年"></a>2000年</h3><ol>
-<li>《又一个谎言》 （加贺恭一郎系列） &lt;嘘をもうひとつだけ&gt;　刊载于推理杂志220-224期<ol>
-<li>又一个谎言 / 嘘をもうひとつだけ</li>
-<li>寒冷的灼热 / 冷たい灼热</li>
-<li>第二个希望 / 第二の希望</li>
-<li>疯狂计算 / 狂った计算</li>
-<li>朋友的忠告 / 友の助言</li>
-</ol>
-</li>
-<li>《预知梦》（神探伽利略系列第2部）&lt;予知梦&gt;（2007年拍摄日剧《神探伽利略》6-10集，福山雅治、柴崎幸主演）</li>
-</ol>
-<h3 id="2001年"><a href="#2001年" class="headerlink" title="2001年"></a>2001年</h3><ol>
-<li>《单恋》&lt;片想い&gt; （第125 届直木奖入围）</li>
-<li>《超·杀人事件》&lt;超·杀人事件　推理作家の苦悩&gt;（「2003年世界奇妙物语春季篇」拍摄其中一个单元故事&lt;超税金对策杀人事件&gt;，西村雅彦、大冢宁宁主演）<ol>
-<li>超税金对策杀人事件 / 超税金対策杀人事件</li>
-<li>超理科杀人事件 / 超理系杀人事件</li>
-<li>超猜凶手小说杀人事件 / 超犯人当て小说杀人事件（问题篇·解决篇）</li>
-<li>超高龄化社会杀人事件 / 超高齢化社会杀人事件</li>
-<li>超预告小说杀人事件 / 超予告小说杀人事件</li>
-<li>超长篇小说杀人事件 / 超长编小说杀人事件</li>
-<li>魔风馆杀人事件 / 魔风馆杀人事件（超最终回·ラスト五枚）</li>
-<li>超读书机器杀人事件 / 超読书机械杀人事件</li>
-</ol>
-</li>
-<li>《圣诞阿姨》 /サンタのおばさん（絵本：絵は杉田比吕美）</li>
-</ol>
-<h3 id="2002年"><a href="#2002年" class="headerlink" title="2002年"></a>2002年</h3><ol>
-<li>《湖畔》&lt;レイクサイド&gt;（2002年拍摄电影，药师丸博子、丰川悦司、役所广司主演）</li>
-<li>《时生》&lt;トキオ&gt;（2004年拍摄日剧，樱井翔主演，剧名为「给父亲的口信」）</li>
-<li>《绑架游戏》&lt;ゲームの名は诱拐&gt;（2003年拍摄电影、藤木直人、仲间由纪惠主演）</li>
-</ol>
-<h3 id="2003年"><a href="#2003年" class="headerlink" title="2003年"></a>2003年</h3><ol>
-<li>《信》&lt;手纸&gt;（第129 届直木奖入围）（2005年拍摄电影，山田孝之、泽尻英龙华主演）</li>
-<li>《我是非常勤》&lt;おれは非情勤&gt; （注：本书书名和「 非常勤」（中文意为兼任）同音，是创作者特别设定的双关语趣味）</li>
-<li>《杀人之门》&lt;杀人の门&gt;</li>
-</ol>
-<h3 id="2004年"><a href="#2004年" class="headerlink" title="2004年"></a>2004年</h3><ol>
-<li>《幻夜》（第131 届直木奖入围）（2010年秋季档日剧，深田恭子、冢本高史主演）</li>
-<li>《挑战？》（散文集）&lt;ちゃれんじ&gt;（散文集）</li>
-<li>《彷徨之刃》&lt;さまよう刃&gt;（2009年改编为电影，竹野内丰主演）</li>
-</ol>
-<h3 id="2005年"><a href="#2005年" class="headerlink" title="2005年"></a>2005年</h3><ol>
-<li>《黑笑小说》<ol>
-<li>又一次助跑 / もうひとつの助走</li>
-<li>线香花火 / 线香花火</li>
-<li>过去的人 / 过去の人</li>
-<li>评审会 / 选考会</li>
-<li>巨乳妄想综合征 / 巨乳妄想症候群</li>
-<li>无能药 / インポグラ</li>
-<li>显微眼 / みえすぎ</li>
-<li>钟情喷雾 / モテモテ·スプレー</li>
-<li>灰姑娘白夜行 / シンデレラ白夜行</li>
-<li>跟踪狂入门 / ストーカー入门</li>
-<li>临界家族 / 临界家族</li>
-<li>不笑的人 / 笑わない男</li>
-<li>奇迹之照 / 奇迹の一枚</li>
-</ol>
-</li>
-<li>《嫌疑犯X的献身》（神探伽利略系列第3部）&lt;容疑者Xの献身&gt;</li>
-<li>《科学》（散文集）&lt;さいえんす&gt;</li>
-</ol>
-<h3 id="2006年"><a href="#2006年" class="headerlink" title="2006年"></a>2006年</h3><ol>
-<li>《梦回都灵》（散文集）&lt;梦はトリノをかけめぐる&gt;</li>
-<li>《红手指》（加贺恭一郎系列） &lt;赤い指&gt;（2011年冬季档日剧SP，阿部宽、黑木明纱主演）</li>
-<li>《使命与心的极限》&lt;使命と魂のリミット&gt; （2011秋季档日剧SP，石原里美、速水重道主演）</li>
-</ol>
-<h3 id="2007年"><a href="#2007年" class="headerlink" title="2007年"></a>2007年</h3><ol>
-<li>《也许是最后的寒暄》&lt;たぶん最後の御挨拶&gt;（散文集）</li>
-<li>《黎明之街》&lt;夜明けの街で&gt;（2011年拍摄电影，深田恭子、岸谷五朗主演）</li>
-<li>《濒死之眼》&lt;ダイイング·アイイ&gt;</li>
-</ol>
-<h3 id="2008年"><a href="#2008年" class="headerlink" title="2008年"></a>2008年</h3><ol>
-<li>《流星之绊》&lt;流星の绊&gt;（2008年拍摄日剧，二宫和也、锦户亮、户田惠梨香主演）</li>
-<li>《伽利略的苦恼》（神探伽利略系列第4部）&lt;ガリレオの苦悩&gt;</li>
-<li>《圣女的救济》（神探伽利略系列第5部）&lt;圣女の救済&gt;</li>
-</ol>
-<h3 id="2009年"><a href="#2009年" class="headerlink" title="2009年"></a>2009年</h3><ol>
-<li>《悖论13》台版译《异变13秒》&lt;パラドックス13&gt;</li>
-<li>《新参者》（加贺恭一郎系列）（2010年拍摄日剧，阿部宽、黑木明纱主演）</li>
-<li>《美丽的凶器》</li>
-</ol>
-<h3 id="2010年"><a href="#2010年" class="headerlink" title="2010年"></a>2010年</h3><ol>
-<li>《布谷鸟的蛋是谁的》&lt;カッコウの卵は谁のもの&gt; 在《小说宝石》上连载时原题《フェイク》</li>
-<li>《白金数据》&lt;プラチナデータ&gt;（2012年拍摄电影，二宫和也主演）</li>
-<li>《白银杰克》&lt; 白银ジャック&gt;</li>
-</ol>
-<h3 id="2011年"><a href="#2011年" class="headerlink" title="2011年"></a>2011年</h3><ol>
-<li>《你旁边是谁》&lt;あの顷の谁か&gt;<ol>
-<li>全是字谜 / シャレードがいっぱい（2012年日剧《东野圭吾推理系列》第六集，长泽雅美主演）</li>
-<li>Reiko和玲子 / 玲子とレイコ（2012年日剧《东野圭吾推理系列》第四集，观月阿丽莎主演）</li>
-<li>再生魔术之女 / 再生魔术の女 （2012年日剧《东野圭吾推理系列》第十一集，铃木京香主演）</li>
-<li>再见，“爸爸” / さよなら『お父さん』</li>
-<li>名侦探退场 / 名探侦退场 </li>
-<li>母老虎 / 女も虎も</li>
-<li>好困，我不想死 / りたい死にたくない </li>
-<li>20年的约定 / 二十年目の约束（2012年日剧《东野圭吾推理系列》第十集，筱原凉子主演）</li>
-</ol>
-</li>
-<li>《麒麟之翼》（加贺恭一郎系列）&lt;麒麟の翼&gt;（加贺恭一郎系列）</li>
-<li>《牛奶箱的回答》&lt;回答は牛乳箱に&gt;（短篇 出自《小说 野性时代》 第89号）</li>
-<li>《听心》&lt;心聴&gt;（短篇 出自《オール读物》2011年04月号）</li>
-<li>《盛夏的方程式》（神探伽利略系列第6部）&lt;真夏の方程式&gt;</li>
-<li>《假面舞馆》&lt;マスカレード·ホテル&gt; 暂定2012年9月9日出版</li>
-<li>《歪笑小说》</li>
-</ol>
-<h3 id="2012年"><a href="#2012年" class="headerlink" title="2012年"></a>2012年</h3><ol>
-<li>《虚像的小丑》（神探伽利略系列第7部）&lt;虚像の道化师 ガリレオ 7&gt;</li>
-<li>《杂货店的奇迹》</li>
-<li>《那个时候的谁》</li>
-<li>《禁断的魔术》（神探伽利略系列第8部）&lt;禁断の魔术 ガリレオ8&gt;</li>
-</ol>
-<h3 id="2013年"><a href="#2013年" class="headerlink" title="2013年"></a>2013年</h3><ol>
-<li>《梦幻花》（むげんばな）</li>
-</ol>
-]]></content>
+    <content type="html"><![CDATA[<p>最近看了几篇 东野圭吾 的小说, 都还蛮有意思的。 像 《嫌疑人X的献身》, 《流星之绊》,《毕业》啊 等等,好多都记不住名字了。</p><p>于是决定把他的全集整理一下,留着有空都看一遍~</p><hr><h2 id="加贺恭一郎系列"><a href="#加贺恭一郎系列" class="headerlink" title="加贺恭一郎系列"></a>加贺恭一郎系列</h2><ul><li>《毕业——雪月花杀人游戏》（《毕业前杀人游戏》）&lt;卒业―雪月花杀人ゲーム&gt;</li><li>《沉睡的森林》&lt;眠りの森&gt;</li><li>《谁杀了她》&lt;どちらかが彼女を杀した&gt;</li><li>《恶意》</li><li>《我杀了他》&lt;私が彼を杀した&gt;</li><li>《又一个谎言》 &lt;嘘をもうひとつだけ&gt;　刊载于推理杂志220-224期</li><li>《红手指》 &lt;赤い指&gt;（2011年冬季档日剧SP，阿部宽、黑木明纱主演）</li><li>《新参者》（2010年拍摄日剧，阿部宽、黑木明纱主演）</li><li>《麒麟之翼》&lt;麒麟の翼&gt;</li></ul><h2 id="神探伽利略-按列表顺序"><a href="#神探伽利略-按列表顺序" class="headerlink" title="神探伽利略 (按列表顺序)"></a>神探伽利略 (按列表顺序)</h2><ul><li>《侦探伽利略》&lt;探侦ガリレオ&gt;</li><li>《预知梦》&lt;予知梦&gt;</li><li>《嫌疑犯X的献身》&lt;容疑者Xの献身&gt;</li><li>《伽利略的苦恼》&lt;ガリレオの苦悩&gt;</li><li>《圣女的救济》&lt;圣女の救済&gt;</li><li>《盛夏的方程式》&lt;真夏の方程式&gt;</li><li>《虚像的小丑》&lt;虚像の道化师&gt;</li><li>《禁断的魔术》&lt;禁断の魔术&gt;</li></ul><h2 id="毒舌三部曲"><a href="#毒舌三部曲" class="headerlink" title="毒舌三部曲"></a>毒舌三部曲</h2><ul><li>怪笑小说</li><li>毒笑小说</li><li>黑笑小说</li></ul><h2 id="获奖作品"><a href="#获奖作品" class="headerlink" title="获奖作品"></a>获奖作品</h2><ul><li>1983年《人偶之家》第29届江戸川乱歩赏二次予选通过</li><li>1984年《魔球》第30届江戸川乱歩赏最终候补</li><li>1985年《放学后》夺得第31届江户川乱步奖，开始专职写作。</li><li>1988年《学生街杀人事件》第9届吉川英治文学新人赏候补・第41回日本推理作家协会赏（长编）候补</li><li>1990年《鸟人计划》第11届吉川英治文学新人赏候补</li><li>1991年《天使之耳》第44届日本推理作家协会赏（短编集）候补</li><li>1992年《镜之中》第45届日本推理作家协会赏（短编集）候补</li><li>1993年《雪地杀机》第46届日本推理作家协会赏（长编部）候补</li><li>1993年《交通警察之夜》第46届日本推理作家协会赏（短编集）候补</li><li>1996年《天空之蜂》第17届吉川英治文学新人赏候补</li><li>1997年《名侦探的守则》第18届吉川英治文学新人赏候补</li><li>1999年《秘密》第120届直木奖三十五赏候补，第20回吉川英治文学新人赏候补，第52回日本推理作家协会奖</li><li>2000年《白夜行》第122届直木奖三十五赏候补</li><li>2001年《单恋》第125届直木奖三十五赏候补</li><li>2003年《信》第129届直木奖三十五赏候补</li><li>2004年《幻夜》第131届直木三奖十五赏候补</li><li>2006年《嫌疑人X的献身》将第134届直木奖、第6届本格推理小说 大奖及当年度日本三大推理小说排行榜（“这本推理小说了不起！”、“周刊文春推理小说BEST10”、“本格推理小说 BEST10”）第1名一并收入囊中。</li><li>2008年《流星之绊》荣获第43届新风奖。</li><li>2009年《新参者》获“这本推理小说了不起！”、“周刊文春推理小说BEST10”年度第1名。</li><li>2012年《嫌疑犯X的献身》美国图书馆协会最推荐图书（推理部门）、爱伦·坡奖最优秀长编奖候补、巴瑞奖新人赏奖候补</li><li>2012年《浪矢杂货店的奇迹》第7届中央公论文艺奖</li></ul><hr><p>上面的作品今年都看完应该就不错了~ 毕竟做人都是要有目标的嘛,那么更远大的目标呢,就是下面的全部列表了。</p><hr><h2 id="作品列表"><a href="#作品列表" class="headerlink" title="作品列表"></a>作品列表</h2><h3 id="1985年"><a href="#1985年" class="headerlink" title="1985年"></a>1985年</h3><ol><li>《放学后》&lt;放课後&gt; （第31 届江户川乱步奖）</li></ol><h3 id="1986年"><a href="#1986年" class="headerlink" title="1986年"></a>1986年</h3><ol><li>《毕业——雪月花杀人游戏》（加贺恭一郎系列）（《毕业前杀人游戏》）&lt;卒业―雪月花杀人ゲーム&gt;</li><li>《白马山庄杀人事件》&lt;白马山荘杀人事件&gt;</li></ol><h3 id="1987年"><a href="#1987年" class="headerlink" title="1987年"></a>1987年</h3><ol><li>《学生街里的杀人事件》&lt;学生街の杀人&gt;（入围第41届日本推理作家协会赏）</li><li>《十一字杀人》（11文字の杀人）</li></ol><h3 id="1988年"><a href="#1988年" class="headerlink" title="1988年"></a>1988年</h3><ol><li>《魔球》</li><li>《以眨眼干杯》&lt;ウインクで乾杯&gt; 原名&lt;香子の梦―コンパニオン杀人事件&gt; / 《香子之梦——夥伴杀人事件》</li><li>《浪花少年侦探团》&lt;浪花少年探侦団&gt;</li></ol><h3 id="1989年"><a href="#1989年" class="headerlink" title="1989年"></a>1989年</h3><ol><li>《十字豪宅的小丑》&lt;十字屋敷のピエロ&gt;</li><li>《沉睡的森林》&lt;眠りの森&gt;（加贺恭一郎系列）（特别说明：并不是木村拓哉主演的那部电视剧）</li><li>《鸟人计划》&lt;鸟人计画&gt;（入围第11届吉川英治文学新人奖）</li><li>《杀人现场在云端》&lt;杀人现场は云の上&gt;</li><li>《布鲁特斯的心脏——完全犯罪杀人接力》&lt;ブルータスの心臓―完全犯罪杀人リレー&gt;</li></ol><h3 id="1990年"><a href="#1990年" class="headerlink" title="1990年"></a>1990年</h3><ol><li>《侦探俱乐部》&lt;探侦倶楽部&gt; 原名 &lt;依頼人の娘&gt;《负责人的女儿》<br>本短篇集包括：<ol><li>伪装之夜 / 伪装の夜</li><li>疯狂的电击 / 罠の中</li><li>少女委托人 / 依頼人の娘</li><li>伊豆旅馆的神秘案 / 探侦の使い方</li><li>玫瑰与匕首 / 蔷薇とナイフ</li></ol></li><li>《宿命》（2004年拍摄日剧SP，柏原崇、藤木直人主演）</li><li>《没有凶手的杀人夜》&lt;犯人のいない杀人の夜&gt;（曾刊载于推理杂志）<ol><li>小小的恶作剧故事 / 小さな故意の物语（2012年日剧《东野圭吾推理系列》第八集，三浦春马主演）</li><li>黑暗中的两个人 / 闇の中の二人</li><li>舞女 / 踊り子</li><li>无尽之夜 / エンドレス·ナイト（2012年日剧《东野圭吾推理系列》第三集，松下奈绪主演）</li><li>白色凶器 / 白い凶器（2012年日剧《东野圭吾推理系列》第七集，户田惠梨香主演）</li><li>别了，教练 / さよならコーチ（2012年日剧《东野圭吾推理系列》第一集，唐泽寿明主演）</li><li>没有凶手的杀人夜 / 犯人のいない杀人の夜（2012年日剧《东野圭吾推理系列》第二集，坂口宪二主演）</li></ol></li><li>《面具山庄杀人事件》&lt;仮面山荘杀人事件&gt;</li></ol><h3 id="1991年"><a href="#1991年" class="headerlink" title="1991年"></a>1991年</h3><ol><li>《变身》&lt;变身&gt;（2005年拍摄电影，玉木宏、苍井优主演）</li><li>《回廊亭杀人事件》&lt;回廊亭杀人事件&gt;（2012年06月24日播出日剧SP，主演：常盘贵子）</li><li>《天使之耳》&lt;交通警察の夜&gt;<ol><li>天使之耳/ 天使の耳</li><li>隔离带/ 分离帯</li><li>危险的新叶/ 危険な若叶</li><li>请通过/ 通りゃんせ</li><li>请勿弃物/ 舍てないで</li><li>镜之中/ 镜の中で</li></ol></li></ol><h3 id="1992年"><a href="#1992年" class="headerlink" title="1992年"></a>1992年</h3><ol><li>《雪地杀机》&lt;ある闭ざされた雪の山荘で&gt;</li><li>《美丽的凶器》&lt;美しき凶器&gt;</li></ol><h3 id="1993年"><a href="#1993年" class="headerlink" title="1993年"></a>1993年</h3><ol><li>《同班同学》&lt;同级生&gt;</li><li>《分身》（2012年2月12日播出日剧，主演：长泽雅美）</li><li>《和阿忍老师说再见——浪花少年侦探团·独立篇》&lt;しのぶセンセにサヨナラ―浪花少年探侦団·独立编&gt;</li></ol><h3 id="1994年"><a href="#1994年" class="headerlink" title="1994年"></a>1994年</h3><ol><li>《怪人们》 / 怪しい人びと<ol><li>沉睡的女人 / 寝ていた女</li><li>让我再听一次你的判罚 / もう一度コールしてくれ</li><li>至死方休 / 死んだら働けない</li><li>蜜月之旅 / 甘いはずなのに</li><li>新婚照之谜 / 结婚报告（2012年日剧《东野圭吾推理系列》第九集，广末凉子主演）</li><li>灯塔之上 / 灯台にて</li><li>哥斯达黎加的冷雨 / コスタリカの雨は冷たい</li></ol></li><li>《我以前死去的家》&lt;むかし仆が死んだ家&gt;</li><li>《操纵彩虹的少年》&lt;虹を操る少年&gt;</li></ol><h3 id="1995年"><a href="#1995年" class="headerlink" title="1995年"></a>1995年</h3><ol><li>《平行世界·爱情故事》&lt;パラレルワールド·ラブストーリー&gt;</li><li>《那个时候我们是傻瓜》（散文集）&lt;あの顷ぼくらはアホでした&gt;</li><li>《怪笑小说》<ol><li>郁积电车 / 郁积电车</li><li>追星阿婆 / おっかけバアさん</li><li>一彻老爸 / 一彻おやじ</li><li>逆转同学会 / 逆転同窓会</li><li>超狸理论 / 超たぬき理论</li><li>无人岛大相扑转播 / 无人岛大相扑中継</li><li>尸台社区 / しかばね台分譲住宅</li><li>献给某位老爷爷的线香 / あるジーサンに线香を</li><li>动物家庭 / 动物家族</li></ol></li><li>《天空之蜂》&lt;天空の蜂&gt;（入围第17届吉川英治文学新人奖）</li></ol><h3 id="1996年"><a href="#1996年" class="headerlink" title="1996年"></a>1996年</h3><ol><li>《名侦探的守则》&lt;名探侦の掟&gt;（2009春季日剧，松田翔太主演）</li><li>《谁杀了她》（加贺恭一郎系列）&lt;どちらかが彼女を杀した&gt;</li><li>《毒笑小说》<ol><li>绑架天国 / 诱拐天国</li><li>Angel / エンジェル</li><li>手工贵妇 / 手作りマダム</li><li>程序警察 / マニュアル警察（世界奇妙物语 2000秋季sp，玉置浩二主演，又名《准则警察》）</li><li>爷爷当家 / ホームアローンじいさん</li><li>新郎人偶 / 花婿人形</li><li>女作家 / 女流作家</li><li>杀意使用说明书 / 杀意取扱说明书（世界奇妙物语 2010秋季sp，玉木宏、冢本高史主演）</li><li>补偿 / つぐない</li><li>光荣的证言 / 栄光の证言</li><li>本格推理周边鉴定秀 / 本格推理関连グッズ鉴定ショー</li><li>绑架电话网 / 诱拐电话网</li></ol></li><li>《恶意》（加贺恭一郎系列）</li><li>《名侦探的诅咒》&lt;名探侦の呪缚&gt;</li></ol><h3 id="1998年"><a href="#1998年" class="headerlink" title="1998年"></a>1998年</h3><ol><li>《侦探伽利略》（神探伽利略系列第1部）&lt;探侦ガリレオ&gt;</li><li>《秘密》（第52届日本推理作家协会奖、第120 届直木奖入围）</li></ol><h3 id="1999年"><a href="#1999年" class="headerlink" title="1999年"></a>1999年</h3><ol><li>《我杀了他》（加贺恭一郎系列）&lt;私が彼を杀した&gt;</li><li>《白夜行》（第122 届直木奖入围）</li></ol><h3 id="2000年"><a href="#2000年" class="headerlink" title="2000年"></a>2000年</h3><ol><li>《又一个谎言》 （加贺恭一郎系列） &lt;嘘をもうひとつだけ&gt;　刊载于推理杂志220-224期<ol><li>又一个谎言 / 嘘をもうひとつだけ</li><li>寒冷的灼热 / 冷たい灼热</li><li>第二个希望 / 第二の希望</li><li>疯狂计算 / 狂った计算</li><li>朋友的忠告 / 友の助言</li></ol></li><li>《预知梦》（神探伽利略系列第2部）&lt;予知梦&gt;（2007年拍摄日剧《神探伽利略》6-10集，福山雅治、柴崎幸主演）</li></ol><h3 id="2001年"><a href="#2001年" class="headerlink" title="2001年"></a>2001年</h3><ol><li>《单恋》&lt;片想い&gt; （第125 届直木奖入围）</li><li>《超·杀人事件》&lt;超·杀人事件　推理作家の苦悩&gt;（「2003年世界奇妙物语春季篇」拍摄其中一个单元故事&lt;超税金对策杀人事件&gt;，西村雅彦、大冢宁宁主演）<ol><li>超税金对策杀人事件 / 超税金対策杀人事件</li><li>超理科杀人事件 / 超理系杀人事件</li><li>超猜凶手小说杀人事件 / 超犯人当て小说杀人事件（问题篇·解决篇）</li><li>超高龄化社会杀人事件 / 超高齢化社会杀人事件</li><li>超预告小说杀人事件 / 超予告小说杀人事件</li><li>超长篇小说杀人事件 / 超长编小说杀人事件</li><li>魔风馆杀人事件 / 魔风馆杀人事件（超最终回·ラスト五枚）</li><li>超读书机器杀人事件 / 超読书机械杀人事件</li></ol></li><li>《圣诞阿姨》 /サンタのおばさん（絵本：絵は杉田比吕美）</li></ol><h3 id="2002年"><a href="#2002年" class="headerlink" title="2002年"></a>2002年</h3><ol><li>《湖畔》&lt;レイクサイド&gt;（2002年拍摄电影，药师丸博子、丰川悦司、役所广司主演）</li><li>《时生》&lt;トキオ&gt;（2004年拍摄日剧，樱井翔主演，剧名为「给父亲的口信」）</li><li>《绑架游戏》&lt;ゲームの名は诱拐&gt;（2003年拍摄电影、藤木直人、仲间由纪惠主演）</li></ol><h3 id="2003年"><a href="#2003年" class="headerlink" title="2003年"></a>2003年</h3><ol><li>《信》&lt;手纸&gt;（第129 届直木奖入围）（2005年拍摄电影，山田孝之、泽尻英龙华主演）</li><li>《我是非常勤》&lt;おれは非情勤&gt; （注：本书书名和「 非常勤」（中文意为兼任）同音，是创作者特别设定的双关语趣味）</li><li>《杀人之门》&lt;杀人の门&gt;</li></ol><h3 id="2004年"><a href="#2004年" class="headerlink" title="2004年"></a>2004年</h3><ol><li>《幻夜》（第131 届直木奖入围）（2010年秋季档日剧，深田恭子、冢本高史主演）</li><li>《挑战？》（散文集）&lt;ちゃれんじ&gt;（散文集）</li><li>《彷徨之刃》&lt;さまよう刃&gt;（2009年改编为电影，竹野内丰主演）</li></ol><h3 id="2005年"><a href="#2005年" class="headerlink" title="2005年"></a>2005年</h3><ol><li>《黑笑小说》<ol><li>又一次助跑 / もうひとつの助走</li><li>线香花火 / 线香花火</li><li>过去的人 / 过去の人</li><li>评审会 / 选考会</li><li>巨乳妄想综合征 / 巨乳妄想症候群</li><li>无能药 / インポグラ</li><li>显微眼 / みえすぎ</li><li>钟情喷雾 / モテモテ·スプレー</li><li>灰姑娘白夜行 / シンデレラ白夜行</li><li>跟踪狂入门 / ストーカー入门</li><li>临界家族 / 临界家族</li><li>不笑的人 / 笑わない男</li><li>奇迹之照 / 奇迹の一枚</li></ol></li><li>《嫌疑犯X的献身》（神探伽利略系列第3部）&lt;容疑者Xの献身&gt;</li><li>《科学》（散文集）&lt;さいえんす&gt;</li></ol><h3 id="2006年"><a href="#2006年" class="headerlink" title="2006年"></a>2006年</h3><ol><li>《梦回都灵》（散文集）&lt;梦はトリノをかけめぐる&gt;</li><li>《红手指》（加贺恭一郎系列） &lt;赤い指&gt;（2011年冬季档日剧SP，阿部宽、黑木明纱主演）</li><li>《使命与心的极限》&lt;使命と魂のリミット&gt; （2011秋季档日剧SP，石原里美、速水重道主演）</li></ol><h3 id="2007年"><a href="#2007年" class="headerlink" title="2007年"></a>2007年</h3><ol><li>《也许是最后的寒暄》&lt;たぶん最後の御挨拶&gt;（散文集）</li><li>《黎明之街》&lt;夜明けの街で&gt;（2011年拍摄电影，深田恭子、岸谷五朗主演）</li><li>《濒死之眼》&lt;ダイイング·アイイ&gt;</li></ol><h3 id="2008年"><a href="#2008年" class="headerlink" title="2008年"></a>2008年</h3><ol><li>《流星之绊》&lt;流星の绊&gt;（2008年拍摄日剧，二宫和也、锦户亮、户田惠梨香主演）</li><li>《伽利略的苦恼》（神探伽利略系列第4部）&lt;ガリレオの苦悩&gt;</li><li>《圣女的救济》（神探伽利略系列第5部）&lt;圣女の救済&gt;</li></ol><h3 id="2009年"><a href="#2009年" class="headerlink" title="2009年"></a>2009年</h3><ol><li>《悖论13》台版译《异变13秒》&lt;パラドックス13&gt;</li><li>《新参者》（加贺恭一郎系列）（2010年拍摄日剧，阿部宽、黑木明纱主演）</li><li>《美丽的凶器》</li></ol><h3 id="2010年"><a href="#2010年" class="headerlink" title="2010年"></a>2010年</h3><ol><li>《布谷鸟的蛋是谁的》&lt;カッコウの卵は谁のもの&gt; 在《小说宝石》上连载时原题《フェイク》</li><li>《白金数据》&lt;プラチナデータ&gt;（2012年拍摄电影，二宫和也主演）</li><li>《白银杰克》&lt; 白银ジャック&gt;</li></ol><h3 id="2011年"><a href="#2011年" class="headerlink" title="2011年"></a>2011年</h3><ol><li>《你旁边是谁》&lt;あの顷の谁か&gt;<ol><li>全是字谜 / シャレードがいっぱい（2012年日剧《东野圭吾推理系列》第六集，长泽雅美主演）</li><li>Reiko和玲子 / 玲子とレイコ（2012年日剧《东野圭吾推理系列》第四集，观月阿丽莎主演）</li><li>再生魔术之女 / 再生魔术の女 （2012年日剧《东野圭吾推理系列》第十一集，铃木京香主演）</li><li>再见，“爸爸” / さよなら『お父さん』</li><li>名侦探退场 / 名探侦退场</li><li>母老虎 / 女も虎も</li><li>好困，我不想死 / りたい死にたくない</li><li>20年的约定 / 二十年目の约束（2012年日剧《东野圭吾推理系列》第十集，筱原凉子主演）</li></ol></li><li>《麒麟之翼》（加贺恭一郎系列）&lt;麒麟の翼&gt;（加贺恭一郎系列）</li><li>《牛奶箱的回答》&lt;回答は牛乳箱に&gt;（短篇 出自《小说 野性时代》 第89号）</li><li>《听心》&lt;心聴&gt;（短篇 出自《オール读物》2011年04月号）</li><li>《盛夏的方程式》（神探伽利略系列第6部）&lt;真夏の方程式&gt;</li><li>《假面舞馆》&lt;マスカレード·ホテル&gt; 暂定2012年9月9日出版</li><li>《歪笑小说》</li></ol><h3 id="2012年"><a href="#2012年" class="headerlink" title="2012年"></a>2012年</h3><ol><li>《虚像的小丑》（神探伽利略系列第7部）&lt;虚像の道化师 ガリレオ 7&gt;</li><li>《杂货店的奇迹》</li><li>《那个时候的谁》</li><li>《禁断的魔术》（神探伽利略系列第8部）&lt;禁断の魔术 ガリレオ8&gt;</li></ol><h3 id="2013年"><a href="#2013年" class="headerlink" title="2013年"></a>2013年</h3><ol><li>《梦幻花》（むげんばな）</li></ol>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;最近看了几篇 东野圭吾 的小说, 都还蛮有意思的。 像 《嫌疑人X的献身》, 《流星之绊》,《毕业》啊 等等,好多都记不住名字了。&lt;/p&gt;
-&lt;p&gt;于是决定把他的全集整理一下,留着有空都看一遍~&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;加贺恭一郎系列&quot;&gt;&lt;a href=&quot;#加贺恭一
+      &lt;p&gt;最近看了几篇 东野圭吾 的小说, 都还蛮有意思的。 像 《嫌疑人X的献身》, 《流星之绊》,《毕业》啊 等等,好多都记不住名字了。&lt;/p&gt;&lt;p&gt;于是决定把他的全集整理一下,留着有空都看一遍~&lt;/p&gt;&lt;hr&gt;&lt;h2 id=&quot;加贺恭一郎系列&quot;&gt;&lt;a href=&quot;#加贺恭一郎系列
     
     </summary>
     
@@ -1881,17 +1403,7 @@
     <published>2016-07-11T02:52:16.000Z</published>
     <updated>2016-11-22T01:40:09.766Z</updated>
     
-    <content type="html"><![CDATA[<p>之前写过一遍介绍 <code>splice()</code> 方法的，这一次又遇到了 <code>slice()</code>, 这两个太像了, 首先看这两个意思吧：</p>
-<blockquote>
-<p>splice [splais]<br>n. 接合；结婚<br>vt. 拼接；接合；使结婚</p>
-</blockquote>
-<p>和  </p>
-<blockquote>
-<p>slice [slais]<br>n. 薄片；部分；菜刀，火铲<br>vt. 切下；把…分成部分；将…切成薄片<br>vi. 切开；割破</p>
-</blockquote>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><code>slice()</code> 方法可从已有的数组中返回选定的元素。这个函数有两个参数 <code>slice(start, end)</code> 会返回一个从 <code>start</code> 到 <code>end</code> 之前元素的新数组， 如果 <code>end</code> 是<code>负数</code>，就从数组末尾倒着数, 如果 end 没有设置，就返回从 start 到数组末尾组成的新数组咯~</p>
-<p>总之这是一个返回新数组的函数，知识返回而已，不会改变原来的数组，而 <code>splice</code> 方法则会改变原来的数组.</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>之前写过一遍介绍 <code>splice()</code> 方法的，这一次又遇到了 <code>slice()</code>, 这两个太像了, 首先看这两个意思吧：</p><blockquote><p>splice [splais]<br>n. 接合；结婚<br>vt. 拼接；接合；使结婚</p></blockquote><p>和</p><blockquote><p>slice [slais]<br>n. 薄片；部分；菜刀，火铲<br>vt. 切下；把…分成部分；将…切成薄片<br>vi. 切开；割破</p></blockquote><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><code>slice()</code> 方法可从已有的数组中返回选定的元素。这个函数有两个参数 <code>slice(start, end)</code> 会返回一个从 <code>start</code> 到 <code>end</code> 之前元素的新数组， 如果 <code>end</code> 是<code>负数</code>，就从数组末尾倒着数, 如果 end 没有设置，就返回从 start 到数组末尾组成的新数组咯~</p><p>总之这是一个返回新数组的函数，知识返回而已，不会改变原来的数组，而 <code>splice</code> 方法则会改变原来的数组.</p><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1915,9 +1427,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;之前写过一遍介绍 &lt;code&gt;splice()&lt;/code&gt; 方法的，这一次又遇到了 &lt;code&gt;slice()&lt;/code&gt;, 这两个太像了, 首先看这两个意思吧：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;splice [splais]&lt;br&gt;n. 接合；结婚&lt;br&gt;vt
+      &lt;p&gt;之前写过一遍介绍 &lt;code&gt;splice()&lt;/code&gt; 方法的，这一次又遇到了 &lt;code&gt;slice()&lt;/code&gt;, 这两个太像了, 首先看这两个意思吧：&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;splice [splais]&lt;br&gt;n. 接合；结婚&lt;br&gt;vt. 
     
     </summary>
     
@@ -1937,19 +1447,13 @@
     <published>2016-06-23T03:12:27.000Z</published>
     <updated>2016-11-22T01:40:09.751Z</updated>
     
-    <content type="html"><![CDATA[<p>最近写手机页面颇多, 经常有弹出框, 或者下拉列表, 如果弹框或者下拉列表的内容太多,出现了滚动条, 恰好外面的内容也很多,也有滚动条的话,就会出现一种情况:</p>
-<p><img src="../images/scroll-1.png" alt="例子"></p>
-<p>比如上图, 当用力划一下屏幕, 下拉框滚到底了之后, <strong>body</strong> 随之也开始滚, 很讨厌。出现过好多次了, 而且测试逼我太紧~</p>
-<h2 id="我要解决这个问题啊"><a href="#我要解决这个问题啊" class="headerlink" title="我要解决这个问题啊"></a>我要解决这个问题啊</h2><p>其实很简单, 只要弹出下拉列表的时候让下层的元素不能滚动就好了。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>最近写手机页面颇多, 经常有弹出框, 或者下拉列表, 如果弹框或者下拉列表的内容太多,出现了滚动条, 恰好外面的内容也很多,也有滚动条的话,就会出现一种情况:</p><p><img src="../images/scroll-1.png" alt="例子"></p><p>比如上图, 当用力划一下屏幕, 下拉框滚到底了之后, <strong>body</strong> 随之也开始滚, 很讨厌。出现过好多次了, 而且测试逼我太紧~</p><h2 id="我要解决这个问题啊"><a href="#我要解决这个问题啊" class="headerlink" title="我要解决这个问题啊"></a>我要解决这个问题啊</h2><p>其实很简单, 只要弹出下拉列表的时候让下层的元素不能滚动就好了。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"><span class="selector-class">.modal-open</span> &#123; </span>
 <span class="line">  <span class="attribute">overflow</span>: hidden;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<p>js 的话就这么写:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>js 的话就这么写:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -1967,15 +1471,11 @@
 <span class="line">  $(<span class="string">'body'</span>).removeClass(<span class="string">'modal-open'</span>);</span>
 <span class="line">  <span class="comment">// ...</span></span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<p>以上。</p>
-]]></content>
+</pre></td></tr></table></figure><p>以上。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;最近写手机页面颇多, 经常有弹出框, 或者下拉列表, 如果弹框或者下拉列表的内容太多,出现了滚动条, 恰好外面的内容也很多,也有滚动条的话,就会出现一种情况:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;../images/scroll-1.png&quot; alt=&quot;例子&quot;&gt;&lt;/p&gt;
-&lt;p
+      &lt;p&gt;最近写手机页面颇多, 经常有弹出框, 或者下拉列表, 如果弹框或者下拉列表的内容太多,出现了滚动条, 恰好外面的内容也很多,也有滚动条的话,就会出现一种情况:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;../images/scroll-1.png&quot; alt=&quot;例子&quot;&gt;&lt;/p&gt;&lt;p&gt;比
     
     </summary>
     
@@ -1989,9 +1489,7 @@
     <published>2016-06-20T06:32:33.000Z</published>
     <updated>2016-11-22T01:40:09.782Z</updated>
     
-    <content type="html"><![CDATA[<p>一般是这样的…  比较水, 并没有怎么写过.</p>
-<p>我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>一般是这样的… 比较水, 并没有怎么写过.</p><p>我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2111,14 +1609,11 @@
 <span class="line">  &#125;;</span>
 <span class="line"></span>
 <span class="line">&#125; (Zepto);</span>
-</pre></td></tr></table></figure>
-]]></content>
+</pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;一般是这样的…  比较水, 并没有怎么写过.&lt;/p&gt;
-&lt;p&gt;我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。&lt;/p&gt;
-&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+      &lt;p&gt;一般是这样的… 比较水, 并没有怎么写过.&lt;/p&gt;&lt;p&gt;我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。&lt;/p&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla
     
     </summary>
     
@@ -2136,13 +1631,7 @@
     <published>2016-04-11T07:34:57.000Z</published>
     <updated>2016-11-22T01:40:09.735Z</updated>
     
-    <content type="html"><![CDATA[<p>最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~</p>
-<p>图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。</p>
-<p>然后我就想到了可以用 FormData 来做，因为之前好像用过，感觉很方便。</p>
-<h3 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h3><blockquote>
-<p>The FormData interface provides a way to easily construct a set of <code>key/value</code> pairs representing form fields and their values, which can then be easily sent using the <code>XMLHttpRequest.send()</code> method. It uses the same format a form would use if the encoding type were set to “multipart/form-data”.</p>
-</blockquote>
-<p>如果使用 jQuery 提交 formData 的话，大致像这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~</p><p>图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。</p><p>然后我就想到了可以用 FormData 来做，因为之前好像用过，感觉很方便。</p><h3 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h3><blockquote><p>The FormData interface provides a way to easily construct a set of <code>key/value</code> pairs representing form fields and their values, which can then be easily sent using the <code>XMLHttpRequest.send()</code> method. It uses the same format a form would use if the encoding type were set to “multipart/form-data”.</p></blockquote><p>如果使用 jQuery 提交 formData 的话，大致像这样：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2170,15 +1659,13 @@
 <span class="line">    <span class="comment">// ...</span></span>
 <span class="line">  &#125;</span>
 <span class="line">&#125;);</span>
-</pre></td></tr></table></figure></p>
-<p>就是把 formData 作为 data 发送到后台就好了，如果要构造一个 formData 对象的话，也很简单呢<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>就是把 formData 作为 data 发送到后台就好了，如果要构造一个 formData 对象的话，也很简单呢<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"></span>
 <span class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData();</span>
 <span class="line">formData.append(<span class="string">'ticket_id'</span>, <span class="number">1</span>);</span>
-</pre></td></tr></table></figure></p>
-<p>如果放文件在 formData 里面的话呢，也没有太复杂的地方：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>如果放文件在 formData 里面的话呢，也没有太复杂的地方：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2240,8 +1727,7 @@
 <span class="line"><span class="comment">// 放多个也可以~</span></span>
 <span class="line">formData.append(<span class="string">'file1'</span>, file1)</span>
 <span class="line">formData.append(<span class="string">'file2'</span>, file2)</span>
-</pre></td></tr></table></figure></p>
-<p>对了，因为我把上传文件的 input 隐藏掉了，显示出来了是一个 加号 的图标，所以如果要触发 input 的点击事件的话：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p>对了，因为我把上传文件的 input 隐藏掉了，显示出来了是一个 加号 的图标，所以如果要触发 input 的点击事件的话：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2249,8 +1735,7 @@
 <span class="line">  <span class="keyword">const</span> input = findDOMNode(<span class="keyword">this</span>.refs[<span class="string">'input-image'</span>]);</span>
 <span class="line">  input.click();</span>
 <span class="line">&#125;,</span>
-</pre></td></tr></table></figure></p>
-<h3 id="生成-formData"><a href="#生成-formData" class="headerlink" title="生成 formData"></a>生成 formData</h3><p>一个一个的 append 可能速度太慢了，而且需要每个都写一遍，其实生成的 formData 的方式还是蛮多的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><h3 id="生成-formData"><a href="#生成-formData" class="headerlink" title="生成 formData"></a>生成 formData</h3><p>一个一个的 append 可能速度太慢了，而且需要每个都写一遍，其实生成的 formData 的方式还是蛮多的：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2264,15 +1749,11 @@
 <span class="line"><span class="comment">// 2</span></span>
 <span class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</span>
 <span class="line"><span class="keyword">var</span> formdata = form.getFormData();</span>
-</pre></td></tr></table></figure></p>
-<p>好了，没了。</p>
-]]></content>
+</pre></td></tr></table></figure><p></p><p>好了，没了。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~&lt;/p&gt;
-&lt;p&gt;图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。&lt;/p&gt;
-&lt;p&gt;然后我就想到了可以用 FormDat
+      &lt;p&gt;最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~&lt;/p&gt;&lt;p&gt;图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。&lt;/p&gt;&lt;p&gt;然后我就想到了可以用 FormData 
     
     </summary>
     
@@ -2296,14 +1777,7 @@
     <published>2016-03-21T08:05:51.000Z</published>
     <updated>2016-11-22T01:40:09.751Z</updated>
     
-    <content type="html"><![CDATA[<p>有些网站的导航下面会有一到杠，鼠标在各个导航之间移动的时候，这一道杠也会跟着动，很好看，就像这个</p>
-<p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<p>我把她叫做小精灵。</p>
-<hr>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>实现这个其实不难，当鼠标移动到某一个菜单上面时，小精灵滑入（至于方向，如果鼠标从右边进入菜单，那就从右向左滑），然后当鼠标移出时，小精灵跟着也移出菜单， 同时如果鼠标恰好移进了另一个菜单，下一个菜单的进入动画也开始播放，连续起来的话就像是小精灵跟着过来了。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>菜单的话当然是用 ul 来实现了<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>有些网站的导航下面会有一到杠，鼠标在各个导航之间移动的时候，这一道杠也会跟着动，很好看，就像这个</p><p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p><script async src="//assets.codepen.io/assets/embed/ei.js"></script><p>我把她叫做小精灵。</p><hr><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>实现这个其实不难，当鼠标移动到某一个菜单上面时，小精灵滑入（至于方向，如果鼠标从右边进入菜单，那就从右向左滑），然后当鼠标移出时，小精灵跟着也移出菜单， 同时如果鼠标恰好移进了另一个菜单，下一个菜单的进入动画也开始播放，连续起来的话就像是小精灵跟着过来了。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>菜单的话当然是用 ul 来实现了<br></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2315,11 +1789,7 @@
 <span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>非常<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
 <span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛逼<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
 <span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>
-</pre></td></tr></table></figure></p>
-<h3 id="小精灵"><a href="#小精灵" class="headerlink" title="小精灵"></a>小精灵</h3><p>这个小精灵该怎么实现呢, 开始时我打算用 <code>border</code> 来实现，试了一下之后才发现，并不理想，因为当鼠标 hover 时，border 变化，内容也会随着动，很丑。</p>
-<p>于是我就想用 <code>after</code> 这个伪元素来实现，因为之前并没用过，感觉蛮新鲜的。</p>
-<p>使用 <code>after</code> 最重要的地方也是前提，就是 <code>content: &#39;&#39;</code>，如果没有这一句，不管怎么修饰 <code>after</code> 的样式，都是徒劳。</p>
-<p>写完之后的样子大概是这样<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><h3 id="小精灵"><a href="#小精灵" class="headerlink" title="小精灵"></a>小精灵</h3><p>这个小精灵该怎么实现呢, 开始时我打算用 <code>border</code> 来实现，试了一下之后才发现，并不理想，因为当鼠标 hover 时，border 变化，内容也会随着动，很丑。</p><p>于是我就想用 <code>after</code> 这个伪元素来实现，因为之前并没用过，感觉蛮新鲜的。</p><p>使用 <code>after</code> 最重要的地方也是前提，就是 <code>content: &#39;&#39;</code>，如果没有这一句，不管怎么修饰 <code>after</code> 的样式，都是徒劳。</p><p>写完之后的样子大概是这样<br></p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2349,16 +1819,7 @@
 <span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span>
 <span class="line">  &#125;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><p>根据上面的原理，如果想实现的话，大概只需要写四个动画</p>
-<ul>
-<li>小精灵从右向左进入菜单</li>
-<li>小精灵从右向左移出菜单</li>
-<li>小精灵从左向右进入菜单</li>
-<li>小精灵从左向右移出菜单</li>
-</ul>
-<p>我打算使用 <code>width</code> 的变化来模拟小精灵的滑动效果，假如是从左向右， css 就像下面这样：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><p>根据上面的原理，如果想实现的话，大概只需要写四个动画</p><ul><li>小精灵从右向左进入菜单</li><li>小精灵从右向左移出菜单</li><li>小精灵从左向右进入菜单</li><li>小精灵从左向右移出菜单</li></ul><p>我打算使用 <code>width</code> 的变化来模拟小精灵的滑动效果，假如是从左向右， css 就像下面这样：</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2388,10 +1849,7 @@
 <span class="line">  animation-name: slide-in;</span>
 <span class="line">  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><p>css 写完了，不过我要识别鼠标进入或离开的方向，也就是要判断鼠标是从左边进入还是从右边进入，是从左边移出还是从右边移出。</p>
-<p>于是， 要写一些 js 来判断</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><p>css 写完了，不过我要识别鼠标进入或离开的方向，也就是要判断鼠标是从左边进入还是从右边进入，是从左边移出还是从右边移出。</p><p>于是， 要写一些 js 来判断</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2453,18 +1911,11 @@
 <span class="line">    &#125;);</span>
 <span class="line"></span>
 <span class="line">&#125;);</span>
-</pre></td></tr></table></figure>
-<p>这样就写完了，再把开头的例子放上吧。</p>
-<p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<p>谢谢。</p>
-]]></content>
+</pre></td></tr></table></figure><p>这样就写完了，再把开头的例子放上吧。</p><p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p><script async src="//assets.codepen.io/assets/embed/ei.js"></script><p>谢谢。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;有些网站的导航下面会有一到杠，鼠标在各个导航之间移动的时候，这一道杠也会跟着动，很好看，就像这个&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;PNbGZQ&quot; data-default-t
+      &lt;p&gt;有些网站的导航下面会有一到杠，鼠标在各个导航之间移动的时候，这一道杠也会跟着动，很好看，就像这个&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;PNbGZQ&quot; data-default-ta
     
     </summary>
     
@@ -2484,7 +1935,7 @@
     <published>2016-03-03T09:45:24.000Z</published>
     <updated>2016-11-22T01:40:09.735Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h1><p>基本写法是一个开始状态和一个结束状态：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<h1 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h1><p>基本写法是一个开始状态和一个结束状态：<br></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2500,14 +1951,7 @@
 <span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span>
 <span class="line">  &#125;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<p></p><p data-height="268" data-theme-id="0" data-slug-hash="QNbBOy" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/QNbBOy/" target="_blank" rel="external">QNbBOy</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<blockquote>
-<p>其中 <code>animation-iteration-count: number or infinite;</code> 可以设置循环次数，infinite为无限次</p>
-</blockquote>
-<p>还可以定义的很详细：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><p></p><p data-height="268" data-theme-id="0" data-slug-hash="QNbBOy" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/QNbBOy/" target="_blank" rel="external">QNbBOy</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p><script async src="//assets.codepen.io/assets/embed/ei.js"></script><blockquote><p>其中 <code>animation-iteration-count: number or infinite;</code> 可以设置循环次数，infinite为无限次</p></blockquote><p>还可以定义的很详细：<br></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2547,42 +1991,7 @@
 <span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(100, 20);</span>
 <span class="line">  &#125;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure></p>
-<h1 id="animation-fill-mode"><a href="#animation-fill-mode" class="headerlink" title="animation-fill-mode"></a>animation-fill-mode</h1><blockquote>
-<p>animation-fill-mode : none | forwards | backwards | both;</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>none</td>
-<td>不改变默认行为。</td>
-</tr>
-<tr>
-<td>forward</td>
-<td>当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。</td>
-</tr>
-<tr>
-<td>backwards</td>
-<td>在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。</td>
-</tr>
-<tr>
-<td>both</td>
-<td>向前和向后填充模式都被应用。</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>用到的知识点就是上面两个，下面开始写。</p>
-</blockquote>
-<h1 id="Queue-in-List"><a href="#Queue-in-List" class="headerlink" title="Queue-in List"></a>Queue-in List</h1><p>我要写的效果是一个列表，当列表显示时，其子项逐个出现，从右向左滑入，透明度也由浅变深。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先写一个使 li 从左向右滑入的效果，然后再给需要稍晚滑入的 li 加上 <code>animation-delay</code> 就好了。</p>
-<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p></p><h1 id="animation-fill-mode"><a href="#animation-fill-mode" class="headerlink" title="animation-fill-mode"></a>animation-fill-mode</h1><blockquote><p>animation-fill-mode : none | forwards | backwards | both;</p></blockquote><table><thead><tr><th>值</th><th>描述</th></tr></thead><tbody><tr><td>none</td><td>不改变默认行为。</td></tr><tr><td>forward</td><td>当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。</td></tr><tr><td>backwards</td><td>在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。</td></tr><tr><td>both</td><td>向前和向后填充模式都被应用。</td></tr></tbody></table><blockquote><p>用到的知识点就是上面两个，下面开始写。</p></blockquote><h1 id="Queue-in-List"><a href="#Queue-in-List" class="headerlink" title="Queue-in List"></a>Queue-in List</h1><p>我要写的效果是一个列表，当列表显示时，其子项逐个出现，从右向左滑入，透明度也由浅变深。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先写一个使 li 从左向右滑入的效果，然后再给需要稍晚滑入的 li 加上 <code>animation-delay</code> 就好了。</p><h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2642,9 +2051,7 @@
 <span class="line">  <span class="attribute">animation-fill-mode</span>: forwards;</span>
 <span class="line">  <span class="attribute">animation-timing-function</span>: ease-in;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>这是 进入状态时的 html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>这是 进入状态时的 html</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2658,12 +2065,7 @@
 <span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-3"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
 <span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-4"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
 <span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>
-</pre></td></tr></table></figure>
-<blockquote>
-<p>这样的话，li 已经可以从右向左滑入了，但是，是在一起滑入的，我需要他们分开~</p>
-</blockquote>
-<h2 id="animation-delay"><a href="#animation-delay" class="headerlink" title="animation-delay"></a>animation-delay</h2><p><code>list-ad-0</code> 这个东西就是提前定义好的 <code>animation-delay</code>，比如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><blockquote><p>这样的话，li 已经可以从右向左滑入了，但是，是在一起滑入的，我需要他们分开~</p></blockquote><h2 id="animation-delay"><a href="#animation-delay" class="headerlink" title="animation-delay"></a>animation-delay</h2><p><code>list-ad-0</code> 这个东西就是提前定义好的 <code>animation-delay</code>，比如：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2681,16 +2083,11 @@
 <span class="line">  <span class="attribute">-webkit-animation-delay</span>: <span class="number">0.1s</span>;</span>
 <span class="line">          <span class="attribute">animation-delay</span>: <span class="number">0.1s</span>;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<p>然后，他们就可以一个接一个的滑了~</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>所有的代码都在这里，就是这样的效果：</p>
-<p></p><p data-height="268" data-theme-id="0" data-slug-hash="zqYgxb" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/zqYgxb/" target="_blank" rel="external">zqYgxb</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-]]></content>
+</pre></td></tr></table></figure><p>然后，他们就可以一个接一个的滑了~</p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>所有的代码都在这里，就是这样的效果：</p><p></p><p data-height="268" data-theme-id="0" data-slug-hash="zqYgxb" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/zqYgxb/" target="_blank" rel="external">zqYgxb</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;keyframes&quot;&gt;&lt;a href=&quot;#keyframes&quot; class=&quot;headerlink&quot; title=&quot;@keyframes&quot;&gt;&lt;/a&gt;@keyframes&lt;/h1&gt;&lt;p&gt;基本写法是一个开始状态和一个结束状态：&lt;br&gt;&lt;figure class=&quot;hi
+      &lt;h1 id=&quot;keyframes&quot;&gt;&lt;a href=&quot;#keyframes&quot; class=&quot;headerlink&quot; title=&quot;@keyframes&quot;&gt;&lt;/a&gt;@keyframes&lt;/h1&gt;&lt;p&gt;基本写法是一个开始状态和一个结束状态：&lt;br&gt;&lt;/p&gt;&lt;figure class
     
     </summary>
     
@@ -2708,33 +2105,13 @@
     <link href="http://blog.ochukai.me/esekesu-senkanno-onnanoko/"/>
     <id>http://blog.ochukai.me/esekesu-senkanno-onnanoko/</id>
     <published>2016-03-03T05:49:03.000Z</published>
-    <updated>2016-11-22T01:40:09.735Z</updated>
+    <updated>2017-01-24T06:24:27.531Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="战舰少女"><a href="#战舰少女" class="headerlink" title="战舰少女"></a>战舰少女</h2><p>首先让我们认识一下这个游戏的名字：</p>
-<blockquote>
-<p>戦艦の女の子 【せんかんのおんなのこ】【senkannoonnanoko】</p>
-</blockquote>
-<h2 id="航空母舰"><a href="#航空母舰" class="headerlink" title="航空母舰"></a>航空母舰</h2><p>还有航空母舰这个单词</p>
-<blockquote>
-<p>航空母艦日【こうくうぼかん】【koukuubokann】  </p>
-<p>航空母舰。（航空機を搭載し、これを発着させるための飛行甲板および格納庫・修理設備などを備えた軍艦。今日、水上兵力の中核。略称、空母。）</p>
-</blockquote>
-<h2 id="埃塞克斯"><a href="#埃塞克斯" class="headerlink" title="埃塞克斯"></a>埃塞克斯</h2><p>下面进入正题，就是我很喜欢但是还咩有得到的 - 埃塞克斯</p>
-<p><img src="..//images/aise-normal.png" alt="正常"><br><img src="..//images/aise-broken.png" alt="正常"></p>
-<h2 id="建造公式"><a href="#建造公式" class="headerlink" title="建造公式"></a>建造公式</h2><ol>
-<li>标准航母公式：400,600,600,400（基本上赌航母都用这个）</li>
-<li>低费航母公式：300,30,400,300（当资源不足时可用）</li>
-<li>常用玄学公式：400 600 650 430（目前出货率极高的公式）</li>
-<li>500 130 600 400（据说出货率更高~）</li>
-</ol>
-<h2 id="建造时间"><a href="#建造时间" class="headerlink" title="建造时间"></a>建造时间</h2><p>4 个小时</p>
-]]></content>
+    <content type="html"><![CDATA[<h2 id="战舰少女"><a href="#战舰少女" class="headerlink" title="战舰少女"></a>战舰少女</h2><p>首先让我们认识一下这个游戏的名字：</p><blockquote><p>戦艦の女の子 【せんかんのおんなのこ】【senkannoonnanoko】</p></blockquote><h2 id="航空母舰"><a href="#航空母舰" class="headerlink" title="航空母舰"></a>航空母舰</h2><p>还有航空母舰这个单词</p><blockquote><p>航空母艦日【こうくうぼかん】【koukuubokann】</p><p>航空母舰。（航空機を搭載し、これを発着させるための飛行甲板および格納庫・修理設備などを備えた軍艦。今日、水上兵力の中核。略称、空母。）</p></blockquote><h2 id="埃塞克斯"><a href="#埃塞克斯" class="headerlink" title="埃塞克斯"></a>埃塞克斯</h2><p>下面进入正题，就是我很喜欢但是还咩有得到的 - 埃塞克斯</p><p><img src="../images/aise-normal.png" alt="正常"><br><img src="../images/aise-broken.png" alt="正常"></p><h2 id="建造公式"><a href="#建造公式" class="headerlink" title="建造公式"></a>建造公式</h2><ol><li>标准航母公式：400,600,600,400（基本上赌航母都用这个）</li><li>低费航母公式：300,30,400,300（当资源不足时可用）</li><li>常用玄学公式：400 600 650 430（目前出货率极高的公式）</li><li>500 130 600 400（据说出货率更高~）</li></ol><h2 id="建造时间"><a href="#建造时间" class="headerlink" title="建造时间"></a>建造时间</h2><p>4 个小时</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;战舰少女&quot;&gt;&lt;a href=&quot;#战舰少女&quot; class=&quot;headerlink&quot; title=&quot;战舰少女&quot;&gt;&lt;/a&gt;战舰少女&lt;/h2&gt;&lt;p&gt;首先让我们认识一下这个游戏的名字：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;戦艦の女の子 【せんかんのおんなのこ】【senk
+      &lt;h2 id=&quot;战舰少女&quot;&gt;&lt;a href=&quot;#战舰少女&quot; class=&quot;headerlink&quot; title=&quot;战舰少女&quot;&gt;&lt;/a&gt;战舰少女&lt;/h2&gt;&lt;p&gt;首先让我们认识一下这个游戏的名字：&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;戦艦の女の子 【せんかんのおんなのこ】【senkan
     
     </summary>
     
@@ -2754,18 +2131,13 @@
     <published>2016-03-03T05:40:35.000Z</published>
     <updated>2016-11-22T01:40:09.735Z</updated>
     
-    <content type="html"><![CDATA[<p>最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图<br><img src="../images/li-queue-in.png" alt=""></p>
-<p>做这个效果用到了 css 的 animation 中 <code>animation-delay</code>，给 li 设置入场动画后，再给 li 设置 <code>animation-delay</code>，像这样：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图<br><img src="../images/li-queue-in.png" alt=""></p><p>做这个效果用到了 css 的 animation 中 <code>animation-delay</code>，给 li 设置入场动画后，再给 li 设置 <code>animation-delay</code>，像这样：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 </pre></td><td class="code"><pre><span class="line"><span class="selector-class">.li-animation-delay-1</span> &#123;</span>
 <span class="line">  <span class="attribute">animation-delay</span>: <span class="number">0.1s</span>;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<p>并且每一个 li 的 animation-delay 都比前一个 li 的长 .1s，也就达到了后面的 li 的入场动画后播放的效果。</p>
-<p>因为 li 的数量也不确定，所以我打算批量生成一些 <code>li-animation-delay-*</code>, 查了一下 scss 正好有 for 的用法：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>并且每一个 li 的 animation-delay 都比前一个 li 的长 .1s，也就达到了后面的 li 的入场动画后播放的效果。</p><p>因为 li 的数量也不确定，所以我打算批量生成一些 <code>li-animation-delay-*</code>, 查了一下 scss 正好有 for 的用法：</p><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2775,16 +2147,13 @@
 <span class="line">    <span class="attribute">animation-delay</span>: <span class="variable">$index</span> * <span class="number">0.1</span>#&#123;s&#125;;</span>
 <span class="line">  &#125;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure>
-<p>其中，<code>#{***}</code> 的作用的把字符串原封不动的输出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td></tr></table></figure><p>其中，<code>#{***}</code> 的作用的把字符串原封不动的输出。<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 </pre></td><td class="code"><pre><span class="line">#&#123;s&#125; --&gt; s</span>
-</pre></td></tr></table></figure></p>
-]]></content>
+</pre></td></tr></table></figure><p></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图&lt;br&gt;&lt;img src=&quot;../images/li-queue-in.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;做这个效果用到了 css 的 animation 中 &lt;code&gt;animation-delay&lt;
+      &lt;p&gt;最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图&lt;br&gt;&lt;img src=&quot;../images/li-queue-in.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;p&gt;做这个效果用到了 css 的 animation 中 &lt;code&gt;animation-delay&lt;/
     
     </summary>
     
@@ -2794,44 +2163,6 @@
       <category term="scss" scheme="http://blog.ochukai.me/tags/scss/"/>
     
       <category term="for" scheme="http://blog.ochukai.me/tags/for/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在微信网页上的电话号码</title>
-    <link href="http://blog.ochukai.me/telephone-number-not-recognize-in-wx/"/>
-    <id>http://blog.ochukai.me/telephone-number-not-recognize-in-wx/</id>
-    <published>2016-02-26T10:36:25.000Z</published>
-    <updated>2016-11-22T01:40:09.766Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="电话好不不想被识别"><a href="#电话好不不想被识别" class="headerlink" title="电话好不不想被识别"></a>电话好不不想被识别</h3><p>在网页中的比较长的数字会被微信浏览器自动识别为电话号码，稍不注意可能就使页面变得很难看，与是，在 header 里面加上下面两个 meta 就电话号码就不会被识别了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span>/&gt;</span></span>
-<span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-rim-auto-match"</span> <span class="attr">content</span>=<span class="string">"none"</span>&gt;</span></span>
-</pre></td></tr></table></figure>
-<h3 id="如果要识别呢？"><a href="#如果要识别呢？" class="headerlink" title="如果要识别呢？"></a>如果要识别呢？</h3><p>加一个 <code>tel//***</code> 就可以了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"telephone"</span>&gt;</span></span>
-<span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>苹果妹妹专线<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>
-<span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel://4000630086"</span>&gt;</span>400-063-0086<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>
-<span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>
-</pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;电话好不不想被识别&quot;&gt;&lt;a href=&quot;#电话好不不想被识别&quot; class=&quot;headerlink&quot; title=&quot;电话好不不想被识别&quot;&gt;&lt;/a&gt;电话好不不想被识别&lt;/h3&gt;&lt;p&gt;在网页中的比较长的数字会被微信浏览器自动识别为电话号码，稍不注意可能就使页面变得很难
-    
-    </summary>
-    
-      <category term="微信开发" scheme="http://blog.ochukai.me/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="微信开发" scheme="http://blog.ochukai.me/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
