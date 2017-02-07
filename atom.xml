@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2017-01-24T03:34:19.077Z</updated>
+  <updated>2017-01-24T06:18:01.627Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -14,20 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>test post assets folder</title>
-    <link href="http://blog.ochukai.me/test-post-assets-folder/"/>
-    <id>http://blog.ochukai.me/test-post-assets-folder/</id>
-    <published>2017-01-24T03:34:19.000Z</published>
-    <updated>2017-01-24T03:34:19.077Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>稍微总结一下 dva 😜</title>
@@ -1085,9 +1071,9 @@
 <span class="line"></span>
 <span class="line">  render() &#123;</span>
 <span class="line">    <span class="keyword">return</span> (</span>
-<span class="line">      &lt;div &#123; ...this.props &#125;&gt;</span>
+<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
 <span class="line">        &#123; this.props.children &#125;</span>
-<span class="line">      &lt;/div&gt;</span>
+<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
 <span class="line">    );</span>
 <span class="line">  &#125;</span>
 <span class="line">  </span>
@@ -2163,6 +2149,40 @@
       <category term="scss" scheme="http://blog.ochukai.me/tags/scss/"/>
     
       <category term="for" scheme="http://blog.ochukai.me/tags/for/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在微信网页上的电话号码</title>
+    <link href="http://blog.ochukai.me/telephone-number-not-recognize-in-wx/"/>
+    <id>http://blog.ochukai.me/telephone-number-not-recognize-in-wx/</id>
+    <published>2016-02-26T10:36:25.000Z</published>
+    <updated>2016-11-22T01:40:09.766Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="电话好不不想被识别"><a href="#电话好不不想被识别" class="headerlink" title="电话好不不想被识别"></a>电话好不不想被识别</h3><p>在网页中的比较长的数字会被微信浏览器自动识别为电话号码，稍不注意可能就使页面变得很难看，与是，在 header 里面加上下面两个 meta 就电话号码就不会被识别了。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span>/&gt;</span></span>
+<span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-rim-auto-match"</span> <span class="attr">content</span>=<span class="string">"none"</span>&gt;</span></span>
+</pre></td></tr></table></figure><h3 id="如果要识别呢？"><a href="#如果要识别呢？" class="headerlink" title="如果要识别呢？"></a>如果要识别呢？</h3><p>加一个 <code>tel//***</code> 就可以了。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"telephone"</span>&gt;</span></span>
+<span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>苹果妹妹专线<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>
+<span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel://4000630086"</span>&gt;</span>400-063-0086<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>
+<span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>
+</pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;电话好不不想被识别&quot;&gt;&lt;a href=&quot;#电话好不不想被识别&quot; class=&quot;headerlink&quot; title=&quot;电话好不不想被识别&quot;&gt;&lt;/a&gt;电话好不不想被识别&lt;/h3&gt;&lt;p&gt;在网页中的比较长的数字会被微信浏览器自动识别为电话号码，稍不注意可能就使页面变得很难
+    
+    </summary>
+    
+      <category term="微信开发" scheme="http://blog.ochukai.me/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="微信开发" scheme="http://blog.ochukai.me/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
