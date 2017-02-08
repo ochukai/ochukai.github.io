@@ -2,9 +2,13 @@ doctype html
 html
   head
     include head
-  body
+  body    
+    #particles-oli-wrapper
     .index-wrapper
       header.head.index
         h1.head-title.u-fl: a(href = config.root)
           = config.title
         include nav
+
+    script(src='/js/particles.min.js')
+    script(src='/js/particles.oli.js')

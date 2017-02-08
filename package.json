@@ -7,13 +7,12 @@
   },
   "scripts": {
     "deploy": "hexo clean && hexo generate && hexo deploy",
-    "debug": "hexo clean && hexo s --debug"
+    "start": "hexo clean && hexo s --debug"
   },
   "dependencies": {
     "hexo": "^3.2.0",
     "hexo-all-minifier": "0.0.14",
     "hexo-cli-extras": "^1.0.4",
-    "hexo-critical-css": "^1.0.6",
     "hexo-deployer-git": "^0.2.0",
     "hexo-featured-image": "^0.2.0",
     "hexo-footnotes": "^1.0.1",

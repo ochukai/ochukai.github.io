@@ -10,6 +10,7 @@ if theme.google_analytics && !env.debug
     ga('create','#{theme.google_analytics}');
     ga('send','pageview');
 
+script(src='/js/scroller.js')
 script(src='/js/main.js')
 
 block foot
