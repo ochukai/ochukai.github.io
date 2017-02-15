@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>webstrom - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/jquery-modal.js"></script></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-12-23T07:27:27.000Z" class="post__time">December 23, 2016</time><h1 class="post__title"><a href="/correct-ugly-markdown-css-in-webstorm/">修改 WebStorm 里面丑陋的 Markdown 样式</a></h1><div class="post__main echo"><p>一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！</p><p>今天突然发现有一个设置项可以自定义 markdown 的样式，</p><p><img src="../images/webstorm-md-css-1.png" alt="设置"></p><p>就是右边方框里面的选项，取消 webstorm 默认的， 然后添加自己的 css，下面的css 是我找来的，还可以看：<br></p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>webstrom - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/jquery-modal.js"></script></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-12-23T07:27:27.000Z" class="post__time">December 23, 2016</time><h1 class="post__title"><a href="/correct-ugly-markdown-css-in-webstorm/">修改 WebStorm 里面丑陋的 Markdown 样式</a></h1><div class="post__main echo"><p>一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！</p><p>今天突然发现有一个设置项可以自定义 markdown 的样式，</p><p><img src="../images/webstorm-md-css-1.png" alt="设置"></p><p>就是右边方框里面的选项，取消 webstorm 默认的， 然后添加自己的 css，下面的css 是我找来的，还可以看：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -277,283 +277,531 @@
 <span class="line">277</span>
 <span class="line">278</span>
 <span class="line">279</span>
-</pre></td><td class="code"><pre><span class="line">body&#123;</span>
-<span class="line">    background-color: #fff;</span>
-<span class="line">    margin: 0 auto;</span>
-<span class="line">    font-family: Georgia, Palatino, serif;</span>
-<span class="line">    color: #333333;</span>
-<span class="line">    line-height: 120%;</span>
-<span class="line">    max-width: 960px;</span>
-<span class="line">    padding: 30px;</span>
-<span class="line">    font-size: 12px;</span>
-<span class="line">&#125;</span>
-<span class="line">h1, h2, h3, h4 &#123;</span>
-<span class="line">    color: #111111;</span>
-<span class="line">    font-weight: 400;</span>
-<span class="line">&#125;</span>
-<span class="line">h1, h2, h3, h4, h5, p &#123;</span>
-<span class="line">    margin-bottom: 18px;</span>
-<span class="line">    padding: 0;</span>
-<span class="line">&#125;</span>
-<span class="line">h1 &#123;</span>
-<span class="line">    font-size: 36px;</span>
-<span class="line">&#125;</span>
-<span class="line">h2 &#123;</span>
-<span class="line">    font-size: 24px;</span>
-<span class="line">    margin: 18px 0 6px;</span>
-<span class="line">&#125;</span>
-<span class="line">h3 &#123;</span>
-<span class="line">    font-size: 20px;</span>
-<span class="line">&#125;</span>
-<span class="line">h4 &#123;</span>
-<span class="line">    font-size: 16px;</span>
-<span class="line">&#125;</span>
-<span class="line">h5 &#123;</span>
-<span class="line">    font-size: 14px;</span>
-<span class="line">&#125;</span>
-<span class="line">h6 &#123;</span>
-<span class="line">    font-size: 12px;</span>
-<span class="line">&#125;</span>
-<span class="line">a &#123;</span>
-<span class="line">    color: #0099ff;</span>
-<span class="line">    margin: 0;</span>
-<span class="line">    padding: 0;</span>
-<span class="line">    vertical-align: baseline;</span>
-<span class="line">&#125;</span>
-<span class="line">a:hover &#123;</span>
-<span class="line">    text-decoration: none;</span>
-<span class="line">    color: #ff6600;</span>
-<span class="line">&#125;</span>
-<span class="line">a:visited &#123;</span>
-<span class="line">    color: purple;</span>
-<span class="line">&#125;</span>
-<span class="line">ul, ol &#123;</span>
-<span class="line">    padding: 0;</span>
-<span class="line">    margin-left: 18px;</span>
-<span class="line">    margin-bottom: 18px;</span>
-<span class="line">&#125;</span>
-<span class="line">li &#123;</span>
-<span class="line">    line-height: 18px;</span>
-<span class="line">&#125;</span>
-<span class="line">li ul, li ul &#123;</span>
-<span class="line">    margin-left: 18px;</span>
-<span class="line">&#125;</span>
-<span class="line">p, ul, ol &#123;</span>
-<span class="line">    font-size: 12px;</span>
-<span class="line">    line-height: 1.5;</span>
-<span class="line">    max-width: 540px;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">blockquote &#123;</span>
-<span class="line">   padding: 12px 12px 12px 15px;</span>
-<span class="line">   margin-bottom: 16px;</span>
-<span class="line">   font-family:georgia,serif;</span>
-<span class="line">   font-style: italic;</span>
-<span class="line">   border-left: 2px solid #d9d9d9;</span>
-<span class="line">&#125;</span>
-<span class="line">blockquote p &#123;</span>
-<span class="line">   font-size: 12px;</span>
-<span class="line">   font-weight: 300;</span>
-<span class="line">   line-height: 1.2;</span>
-<span class="line">   margin-bottom: 0;</span>
-<span class="line">   font-style: italic;</span>
-<span class="line">&#125;</span>
-<span class="line">code, pre &#123;</span>
-<span class="line">   font-family: Monaco, Andale Mono, Courier New, monospace;</span>
-<span class="line">&#125;</span>
-<span class="line">code &#123;</span>
-<span class="line">   background-color: #fee9cc;</span>
-<span class="line">   color: #000000;</span>
-<span class="line">   padding: 1px 3px;</span>
-<span class="line">   font-size: 12px;</span>
-<span class="line">   border-radius: 3px;</span>
-<span class="line">&#125;</span>
-<span class="line">pre &#123;</span>
-<span class="line">   display: block;</span>
-<span class="line">   padding: 14px;</span>
-<span class="line">   margin: 0 0 18px;</span>
-<span class="line">   line-height: 16px;</span>
-<span class="line">   font-size: 11px;</span>
-<span class="line">   border: 1px solid #d9d9d9;</span>
-<span class="line">   white-space: pre-wrap;</span>
-<span class="line">   word-wrap: break-word;</span>
-<span class="line">&#125;</span>
-<span class="line">pre code &#123;</span>
-<span class="line">   background-color: #ffffff;</span>
-<span class="line">   color:#666666;</span>
-<span class="line">   font-size: 11px;</span>
-<span class="line">   padding: 0;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">aside &#123;</span>
-<span class="line">    display: block;</span>
-<span class="line">    float: right;</span>
-<span class="line">    width: 390px;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line">hr &#123;</span>
-<span class="line">    width: 540px;</span>
-<span class="line">    text-align: left;</span>
-<span class="line">    margin: 0 auto 0 0;</span>
-<span class="line">    color: #999999;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">/* Code below this line is copyright Twitter Inc. */</span>
-<span class="line"></span>
-<span class="line">button,</span>
-<span class="line">input,</span>
-<span class="line">select,</span>
-<span class="line">textarea &#123;</span>
-<span class="line">  font-size: 100%;</span>
-<span class="line">  margin: 0;</span>
-<span class="line">  vertical-align: baseline;</span>
-<span class="line">  *vertical-align: middle;</span>
-<span class="line">&#125;</span>
-<span class="line">button, input &#123;</span>
-<span class="line">  line-height: normal;</span>
-<span class="line">  *overflow: visible;</span>
-<span class="line">&#125;</span>
-<span class="line">button::-moz-focus-inner, input::-moz-focus-inner &#123;</span>
-<span class="line">  border: 0;</span>
-<span class="line">  padding: 0;</span>
-<span class="line">&#125;</span>
-<span class="line">button,</span>
-<span class="line">input[type="button"],</span>
-<span class="line">input[type="reset"],</span>
-<span class="line">input[type="submit"] &#123;</span>
-<span class="line">  cursor: pointer;</span>
-<span class="line">  -webkit-appearance: button;</span>
-<span class="line">&#125;</span>
-<span class="line">input[type=checkbox], input[type=radio] &#123;</span>
-<span class="line">  cursor: pointer;</span>
-<span class="line">&#125;</span>
-<span class="line">/* override default chrome &amp; firefox settings */</span>
-<span class="line">input:not([type="image"]), textarea &#123;</span>
-<span class="line">  -webkit-box-sizing: content-box;</span>
-<span class="line">  -moz-box-sizing: content-box;</span>
-<span class="line">  box-sizing: content-box;</span>
+<span class="line">280</span>
+<span class="line">281</span>
+<span class="line">282</span>
+<span class="line">283</span>
+<span class="line">284</span>
+<span class="line">285</span>
+<span class="line">286</span>
+<span class="line">287</span>
+<span class="line">288</span>
+<span class="line">289</span>
+<span class="line">290</span>
+<span class="line">291</span>
+<span class="line">292</span>
+<span class="line">293</span>
+<span class="line">294</span>
+<span class="line">295</span>
+<span class="line">296</span>
+<span class="line">297</span>
+<span class="line">298</span>
+<span class="line">299</span>
+<span class="line">300</span>
+<span class="line">301</span>
+<span class="line">302</span>
+<span class="line">303</span>
+<span class="line">304</span>
+<span class="line">305</span>
+<span class="line">306</span>
+<span class="line">307</span>
+<span class="line">308</span>
+<span class="line">309</span>
+<span class="line">310</span>
+<span class="line">311</span>
+<span class="line">312</span>
+<span class="line">313</span>
+<span class="line">314</span>
+<span class="line">315</span>
+<span class="line">316</span>
+<span class="line">317</span>
+<span class="line">318</span>
+<span class="line">319</span>
+<span class="line">320</span>
+<span class="line">321</span>
+<span class="line">322</span>
+<span class="line">323</span>
+<span class="line">324</span>
+<span class="line">325</span>
+<span class="line">326</span>
+<span class="line">327</span>
+<span class="line">328</span>
+<span class="line">329</span>
+<span class="line">330</span>
+<span class="line">331</span>
+<span class="line">332</span>
+<span class="line">333</span>
+<span class="line">334</span>
+<span class="line">335</span>
+<span class="line">336</span>
+<span class="line">337</span>
+<span class="line">338</span>
+<span class="line">339</span>
+<span class="line">340</span>
+<span class="line">341</span>
+<span class="line">342</span>
+<span class="line">343</span>
+<span class="line">344</span>
+<span class="line">345</span>
+<span class="line">346</span>
+<span class="line">347</span>
+<span class="line">348</span>
+<span class="line">349</span>
+<span class="line">350</span>
+<span class="line">351</span>
+<span class="line">352</span>
+<span class="line">353</span>
+<span class="line">354</span>
+<span class="line">355</span>
+<span class="line">356</span>
+<span class="line">357</span>
+<span class="line">358</span>
+<span class="line">359</span>
+<span class="line">360</span>
+<span class="line">361</span>
+<span class="line">362</span>
+<span class="line">363</span>
+<span class="line">364</span>
+<span class="line">365</span>
+<span class="line">366</span>
+<span class="line">367</span>
+<span class="line">368</span>
+<span class="line">369</span>
+<span class="line">370</span>
+<span class="line">371</span>
+<span class="line">372</span>
+<span class="line">373</span>
+<span class="line">374</span>
+<span class="line">375</span>
+<span class="line">376</span>
+<span class="line">377</span>
+<span class="line">378</span>
+<span class="line">379</span>
+<span class="line">380</span>
+<span class="line">381</span>
+<span class="line">382</span>
+<span class="line">383</span>
+<span class="line">384</span>
+<span class="line">385</span>
+<span class="line">386</span>
+<span class="line">387</span>
+<span class="line">388</span>
+<span class="line">389</span>
+<span class="line">390</span>
+<span class="line">391</span>
+<span class="line">392</span>
+<span class="line">393</span>
+<span class="line">394</span>
+<span class="line">395</span>
+<span class="line">396</span>
+<span class="line">397</span>
+<span class="line">398</span>
+<span class="line">399</span>
+<span class="line">400</span>
+<span class="line">401</span>
+<span class="line">402</span>
+<span class="line">403</span>
+</pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span>
+<span class="line">  <span class="attribute">font-family</span>: Helvetica, <span class="string">"微软雅黑"</span>, arial, sans-serif;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span>
+<span class="line">  <span class="attribute">line-height</span>: <span class="number">1.6</span>;</span>
+<span class="line">  <span class="attribute">padding-top</span>: <span class="number">10px</span>;</span>
+<span class="line">  <span class="attribute">padding-bottom</span>: <span class="number">10px</span>;</span>
+<span class="line">  <span class="attribute">background-color</span>: white;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">30px</span>;</span>
 <span class="line">&#125;</span>
 <span class="line"></span>
-<span class="line">input[type="search"] &#123;</span>
-<span class="line">  -webkit-appearance: textfield;</span>
-<span class="line">  -webkit-box-sizing: content-box;</span>
-<span class="line">  -moz-box-sizing: content-box;</span>
-<span class="line">  box-sizing: content-box;</span>
-<span class="line">&#125;</span>
-<span class="line">input[type="search"]::-webkit-search-decoration &#123;</span>
-<span class="line">  -webkit-appearance: none;</span>
-<span class="line">&#125;</span>
-<span class="line">label,</span>
-<span class="line">input,</span>
-<span class="line">select,</span>
-<span class="line">textarea &#123;</span>
-<span class="line">  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;</span>
-<span class="line">  font-size: 13px;</span>
-<span class="line">  font-weight: normal;</span>
-<span class="line">  line-height: normal;</span>
-<span class="line">  margin-bottom: 18px;</span>
-<span class="line">&#125;</span>
-<span class="line">input[type=checkbox], input[type=radio] &#123;</span>
-<span class="line">  cursor: pointer;</span>
-<span class="line">  margin-bottom: 0;</span>
-<span class="line">&#125;</span>
-<span class="line">input[type=text],</span>
-<span class="line">input[type=password],</span>
-<span class="line">textarea,</span>
-<span class="line">select &#123;</span>
-<span class="line">  display: inline-block;</span>
-<span class="line">  width: 210px;</span>
-<span class="line">  padding: 4px;</span>
-<span class="line">  font-size: 13px;</span>
-<span class="line">  font-weight: normal;</span>
-<span class="line">  line-height: 18px;</span>
-<span class="line">  height: 18px;</span>
-<span class="line">  color: #808080;</span>
-<span class="line">  border: 1px solid #ccc;</span>
-<span class="line">  -webkit-border-radius: 3px;</span>
-<span class="line">  -moz-border-radius: 3px;</span>
-<span class="line">  border-radius: 3px;</span>
-<span class="line">&#125;</span>
-<span class="line">select, input[type=file] &#123;</span>
-<span class="line">  height: 27px;</span>
-<span class="line">  line-height: 27px;</span>
-<span class="line">&#125;</span>
-<span class="line">textarea &#123;</span>
-<span class="line">  height: auto;</span>
+<span class="line"><span class="selector-tag">body</span> &gt; *<span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span> <span class="meta">!important</span>;</span>
 <span class="line">&#125;</span>
 <span class="line"></span>
-<span class="line">/* grey out placeholders */</span>
-<span class="line">:-moz-placeholder &#123;</span>
-<span class="line">  color: #bfbfbf;</span>
-<span class="line">&#125;</span>
-<span class="line">::-webkit-input-placeholder &#123;</span>
-<span class="line">  color: #bfbfbf;</span>
+<span class="line"><span class="selector-tag">body</span> &gt; *<span class="selector-pseudo">:last-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span> <span class="meta">!important</span>;</span>
 <span class="line">&#125;</span>
 <span class="line"></span>
-<span class="line">input[type=text],</span>
-<span class="line">input[type=password],</span>
-<span class="line">select,</span>
-<span class="line">textarea &#123;</span>
-<span class="line">  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;</span>
-<span class="line">  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;</span>
-<span class="line">  transition: border linear 0.2s, box-shadow linear 0.2s;</span>
-<span class="line">  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
-<span class="line">  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
-<span class="line">  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);</span>
-<span class="line">&#125;</span>
-<span class="line">input[type=text]:focus, input[type=password]:focus, textarea:focus &#123;</span>
-<span class="line">  outline: none;</span>
-<span class="line">  border-color: rgba(82, 168, 236, 0.8);</span>
-<span class="line">  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
-<span class="line">  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
-<span class="line">  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);</span>
+<span class="line"><span class="selector-tag">a</span> &#123;</span>
+<span class="line">  <span class="attribute">color</span>: <span class="number">#4183C4</span>;</span>
 <span class="line">&#125;</span>
 <span class="line"></span>
-<span class="line">/* buttons */</span>
-<span class="line">button &#123;</span>
-<span class="line">  display: inline-block;</span>
-<span class="line">  padding: 4px 14px;</span>
-<span class="line">  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;</span>
-<span class="line">  font-size: 13px;</span>
-<span class="line">  line-height: 18px;</span>
-<span class="line">  -webkit-border-radius: 4px;</span>
-<span class="line">  -moz-border-radius: 4px;</span>
-<span class="line">  border-radius: 4px;</span>
-<span class="line">  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  background-color: #0064cd;</span>
-<span class="line">  background-repeat: repeat-x;</span>
-<span class="line">  background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));</span>
-<span class="line">  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  background-image: -ms-linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));</span>
-<span class="line">  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  background-image: -o-linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  background-image: linear-gradient(top, #049cdb, #0064cd);</span>
-<span class="line">  color: #fff;</span>
-<span class="line">  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);</span>
-<span class="line">  border: 1px solid #004b9a;</span>
-<span class="line">  border-bottom-color: #003f81;</span>
-<span class="line">  -webkit-transition: 0.1s linear all;</span>
-<span class="line">  -moz-transition: 0.1s linear all;</span>
-<span class="line">  transition: 0.1s linear all;</span>
-<span class="line">  border-color: #0064cd #0064cd #003f81;</span>
-<span class="line">  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);</span>
+<span class="line"><span class="selector-tag">a</span><span class="selector-class">.absent</span> &#123;</span>
+<span class="line">  <span class="attribute">color</span>: <span class="number">#cc0000</span>;</span>
 <span class="line">&#125;</span>
-<span class="line">button:hover &#123;</span>
-<span class="line">  color: #fff;</span>
-<span class="line">  background-position: 0 -15px;</span>
-<span class="line">  text-decoration: none;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">a</span><span class="selector-class">.anchor</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">padding-left</span>: <span class="number">30px</span>;</span>
+<span class="line">  <span class="attribute">margin-left</span>: -<span class="number">30px</span>;</span>
+<span class="line">  <span class="attribute">cursor</span>: pointer;</span>
+<span class="line">  <span class="attribute">position</span>: absolute;</span>
+<span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span>
 <span class="line">&#125;</span>
-<span class="line">button:active &#123;</span>
-<span class="line">  -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
-<span class="line">  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">0</span> <span class="number">10px</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">font-weight</span>: bold;</span>
+<span class="line">  <span class="attribute">-webkit-font-smoothing</span>: antialiased;</span>
+<span class="line">  <span class="attribute">cursor</span>: text;</span>
+<span class="line">  <span class="attribute">position</span>: relative;</span>
 <span class="line">&#125;</span>
-<span class="line">button::-moz-focus-inner &#123;</span>
-<span class="line">  padding: 0;</span>
-<span class="line">  border: 0;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h1</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">a</span><span class="selector-class">.anchor</span>, </span>
+<span class="line"><span class="selector-tag">h2</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">a</span><span class="selector-class">.anchor</span>, </span>
+<span class="line"><span class="selector-tag">h3</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">a</span><span class="selector-class">.anchor</span>, </span>
+<span class="line"><span class="selector-tag">h4</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">a</span><span class="selector-class">.anchor</span>, </span>
+<span class="line"><span class="selector-tag">h5</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">a</span><span class="selector-class">.anchor</span>, </span>
+<span class="line"><span class="selector-tag">h6</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">a</span><span class="selector-class">.anchor</span> &#123;</span>
+<span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat <span class="number">10px</span> center;</span>
+<span class="line">  <span class="attribute">text-decoration</span>: none;</span>
 <span class="line">&#125;</span>
-</pre></td></tr></table></figure><p></p></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/markdown/" class="post__tag__link">markdown</a></li><li class="post__tag__item"><a href="/tags/webstrom/" class="post__tag__link">webstrom</a></li></ul></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>!function(e,t,c,n,o,s){o=e.createElement(t),s=e.getElementsByTagName(t)[0],o.src="//"+c+".disqus.com/"+n+".js",s.parentNode.insertBefore(o,s)}(document,"script","ochukai","count")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h1</span> <span class="selector-tag">tt</span>, <span class="selector-tag">h1</span> <span class="selector-tag">code</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: inherit;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h2</span> <span class="selector-tag">tt</span>, <span class="selector-tag">h2</span> <span class="selector-tag">code</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: inherit;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h3</span> <span class="selector-tag">tt</span>, <span class="selector-tag">h3</span> <span class="selector-tag">code</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: inherit;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h4</span> <span class="selector-tag">tt</span>, <span class="selector-tag">h4</span> <span class="selector-tag">code</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: inherit;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h5</span> <span class="selector-tag">tt</span>, <span class="selector-tag">h5</span> <span class="selector-tag">code</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: inherit;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h6</span> <span class="selector-tag">tt</span>, <span class="selector-tag">h6</span> <span class="selector-tag">code</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: inherit;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h1</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">28px</span>;</span>
+<span class="line">  <span class="attribute">color</span>: black;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h2</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">24px</span>;</span>
+<span class="line">  <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#cccccc</span>;</span>
+<span class="line">  <span class="attribute">color</span>: black;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h3</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h4</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h5</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h6</span> &#123;</span>
+<span class="line">  <span class="attribute">color</span>: <span class="number">#777777</span>;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">li</span>, <span class="selector-tag">table</span>, <span class="selector-tag">pre</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">5px</span> <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">hr</span> &#123;</span>
+<span class="line">  <span class="attribute">background</span>: transparent <span class="built_in">url</span>(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x <span class="number">0</span> <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">border</span>: <span class="number">0</span> none;</span>
+<span class="line">  <span class="attribute">color</span>: <span class="number">#cccccc</span>;</span>
+<span class="line">  <span class="attribute">height</span>: <span class="number">4px</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">body</span> &gt; <span class="selector-tag">h2</span><span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">body</span> &gt; <span class="selector-tag">h1</span><span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">body</span> &gt; <span class="selector-tag">h1</span><span class="selector-pseudo">:first-child</span> + <span class="selector-tag">h2</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">body</span> &gt; <span class="selector-tag">h3</span><span class="selector-pseudo">:first-child</span>, <span class="selector-tag">body</span> &gt; <span class="selector-tag">h4</span><span class="selector-pseudo">:first-child</span>, <span class="selector-tag">body</span> &gt; <span class="selector-tag">h5</span><span class="selector-pseudo">:first-child</span>, <span class="selector-tag">body</span> &gt; <span class="selector-tag">h6</span><span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:first-child</span> <span class="selector-tag">h1</span>, <span class="selector-tag">a</span><span class="selector-pseudo">:first-child</span> <span class="selector-tag">h2</span>, <span class="selector-tag">a</span><span class="selector-pseudo">:first-child</span> <span class="selector-tag">h3</span>, <span class="selector-tag">a</span><span class="selector-pseudo">:first-child</span> <span class="selector-tag">h4</span>, <span class="selector-tag">a</span><span class="selector-pseudo">:first-child</span> <span class="selector-tag">h5</span>, <span class="selector-tag">a</span><span class="selector-pseudo">:first-child</span> <span class="selector-tag">h6</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">h1</span> <span class="selector-tag">p</span>, <span class="selector-tag">h2</span> <span class="selector-tag">p</span>, <span class="selector-tag">h3</span> <span class="selector-tag">p</span>, <span class="selector-tag">h4</span> <span class="selector-tag">p</span>, <span class="selector-tag">h5</span> <span class="selector-tag">p</span>, <span class="selector-tag">h6</span> <span class="selector-tag">p</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">li</span> <span class="selector-tag">p</span><span class="selector-class">.first</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: inline-block;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">li</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">ul</span>, <span class="selector-tag">ol</span> &#123;</span>
+<span class="line">  <span class="attribute">padding-left</span>: <span class="number">30px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">ul</span> <span class="selector-pseudo">:first-child</span>, <span class="selector-tag">ol</span> <span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">dl</span> &#123;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">dl</span> <span class="selector-tag">dt</span> &#123;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span>
+<span class="line">  <span class="attribute">font-weight</span>: bold;</span>
+<span class="line">  <span class="attribute">font-style</span>: italic;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">15px</span> <span class="number">0</span> <span class="number">5px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">dl</span> <span class="selector-tag">dt</span><span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">dl</span> <span class="selector-tag">dt</span> &gt; <span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">dl</span> <span class="selector-tag">dt</span> &gt; <span class="selector-pseudo">:last-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">dl</span> <span class="selector-tag">dd</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">15px</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">dl</span> <span class="selector-tag">dd</span> &gt; <span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">dl</span> <span class="selector-tag">dd</span> &gt; <span class="selector-pseudo">:last-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">blockquote</span> &#123;</span>
+<span class="line">  <span class="attribute">border-left</span>: <span class="number">4px</span> solid <span class="number">#dddddd</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</span>
+<span class="line">  <span class="attribute">color</span>: <span class="number">#777777</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">blockquote</span> &gt; <span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">blockquote</span> &gt; <span class="selector-pseudo">:last-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">table</span> &#123;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">border-collapse</span>: collapse;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span> &#123;</span>
+<span class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#cccccc</span>;</span>
+<span class="line">  <span class="attribute">background-color</span>: white;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(2n)</span> &#123;</span>
+<span class="line">  <span class="attribute">background-color</span>: <span class="number">#f8f8f8</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span> <span class="selector-tag">th</span> &#123;</span>
+<span class="line">  <span class="attribute">font-weight</span>: bold;</span>
+<span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#cccccc</span>;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">6px</span> <span class="number">13px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span> <span class="selector-tag">td</span> &#123;</span>
+<span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#cccccc</span>;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">6px</span> <span class="number">13px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span> <span class="selector-tag">th</span> <span class="selector-pseudo">:first-child</span>, <span class="selector-tag">table</span> <span class="selector-tag">tr</span> <span class="selector-tag">td</span> <span class="selector-pseudo">:first-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span> <span class="selector-tag">th</span> <span class="selector-pseudo">:last-child</span>, <span class="selector-tag">table</span> <span class="selector-tag">tr</span> <span class="selector-tag">td</span> <span class="selector-pseudo">:last-child</span> &#123;</span>
+<span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">img</span> &#123;</span>
+<span class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.frame</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.frame</span> &gt; <span class="selector-tag">span</span> &#123;</span>
+<span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#dddddd</span>;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">float</span>: left;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">13px</span> <span class="number">0</span> <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">7px</span>;</span>
+<span class="line">  <span class="attribute">width</span>: auto;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.frame</span> <span class="selector-tag">span</span> <span class="selector-tag">img</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">float</span>: left;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.frame</span> <span class="selector-tag">span</span> <span class="selector-tag">span</span> &#123;</span>
+<span class="line">  <span class="attribute">clear</span>: both;</span>
+<span class="line">  <span class="attribute">color</span>: <span class="number">#333333</span>;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">0</span> <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.align-center</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">  <span class="attribute">clear</span>: both;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.align-center</span> &gt; <span class="selector-tag">span</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">13px</span> auto <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">text-align</span>: center;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.align-center</span> <span class="selector-tag">span</span> <span class="selector-tag">img</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span>
+<span class="line">  <span class="attribute">text-align</span>: center;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.align-right</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">  <span class="attribute">clear</span>: both;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.align-right</span> &gt; <span class="selector-tag">span</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">13px</span> <span class="number">0</span> <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">text-align</span>: right;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.align-right</span> <span class="selector-tag">span</span> <span class="selector-tag">img</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">text-align</span>: right;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.float-left</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">margin-right</span>: <span class="number">13px</span>;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">  <span class="attribute">float</span>: left;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.float-left</span> <span class="selector-tag">span</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">13px</span> <span class="number">0</span> <span class="number">0</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.float-right</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">margin-left</span>: <span class="number">13px</span>;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">  <span class="attribute">float</span>: right;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">span</span><span class="selector-class">.float-right</span> &gt; <span class="selector-tag">span</span> &#123;</span>
+<span class="line">  <span class="attribute">display</span>: block;</span>
+<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">13px</span> auto <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">text-align</span>: right;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">code</span>, <span class="selector-tag">tt</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">2px</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">5px</span>;</span>
+<span class="line">  <span class="attribute">white-space</span>: nowrap;</span>
+<span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#eaeaea</span>;</span>
+<span class="line">  <span class="attribute">background-color</span>: <span class="number">#f8f8f8</span>;</span>
+<span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">pre</span> <span class="selector-tag">code</span> &#123;</span>
+<span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span>
+<span class="line">  <span class="attribute">white-space</span>: pre;</span>
+<span class="line">  <span class="attribute">border</span>: none;</span>
+<span class="line">  <span class="attribute">background</span>: transparent;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-class">.highlight</span> <span class="selector-tag">pre</span> &#123;</span>
+<span class="line">  <span class="attribute">background-color</span>: <span class="number">#f8f8f8</span>;</span>
+<span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#cccccc</span>;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">13px</span>;</span>
+<span class="line">  <span class="attribute">line-height</span>: <span class="number">19px</span>;</span>
+<span class="line">  <span class="attribute">overflow</span>: auto;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">6px</span> <span class="number">10px</span>;</span>
+<span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">pre</span> &#123;</span>
+<span class="line">  <span class="attribute">background-color</span>: <span class="number">#f8f8f8</span>;</span>
+<span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#cccccc</span>;</span>
+<span class="line">  <span class="attribute">font-size</span>: <span class="number">13px</span>;</span>
+<span class="line">  <span class="attribute">line-height</span>: <span class="number">19px</span>;</span>
+<span class="line">  <span class="attribute">overflow</span>: auto;</span>
+<span class="line">  <span class="attribute">padding</span>: <span class="number">6px</span> <span class="number">10px</span>;</span>
+<span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-tag">pre</span> <span class="selector-tag">code</span>, <span class="selector-tag">pre</span> <span class="selector-tag">tt</span> &#123;</span>
+<span class="line">  <span class="attribute">background-color</span>: transparent;</span>
+<span class="line">  <span class="attribute">border</span>: none;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">914px</span>) &#123;</span>
+<span class="line">  <span class="selector-tag">body</span> &#123;</span>
+<span class="line">    <span class="attribute">width</span>: <span class="number">854px</span>;</span>
+<span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line">@<span class="keyword">media</span> print &#123;</span>
+<span class="line">  <span class="selector-tag">table</span>, <span class="selector-tag">pre</span> &#123;</span>
+<span class="line">    <span class="attribute">page-break-inside</span>: avoid;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="selector-tag">pre</span> &#123;</span>
+<span class="line">    <span class="attribute">word-wrap</span>: break-word;</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/markdown/" class="post__tag__link">markdown</a></li><li class="post__tag__item"><a href="/tags/webstrom/" class="post__tag__link">webstrom</a></li></ul></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2017 Oliver Wang</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>!function(e,t,c,n,o,s){o=e.createElement(t),s=e.getElementsByTagName(t)[0],o.src="//"+c+".disqus.com/"+n+".js",s.parentNode.insertBefore(o,s)}(document,"script","ochukai","count")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
