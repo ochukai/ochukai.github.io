@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2017-02-15T02:30:06.016Z</updated>
+  <updated>2017-02-17T08:40:31.600Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -14,6 +14,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>(**) 的 IE 👽</title>
+    <link href="http://blog.ochukai.me/ie-css-hack/"/>
+    <id>http://blog.ochukai.me/ie-css-hack/</id>
+    <published>2017-02-17T08:17:14.000Z</published>
+    <updated>2017-02-17T08:40:31.600Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>以前都说前端坑，或者前端入坑了，为什么呢？ 因为 IE 啊。</p></blockquote><p>我做前端以来，一直都是很幸福的，因为还几乎咩有处理过 ie 的兼容问题。</p><p>但是最近要处理，以前应付面试背过的兼容方案都忘掉了，所以还是要查。</p><p>忽略 IE6，IE7 的情况下，规则就这几条：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+</pre></td><td class="code"><pre><span class="line">\9    IE6/IE7/IE8/IE9/IE10都生效 </span>
+<span class="line">\0    IE8/IE9/IE10都生效</span>
+<span class="line">\9\0  只对IE9/IE10生效</span>
+</pre></td></tr></table></figure><p>当然还有这个东西</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if lt IE 9]&gt;&lt;![endif]--&gt;</span></span>
+</pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;&lt;p&gt;以前都说前端坑，或者前端入坑了，为什么呢？ 因为 IE 啊。&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;我做前端以来，一直都是很幸福的，因为还几乎咩有处理过 ie 的兼容问题。&lt;/p&gt;&lt;p&gt;但是最近要处理，以前应付面试背过的兼容方案都忘掉了，所以还是要查
+    
+    </summary>
+    
+      <category term="IE" scheme="http://blog.ochukai.me/categories/ie/"/>
+    
+    
+      <category term="ie" scheme="http://blog.ochukai.me/tags/ie/"/>
+    
+      <category term="css hack" scheme="http://blog.ochukai.me/tags/css-hack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>下载 window 聚焦壁纸 😜</title>
+    <link href="http://blog.ochukai.me/window-focus-wallpaper/"/>
+    <id>http://blog.ochukai.me/window-focus-wallpaper/</id>
+    <published>2017-02-17T01:29:58.000Z</published>
+    <updated>2017-02-17T01:43:49.105Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直觉得 window 聚焦的壁纸很好看~<br>今天终于找到了壁纸存放的路径，就是下面这个</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">%localappdata%\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</span>
+</pre></td></tr></table></figure><p><code>Win + s</code> 打开Cortana，复制这个网址打开就行了，里面都是没有扩展名的文件，<strong>重命名为 jpg</strong> 就可以看了~</p><p>这是一个批量重命名文件的工具，挺好用。</p><blockquote><p><a href="http://pan.baidu.com/s/1jH71JRg" target="_blank" rel="external">百度云</a>（ww30）</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直觉得 window 聚焦的壁纸很好看~&lt;br&gt;今天终于找到了壁纸存放的路径，就是下面这个&lt;/p&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1
+    
+    </summary>
+    
+      <category term="Window" scheme="http://blog.ochukai.me/categories/window/"/>
+    
+    
+      <category term="wallpaper" scheme="http://blog.ochukai.me/tags/wallpaper/"/>
+    
+      <category term="window" scheme="http://blog.ochukai.me/tags/window/"/>
+    
+  </entry>
   
   <entry>
     <title>更换 window 命令行字体</title>
@@ -2359,72 +2417,6 @@
       <category term="css" scheme="http://blog.ochukai.me/tags/css/"/>
     
       <category term="animation" scheme="http://blog.ochukai.me/tags/animation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>戦艦の女の子 の 航母 - 诶塞克斯</title>
-    <link href="http://blog.ochukai.me/esekesu-senkanno-onnanoko/"/>
-    <id>http://blog.ochukai.me/esekesu-senkanno-onnanoko/</id>
-    <published>2016-03-03T05:49:03.000Z</published>
-    <updated>2017-01-24T06:24:27.531Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="战舰少女"><a href="#战舰少女" class="headerlink" title="战舰少女"></a>战舰少女</h2><p>首先让我们认识一下这个游戏的名字：</p><blockquote><p>戦艦の女の子 【せんかんのおんなのこ】【senkannoonnanoko】</p></blockquote><h2 id="航空母舰"><a href="#航空母舰" class="headerlink" title="航空母舰"></a>航空母舰</h2><p>还有航空母舰这个单词</p><blockquote><p>航空母艦日【こうくうぼかん】【koukuubokann】</p><p>航空母舰。（航空機を搭載し、これを発着させるための飛行甲板および格納庫・修理設備などを備えた軍艦。今日、水上兵力の中核。略称、空母。）</p></blockquote><h2 id="埃塞克斯"><a href="#埃塞克斯" class="headerlink" title="埃塞克斯"></a>埃塞克斯</h2><p>下面进入正题，就是我很喜欢但是还咩有得到的 - 埃塞克斯</p><p><img src="../images/aise-normal.png" alt="正常"><br><img src="../images/aise-broken.png" alt="正常"></p><h2 id="建造公式"><a href="#建造公式" class="headerlink" title="建造公式"></a>建造公式</h2><ol><li>标准航母公式：400,600,600,400（基本上赌航母都用这个）</li><li>低费航母公式：300,30,400,300（当资源不足时可用）</li><li>常用玄学公式：400 600 650 430（目前出货率极高的公式）</li><li>500 130 600 400（据说出货率更高~）</li></ol><h2 id="建造时间"><a href="#建造时间" class="headerlink" title="建造时间"></a>建造时间</h2><p>4 个小时</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;战舰少女&quot;&gt;&lt;a href=&quot;#战舰少女&quot; class=&quot;headerlink&quot; title=&quot;战舰少女&quot;&gt;&lt;/a&gt;战舰少女&lt;/h2&gt;&lt;p&gt;首先让我们认识一下这个游戏的名字：&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;戦艦の女の子 【せんかんのおんなのこ】【senkan
-    
-    </summary>
-    
-      <category term="戦艦の女の子" scheme="http://blog.ochukai.me/categories/%E6%88%A6%E8%89%A6%E3%81%AE%E5%A5%B3%E3%81%AE%E5%AD%90/"/>
-    
-    
-      <category term="埃塞克斯" scheme="http://blog.ochukai.me/tags/%E5%9F%83%E5%A1%9E%E5%85%8B%E6%96%AF/"/>
-    
-      <category term="航母" scheme="http://blog.ochukai.me/tags/%E8%88%AA%E6%AF%8D/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Scss 里面的 for 循环</title>
-    <link href="http://blog.ochukai.me/for-in-scss/"/>
-    <id>http://blog.ochukai.me/for-in-scss/</id>
-    <published>2016-03-03T05:40:35.000Z</published>
-    <updated>2016-11-22T01:40:09.735Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图<br><img src="../images/li-queue-in.png" alt=""></p><p>做这个效果用到了 css 的 animation 中 <code>animation-delay</code>，给 li 设置入场动画后，再给 li 设置 <code>animation-delay</code>，像这样：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.li-animation-delay-1</span> &#123;</span>
-<span class="line">  <span class="attribute">animation-delay</span>: <span class="number">0.1s</span>;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p>并且每一个 li 的 animation-delay 都比前一个 li 的长 .1s，也就达到了后面的 li 的入场动画后播放的效果。</p><p>因为 li 的数量也不确定，所以我打算批量生成一些 <code>li-animation-delay-*</code>, 查了一下 scss 正好有 for 的用法：</p><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> <span class="variable">$index</span> from 0 to 10 &#123;</span>
-<span class="line">  <span class="selector-class">.list-ad-</span>#&#123;<span class="variable">$index</span>&#125; &#123;</span>
-<span class="line">    <span class="attribute">animation-delay</span>: <span class="variable">$index</span> * <span class="number">0.1</span>#&#123;s&#125;;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p>其中，<code>#{***}</code> 的作用的把字符串原封不动的输出。<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">#&#123;s&#125; --&gt; s</span>
-</pre></td></tr></table></figure><p></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近在写一个动画效果，使 ul 下面的 li 逐个进入，就像下图&lt;br&gt;&lt;img src=&quot;../images/li-queue-in.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;p&gt;做这个效果用到了 css 的 animation 中 &lt;code&gt;animation-delay&lt;/
-    
-    </summary>
-    
-      <category term="SASS" scheme="http://blog.ochukai.me/categories/sass/"/>
-    
-    
-      <category term="scss" scheme="http://blog.ochukai.me/tags/scss/"/>
-    
-      <category term="for" scheme="http://blog.ochukai.me/tags/for/"/>
     
   </entry>
   
