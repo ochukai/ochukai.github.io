@@ -29,6 +29,7 @@ date: 2015-11-29 20:11:07
 ```
 
 还有一种写法
+
 ```js
 // from: http://segmentfault.com/a/1190000003732752
 ;(function(){
