@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2017-02-17T08:40:31.600Z</updated>
+  <updated>2017-02-24T07:04:22.189Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>柏拉图式的爱情</title>
+    <link href="http://blog.ochukai.me/platonism-love/"/>
+    <id>http://blog.ochukai.me/platonism-love/</id>
+    <published>2017-02-24T07:00:28.000Z</published>
+    <updated>2017-02-24T07:04:22.189Z</updated>
+    
+    <content type="html"><![CDATA[<p>柏拉图式爱情，也称为精神恋爱，以西方哲学家柏拉图命名的一种人与人之间的精神爱情，追求心灵沟通，排斥肉欲，理性的精神上的纯洁爱情。</p><p>最早由Marsilio Ficino于15世纪提出，作为苏格拉底式爱情的同义词，用来指代苏格拉底和他学生之间的爱慕关系。</p><p>柏拉图式爱情根植于古希腊的理性主义传统和同性恋爱风尚。 哲学界对爱情的定义是理性的，所以它包容了如：道德、责任、义务等等这些充满人类理性光芒的社会化的衍生物。</p><p>柏拉图认为：“当心灵摒绝肉体而向往着真理的时候，这时才是最好的。而当灵魂被肉体的罪恶所感染时，人们追求真理的愿望就不会得到满足。当人类没有对肉欲的强烈需求时，心境是平和的，肉欲是人性中兽性的表现，是每个生物体的本性，人之所以是所谓的高等动物，是因为人的本性中，<strong>人性强于兽性，精神交流是美好的、是道德的。</strong>” 但实际上按照会饮篇的理论而言，柏拉图式的爱情主要是指一个同性之间的爱情，而这个也和当时希腊风气相关。</p><p>希腊学者认为<strong>同性之间的爱情才是真正属天的爱情，而异性的婚姻制度不过是为了社会的建构</strong>。</p><p>而现今柏拉图式爱情已经扭曲成精神爱情，基本上是断章取义只是形容男女之间的爱恋（柏拉图式爱情在现代经常来表达男女之间的爱情，通常出现在言情小说中），而这个正是因为现代社会对于同性恋的排斥。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;柏拉图式爱情，也称为精神恋爱，以西方哲学家柏拉图命名的一种人与人之间的精神爱情，追求心灵沟通，排斥肉欲，理性的精神上的纯洁爱情。&lt;/p&gt;&lt;p&gt;最早由Marsilio Ficino于15世纪提出，作为苏格拉底式爱情的同义词，用来指代苏格拉底和他学生之间的爱慕关系。&lt;/p&gt;&lt;p
+    
+    </summary>
+    
+      <category term="柏拉图式的爱情" scheme="http://blog.ochukai.me/categories/%E6%9F%8F%E6%8B%89%E5%9B%BE%E5%BC%8F%E7%9A%84%E7%88%B1%E6%83%85/"/>
+    
+    
+      <category term="柏拉图" scheme="http://blog.ochukai.me/tags/%E6%9F%8F%E6%8B%89%E5%9B%BE/"/>
+    
+      <category term="爱情" scheme="http://blog.ochukai.me/tags/%E7%88%B1%E6%83%85/"/>
+    
+  </entry>
   
   <entry>
     <title>(**) 的 IE 👽</title>
@@ -1405,9 +1429,9 @@
 <span class="line"></span>
 <span class="line">  render() &#123;</span>
 <span class="line">    <span class="keyword">return</span> (</span>
-<span class="line">      &lt;div &#123; ...this.props &#125;&gt;</span>
+<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
 <span class="line">        &#123; this.props.children &#125;</span>
-<span class="line">      &lt;/div&gt;</span>
+<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
 <span class="line">    );</span>
 <span class="line">  &#125;</span>
 <span class="line">  </span>
@@ -2245,178 +2269,6 @@
     
     
       <category term="nav" scheme="http://blog.ochukai.me/tags/nav/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Queue Anim 列表</title>
-    <link href="http://blog.ochukai.me/css-animation-queue-list/"/>
-    <id>http://blog.ochukai.me/css-animation-queue-list/</id>
-    <published>2016-03-03T09:45:24.000Z</published>
-    <updated>2016-11-22T01:40:09.735Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h1><p>基本写法是一个开始状态和一个结束状态：<br></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-</pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> demo-anim &#123;</span>
-<span class="line">  <span class="selector-tag">from</span> &#123;</span>
-<span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line">  <span class="selector-tag">to</span> &#123;</span>
-<span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p></p><p></p><p data-height="268" data-theme-id="0" data-slug-hash="QNbBOy" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/QNbBOy/" target="_blank" rel="external">QNbBOy</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p><script async src="//assets.codepen.io/assets/embed/ei.js"></script><blockquote><p>其中 <code>animation-iteration-count: number or infinite;</code> 可以设置循环次数，infinite为无限次</p></blockquote><p>还可以定义的很详细：<br></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-</pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> demo-anim &#123;</span>
-<span class="line">  <span class="selector-tag">from</span> &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(0, 0);</span>
-<span class="line">  &#125;</span>
-<span class="line">  20% &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(20, 20);</span>
-<span class="line">  &#125;</span>
-<span class="line">  40% &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(40, 0);</span>
-<span class="line">  &#125;</span>
-<span class="line">  60% &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(60, 20);</span>
-<span class="line">  &#125;</span>
-<span class="line">  80% &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(80, 0);</span>
-<span class="line">  &#125;</span>
-<span class="line">  <span class="selector-tag">to</span> &#123;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(100, 20);</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p></p><h1 id="animation-fill-mode"><a href="#animation-fill-mode" class="headerlink" title="animation-fill-mode"></a>animation-fill-mode</h1><blockquote><p>animation-fill-mode : none | forwards | backwards | both;</p></blockquote><table><thead><tr><th>值</th><th>描述</th></tr></thead><tbody><tr><td>none</td><td>不改变默认行为。</td></tr><tr><td>forward</td><td>当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。</td></tr><tr><td>backwards</td><td>在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。</td></tr><tr><td>both</td><td>向前和向后填充模式都被应用。</td></tr></tbody></table><blockquote><p>用到的知识点就是上面两个，下面开始写。</p></blockquote><h1 id="Queue-in-List"><a href="#Queue-in-List" class="headerlink" title="Queue-in List"></a>Queue-in List</h1><p>我要写的效果是一个列表，当列表显示时，其子项逐个出现，从右向左滑入，透明度也由浅变深。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先写一个使 li 从左向右滑入的效果，然后再给需要稍晚滑入的 li 加上 <code>animation-delay</code> 就好了。</p><h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义 li 样式 */</span></span>
-<span class="line"><span class="selector-tag">li</span> &#123;</span>
-<span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span>
-<span class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span>
-<span class="line">  <span class="attribute">margin-top</span>: <span class="number">2px</span>;</span>
-<span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>; <span class="comment">/* 默认是隐藏的 */</span></span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="comment">/* 定义动画 */</span></span>
-<span class="line">@<span class="keyword">keyframes</span> queue-in &#123;</span>
-<span class="line">  <span class="selector-tag">from</span> &#123;</span>
-<span class="line">    <span class="comment">/* 开始时 在左边 */</span></span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(40px);</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  <span class="selector-tag">to</span> &#123;</span>
-<span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span>
-<span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0);</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="comment">/* 调用动画 */</span></span>
-<span class="line"><span class="selector-class">.list-queue-in</span> &gt; <span class="selector-tag">li</span> &#123;</span>
-<span class="line">  <span class="attribute">animation-name</span>: queue-in;</span>
-<span class="line">  <span class="attribute">animation-duration</span>: .<span class="number">3s</span>;</span>
-<span class="line">  <span class="comment">/* 这一行就表示动画结束时元素的状态就是动画的最后一帧 */</span></span>
-<span class="line">  <span class="attribute">animation-fill-mode</span>: forwards;</span>
-<span class="line">  <span class="attribute">animation-timing-function</span>: ease-in;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>这是 进入状态时的 html</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-queue-in"</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-0"</span> <span class="attr">key</span>=<span class="string">"0"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-1"</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-2"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-3"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-ad-4"</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>
-</pre></td></tr></table></figure><blockquote><p>这样的话，li 已经可以从右向左滑入了，但是，是在一起滑入的，我需要他们分开~</p></blockquote><h2 id="animation-delay"><a href="#animation-delay" class="headerlink" title="animation-delay"></a>animation-delay</h2><p><code>list-ad-0</code> 这个东西就是提前定义好的 <code>animation-delay</code>，比如：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.list-ad-0</span> &#123;</span>
-<span class="line">  <span class="attribute">-webkit-animation-delay</span>: <span class="number">0s</span>;</span>
-<span class="line">          <span class="attribute">animation-delay</span>: <span class="number">0s</span>;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="selector-class">.list-ad-1</span> &#123;</span>
-<span class="line">  <span class="attribute">-webkit-animation-delay</span>: <span class="number">0.1s</span>;</span>
-<span class="line">          <span class="attribute">animation-delay</span>: <span class="number">0.1s</span>;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p>然后，他们就可以一个接一个的滑了~</p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>所有的代码都在这里，就是这样的效果：</p><p></p><p data-height="268" data-theme-id="0" data-slug-hash="zqYgxb" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/zqYgxb/" target="_blank" rel="external">zqYgxb</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;keyframes&quot;&gt;&lt;a href=&quot;#keyframes&quot; class=&quot;headerlink&quot; title=&quot;@keyframes&quot;&gt;&lt;/a&gt;@keyframes&lt;/h1&gt;&lt;p&gt;基本写法是一个开始状态和一个结束状态：&lt;br&gt;&lt;/p&gt;&lt;figure class
-    
-    </summary>
-    
-      <category term="CSS" scheme="http://blog.ochukai.me/categories/css/"/>
-    
-    
-      <category term="css" scheme="http://blog.ochukai.me/tags/css/"/>
-    
-      <category term="animation" scheme="http://blog.ochukai.me/tags/animation/"/>
     
   </entry>
   
