@@ -1,5 +1,5 @@
 $(function () {
-	console.log('I am Oliver~');
+	// console.log('I am Oliver~');
 
 	// image preview
 	$('.post__main img').each(function (index, item) {
@@ -93,8 +93,6 @@ $(function () {
 	});
 
 	$body.on('keyup', function (e) {
-		// console.log(e.which, 'keyup');
-
 		isKeydown = false;
 	});
 
@@ -123,8 +121,25 @@ $(function () {
 		''
 	];
 
-	comments.forEach(function(item) {
+	comments.forEach(function (item) {
 		console.log('%c' + item, 'color: #399c9c');
+	});
+
+	$('.btn-reward').on('click', function (e) {
+		e.preventDefault();
+
+		var $reward = $('.reward-wrapper');
+		$reward.slideToggle();
+	});
+
+	$('header.head').addClass('queue-in');
+	$('article.post').each(function (index) {
+		var $this = $(this);
+		$this.css({
+			'animationDelay': .1 * (index + 1) + 's'
+		});
+
+		$this.addClass('queue-in');
 	});
 
 });

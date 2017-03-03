@@ -4,6 +4,13 @@ extends _views/main
 
 block main
   +post(page, 'post')
+  
+  section.reward 
+    a(class="btn-reward" href="#") 打赏
+    div.reward-wrapper.clearfix
+      img(src="/img/wechat.png")
+      //- img(src="/img/wechat.png")
+
   if theme.disqus_shortname && page.comments
     div.comments
       div#disqus_thread
