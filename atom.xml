@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.ochukai.me/"/>
-  <updated>2017-02-24T07:04:22.189Z</updated>
+  <updated>2017-03-22T04:10:39.021Z</updated>
   <id>http://blog.ochukai.me/</id>
   
   <author>
@@ -14,6 +14,366 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>详解 Promise</title>
+    <link href="http://blog.ochukai.me/promise-in-action/"/>
+    <id>http://blog.ochukai.me/promise-in-action/</id>
+    <published>2017-03-08T08:54:54.000Z</published>
+    <updated>2017-03-22T04:10:39.021Z</updated>
+    
+    <content type="html"><![CDATA[<p>偶然看到一篇介绍 Promise 的文章，这个概念也出现好久了，之前一直用着 <a href="https://github.com/cujojs/when" target="_blank" rel="external">whenjs</a>, 但是一直没有时间自己写一个。</p><p>于是下定决心，自己写一个吧~ 毕竟别人都能写出来的东西，而且工作的时候都是在写一些业务型的代码，感觉非常没有创造性~</p><hr><p>Promise 用起来挺简单的，可以很好的解决 js callback 多的时候，缩进很烦的问题。而且线性的写代码也更容易理解~</p><p>现在写这篇文章，就是高中的时候写作文一样，看到题目就开始辗转反侧，脑子里面想好多内容，理清了思路，但是拿起笔就全忘了。</p><p>今天在开始写之前我也下了好大的决心，在代码上面写了大片的注释，感觉写这一篇应该会很顺利吧，结果还是事与愿违，写了些乱七八糟的东西。</p><p>这篇文章主要是介绍 Promise 的用法以及我是怎么实现这么一个库的，但是该怎么开始写呢？于是我列了几个要点，概念，原理，实现，感觉填充起来会比较容易吧，嗯，就这么办吧~</p><h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><p><a href="https://promisesaplus.com" target="_blank" rel="external">Promise/A+ 规范</a><br><a href="https://tc39.github.io/ecma262/#sec-promise-objects" target="_blank" rel="external">ES6 Promise</a> — 加载比较慢~ 想看就耐心等~</p><p>两个规范在这了，其实现在用的多的是 Promise/A+ 规范，看起来还是很简单的。</p><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Promise 就是承诺，会按照 then 的顺序做些事情，出了问题会在 catch 里面。像这样：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p =</span>
+<span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span>
+<span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">      resolve(<span class="literal">true</span>);</span>
+<span class="line">    &#125;, <span class="number">1000</span>);</span>
+<span class="line">  &#125;)</span>
+<span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span>
+<span class="line">    <span class="built_in">console</span>.log(<span class="string">'result:'</span>, result);</span>
+<span class="line">  &#125;)</span>
+<span class="line">  .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span>
+<span class="line">    <span class="built_in">console</span>.log(<span class="string">'error:'</span>, err);</span>
+<span class="line">  &#125;);</span>
+</pre></td></tr></table></figure><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>要说 Promise 的原理，我就假设大家都会用了，要不然看这个干什么~ 当然每个人的想法是不一样的，我开始了~</p><p>以前面试的时候经常会被问到这个问题，你知道 Promise 是怎么实现的吗？ 我说不知道，大概就是有一个数组，for 循环执行吧。2333333333333~</p><p>现在看来是不能用 for 循环来实现 Promise 了，假如好多 Promise 都是耗时间的操作，每个 Promise 的结束时间就不能控制，要等到前一个 Promise 结束之后，主动通知下一个 Promise 执行。所以就要求 Promise 里要保存下一个 Promise 的引用，方便在执行完当前 Promise 的时候调用下一个。</p><p>什么时候才是 Promise 执行结束的标志呢？就是在 then 的回调函数里面调用了 resolve(value) 或者 reject(err)的时候。所以调用下一个 Promise 的地方就在这两个方法里面。</p><p>这样看起来，Promise 的调用过程，一个结束调用另外一个，有点像链表~</p><p><img src="../images/promise-1.png" alt=""></p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="链式调用"><a href="#链式调用" class="headerlink" title="链式调用"></a>链式调用</h3><p>首先考虑两种 Promise 的调用方式</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.chain</span></span>
+<span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(noop)</span>
+<span class="line">  .then(<span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>) </span>&#123;&#125;)</span>
+<span class="line">  .then(<span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>) </span>&#123;&#125;)</span>
+<span class="line">  .then(<span class="function"><span class="keyword">function</span> <span class="title">fn3</span>(<span class="params"></span>) </span>&#123;&#125;);</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 2.</span></span>
+<span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(noop);</span>
+<span class="line">p.then(<span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>) </span>&#123;&#125;);</span>
+<span class="line">p.then(<span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>) </span>&#123;&#125;);</span>
+<span class="line">p.then(<span class="function"><span class="keyword">function</span> <span class="title">fn3</span>(<span class="params"></span>) </span>&#123;&#125;);</span>
+</pre></td></tr></table></figure><p>第一种链式的调用方法是按照顺序执行 fn1, fn2, fn3 的意思~ （then 方法会返回新的 Promise 对象，这句话放在这里好像很奇怪~），每一次 .then 都像是连接着一个新的 Promise。</p><p>而第二种写法，fn1, fn2, fn3 是同时开始执行的~ 一个 Promise 连着三个不同的 Promise 形成了三条 Promise 调用链~</p><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>然后说到构造函数，毕竟初始化 Promise 是在这里面进行的。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Promise</span>(<span class="params">resolver</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">if</span> (!util.isFunction(resolver)) &#123;</span>
+<span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'resolver must be a function'</span>);</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="comment">// 默认是 pending 状态</span></span>
+<span class="line">  <span class="keyword">this</span>.state = PENDING;</span>
+<span class="line">  <span class="comment">// resolve 的值</span></span>
+<span class="line">  <span class="keyword">this</span>.value = <span class="number">0</span>;</span>
+<span class="line">  <span class="comment">// 保存接下来要执行的 promise 的数组，数组里面的元素是 Executor，</span></span>
+<span class="line">  <span class="comment">// 包装了 Promise 及其onReject, onResolve 方法</span></span>
+<span class="line">  <span class="comment">// then 方法可能会添加 Executor 到这个数组，也只有 then 方法会添加元素到这个数组</span></span>
+<span class="line">  <span class="keyword">this</span>.queue = [];</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">if</span> (resolver !== util.noop) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.__callThen(resolver); <span class="comment">// call thenable.</span></span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="built_in">Promise</span>.prototype.then = <span class="function"><span class="keyword">function</span> (<span class="params">onResolved, onRejected</span>) </span>&#123; ... &#125;</span>
+<span class="line"><span class="built_in">Promise</span>.prototype.catch = <span class="function"><span class="keyword">function</span> (<span class="params">onResolved, onRejected</span>) </span>&#123; ... &#125;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">/*</span>
+<span class="line"> * 上面提到的 Executor</span>
+<span class="line"> */</span></span>
+<span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Executor</span>(<span class="params">promise, onResolved, onRejected</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">this</span>.promise = promise;</span>
+<span class="line">  <span class="keyword">this</span>.onRejected = onRejected;</span>
+<span class="line">  <span class="keyword">this</span>.onResolved = onResolved;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure><p>Promise 大概是这三个函数使用的比较多，当然还有几个静态方法，或者 delay 方法 。</p><p>这里应该写点什么呢，代码里面稍微有点注释，Promise 的数据结构就像构造函数里面写的，初始化 Promise 的函数 <code>function (onResolved, onReject) {}</code> 与 then 方法的参数 <code>function (onResolved, onReject) {}</code> 形式是一样的，被称为 <strong>thenable</strong></p><p>参数被传递进构造函数之后，稍做休息，便直接开始执行了（放在 timeout 里面执行，还是要稍等一下的）。就是在 <code>__callThen</code> 方法里面执行，这个方法也很重要，就是对 thenable 函数 try-catch 一下~ 出现异常当然要拒绝。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span>
+<span class="line"> * 调用 then 方法，同时会 try catch 一下，</span>
+<span class="line"> *    如果出错，就 doReject（err）</span>
+<span class="line"> *    如果没错，就 doResolve（value）</span>
+<span class="line"> */</span></span>
+<span class="line"><span class="built_in">Promise</span>.prototype.__callThen = <span class="function"><span class="keyword">function</span> (<span class="params">then</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">var</span> called = <span class="literal">false</span>;</span>
+<span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span>
+<span class="line"></span>
+<span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">value</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">if</span> (!called) &#123;</span>
+<span class="line">      called = <span class="literal">true</span>;</span>
+<span class="line">      self.doResolve(value);</span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">e</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">if</span> (!called) &#123;</span>
+<span class="line">      called = <span class="literal">true</span>;</span>
+<span class="line">      self.doReject(e);</span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">try</span> &#123;</span>
+<span class="line">    then(resolve, reject);</span>
+<span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span>
+<span class="line">    <span class="keyword">if</span> (!called) &#123;</span>
+<span class="line">      called = <span class="literal">true</span>;</span>
+<span class="line">      <span class="keyword">this</span>.doReject(e);</span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;;</span>
+</pre></td></tr></table></figure><p>好了，到现在为止，then 方法之前的内容就会执行到这里。</p><p>这一段的 主要内容就是，够造了一个 Promise（会执行传入的 thenable 函数）， 还没有涉及到 then。</p><h3 id="Then-函数"><a href="#Then-函数" class="headerlink" title="Then 函数"></a>Then 函数</h3><p>在 then 方法里面，queue 数组终于派上了用场，因为可能会添加 Executor 到 queue 里面去，当构造 Promise 的 thenable 执行很慢的话~</p><p>如果当前 promise 已经被 RESOLVED 或者 REJECTED，那就直接执行 onResolved 或者 onRejected。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+</pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.then = <span class="function"><span class="keyword">function</span> (<span class="params">onResolved, onRejected</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">var</span> promise2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(util.noop);</span>
+<span class="line">  </span>
+<span class="line">  <span class="comment">// state 默认就是 PENDING，如果完成 或者失败会改变</span></span>
+<span class="line">  <span class="comment">// 如果在 then 方法里面还是 PENDING 的话，说明前一个过程还没有结束</span></span>
+<span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.state !== PENDING) &#123;</span>
+<span class="line">    <span class="keyword">var</span> dummy = <span class="keyword">this</span>.state === FULFILLED</span>
+<span class="line">              ? onResolved</span>
+<span class="line">              : onRejected;</span>
+<span class="line">    promise2.__runInOrder(dummy, <span class="keyword">this</span>.value);</span>
+<span class="line">  &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">    <span class="keyword">this</span>.queue.push(<span class="keyword">new</span> Executor(promise2, onResolved, onRejected));</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">return</span> promise2;</span>
+<span class="line">&#125;;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 为什么叫 run in order 呢，我实在是词穷，不过 fn 传递到此函数之后，</span></span>
+<span class="line"><span class="comment">// 会在下一个 tick 按顺序执行，仅此而已~</span></span>
+<span class="line"><span class="built_in">Promise</span>.prototype.__runInOrder = <span class="function"><span class="keyword">function</span> (<span class="params">fn, value</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span>
+<span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">var</span> ret;</span>
+<span class="line">    <span class="keyword">try</span> &#123;</span>
+<span class="line">      ret = fn(value);</span>
+<span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span>
+<span class="line">      <span class="keyword">return</span> self.doReject(e);</span>
+<span class="line">    &#125;</span>
+<span class="line"></span>
+<span class="line">    <span class="keyword">if</span> (ret === self) &#123;</span>
+<span class="line">      self.doReject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Cannot resolve promise with itself.'</span>));</span>
+<span class="line">    &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">      self.doResolve(ret);</span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;);</span>
+<span class="line">&#125;;</span>
+</pre></td></tr></table></figure><p>接下来的两个方法比较最重要，上面可能看到过很多次他们的身影，但我都没有说过，最开始的时候我说前一个 promise 完成的时候要通知下一个 promise，这个通知的过程就在这两个方法里进行的。</p><p>有一点不同的是：doResolve 方法要检查前一个 promise 返回的值，如果前一个 promise 完成时返回了一个新的 promise，那么肯定要等这个返回的 promise 执行完成之后再 doResolve，而 doReject 就很直截了当了，反正你出错了，不要再执行了，然后就报错了~</p><h3 id="doResolve"><a href="#doResolve" class="headerlink" title="doResolve"></a>doResolve</h3><p>前面说了太多这里没什么好写的了，看看代码吧~</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+</pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.doResolve = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">try</span> &#123;</span>
+<span class="line">    <span class="keyword">var</span> then = util.getThen(value);</span>
+<span class="line">    <span class="keyword">if</span> (then) &#123;</span>
+<span class="line">      <span class="keyword">this</span>.__callThen(then);</span>
+<span class="line">    &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">      <span class="keyword">this</span>.state = FULFILLED;</span>
+<span class="line">      <span class="keyword">this</span>.value = value;</span>
+<span class="line">      <span class="comment">// Executor 的 doResolve</span></span>
+<span class="line">      <span class="keyword">this</span>.queue.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span>
+<span class="line">        item.doResolve(value);</span>
+<span class="line">      &#125;);</span>
+<span class="line">    &#125;</span>
+<span class="line"></span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span>
+<span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.doReject(e);</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 如果 onResolved 不是函数就继续执行下一个 promise， 这是规定~</span></span>
+<span class="line">Executor.prototype.doResolve = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">if</span> (util.isFunction(<span class="keyword">this</span>.onResolved)) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.promise.__runInOrder(<span class="keyword">this</span>.onResolved, value);</span>
+<span class="line">  &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">    <span class="keyword">this</span>.promise.doResolve(value);</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;;</span>
+</pre></td></tr></table></figure><h3 id="doReject"><a href="#doReject" class="headerlink" title="doReject"></a>doReject</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+</pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.doReject = <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">this</span>.state = REJECTED;</span>
+<span class="line">  <span class="keyword">this</span>.value = err;</span>
+<span class="line">  <span class="keyword">this</span>.queue.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span>
+<span class="line">    item.doReject(err);</span>
+<span class="line">  &#125;);</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span>
+<span class="line">&#125;;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// 同上</span></span>
+<span class="line">Executor.prototype.doReject = <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span>
+<span class="line">  <span class="keyword">if</span> (util.isFunction(<span class="keyword">this</span>.onRejected)) &#123;</span>
+<span class="line">    <span class="keyword">this</span>.promise.__runInOrder(<span class="keyword">this</span>.onRejected, err);</span>
+<span class="line">  &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">    <span class="keyword">this</span>.promise.doReject(err);</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;;</span>
+</pre></td></tr></table></figure><p>好像概念都写完了。</p><p>Github： <a href="https://github.com/ochukai/promise" target="_blank" rel="external">ochukai/promise</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;偶然看到一篇介绍 Promise 的文章，这个概念也出现好久了，之前一直用着 &lt;a href=&quot;https://github.com/cujojs/when&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;whenjs&lt;/a&gt;, 但是一直没有时间自己写一个。
+    
+    </summary>
+    
+      <category term="Promise" scheme="http://blog.ochukai.me/categories/promise/"/>
+    
+      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/promise/javascript/"/>
+    
+    
+      <category term="promise" scheme="http://blog.ochukai.me/tags/promise/"/>
+    
+      <category term="setTimeout" scheme="http://blog.ochukai.me/tags/settimeout/"/>
+    
+  </entry>
   
   <entry>
     <title>柏拉图式的爱情</title>
@@ -1717,7 +2077,7 @@
     <link href="http://blog.ochukai.me/higashino-keigo/"/>
     <id>http://blog.ochukai.me/higashino-keigo/</id>
     <published>2016-07-26T08:38:44.000Z</published>
-    <updated>2017-01-24T06:11:26.390Z</updated>
+    <updated>2017-03-09T03:19:41.130Z</updated>
     
     <content type="html"><![CDATA[<p>最近看了几篇 东野圭吾 的小说, 都还蛮有意思的。 像 《嫌疑人X的献身》, 《流星之绊》,《毕业》啊 等等,好多都记不住名字了。</p><p>于是决定把他的全集整理一下,留着有空都看一遍~</p><hr><h2 id="加贺恭一郎系列"><a href="#加贺恭一郎系列" class="headerlink" title="加贺恭一郎系列"></a>加贺恭一郎系列</h2><ul><li>《毕业——雪月花杀人游戏》（《毕业前杀人游戏》）&lt;卒业―雪月花杀人ゲーム&gt;</li><li>《沉睡的森林》&lt;眠りの森&gt;</li><li>《谁杀了她》&lt;どちらかが彼女を杀した&gt;</li><li>《恶意》</li><li>《我杀了他》&lt;私が彼を杀した&gt;</li><li>《又一个谎言》 &lt;嘘をもうひとつだけ&gt;　刊载于推理杂志220-224期</li><li>《红手指》 &lt;赤い指&gt;（2011年冬季档日剧SP，阿部宽、黑木明纱主演）</li><li>《新参者》（2010年拍摄日剧，阿部宽、黑木明纱主演）</li><li>《麒麟之翼》&lt;麒麟の翼&gt;</li></ul><h2 id="神探伽利略-按列表顺序"><a href="#神探伽利略-按列表顺序" class="headerlink" title="神探伽利略 (按列表顺序)"></a>神探伽利略 (按列表顺序)</h2><ul><li>《侦探伽利略》&lt;探侦ガリレオ&gt;</li><li>《预知梦》&lt;予知梦&gt;</li><li>《嫌疑犯X的献身》&lt;容疑者Xの献身&gt;</li><li>《伽利略的苦恼》&lt;ガリレオの苦悩&gt;</li><li>《圣女的救济》&lt;圣女の救済&gt;</li><li>《盛夏的方程式》&lt;真夏の方程式&gt;</li><li>《虚像的小丑》&lt;虚像の道化师&gt;</li><li>《禁断的魔术》&lt;禁断の魔术&gt;</li></ul><h2 id="毒舌三部曲"><a href="#毒舌三部曲" class="headerlink" title="毒舌三部曲"></a>毒舌三部曲</h2><ul><li>怪笑小说</li><li>毒笑小说</li><li>黑笑小说</li></ul><h2 id="获奖作品"><a href="#获奖作品" class="headerlink" title="获奖作品"></a>获奖作品</h2><ul><li>1983年《人偶之家》第29届江戸川乱歩赏二次予选通过</li><li>1984年《魔球》第30届江戸川乱歩赏最终候补</li><li>1985年《放学后》夺得第31届江户川乱步奖，开始专职写作。</li><li>1988年《学生街杀人事件》第9届吉川英治文学新人赏候补・第41回日本推理作家协会赏（长编）候补</li><li>1990年《鸟人计划》第11届吉川英治文学新人赏候补</li><li>1991年《天使之耳》第44届日本推理作家协会赏（短编集）候补</li><li>1992年《镜之中》第45届日本推理作家协会赏（短编集）候补</li><li>1993年《雪地杀机》第46届日本推理作家协会赏（长编部）候补</li><li>1993年《交通警察之夜》第46届日本推理作家协会赏（短编集）候补</li><li>1996年《天空之蜂》第17届吉川英治文学新人赏候补</li><li>1997年《名侦探的守则》第18届吉川英治文学新人赏候补</li><li>1999年《秘密》第120届直木奖三十五赏候补，第20回吉川英治文学新人赏候补，第52回日本推理作家协会奖</li><li>2000年《白夜行》第122届直木奖三十五赏候补</li><li>2001年《单恋》第125届直木奖三十五赏候补</li><li>2003年《信》第129届直木奖三十五赏候补</li><li>2004年《幻夜》第131届直木三奖十五赏候补</li><li>2006年《嫌疑人X的献身》将第134届直木奖、第6届本格推理小说 大奖及当年度日本三大推理小说排行榜（“这本推理小说了不起！”、“周刊文春推理小说BEST10”、“本格推理小说 BEST10”）第1名一并收入囊中。</li><li>2008年《流星之绊》荣获第43届新风奖。</li><li>2009年《新参者》获“这本推理小说了不起！”、“周刊文春推理小说BEST10”年度第1名。</li><li>2012年《嫌疑犯X的献身》美国图书馆协会最推荐图书（推理部门）、爱伦·坡奖最优秀长编奖候补、巴瑞奖新人赏奖候补</li><li>2012年《浪矢杂货店的奇迹》第7届中央公论文艺奖</li></ul><hr><p>上面的作品今年都看完应该就不错了~ 毕竟做人都是要有目标的嘛,那么更远大的目标呢,就是下面的全部列表了。</p><hr><h2 id="作品列表"><a href="#作品列表" class="headerlink" title="作品列表"></a>作品列表</h2><h3 id="1985年"><a href="#1985年" class="headerlink" title="1985年"></a>1985年</h3><ol><li>《放学后》&lt;放课後&gt; （第31 届江户川乱步奖）</li></ol><h3 id="1986年"><a href="#1986年" class="headerlink" title="1986年"></a>1986年</h3><ol><li>《毕业——雪月花杀人游戏》（加贺恭一郎系列）（《毕业前杀人游戏》）&lt;卒业―雪月花杀人ゲーム&gt;</li><li>《白马山庄杀人事件》&lt;白马山荘杀人事件&gt;</li></ol><h3 id="1987年"><a href="#1987年" class="headerlink" title="1987年"></a>1987年</h3><ol><li>《学生街里的杀人事件》&lt;学生街の杀人&gt;（入围第41届日本推理作家协会赏）</li><li>《十一字杀人》（11文字の杀人）</li></ol><h3 id="1988年"><a href="#1988年" class="headerlink" title="1988年"></a>1988年</h3><ol><li>《魔球》</li><li>《以眨眼干杯》&lt;ウインクで乾杯&gt; 原名&lt;香子の梦―コンパニオン杀人事件&gt; / 《香子之梦——夥伴杀人事件》</li><li>《浪花少年侦探团》&lt;浪花少年探侦団&gt;</li></ol><h3 id="1989年"><a href="#1989年" class="headerlink" title="1989年"></a>1989年</h3><ol><li>《十字豪宅的小丑》&lt;十字屋敷のピエロ&gt;</li><li>《沉睡的森林》&lt;眠りの森&gt;（加贺恭一郎系列）（特别说明：并不是木村拓哉主演的那部电视剧）</li><li>《鸟人计划》&lt;鸟人计画&gt;（入围第11届吉川英治文学新人奖）</li><li>《杀人现场在云端》&lt;杀人现场は云の上&gt;</li><li>《布鲁特斯的心脏——完全犯罪杀人接力》&lt;ブルータスの心臓―完全犯罪杀人リレー&gt;</li></ol><h3 id="1990年"><a href="#1990年" class="headerlink" title="1990年"></a>1990年</h3><ol><li>《侦探俱乐部》&lt;探侦倶楽部&gt; 原名 &lt;依頼人の娘&gt;《负责人的女儿》<br>本短篇集包括：<ol><li>伪装之夜 / 伪装の夜</li><li>疯狂的电击 / 罠の中</li><li>少女委托人 / 依頼人の娘</li><li>伊豆旅馆的神秘案 / 探侦の使い方</li><li>玫瑰与匕首 / 蔷薇とナイフ</li></ol></li><li>《宿命》（2004年拍摄日剧SP，柏原崇、藤木直人主演）</li><li>《没有凶手的杀人夜》&lt;犯人のいない杀人の夜&gt;（曾刊载于推理杂志）<ol><li>小小的恶作剧故事 / 小さな故意の物语（2012年日剧《东野圭吾推理系列》第八集，三浦春马主演）</li><li>黑暗中的两个人 / 闇の中の二人</li><li>舞女 / 踊り子</li><li>无尽之夜 / エンドレス·ナイト（2012年日剧《东野圭吾推理系列》第三集，松下奈绪主演）</li><li>白色凶器 / 白い凶器（2012年日剧《东野圭吾推理系列》第七集，户田惠梨香主演）</li><li>别了，教练 / さよならコーチ（2012年日剧《东野圭吾推理系列》第一集，唐泽寿明主演）</li><li>没有凶手的杀人夜 / 犯人のいない杀人の夜（2012年日剧《东野圭吾推理系列》第二集，坂口宪二主演）</li></ol></li><li>《面具山庄杀人事件》&lt;仮面山荘杀人事件&gt;</li></ol><h3 id="1991年"><a href="#1991年" class="headerlink" title="1991年"></a>1991年</h3><ol><li>《变身》&lt;变身&gt;（2005年拍摄电影，玉木宏、苍井优主演）</li><li>《回廊亭杀人事件》&lt;回廊亭杀人事件&gt;（2012年06月24日播出日剧SP，主演：常盘贵子）</li><li>《天使之耳》&lt;交通警察の夜&gt;<ol><li>天使之耳/ 天使の耳</li><li>隔离带/ 分离帯</li><li>危险的新叶/ 危険な若叶</li><li>请通过/ 通りゃんせ</li><li>请勿弃物/ 舍てないで</li><li>镜之中/ 镜の中で</li></ol></li></ol><h3 id="1992年"><a href="#1992年" class="headerlink" title="1992年"></a>1992年</h3><ol><li>《雪地杀机》&lt;ある闭ざされた雪の山荘で&gt;</li><li>《美丽的凶器》&lt;美しき凶器&gt;</li></ol><h3 id="1993年"><a href="#1993年" class="headerlink" title="1993年"></a>1993年</h3><ol><li>《同班同学》&lt;同级生&gt;</li><li>《分身》（2012年2月12日播出日剧，主演：长泽雅美）</li><li>《和阿忍老师说再见——浪花少年侦探团·独立篇》&lt;しのぶセンセにサヨナラ―浪花少年探侦団·独立编&gt;</li></ol><h3 id="1994年"><a href="#1994年" class="headerlink" title="1994年"></a>1994年</h3><ol><li>《怪人们》 / 怪しい人びと<ol><li>沉睡的女人 / 寝ていた女</li><li>让我再听一次你的判罚 / もう一度コールしてくれ</li><li>至死方休 / 死んだら働けない</li><li>蜜月之旅 / 甘いはずなのに</li><li>新婚照之谜 / 结婚报告（2012年日剧《东野圭吾推理系列》第九集，广末凉子主演）</li><li>灯塔之上 / 灯台にて</li><li>哥斯达黎加的冷雨 / コスタリカの雨は冷たい</li></ol></li><li>《我以前死去的家》&lt;むかし仆が死んだ家&gt;</li><li>《操纵彩虹的少年》&lt;虹を操る少年&gt;</li></ol><h3 id="1995年"><a href="#1995年" class="headerlink" title="1995年"></a>1995年</h3><ol><li>《平行世界·爱情故事》&lt;パラレルワールド·ラブストーリー&gt;</li><li>《那个时候我们是傻瓜》（散文集）&lt;あの顷ぼくらはアホでした&gt;</li><li>《怪笑小说》<ol><li>郁积电车 / 郁积电车</li><li>追星阿婆 / おっかけバアさん</li><li>一彻老爸 / 一彻おやじ</li><li>逆转同学会 / 逆転同窓会</li><li>超狸理论 / 超たぬき理论</li><li>无人岛大相扑转播 / 无人岛大相扑中継</li><li>尸台社区 / しかばね台分譲住宅</li><li>献给某位老爷爷的线香 / あるジーサンに线香を</li><li>动物家庭 / 动物家族</li></ol></li><li>《天空之蜂》&lt;天空の蜂&gt;（入围第17届吉川英治文学新人奖）</li></ol><h3 id="1996年"><a href="#1996年" class="headerlink" title="1996年"></a>1996年</h3><ol><li>《名侦探的守则》&lt;名探侦の掟&gt;（2009春季日剧，松田翔太主演）</li><li>《谁杀了她》（加贺恭一郎系列）&lt;どちらかが彼女を杀した&gt;</li><li>《毒笑小说》<ol><li>绑架天国 / 诱拐天国</li><li>Angel / エンジェル</li><li>手工贵妇 / 手作りマダム</li><li>程序警察 / マニュアル警察（世界奇妙物语 2000秋季sp，玉置浩二主演，又名《准则警察》）</li><li>爷爷当家 / ホームアローンじいさん</li><li>新郎人偶 / 花婿人形</li><li>女作家 / 女流作家</li><li>杀意使用说明书 / 杀意取扱说明书（世界奇妙物语 2010秋季sp，玉木宏、冢本高史主演）</li><li>补偿 / つぐない</li><li>光荣的证言 / 栄光の证言</li><li>本格推理周边鉴定秀 / 本格推理関连グッズ鉴定ショー</li><li>绑架电话网 / 诱拐电话网</li></ol></li><li>《恶意》（加贺恭一郎系列）</li><li>《名侦探的诅咒》&lt;名探侦の呪缚&gt;</li></ol><h3 id="1998年"><a href="#1998年" class="headerlink" title="1998年"></a>1998年</h3><ol><li>《侦探伽利略》（神探伽利略系列第1部）&lt;探侦ガリレオ&gt;</li><li>《秘密》（第52届日本推理作家协会奖、第120 届直木奖入围）</li></ol><h3 id="1999年"><a href="#1999年" class="headerlink" title="1999年"></a>1999年</h3><ol><li>《我杀了他》（加贺恭一郎系列）&lt;私が彼を杀した&gt;</li><li>《白夜行》（第122 届直木奖入围）</li></ol><h3 id="2000年"><a href="#2000年" class="headerlink" title="2000年"></a>2000年</h3><ol><li>《又一个谎言》 （加贺恭一郎系列） &lt;嘘をもうひとつだけ&gt;　刊载于推理杂志220-224期<ol><li>又一个谎言 / 嘘をもうひとつだけ</li><li>寒冷的灼热 / 冷たい灼热</li><li>第二个希望 / 第二の希望</li><li>疯狂计算 / 狂った计算</li><li>朋友的忠告 / 友の助言</li></ol></li><li>《预知梦》（神探伽利略系列第2部）&lt;予知梦&gt;（2007年拍摄日剧《神探伽利略》6-10集，福山雅治、柴崎幸主演）</li></ol><h3 id="2001年"><a href="#2001年" class="headerlink" title="2001年"></a>2001年</h3><ol><li>《单恋》&lt;片想い&gt; （第125 届直木奖入围）</li><li>《超·杀人事件》&lt;超·杀人事件　推理作家の苦悩&gt;（「2003年世界奇妙物语春季篇」拍摄其中一个单元故事&lt;超税金对策杀人事件&gt;，西村雅彦、大冢宁宁主演）<ol><li>超税金对策杀人事件 / 超税金対策杀人事件</li><li>超理科杀人事件 / 超理系杀人事件</li><li>超猜凶手小说杀人事件 / 超犯人当て小说杀人事件（问题篇·解决篇）</li><li>超高龄化社会杀人事件 / 超高齢化社会杀人事件</li><li>超预告小说杀人事件 / 超予告小说杀人事件</li><li>超长篇小说杀人事件 / 超长编小说杀人事件</li><li>魔风馆杀人事件 / 魔风馆杀人事件（超最终回·ラスト五枚）</li><li>超读书机器杀人事件 / 超読书机械杀人事件</li></ol></li><li>《圣诞阿姨》 /サンタのおばさん（絵本：絵は杉田比吕美）</li></ol><h3 id="2002年"><a href="#2002年" class="headerlink" title="2002年"></a>2002年</h3><ol><li>《湖畔》&lt;レイクサイド&gt;（2002年拍摄电影，药师丸博子、丰川悦司、役所广司主演）</li><li>《时生》&lt;トキオ&gt;（2004年拍摄日剧，樱井翔主演，剧名为「给父亲的口信」）</li><li>《绑架游戏》&lt;ゲームの名は诱拐&gt;（2003年拍摄电影、藤木直人、仲间由纪惠主演）</li></ol><h3 id="2003年"><a href="#2003年" class="headerlink" title="2003年"></a>2003年</h3><ol><li>《信》&lt;手纸&gt;（第129 届直木奖入围）（2005年拍摄电影，山田孝之、泽尻英龙华主演）</li><li>《我是非常勤》&lt;おれは非情勤&gt; （注：本书书名和「 非常勤」（中文意为兼任）同音，是创作者特别设定的双关语趣味）</li><li>《杀人之门》&lt;杀人の门&gt;</li></ol><h3 id="2004年"><a href="#2004年" class="headerlink" title="2004年"></a>2004年</h3><ol><li>《幻夜》（第131 届直木奖入围）（2010年秋季档日剧，深田恭子、冢本高史主演）</li><li>《挑战？》（散文集）&lt;ちゃれんじ&gt;（散文集）</li><li>《彷徨之刃》&lt;さまよう刃&gt;（2009年改编为电影，竹野内丰主演）</li></ol><h3 id="2005年"><a href="#2005年" class="headerlink" title="2005年"></a>2005年</h3><ol><li>《黑笑小说》<ol><li>又一次助跑 / もうひとつの助走</li><li>线香花火 / 线香花火</li><li>过去的人 / 过去の人</li><li>评审会 / 选考会</li><li>巨乳妄想综合征 / 巨乳妄想症候群</li><li>无能药 / インポグラ</li><li>显微眼 / みえすぎ</li><li>钟情喷雾 / モテモテ·スプレー</li><li>灰姑娘白夜行 / シンデレラ白夜行</li><li>跟踪狂入门 / ストーカー入门</li><li>临界家族 / 临界家族</li><li>不笑的人 / 笑わない男</li><li>奇迹之照 / 奇迹の一枚</li></ol></li><li>《嫌疑犯X的献身》（神探伽利略系列第3部）&lt;容疑者Xの献身&gt;</li><li>《科学》（散文集）&lt;さいえんす&gt;</li></ol><h3 id="2006年"><a href="#2006年" class="headerlink" title="2006年"></a>2006年</h3><ol><li>《梦回都灵》（散文集）&lt;梦はトリノをかけめぐる&gt;</li><li>《红手指》（加贺恭一郎系列） &lt;赤い指&gt;（2011年冬季档日剧SP，阿部宽、黑木明纱主演）</li><li>《使命与心的极限》&lt;使命と魂のリミット&gt; （2011秋季档日剧SP，石原里美、速水重道主演）</li></ol><h3 id="2007年"><a href="#2007年" class="headerlink" title="2007年"></a>2007年</h3><ol><li>《也许是最后的寒暄》&lt;たぶん最後の御挨拶&gt;（散文集）</li><li>《黎明之街》&lt;夜明けの街で&gt;（2011年拍摄电影，深田恭子、岸谷五朗主演）</li><li>《濒死之眼》&lt;ダイイング·アイイ&gt;</li></ol><h3 id="2008年"><a href="#2008年" class="headerlink" title="2008年"></a>2008年</h3><ol><li>《流星之绊》&lt;流星の绊&gt;（2008年拍摄日剧，二宫和也、锦户亮、户田惠梨香主演）</li><li>《伽利略的苦恼》（神探伽利略系列第4部）&lt;ガリレオの苦悩&gt;</li><li>《圣女的救济》（神探伽利略系列第5部）&lt;圣女の救済&gt;</li></ol><h3 id="2009年"><a href="#2009年" class="headerlink" title="2009年"></a>2009年</h3><ol><li>《悖论13》台版译《异变13秒》&lt;パラドックス13&gt;</li><li>《新参者》（加贺恭一郎系列）（2010年拍摄日剧，阿部宽、黑木明纱主演）</li><li>《美丽的凶器》</li></ol><h3 id="2010年"><a href="#2010年" class="headerlink" title="2010年"></a>2010年</h3><ol><li>《布谷鸟的蛋是谁的》&lt;カッコウの卵は谁のもの&gt; 在《小说宝石》上连载时原题《フェイク》</li><li>《白金数据》&lt;プラチナデータ&gt;（2012年拍摄电影，二宫和也主演）</li><li>《白银杰克》&lt; 白银ジャック&gt;</li></ol><h3 id="2011年"><a href="#2011年" class="headerlink" title="2011年"></a>2011年</h3><ol><li>《你旁边是谁》&lt;あの顷の谁か&gt;<ol><li>全是字谜 / シャレードがいっぱい（2012年日剧《东野圭吾推理系列》第六集，长泽雅美主演）</li><li>Reiko和玲子 / 玲子とレイコ（2012年日剧《东野圭吾推理系列》第四集，观月阿丽莎主演）</li><li>再生魔术之女 / 再生魔术の女 （2012年日剧《东野圭吾推理系列》第十一集，铃木京香主演）</li><li>再见，“爸爸” / さよなら『お父さん』</li><li>名侦探退场 / 名探侦退场</li><li>母老虎 / 女も虎も</li><li>好困，我不想死 / りたい死にたくない</li><li>20年的约定 / 二十年目の约束（2012年日剧《东野圭吾推理系列》第十集，筱原凉子主演）</li></ol></li><li>《麒麟之翼》（加贺恭一郎系列）&lt;麒麟の翼&gt;（加贺恭一郎系列）</li><li>《牛奶箱的回答》&lt;回答は牛乳箱に&gt;（短篇 出自《小说 野性时代》 第89号）</li><li>《听心》&lt;心聴&gt;（短篇 出自《オール读物》2011年04月号）</li><li>《盛夏的方程式》（神探伽利略系列第6部）&lt;真夏の方程式&gt;</li><li>《假面舞馆》&lt;マスカレード·ホテル&gt; 暂定2012年9月9日出版</li><li>《歪笑小说》</li></ol><h3 id="2012年"><a href="#2012年" class="headerlink" title="2012年"></a>2012年</h3><ol><li>《虚像的小丑》（神探伽利略系列第7部）&lt;虚像の道化师 ガリレオ 7&gt;</li><li>《杂货店的奇迹》</li><li>《那个时候的谁》</li><li>《禁断的魔术》（神探伽利略系列第8部）&lt;禁断の魔术 ガリレオ8&gt;</li></ol><h3 id="2013年"><a href="#2013年" class="headerlink" title="2013年"></a>2013年</h3><ol><li>《梦幻花》（むげんばな）</li></ol>]]></content>
     
@@ -2111,164 +2471,6 @@
       <category term="ajax" scheme="http://blog.ochukai.me/tags/ajax/"/>
     
       <category term="image upload" scheme="http://blog.ochukai.me/tags/image-upload/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>菜单下面的小精灵</title>
-    <link href="http://blog.ochukai.me/menu-with-moved-elfish/"/>
-    <id>http://blog.ochukai.me/menu-with-moved-elfish/</id>
-    <published>2016-03-21T08:05:51.000Z</published>
-    <updated>2016-11-22T01:40:09.751Z</updated>
-    
-    <content type="html"><![CDATA[<p>有些网站的导航下面会有一到杠，鼠标在各个导航之间移动的时候，这一道杠也会跟着动，很好看，就像这个</p><p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p><script async src="//assets.codepen.io/assets/embed/ei.js"></script><p>我把她叫做小精灵。</p><hr><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>实现这个其实不难，当鼠标移动到某一个菜单上面时，小精灵滑入（至于方向，如果鼠标从右边进入菜单，那就从右向左滑），然后当鼠标移出时，小精灵跟着也移出菜单， 同时如果鼠标恰好移进了另一个菜单，下一个菜单的进入动画也开始播放，连续起来的话就像是小精灵跟着过来了。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p>菜单的话当然是用 ul 来实现了<br></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav"</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>我的<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>导航栏<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>非常<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛逼<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>
-<span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>
-</pre></td></tr></table></figure><p></p><h3 id="小精灵"><a href="#小精灵" class="headerlink" title="小精灵"></a>小精灵</h3><p>这个小精灵该怎么实现呢, 开始时我打算用 <code>border</code> 来实现，试了一下之后才发现，并不理想，因为当鼠标 hover 时，border 变化，内容也会随着动，很丑。</p><p>于是我就想用 <code>after</code> 这个伪元素来实现，因为之前并没用过，感觉蛮新鲜的。</p><p>使用 <code>after</code> 最重要的地方也是前提，就是 <code>content: &#39;&#39;</code>，如果没有这一句，不管怎么修饰 <code>after</code> 的样式，都是徒劳。</p><p>写完之后的样子大概是这样<br></p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-</pre></td><td class="code"><pre><span class="line">&gt; <span class="selector-tag">li</span> &#123;</span>
-<span class="line">  <span class="attribute">float</span>:left;</span>
-<span class="line">  <span class="attribute">display</span>: inline-block;</span>
-<span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">20px</span>;</span>
-<span class="line">  <span class="attribute">cursor</span>: pointer;</span>
-<span class="line">  <span class="attribute">position</span>: relative;</span>
-<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
-<span class="line"></span>
-<span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:after</span> &#123;</span>
-<span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span>
-<span class="line">    <span class="attribute">height</span>: <span class="number">3px</span>;</span>
-<span class="line">    <span class="attribute">position</span>: absolute;</span>
-<span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p></p><h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><p>根据上面的原理，如果想实现的话，大概只需要写四个动画</p><ul><li>小精灵从右向左进入菜单</li><li>小精灵从右向左移出菜单</li><li>小精灵从左向右进入菜单</li><li>小精灵从左向右移出菜单</li></ul><p>我打算使用 <code>width</code> 的变化来模拟小精灵的滑动效果，假如是从左向右， css 就像下面这样：</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-</pre></td><td class="code"><pre><span class="line">@keyframes slide-in &#123;</span>
-<span class="line">  from &#123; width: 0; &#125;</span>
-<span class="line">  to &#123; width: 100%; &#125;</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">.slide-in-from-left:after,</span>
-<span class="line">.slide-out-from-left:after &#123;</span>
-<span class="line">  left: 0; // 初始位置在左边，宽度为 0，宽度逐渐变大</span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line">.slide-in-from-left:after,</span>
-<span class="line">.slide-in-from-right:after &#123;</span>
-<span class="line">  animation-name: slide-in;</span>
-<span class="line">  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><p>css 写完了，不过我要识别鼠标进入或离开的方向，也就是要判断鼠标是从左边进入还是从右边进入，是从左边移出还是从右边移出。</p><p>于是， 要写一些 js 来判断</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-</pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">var</span> classList = [</span>
-<span class="line">        <span class="string">'slide-in-from-left'</span>,</span>
-<span class="line">        <span class="string">'slide-in-from-right'</span>,</span>
-<span class="line">        <span class="string">'slide-out-from-right'</span>,</span>
-<span class="line">        <span class="string">'slide-out-from-left'</span></span>
-<span class="line">      ].join(<span class="string">' '</span>);</span>
-<span class="line"></span>
-<span class="line">  $(<span class="string">'ul.nav'</span>)</span>
-<span class="line">    .on(<span class="string">'mouseenter'</span>, <span class="string">'li'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span>
-<span class="line">      <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</span>
-<span class="line">      <span class="keyword">var</span> width = $<span class="keyword">this</span>.outerWidth();</span>
-<span class="line">      <span class="keyword">var</span> xx = e.offsetX;</span>
-<span class="line">      <span class="keyword">var</span> className = (xx &lt; (width / <span class="number">2</span>))</span>
-<span class="line">                    ? <span class="string">'slide-in-from-left'</span></span>
-<span class="line">                    : <span class="string">'slide-in-from-right'</span>;</span>
-<span class="line"></span>
-<span class="line">      $<span class="keyword">this</span>.removeClass(classList).addClass(className);      </span>
-<span class="line">    &#125;)</span>
-<span class="line">    .on(<span class="string">'mouseleave'</span>, <span class="string">'li'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span>
-<span class="line">      <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</span>
-<span class="line">      <span class="keyword">var</span> width = $<span class="keyword">this</span>.outerWidth();</span>
-<span class="line">      <span class="keyword">var</span> xx = e.offsetX;</span>
-<span class="line">      <span class="keyword">var</span> className = (xx &lt; (width / <span class="number">2</span>))</span>
-<span class="line">                    ? <span class="string">'slide-out-from-left'</span></span>
-<span class="line">                    : <span class="string">'slide-out-from-right'</span>;</span>
-<span class="line">      $<span class="keyword">this</span>.removeClass(classList).addClass(className);</span>
-<span class="line">    &#125;);</span>
-<span class="line"></span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure><p>这样就写完了，再把开头的例子放上吧。</p><p></p><p data-height="268" data-theme-id="0" data-slug-hash="PNbGZQ" data-default-tab="result" data-user="ochukai" class="codepen">See the Pen <a href="http://codepen.io/ochukai/pen/PNbGZQ/" target="_blank" rel="external">ooo-nav</a> by Oliver (<a href="http://codepen.io/ochukai" target="_blank" rel="external">@ochukai</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p><script async src="//assets.codepen.io/assets/embed/ei.js"></script><p>谢谢。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;有些网站的导航下面会有一到杠，鼠标在各个导航之间移动的时候，这一道杠也会跟着动，很好看，就像这个&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;PNbGZQ&quot; data-default-ta
-    
-    </summary>
-    
-      <category term="CSS Animation" scheme="http://blog.ochukai.me/categories/css-animation/"/>
-    
-      <category term="CSS" scheme="http://blog.ochukai.me/categories/css-animation/css/"/>
-    
-    
-      <category term="nav" scheme="http://blog.ochukai.me/tags/nav/"/>
     
   </entry>
   
