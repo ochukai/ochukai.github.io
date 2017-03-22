@@ -436,7 +436,7 @@
     <link href="http://blog.ochukai.me/window-focus-wallpaper/"/>
     <id>http://blog.ochukai.me/window-focus-wallpaper/</id>
     <published>2017-02-17T01:29:58.000Z</published>
-    <updated>2017-02-17T01:43:49.105Z</updated>
+    <updated>2017-03-22T07:02:46.868Z</updated>
     
     <content type="html"><![CDATA[<p>一直觉得 window 聚焦的壁纸很好看~<br>今天终于找到了壁纸存放的路径，就是下面这个</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 </pre></td><td class="code"><pre><span class="line">%localappdata%\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</span>
