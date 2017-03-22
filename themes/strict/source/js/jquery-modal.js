@@ -139,7 +139,8 @@
         'border': '1px solid #399c9c'
       });
 
-      elm.fadeIn(300);
+      elm.fadeIn();
+      // elm.slideUp();
 
       if (option.overlay) {
         addOverlay();
@@ -191,7 +192,7 @@
       if (elm.data('iw-size')) {
         //close modal and unbind all event associated with it.
         var imgId = elm.attr('closeImg');
-        elm.fadeOut(100);
+        elm.fadeOut();
         if (imgId) {
           elm.removeAttr('closeImg');
           $('#' + imgId).fadeOut().remove();
@@ -206,9 +207,11 @@
         elm.data('closeFun').call(this);
 
         //restore modal box
-        elm.removeData('iw-size').removeData('closeFun')
-        //remove class
-        .removeClass('iw-modalBox');
+        elm
+          .removeData('iw-size')
+          .removeData('closeFun')
+          //remove class
+          .removeClass('iw-modalBox');
 
         //if all modal box is closed unbinde all events.
         if ($('.iw-modalBox').length === 0) {
