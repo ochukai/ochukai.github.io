@@ -31,7 +31,12 @@
   margin-top: 30px
   border: 1px solid $border-color
   background-color: $content-bg-color
-  opacity: 0
+  opacity: 0    
+  transition: all .3s;
+
+  &:hover
+    box-shadow: 0 1px 6px rgba(0,0,0,.2)
+    border-color: transparent
 
 .post__head
   margin: $margin-left-right
@@ -116,8 +121,8 @@
   background-color: $background-color
 
 .post__foot-link
-  padding: 10px
-  color: #999999
+  padding: 10px 15px 10px 0
+  color: #3CB371
   font-size-rem(14)
 
 .post__tag__item
