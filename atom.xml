@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.ochukai.me/"/>
+  <link href="http://ochukai.me/"/>
   <updated>2017-03-22T04:10:39.021Z</updated>
-  <id>http://blog.ochukai.me/</id>
+  <id>http://ochukai.me/</id>
   
   <author>
     <name>Oliver Wang</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>详解 Promise</title>
-    <link href="http://blog.ochukai.me/promise-in-action/"/>
-    <id>http://blog.ochukai.me/promise-in-action/</id>
+    <link href="http://ochukai.me/promise-in-action/"/>
+    <id>http://ochukai.me/promise-in-action/</id>
     <published>2017-03-08T08:54:54.000Z</published>
     <updated>2017-03-22T04:10:39.021Z</updated>
     
@@ -364,21 +364,21 @@
     
     </summary>
     
-      <category term="Promise" scheme="http://blog.ochukai.me/categories/promise/"/>
+      <category term="Promise" scheme="http://ochukai.me/categories/promise/"/>
     
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/promise/javascript/"/>
+      <category term="JavaScript" scheme="http://ochukai.me/categories/promise/javascript/"/>
     
     
-      <category term="promise" scheme="http://blog.ochukai.me/tags/promise/"/>
+      <category term="promise" scheme="http://ochukai.me/tags/promise/"/>
     
-      <category term="setTimeout" scheme="http://blog.ochukai.me/tags/settimeout/"/>
+      <category term="setTimeout" scheme="http://ochukai.me/tags/settimeout/"/>
     
   </entry>
   
   <entry>
     <title>柏拉图式的爱情</title>
-    <link href="http://blog.ochukai.me/platonism-love/"/>
-    <id>http://blog.ochukai.me/platonism-love/</id>
+    <link href="http://ochukai.me/platonism-love/"/>
+    <id>http://ochukai.me/platonism-love/</id>
     <published>2017-02-24T07:00:28.000Z</published>
     <updated>2017-02-24T07:04:22.189Z</updated>
     
@@ -390,19 +390,19 @@
     
     </summary>
     
-      <category term="柏拉图式的爱情" scheme="http://blog.ochukai.me/categories/%E6%9F%8F%E6%8B%89%E5%9B%BE%E5%BC%8F%E7%9A%84%E7%88%B1%E6%83%85/"/>
+      <category term="柏拉图式的爱情" scheme="http://ochukai.me/categories/%E6%9F%8F%E6%8B%89%E5%9B%BE%E5%BC%8F%E7%9A%84%E7%88%B1%E6%83%85/"/>
     
     
-      <category term="柏拉图" scheme="http://blog.ochukai.me/tags/%E6%9F%8F%E6%8B%89%E5%9B%BE/"/>
+      <category term="柏拉图" scheme="http://ochukai.me/tags/%E6%9F%8F%E6%8B%89%E5%9B%BE/"/>
     
-      <category term="爱情" scheme="http://blog.ochukai.me/tags/%E7%88%B1%E6%83%85/"/>
+      <category term="爱情" scheme="http://ochukai.me/tags/%E7%88%B1%E6%83%85/"/>
     
   </entry>
   
   <entry>
     <title>(**) 的 IE 👽</title>
-    <link href="http://blog.ochukai.me/ie-css-hack/"/>
-    <id>http://blog.ochukai.me/ie-css-hack/</id>
+    <link href="http://ochukai.me/ie-css-hack/"/>
+    <id>http://ochukai.me/ie-css-hack/</id>
     <published>2017-02-17T08:17:14.000Z</published>
     <updated>2017-02-17T08:40:31.600Z</updated>
     
@@ -422,19 +422,19 @@
     
     </summary>
     
-      <category term="IE" scheme="http://blog.ochukai.me/categories/ie/"/>
+      <category term="IE" scheme="http://ochukai.me/categories/ie/"/>
     
     
-      <category term="ie" scheme="http://blog.ochukai.me/tags/ie/"/>
+      <category term="ie" scheme="http://ochukai.me/tags/ie/"/>
     
-      <category term="css hack" scheme="http://blog.ochukai.me/tags/css-hack/"/>
+      <category term="css hack" scheme="http://ochukai.me/tags/css-hack/"/>
     
   </entry>
   
   <entry>
     <title>下载 window 聚焦壁纸 😜</title>
-    <link href="http://blog.ochukai.me/window-focus-wallpaper/"/>
-    <id>http://blog.ochukai.me/window-focus-wallpaper/</id>
+    <link href="http://ochukai.me/window-focus-wallpaper/"/>
+    <id>http://ochukai.me/window-focus-wallpaper/</id>
     <published>2017-02-17T01:29:58.000Z</published>
     <updated>2017-03-22T07:02:46.868Z</updated>
     
@@ -448,19 +448,19 @@
     
     </summary>
     
-      <category term="Window" scheme="http://blog.ochukai.me/categories/window/"/>
+      <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="wallpaper" scheme="http://blog.ochukai.me/tags/wallpaper/"/>
+      <category term="wallpaper" scheme="http://ochukai.me/tags/wallpaper/"/>
     
-      <category term="window" scheme="http://blog.ochukai.me/tags/window/"/>
+      <category term="window" scheme="http://ochukai.me/tags/window/"/>
     
   </entry>
   
   <entry>
     <title>更换 window 命令行字体</title>
-    <link href="http://blog.ochukai.me/change-window-terminal-terminal-font/"/>
-    <id>http://blog.ochukai.me/change-window-terminal-terminal-font/</id>
+    <link href="http://ochukai.me/change-window-terminal-terminal-font/"/>
+    <id>http://ochukai.me/change-window-terminal-terminal-font/</id>
     <published>2017-02-15T02:16:08.000Z</published>
     <updated>2017-02-15T02:30:06.016Z</updated>
     
@@ -476,19 +476,19 @@
     
     </summary>
     
-      <category term="Window" scheme="http://blog.ochukai.me/categories/window/"/>
+      <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="font" scheme="http://blog.ochukai.me/tags/font/"/>
+      <category term="font" scheme="http://ochukai.me/tags/font/"/>
     
-      <category term="terminal" scheme="http://blog.ochukai.me/tags/terminal/"/>
+      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
     
   </entry>
   
   <entry>
     <title>稍微总结一下 dva 😜</title>
-    <link href="http://blog.ochukai.me/dva-in-action/"/>
-    <id>http://blog.ochukai.me/dva-in-action/</id>
+    <link href="http://ochukai.me/dva-in-action/"/>
+    <id>http://ochukai.me/dva-in-action/</id>
     <published>2017-01-23T01:28:20.000Z</published>
     <updated>2017-01-24T06:18:01.627Z</updated>
     
@@ -640,23 +640,23 @@
     
     </summary>
     
-      <category term="React" scheme="http://blog.ochukai.me/categories/react/"/>
+      <category term="React" scheme="http://ochukai.me/categories/react/"/>
     
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/react/javascript/"/>
+      <category term="JavaScript" scheme="http://ochukai.me/categories/react/javascript/"/>
     
     
-      <category term="dva" scheme="http://blog.ochukai.me/tags/dva/"/>
+      <category term="dva" scheme="http://ochukai.me/tags/dva/"/>
     
-      <category term="react" scheme="http://blog.ochukai.me/tags/react/"/>
+      <category term="react" scheme="http://ochukai.me/tags/react/"/>
     
-      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+      <category term="js" scheme="http://ochukai.me/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>删除 .svn 文件夹</title>
-    <link href="http://blog.ochukai.me/remove-svn-folder/"/>
-    <id>http://blog.ochukai.me/remove-svn-folder/</id>
+    <link href="http://ochukai.me/remove-svn-folder/"/>
+    <id>http://ochukai.me/remove-svn-folder/</id>
     <published>2017-01-22T02:09:47.000Z</published>
     <updated>2017-01-22T02:30:05.297Z</updated>
     
@@ -674,17 +674,17 @@
     
     </summary>
     
-      <category term="SVN" scheme="http://blog.ochukai.me/categories/svn/"/>
+      <category term="SVN" scheme="http://ochukai.me/categories/svn/"/>
     
     
-      <category term="svn" scheme="http://blog.ochukai.me/tags/svn/"/>
+      <category term="svn" scheme="http://ochukai.me/tags/svn/"/>
     
   </entry>
   
   <entry>
     <title>Textarea 的高度自动增长</title>
-    <link href="http://blog.ochukai.me/textarea-height-auto-increase/"/>
-    <id>http://blog.ochukai.me/textarea-height-auto-increase/</id>
+    <link href="http://ochukai.me/textarea-height-auto-increase/"/>
+    <id>http://ochukai.me/textarea-height-auto-increase/</id>
     <published>2017-01-20T03:48:10.000Z</published>
     <updated>2017-01-20T06:41:03.831Z</updated>
     
@@ -774,17 +774,17 @@
     
     </summary>
     
-      <category term="HTML" scheme="http://blog.ochukai.me/categories/html/"/>
+      <category term="HTML" scheme="http://ochukai.me/categories/html/"/>
     
     
-      <category term="textarea" scheme="http://blog.ochukai.me/tags/textarea/"/>
+      <category term="textarea" scheme="http://ochukai.me/tags/textarea/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript 绑定 this</title>
-    <link href="http://blog.ochukai.me/js-bind-this/"/>
-    <id>http://blog.ochukai.me/js-bind-this/</id>
+    <link href="http://ochukai.me/js-bind-this/"/>
+    <id>http://ochukai.me/js-bind-this/</id>
     <published>2016-12-30T02:28:20.000Z</published>
     <updated>2016-12-30T03:55:16.592Z</updated>
     
@@ -926,19 +926,19 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+      <category term="JavaScript" scheme="http://ochukai.me/categories/javascript/"/>
     
     
-      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+      <category term="js" scheme="http://ochukai.me/tags/js/"/>
     
-      <category term="this" scheme="http://blog.ochukai.me/tags/this/"/>
+      <category term="this" scheme="http://ochukai.me/tags/this/"/>
     
   </entry>
   
   <entry>
     <title>修改 WebStorm 里面丑陋的 Markdown 样式</title>
-    <link href="http://blog.ochukai.me/correct-ugly-markdown-css-in-webstorm/"/>
-    <id>http://blog.ochukai.me/correct-ugly-markdown-css-in-webstorm/</id>
+    <link href="http://ochukai.me/correct-ugly-markdown-css-in-webstorm/"/>
+    <id>http://ochukai.me/correct-ugly-markdown-css-in-webstorm/</id>
     <published>2016-12-23T07:27:27.000Z</published>
     <updated>2017-02-15T02:14:41.000Z</updated>
     
@@ -1756,19 +1756,19 @@
     
     </summary>
     
-      <category term="WebStorm" scheme="http://blog.ochukai.me/categories/webstorm/"/>
+      <category term="WebStorm" scheme="http://ochukai.me/categories/webstorm/"/>
     
     
-      <category term="markdown" scheme="http://blog.ochukai.me/tags/markdown/"/>
+      <category term="markdown" scheme="http://ochukai.me/tags/markdown/"/>
     
-      <category term="webstrom" scheme="http://blog.ochukai.me/tags/webstrom/"/>
+      <category term="webstrom" scheme="http://ochukai.me/tags/webstrom/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript 中的 Decorator</title>
-    <link href="http://blog.ochukai.me/decorator-in-js/"/>
-    <id>http://blog.ochukai.me/decorator-in-js/</id>
+    <link href="http://ochukai.me/decorator-in-js/"/>
+    <id>http://ochukai.me/decorator-in-js/</id>
     <published>2016-12-21T01:33:38.000Z</published>
     <updated>2017-01-24T06:24:27.531Z</updated>
     
@@ -1865,17 +1865,17 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+      <category term="JavaScript" scheme="http://ochukai.me/categories/javascript/"/>
     
     
-      <category term="decorator" scheme="http://blog.ochukai.me/tags/decorator/"/>
+      <category term="decorator" scheme="http://ochukai.me/tags/decorator/"/>
     
   </entry>
   
   <entry>
     <title>使用命令行更新 Win10 的密钥</title>
-    <link href="http://blog.ochukai.me/use-terminal-to-update-win10-key/"/>
-    <id>http://blog.ochukai.me/use-terminal-to-update-win10-key/</id>
+    <link href="http://ochukai.me/use-terminal-to-update-win10-key/"/>
+    <id>http://ochukai.me/use-terminal-to-update-win10-key/</id>
     <published>2016-12-16T05:02:13.000Z</published>
     <updated>2016-12-16T06:58:09.484Z</updated>
     
@@ -1897,17 +1897,17 @@
     
     </summary>
     
-      <category term="Window" scheme="http://blog.ochukai.me/categories/window/"/>
+      <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="win10" scheme="http://blog.ochukai.me/tags/win10/"/>
+      <category term="win10" scheme="http://ochukai.me/tags/win10/"/>
     
   </entry>
   
   <entry>
     <title>webpack-dev-server 在 webstorm 中失效的问题</title>
-    <link href="http://blog.ochukai.me/webpack-dev-server-vs-webstorm/"/>
-    <id>http://blog.ochukai.me/webpack-dev-server-vs-webstorm/</id>
+    <link href="http://ochukai.me/webpack-dev-server-vs-webstorm/"/>
+    <id>http://ochukai.me/webpack-dev-server-vs-webstorm/</id>
     <published>2016-12-08T11:32:09.000Z</published>
     <updated>2017-01-24T06:24:24.860Z</updated>
     
@@ -1919,21 +1919,21 @@
     
     </summary>
     
-      <category term="WebStorm" scheme="http://blog.ochukai.me/categories/webstorm/"/>
+      <category term="WebStorm" scheme="http://ochukai.me/categories/webstorm/"/>
     
     
-      <category term="webpack-dev-server" scheme="http://blog.ochukai.me/tags/webpack-dev-server/"/>
+      <category term="webpack-dev-server" scheme="http://ochukai.me/tags/webpack-dev-server/"/>
     
-      <category term="webpack" scheme="http://blog.ochukai.me/tags/webpack/"/>
+      <category term="webpack" scheme="http://ochukai.me/tags/webpack/"/>
     
-      <category term="webstorm" scheme="http://blog.ochukai.me/tags/webstorm/"/>
+      <category term="webstorm" scheme="http://ochukai.me/tags/webstorm/"/>
     
   </entry>
   
   <entry>
     <title>在 window 里面杀死某个进程</title>
-    <link href="http://blog.ochukai.me/kill-process-in-window/"/>
-    <id>http://blog.ochukai.me/kill-process-in-window/</id>
+    <link href="http://ochukai.me/kill-process-in-window/"/>
+    <id>http://ochukai.me/kill-process-in-window/</id>
     <published>2016-11-22T01:49:57.000Z</published>
     <updated>2016-12-08T11:50:20.425Z</updated>
     
@@ -1997,17 +1997,17 @@
     
     </summary>
     
-      <category term="Window" scheme="http://blog.ochukai.me/categories/window/"/>
+      <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="端口占用" scheme="http://blog.ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/"/>
+      <category term="端口占用" scheme="http://ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/"/>
     
   </entry>
   
   <entry>
     <title>Javascript 中的 splice 方法</title>
-    <link href="http://blog.ochukai.me/splice-in-javascript/"/>
-    <id>http://blog.ochukai.me/splice-in-javascript/</id>
+    <link href="http://ochukai.me/splice-in-javascript/"/>
+    <id>http://ochukai.me/splice-in-javascript/</id>
     <published>2016-11-22T01:40:09.766Z</published>
     <updated>2017-01-04T01:50:26.000Z</updated>
     
@@ -2059,23 +2059,23 @@
     
     </summary>
     
-      <category term="javascript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+      <category term="javascript" scheme="http://ochukai.me/categories/javascript/"/>
     
-      <category term="[object Object]" scheme="http://blog.ochukai.me/categories/javascript/object-object/"/>
+      <category term="[object Object]" scheme="http://ochukai.me/categories/javascript/object-object/"/>
     
     
-      <category term="js" scheme="http://blog.ochukai.me/tags/js/"/>
+      <category term="js" scheme="http://ochukai.me/tags/js/"/>
     
-      <category term="splice" scheme="http://blog.ochukai.me/tags/splice/"/>
+      <category term="splice" scheme="http://ochukai.me/tags/splice/"/>
     
-      <category term="array" scheme="http://blog.ochukai.me/tags/array/"/>
+      <category term="array" scheme="http://ochukai.me/tags/array/"/>
     
   </entry>
   
   <entry>
     <title>东野圭吾(Higashino Keigo)的全集</title>
-    <link href="http://blog.ochukai.me/higashino-keigo/"/>
-    <id>http://blog.ochukai.me/higashino-keigo/</id>
+    <link href="http://ochukai.me/higashino-keigo/"/>
+    <id>http://ochukai.me/higashino-keigo/</id>
     <published>2016-07-26T08:38:44.000Z</published>
     <updated>2017-03-09T03:19:41.130Z</updated>
     
@@ -2087,23 +2087,23 @@
     
     </summary>
     
-      <category term="文学" scheme="http://blog.ochukai.me/categories/%E6%96%87%E5%AD%A6/"/>
+      <category term="文学" scheme="http://ochukai.me/categories/%E6%96%87%E5%AD%A6/"/>
     
     
-      <category term="文学" scheme="http://blog.ochukai.me/tags/%E6%96%87%E5%AD%A6/"/>
+      <category term="文学" scheme="http://ochukai.me/tags/%E6%96%87%E5%AD%A6/"/>
     
-      <category term="日本文学" scheme="http://blog.ochukai.me/tags/%E6%97%A5%E6%9C%AC%E6%96%87%E5%AD%A6/"/>
+      <category term="日本文学" scheme="http://ochukai.me/tags/%E6%97%A5%E6%9C%AC%E6%96%87%E5%AD%A6/"/>
     
-      <category term="东野圭吾" scheme="http://blog.ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE/"/>
+      <category term="东野圭吾" scheme="http://ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE/"/>
     
-      <category term="东野圭吾作品全集" scheme="http://blog.ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE%E4%BD%9C%E5%93%81%E5%85%A8%E9%9B%86/"/>
+      <category term="东野圭吾作品全集" scheme="http://ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE%E4%BD%9C%E5%93%81%E5%85%A8%E9%9B%86/"/>
     
   </entry>
   
   <entry>
     <title>Splice 和 Slice 的区别</title>
-    <link href="http://blog.ochukai.me/ths-difference-between-splice-and-slice/"/>
-    <id>http://blog.ochukai.me/ths-difference-between-splice-and-slice/</id>
+    <link href="http://ochukai.me/ths-difference-between-splice-and-slice/"/>
+    <id>http://ochukai.me/ths-difference-between-splice-and-slice/</id>
     <published>2016-07-11T02:52:16.000Z</published>
     <updated>2016-11-22T01:40:09.766Z</updated>
     
@@ -2135,19 +2135,19 @@
     
     </summary>
     
-      <category term="Javascript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+      <category term="Javascript" scheme="http://ochukai.me/categories/javascript/"/>
     
     
-      <category term="splice" scheme="http://blog.ochukai.me/tags/splice/"/>
+      <category term="splice" scheme="http://ochukai.me/tags/splice/"/>
     
-      <category term="slice" scheme="http://blog.ochukai.me/tags/slice/"/>
+      <category term="slice" scheme="http://ochukai.me/tags/slice/"/>
     
   </entry>
   
   <entry>
     <title>上层滚动 下层不摇滚</title>
-    <link href="http://blog.ochukai.me/prevent-deep-div-scroll-with-the-top-element/"/>
-    <id>http://blog.ochukai.me/prevent-deep-div-scroll-with-the-top-element/</id>
+    <link href="http://ochukai.me/prevent-deep-div-scroll-with-the-top-element/"/>
+    <id>http://ochukai.me/prevent-deep-div-scroll-with-the-top-element/</id>
     <published>2016-06-23T03:12:27.000Z</published>
     <updated>2016-11-22T01:40:09.751Z</updated>
     
@@ -2188,8 +2188,8 @@
   
   <entry>
     <title>Zepto 插件写法</title>
-    <link href="http://blog.ochukai.me/zepto-plugin/"/>
-    <id>http://blog.ochukai.me/zepto-plugin/</id>
+    <link href="http://ochukai.me/zepto-plugin/"/>
+    <id>http://ochukai.me/zepto-plugin/</id>
     <published>2016-06-20T06:32:33.000Z</published>
     <updated>2016-11-22T01:40:09.782Z</updated>
     
@@ -2321,17 +2321,17 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/javascript/"/>
+      <category term="JavaScript" scheme="http://ochukai.me/categories/javascript/"/>
     
     
-      <category term="zepto" scheme="http://blog.ochukai.me/tags/zepto/"/>
+      <category term="zepto" scheme="http://ochukai.me/tags/zepto/"/>
     
   </entry>
   
   <entry>
     <title>使用 formData 提交表单和上传图片</title>
-    <link href="http://blog.ochukai.me/formdata-in-action/"/>
-    <id>http://blog.ochukai.me/formdata-in-action/</id>
+    <link href="http://ochukai.me/formdata-in-action/"/>
+    <id>http://ochukai.me/formdata-in-action/</id>
     <published>2016-04-11T07:34:57.000Z</published>
     <updated>2016-11-22T01:40:09.735Z</updated>
     
@@ -2461,16 +2461,16 @@
     
     </summary>
     
-      <category term="form" scheme="http://blog.ochukai.me/categories/form/"/>
+      <category term="form" scheme="http://ochukai.me/categories/form/"/>
     
-      <category term="JavaScript" scheme="http://blog.ochukai.me/categories/form/javascript/"/>
+      <category term="JavaScript" scheme="http://ochukai.me/categories/form/javascript/"/>
     
     
-      <category term="formData" scheme="http://blog.ochukai.me/tags/formdata/"/>
+      <category term="formData" scheme="http://ochukai.me/tags/formdata/"/>
     
-      <category term="ajax" scheme="http://blog.ochukai.me/tags/ajax/"/>
+      <category term="ajax" scheme="http://ochukai.me/tags/ajax/"/>
     
-      <category term="image upload" scheme="http://blog.ochukai.me/tags/image-upload/"/>
+      <category term="image upload" scheme="http://ochukai.me/tags/image-upload/"/>
     
   </entry>
   
