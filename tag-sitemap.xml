@@ -58,13 +58,6 @@
     </url>
 
     <url>
-        <loc>http://ochukai.me/tags/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/</loc>
-        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://ochukai.me/tags/formdata/</loc>
         <lastmod>2016-11-22T01:40:09.735Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -80,6 +73,13 @@
 
     <url>
         <loc>http://ochukai.me/tags/image-upload/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/</loc>
         <lastmod>2016-11-22T01:40:09.735Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
