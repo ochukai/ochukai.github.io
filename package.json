@@ -12,6 +12,7 @@
   "dependencies": {
     "hexo": "^3.2.0",
     "hexo-all-minifier": "0.0.14",
+    "hexo-baidu-url-submit": "0.0.5",
     "hexo-cli-extras": "^1.0.4",
     "hexo-deployer-git": "^0.2.0",
     "hexo-featured-image": "^0.2.0",
@@ -22,11 +23,12 @@
     "hexo-generator-index": "^0.2.0",
     "hexo-generator-json-content": "^3.0.1",
     "hexo-generator-seo-friendly-sitemap": "0.0.20",
-    "hexo-generator-sitemap": "^1.0.1",
+    "hexo-generator-sitemap": "*",
     "hexo-generator-tag": "^0.2.0",
+    "hexo-helper-live2d": "^1.0.5",
     "hexo-hey": "^0.4.1",
     "hexo-renderer-ejs": "*",
-    "hexo-renderer-jade": "^0.3.0",
+    "hexo-renderer-jade": "*",
     "hexo-renderer-marked": "*",
     "hexo-renderer-stylus": "*",
     "hexo-server": "^0.2.0"

@@ -1,8 +1,15 @@
 meta(charset='utf-8')
 meta(http-equiv='X-UA-Compatible', content='IE=edge')
 
+if config.author
+  meta(name='author', content = config.author)
+
+if config.keywords
+  meta(name='keywords', content = config.keywords)
+
 if config.description
-  meta(name='description', content = config.description)
+  meta(name='description', conauthortent = config.description)
+
 meta(name='viewport', content='width=device-width, initial-scale=1')
 
 if theme.rss
@@ -17,3 +24,9 @@ block head
 
 script(src='/js/jquery-3.1.1.min.js')
 script(src='/js/jquery-modal.js')
+
+<!-- Hotjar Tracking Code for ochukai.me -->
+
+if !env.debug
+  script.
+    (function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:452159,hjsv:5};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');

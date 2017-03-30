@@ -1,4 +1,4 @@
-title: GIT - remember password in window & linux.
+title: GIT - 记住密码在 window & linux
 tags:
   - git
   - 记住密码
