@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>http://ochukai.me/tags/backbone/</loc>
+        <lastmod>2016-11-22T01:40:09.720Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/base/</loc>
+        <lastmod>2016-11-22T01:40:09.720Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/view/</loc>
+        <lastmod>2016-11-22T01:40:09.720Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E5%BB%BA%E9%80%A0%E5%85%AC%E5%BC%8F/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/animation/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/scss/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/for/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/formdata/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/ajax/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/image-upload/</loc>
+        <lastmod>2016-11-22T01:40:09.735Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/nav/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/paswword/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/navicat/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/tedx/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E5%9C%A8%E7%BD%91%E7%BB%9C%E6%9A%B4%E5%8A%9B%E4%B8%AD%E6%8D%8D%E5%8D%AB%E8%87%AA%E5%B7%B1/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E6%BC%94%E8%AE%B2%E7%A8%BF/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E8%A2%81%E5%A7%97%E5%A7%97/</loc>
+        <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/mysql/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/imgage-error/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/slice/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/ts/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/date/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/format/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</loc>
+        <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/zepto/</loc>
+        <lastmod>2016-11-22T01:40:09.782Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/</loc>
+        <lastmod>2016-12-08T11:50:26.299Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/win10/</loc>
+        <lastmod>2016-12-16T06:58:09.484Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/this/</loc>
+        <lastmod>2016-12-30T03:55:16.592Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/splice/</loc>
+        <lastmod>2017-01-04T01:50:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/array/</loc>
+        <lastmod>2017-01-04T01:50:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/textarea/</loc>
+        <lastmod>2017-01-20T06:41:03.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/svn/</loc>
+        <lastmod>2017-01-22T02:30:05.297Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/dva/</loc>
+        <lastmod>2017-01-24T06:18:01.627Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/react/</loc>
+        <lastmod>2017-01-24T06:18:01.627Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/js/</loc>
+        <lastmod>2017-01-24T06:18:01.627Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/webpack-dev-server/</loc>
+        <lastmod>2017-01-24T06:24:24.860Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/webpack/</loc>
+        <lastmod>2017-01-24T06:24:24.860Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/webstorm/</loc>
+        <lastmod>2017-01-24T06:24:24.860Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/decorator/</loc>
+        <lastmod>2017-01-24T06:24:27.531Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E5%9F%83%E5%A1%9E%E5%85%8B%E6%96%AF/</loc>
+        <lastmod>2017-01-24T06:24:27.531Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E8%88%AA%E6%AF%8D/</loc>
+        <lastmod>2017-01-24T06:24:27.531Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/markdown/</loc>
+        <lastmod>2017-02-15T02:14:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/webstrom/</loc>
+        <lastmod>2017-02-15T02:14:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/font/</loc>
+        <lastmod>2017-02-15T02:30:06.016Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/terminal/</loc>
+        <lastmod>2017-02-15T02:30:06.016Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/css/</loc>
+        <lastmod>2017-02-17T01:44:08.525Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/html/</loc>
+        <lastmod>2017-02-17T01:44:08.525Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/compatible-module/</loc>
+        <lastmod>2017-02-17T01:44:18.584Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/amd/</loc>
+        <lastmod>2017-02-17T01:44:18.584Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/cmd/</loc>
+        <lastmod>2017-02-17T01:44:18.584Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/ie/</loc>
+        <lastmod>2017-02-17T08:40:31.600Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/css-hack/</loc>
+        <lastmod>2017-02-17T08:40:31.600Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E6%9F%8F%E6%8B%89%E5%9B%BE/</loc>
+        <lastmod>2017-02-24T07:04:22.189Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E7%88%B1%E6%83%85/</loc>
+        <lastmod>2017-02-24T07:04:22.189Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E6%96%87%E5%AD%A6/</loc>
+        <lastmod>2017-03-09T03:19:41.130Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E6%97%A5%E6%9C%AC%E6%96%87%E5%AD%A6/</loc>
+        <lastmod>2017-03-09T03:19:41.130Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE/</loc>
+        <lastmod>2017-03-09T03:19:41.130Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE%E4%BD%9C%E5%93%81%E5%85%A8%E9%9B%86/</loc>
+        <lastmod>2017-03-09T03:19:41.130Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/promise/</loc>
+        <lastmod>2017-03-22T04:10:39.021Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/settimeout/</loc>
+        <lastmod>2017-03-22T04:10:39.021Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/wallpaper/</loc>
+        <lastmod>2017-03-22T07:02:46.868Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/window/</loc>
+        <lastmod>2017-03-22T07:02:46.868Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/git/</loc>
+        <lastmod>2017-03-30T02:26:36.101Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://ochukai.me/tags/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/</loc>
+        <lastmod>2017-03-30T02:26:36.101Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+</urlset>
+<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->
