@@ -27,6 +27,7 @@
     "hexo-generator-tag": "^0.2.0",
     "hexo-helper-live2d": "^1.0.5",
     "hexo-hey": "^0.4.1",
+    "hexo-pagination": "^0.1.0",
     "hexo-renderer-ejs": "*",
     "hexo-renderer-jade": "*",
     "hexo-renderer-marked": "*",

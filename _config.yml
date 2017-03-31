@@ -6,7 +6,7 @@
 title: I am Oliver
 subtitle:
 description: 这是我的博客。会记录平时遇到的技术问题~
-author: Oliver Wang
+author: Oliver
 keywords: 博客, Ochukai, Oliver, 技术
 language: zh-Hans
 timezone:
@@ -81,9 +81,8 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 
 ## Themes: http://hexo.io/themes/
-#theme: landscape
-# theme: ounn
-theme: strict
+theme: ochuunn
+# theme: cactus-dark
 
 #test feed
 feed:
