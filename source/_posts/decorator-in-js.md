@@ -1,6 +1,7 @@
 title: JavaScript 中的 Decorator
 tags:
   - decorator
+  - js
 categories:
   - JavaScript
 date: 2016-12-21 09:33:38

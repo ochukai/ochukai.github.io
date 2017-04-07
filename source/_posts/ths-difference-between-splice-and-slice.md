@@ -2,8 +2,7 @@ title: Splice 和 Slice 的区别
 tags:
   - splice
   - slice
-categories:
-  - Javascript
+  - js
 date: 2016-07-11 10:52:16
 ---
 

@@ -3,6 +3,7 @@ tags:
   - backbone
   - base
   - view
+  - js
 categories:
   - Backbone
 date: 2015-11-13 00:36:15

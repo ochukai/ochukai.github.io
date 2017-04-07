@@ -1,10 +1,7 @@
 title: 修改 wamp 中 mysql 默认空密码
 tags:
   - mysql
-  - paswword
-id: 229
-categories:
-  - MySQL
+  - password
 date: 2015-07-31 23:32:13
 ---
 

@@ -1,10 +1,8 @@
 title: 详解 Promise 
 tags:
   - promise
-  - setTimeout
-categories:
-  - Promise
-  - JavaScript
+  - js
+
 date: 2017-03-08 16:54:54
 ---
 
