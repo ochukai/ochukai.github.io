@@ -5,11 +5,11 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ochukai.me/"/>
-  <updated>2017-03-22T04:10:39.021Z</updated>
+  <updated>2017-04-07T09:13:03.831Z</updated>
   <id>http://ochukai.me/</id>
   
   <author>
-    <name>Oliver Wang</name>
+    <name>Oliver</name>
     
   </author>
   
@@ -20,7 +20,7 @@
     <link href="http://ochukai.me/promise-in-action/"/>
     <id>http://ochukai.me/promise-in-action/</id>
     <published>2017-03-08T08:54:54.000Z</published>
-    <updated>2017-03-22T04:10:39.021Z</updated>
+    <updated>2017-04-07T09:13:03.831Z</updated>
     
     <content type="html"><![CDATA[<p>偶然看到一篇介绍 Promise 的文章，这个概念也出现好久了，之前一直用着 <a href="https://github.com/cujojs/when" target="_blank" rel="external">whenjs</a>, 但是一直没有时间自己写一个。</p><p>于是下定决心，自己写一个吧~ 毕竟别人都能写出来的东西，而且工作的时候都是在写一些业务型的代码，感觉非常没有创造性~</p><hr><p>Promise 用起来挺简单的，可以很好的解决 js callback 多的时候，缩进很烦的问题。而且线性的写代码也更容易理解~</p><p>现在写这篇文章，就是高中的时候写作文一样，看到题目就开始辗转反侧，脑子里面想好多内容，理清了思路，但是拿起笔就全忘了。</p><p>今天在开始写之前我也下了好大的决心，在代码上面写了大片的注释，感觉写这一篇应该会很顺利吧，结果还是事与愿违，写了些乱七八糟的东西。</p><p>这篇文章主要是介绍 Promise 的用法以及我是怎么实现这么一个库的，但是该怎么开始写呢？于是我列了几个要点，概念，原理，实现，感觉填充起来会比较容易吧，嗯，就这么办吧~</p><h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><p><a href="https://promisesaplus.com" target="_blank" rel="external">Promise/A+ 规范</a><br><a href="https://tc39.github.io/ecma262/#sec-promise-objects" target="_blank" rel="external">ES6 Promise</a> — 加载比较慢~ 想看就耐心等~</p><p>两个规范在这了，其实现在用的多的是 Promise/A+ 规范，看起来还是很简单的。</p><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Promise 就是承诺，会按照 then 的顺序做些事情，出了问题会在 catch 里面。像这样：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
@@ -364,14 +364,10 @@
     
     </summary>
     
-      <category term="Promise" scheme="http://ochukai.me/categories/promise/"/>
     
-      <category term="JavaScript" scheme="http://ochukai.me/categories/promise/javascript/"/>
-    
+      <category term="js" scheme="http://ochukai.me/tags/js/"/>
     
       <category term="promise" scheme="http://ochukai.me/tags/promise/"/>
-    
-      <category term="setTimeout" scheme="http://ochukai.me/tags/settimeout/"/>
     
   </entry>
   
@@ -645,11 +641,11 @@
       <category term="JavaScript" scheme="http://ochukai.me/categories/react/javascript/"/>
     
     
+      <category term="js" scheme="http://ochukai.me/tags/js/"/>
+    
       <category term="dva" scheme="http://ochukai.me/tags/dva/"/>
     
       <category term="react" scheme="http://ochukai.me/tags/react/"/>
-    
-      <category term="js" scheme="http://ochukai.me/tags/js/"/>
     
   </entry>
   
@@ -1770,7 +1766,7 @@
     <link href="http://ochukai.me/decorator-in-js/"/>
     <id>http://ochukai.me/decorator-in-js/</id>
     <published>2016-12-21T01:33:38.000Z</published>
-    <updated>2017-01-24T06:24:27.531Z</updated>
+    <updated>2017-04-07T09:12:17.073Z</updated>
     
     <content type="html"><![CDATA[<p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：<br></p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
@@ -1867,6 +1863,8 @@
     
       <category term="JavaScript" scheme="http://ochukai.me/categories/javascript/"/>
     
+    
+      <category term="js" scheme="http://ochukai.me/tags/js/"/>
     
       <category term="decorator" scheme="http://ochukai.me/tags/decorator/"/>
     
@@ -2105,7 +2103,7 @@
     <link href="http://ochukai.me/ths-difference-between-splice-and-slice/"/>
     <id>http://ochukai.me/ths-difference-between-splice-and-slice/</id>
     <published>2016-07-11T02:52:16.000Z</published>
-    <updated>2016-11-22T01:40:09.766Z</updated>
+    <updated>2017-04-07T09:13:20.178Z</updated>
     
     <content type="html"><![CDATA[<p>之前写过一遍介绍 <code>splice()</code> 方法的，这一次又遇到了 <code>slice()</code>, 这两个太像了, 首先看这两个意思吧：</p><blockquote><p>splice [splais]<br>n. 接合；结婚<br>vt. 拼接；接合；使结婚</p></blockquote><p>和</p><blockquote><p>slice [slais]<br>n. 薄片；部分；菜刀，火铲<br>vt. 切下；把…分成部分；将…切成薄片<br>vi. 切开；割破</p></blockquote><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><code>slice()</code> 方法可从已有的数组中返回选定的元素。这个函数有两个参数 <code>slice(start, end)</code> 会返回一个从 <code>start</code> 到 <code>end</code> 之前元素的新数组， 如果 <code>end</code> 是<code>负数</code>，就从数组末尾倒着数, 如果 end 没有设置，就返回从 start 到数组末尾组成的新数组咯~</p><p>总之这是一个返回新数组的函数，知识返回而已，不会改变原来的数组，而 <code>splice</code> 方法则会改变原来的数组.</p><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
@@ -2135,8 +2133,8 @@
     
     </summary>
     
-      <category term="Javascript" scheme="http://ochukai.me/categories/javascript/"/>
     
+      <category term="js" scheme="http://ochukai.me/tags/js/"/>
     
       <category term="splice" scheme="http://ochukai.me/tags/splice/"/>
     

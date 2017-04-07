@@ -35,3 +35,15 @@ http://ochukai.me/wamp-mysql-chinese-question-mark/
 http://ochukai.me/modify-wamp-mysql-password/
 http://ochukai.me/protect-yourself-in-network/
 http://ochukai.me/navicat-10-1-7-key/
+http://ochukai.me/images/
+http://ochukai.me/no-title/
+http://ochukai.me/excerpts/
+http://ochukai.me/videos/
+http://ochukai.me/gallery-post/
+http://ochukai.me/tag-plugins/
+http://ochukai.me/日本語テスト/
+http://ochukai.me/中文測試/
+http://ochukai.me/long-title/
+http://ochukai.me/tags/
+http://ochukai.me/elements/
+http://ochukai.me/hello-world/

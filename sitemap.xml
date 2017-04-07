@@ -2,6 +2,132 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ochukai.me/ths-difference-between-splice-and-slice/</loc>
+    
+    <lastmod>2017-04-07T09:13:20.178Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/promise-in-action/</loc>
+    
+    <lastmod>2017-04-07T09:13:03.831Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/modify-wamp-mysql-password/</loc>
+    
+    <lastmod>2017-04-07T09:12:41.796Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/baseview-in-backbone/</loc>
+    
+    <lastmod>2017-04-07T09:12:22.627Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/decorator-in-js/</loc>
+    
+    <lastmod>2017-04-07T09:12:17.073Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/page/index.html</loc>
+    
+    <lastmod>2017-03-31T08:30:25.665Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%86%E3%82%B9%E3%83%88/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.614Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/%E4%B8%AD%E6%96%87%E6%B8%AC%E8%A9%A6/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.611Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/videos/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.608Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/tags/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.605Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/tag-plugins/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.602Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/no-title/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.596Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/long-title/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.593Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/images/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.585Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/hello-world/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.583Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/gallery-post/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.580Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/excerpts/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.577Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/elements/</loc>
+    
+    <lastmod>2017-03-31T08:30:25.574Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ochukai.me/about/index.html</loc>
     
     <lastmod>2017-03-30T02:29:11.606Z</lastmod>
@@ -26,13 +152,6 @@
     <loc>http://ochukai.me/window-focus-wallpaper/</loc>
     
     <lastmod>2017-03-22T07:02:46.868Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ochukai.me/promise-in-action/</loc>
-    
-    <lastmod>2017-03-22T04:10:39.021Z</lastmod>
     
   </url>
   
@@ -87,13 +206,6 @@
   
   <url>
     <loc>http://ochukai.me/esekesu-senkanno-onnanoko/</loc>
-    
-    <lastmod>2017-01-24T06:24:27.531Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ochukai.me/decorator-in-js/</loc>
     
     <lastmod>2017-01-24T06:24:27.531Z</lastmod>
     
@@ -184,21 +296,7 @@
   </url>
   
   <url>
-    <loc>http://ochukai.me/show-a-default-image-when-the-image-is-broken/</loc>
-    
-    <lastmod>2016-11-22T01:40:09.766Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ochukai.me/telephone-number-not-recognize-in-wx/</loc>
-    
-    <lastmod>2016-11-22T01:40:09.766Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ochukai.me/ths-difference-between-splice-and-slice/</loc>
     
     <lastmod>2016-11-22T01:40:09.766Z</lastmod>
     
@@ -212,7 +310,14 @@
   </url>
   
   <url>
-    <loc>http://ochukai.me/protect-yourself-in-network/</loc>
+    <loc>http://ochukai.me/show-a-default-image-when-the-image-is-broken/</loc>
+    
+    <lastmod>2016-11-22T01:40:09.766Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ochukai.me/menu-with-moved-elfish/</loc>
     
     <lastmod>2016-11-22T01:40:09.751Z</lastmod>
     
@@ -226,7 +331,7 @@
   </url>
   
   <url>
-    <loc>http://ochukai.me/modify-wamp-mysql-password/</loc>
+    <loc>http://ochukai.me/protect-yourself-in-network/</loc>
     
     <lastmod>2016-11-22T01:40:09.751Z</lastmod>
     
@@ -240,9 +345,9 @@
   </url>
   
   <url>
-    <loc>http://ochukai.me/menu-with-moved-elfish/</loc>
+    <loc>http://ochukai.me/battleship-girls/</loc>
     
-    <lastmod>2016-11-22T01:40:09.751Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
     
   </url>
   
@@ -268,13 +373,6 @@
   </url>
   
   <url>
-    <loc>http://ochukai.me/battleship-girls/</loc>
-    
-    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ochukai.me/404.html</loc>
     
     <lastmod>2016-11-22T01:40:09.720Z</lastmod>
@@ -283,13 +381,6 @@
   
   <url>
     <loc>http://ochukai.me/README.html</loc>
-    
-    <lastmod>2016-11-22T01:40:09.720Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ochukai.me/baseview-in-backbone/</loc>
     
     <lastmod>2016-11-22T01:40:09.720Z</lastmod>
     
