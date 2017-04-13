@@ -9,6 +9,9 @@ node_modules/
 
 public/
 
-.deploy*/
 
 db.json
+
+.vscode/
+.deploy*/
+.deploy_git/
