@@ -1,25 +1,5 @@
-include _views/post
-include _views/menu
-extends _views/main
-
-block main
-  +post(page, 'post')
-  
-  if theme.reward_image
-    section.reward 
-      a(class="btn-reward" href="#") 打赏
-      div.reward-wrapper.clearfix
-        img(src = theme.reward_image)
-
-  if theme.disqus_shortname && page.comments && !env.debug
-    div.comments
-      div#disqus_thread
-        noscript.
-          Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block menu
-  +menu('post')
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="Oliver"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>更换 window 命令行字体 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2017-02-15T02:16:08.000Z">February 15, 2017</time><h1 class="post__title"><a href="/change-window-terminal-terminal-font/">更换 window 命令行字体</a></h1><div class="post__main echo"><p>我一直觉得 window 命令行下面的字体非常丑陋，因为有时会用 git bash， 有时也会直接使用编译器自带的控制台，这些都是可以设置字体的，所以 window 自带的命令行用的不是太多。</p><p>今天刚好看到一篇文章是写关于修改命令行字体的，哈哈。</p><p>首先打开<strong>一个命令行窗口</strong>，输入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">chcp 437</span>
+</pre></td></tr></table></figure><p>然后设置字体，这个时候你就发现多了好多等宽字体。</p><p><img src="/images/font-terminal.png" alt="正常"></p><p>选择想要的字体保存之后，<strong>把命令行窗口先关闭，然后再打开</strong>，输入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">chcp 936</span>
+</pre></td></tr></table></figure><blockquote><p>chcp 是切换 cmd 程序的当前代码页，936 是中文环境，437 是英文环境</p></blockquote><p>然后命令行的字体就改变了。</p></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/font/">font</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/terminal/">terminal</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 Oliver<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div><menu class="page-menu u-fr"><li class="page-menu__item"><a class="page-menu__link icon-arrow-left" title="Previous" href="/window-focus-wallpaper/"></a></li><li class="page-menu__item"><a class="page-menu__link icon-arrow-right" title="Next" href="/dva-in-action/"></a></li></menu></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

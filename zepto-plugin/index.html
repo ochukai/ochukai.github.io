@@ -1,25 +1,121 @@
-include _views/post
-include _views/menu
-extends _views/main
-
-block main
-  +post(page, 'post')
-  
-  if theme.reward_image
-    section.reward 
-      a(class="btn-reward" href="#") 打赏
-      div.reward-wrapper.clearfix
-        img(src = theme.reward_image)
-
-  if theme.disqus_shortname && page.comments && !env.debug
-    div.comments
-      div#disqus_thread
-        noscript.
-          Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block menu
-  +menu('post')
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="Oliver"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Zepto 插件写法 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2016-06-20T06:32:33.000Z">June 20, 2016</time><h1 class="post__title"><a href="/zepto-plugin/">Zepto 插件写法</a></h1><div class="post__main echo"><p>一般是这样的… 比较水, 并没有怎么写过.</p><p>我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+<span class="line">37</span>
+<span class="line">38</span>
+<span class="line">39</span>
+<span class="line">40</span>
+<span class="line">41</span>
+<span class="line">42</span>
+<span class="line">43</span>
+<span class="line">44</span>
+<span class="line">45</span>
+<span class="line">46</span>
+<span class="line">47</span>
+<span class="line">48</span>
+<span class="line">49</span>
+<span class="line">50</span>
+<span class="line">51</span>
+<span class="line">52</span>
+<span class="line">53</span>
+<span class="line">54</span>
+<span class="line">55</span>
+<span class="line">56</span>
+<span class="line">57</span>
+<span class="line">58</span>
+<span class="line">59</span>
+<span class="line">60</span>
+</pre></td><td class="code"><pre><span class="line"></span>
+<span class="line">+<span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>&#123;</span>
+<span class="line"><span class="meta">  'use strict'</span>;</span>
+<span class="line"></span>
+<span class="line">  <span class="comment">// BUTTON PUBLIC CLASS DEFINITION</span></span>
+<span class="line">  <span class="comment">// ==============================</span></span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">var</span> Button = <span class="function"><span class="keyword">function</span> (<span class="params">element, options</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">this</span>.$element  = $(element);</span>
+<span class="line">    <span class="keyword">this</span>.options   = $.extend(&#123;&#125;, Button.DEFAULTS, options);</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  Button.DEFAULTS = &#123;</span>
+<span class="line">    <span class="attr">loadingText</span>: <span class="string">'loading...'</span>;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  Button.prototype.setState = <span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;&#125;;</span>
+<span class="line"></span>
+<span class="line">  Button.prototype.toggle = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">  <span class="comment">// BUTTON PLUGIN DEFINITION</span></span>
+<span class="line">  <span class="comment">// ========================</span></span>
+<span class="line"></span>
+<span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Plugin</span>(<span class="params">option</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">      <span class="keyword">var</span> $<span class="keyword">this</span>    = $(<span class="keyword">this</span>),</span>
+<span class="line">          lookup   = $.fn.button.lookup,</span>
+<span class="line">          instance = lookup[$<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>)];</span>
+<span class="line"></span>
+<span class="line">      <span class="keyword">if</span> (!instance) &#123;</span>
+<span class="line">        lookup[++lookup.i] = (instance = <span class="keyword">new</span> Button(<span class="keyword">this</span>, options));</span>
+<span class="line">        $<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>, lookup.i);</span>
+<span class="line">      &#125;</span>
+<span class="line"></span>
+<span class="line">      <span class="comment">// button method</span></span>
+<span class="line">      <span class="comment">// if (option == 'toggle') &#123;</span></span>
+<span class="line">      <span class="comment">//   data.toggle();</span></span>
+<span class="line">      <span class="comment">// &#125; else if (option) &#123;</span></span>
+<span class="line">      <span class="comment">//   data.setState(option);</span></span>
+<span class="line">      <span class="comment">// &#125;</span></span>
+<span class="line">    &#125;);</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">var</span> old = $.fn.button;</span>
+<span class="line"></span>
+<span class="line">  $.fn.button             = Plugin;</span>
+<span class="line">  $.fn.button.lookup      = &#123; <span class="attr">i</span>: <span class="number">0</span> &#125;;</span>
+<span class="line">  $.fn.button.Constructor = Button;</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">  <span class="comment">// BUTTON NO CONFLICT</span></span>
+<span class="line">  <span class="comment">// ==================</span></span>
+<span class="line"></span>
+<span class="line">  $.fn.button.noConflict = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
+<span class="line">    $.fn.button = old;</span>
+<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span>
+<span class="line">  &#125;;</span>
+<span class="line"></span>
+<span class="line">&#125; (Zepto);</span>
+</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/zepto/">zepto</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 Oliver<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div><menu class="page-menu u-fr"><li class="page-menu__item"><a class="page-menu__link icon-arrow-left" title="Previous" href="/prevent-deep-div-scroll-with-the-top-element/"></a></li><li class="page-menu__item"><a class="page-menu__link icon-arrow-right" title="Next" href="/formdata-in-action/"></a></li></menu></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

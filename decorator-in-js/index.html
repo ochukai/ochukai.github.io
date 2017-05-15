@@ -1,25 +1,85 @@
-include _views/post
-include _views/menu
-extends _views/main
-
-block main
-  +post(page, 'post')
-  
-  if theme.reward_image
-    section.reward 
-      a(class="btn-reward" href="#") 打赏
-      div.reward-wrapper.clearfix
-        img(src = theme.reward_image)
-
-  if theme.disqus_shortname && page.comments && !env.debug
-    div.comments
-      div#disqus_thread
-        noscript.
-          Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block menu
-  +menu('post')
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="Oliver"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>JavaScript 中的 Decorator - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2016-12-21T01:33:38.000Z">December 21, 2016</time><h1 class="post__title"><a href="/decorator-in-js/">JavaScript 中的 Decorator</a></h1><div class="post__main echo"><p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：<br></p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+</pre></td><td class="code"><pre><span class="line">@sortable</span>
+<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoHOCItem</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span>
+<span class="line"></span>
+<span class="line">  render() &#123;</span>
+<span class="line">    <span class="keyword">return</span> (</span>
+<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
+<span class="line">        &#123; this.props.children &#125;</span>
+<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
+<span class="line">    );</span>
+<span class="line">  &#125;</span>
+<span class="line">  </span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure><p></p><p>查了一下之后发现这是 es7 的新语法，叫 <a href="https://github.com/wycats/javascript-decorators" target="_blank" rel="external">Decorator</a>。</p><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>如果要定义一个 Decorator 的话，不难，其实每一个 decorator 就是一个 function，有三个参数，像这样</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> log = <span class="function">(<span class="params">target, name, descriptor</span>) =&gt;</span> &#123;</span>
+<span class="line">  <span class="built_in">console</span>.log(target, name, descriptor);</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">const</span> method = descriptor.value;</span>
+<span class="line">  descriptor.value = <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span>
+<span class="line">    logger.info(<span class="string">`before function execute: <span class="subst">$&#123;name&#125;</span>(<span class="subst">$&#123;args&#125;</span>) = ?`</span>);</span>
+<span class="line">    <span class="keyword">return</span> method.apply(target, args);</span>
+<span class="line">  &#125;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure><p>三个参数还是比较好理解的</p><p>然后要用这个 decorator 的时候</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+</pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
+<span class="line"></span>
+<span class="line">  @log</span>
+<span class="line">  add(a, b) &#123;</span>
+<span class="line">    <span class="keyword">return</span> a + b;</span>
+<span class="line">  &#125;</span>
+<span class="line">   </span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">let</span> my = <span class="keyword">new</span> Example();</span>
+<span class="line">my.add(<span class="number">2</span>, <span class="number">3</span>);</span>
+</pre></td></tr></table></figure><p>这好像跟 Java 的 Annotation 形式差不多。 但是功能却跟 Python 的 Decorator 一样。</p><p>下面是运行时的输出</p><p><img src="../images/decorator-1.png" alt="正常"></p><p>所以呢，decorator 的三个参数分别是</p><ol><li>target 目标方法所在的类</li><li>name 方法名</li><li>descriptor 该方法的一些描述， 其中 <code>value</code> 就是方法本身，这一点在上一个例子中已经看到了。</li></ol><h2 id="用在-class-上面"><a href="#用在-class-上面" class="headerlink" title="用在 class 上面"></a>用在 class 上面</h2><p>因为我最开始见到 decorator 是看到</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+</pre></td><td class="code"><pre><span class="line">@sortable</span>
+<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoHOCItem</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;<span class="comment">/*...*/</span>&#125;</span>
+</pre></td></tr></table></figure><p>这时， decorator 是用在 class 上面的，当 decorator 用在 class 上面的时候只有第一个参数有值，比如</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+</pre></td><td class="code"><pre><span class="line">@log</span>
+<span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span>
+<span class="line">  add(a, b) &#123; <span class="keyword">return</span> a + b; &#125;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure><p>只会输出</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+</pre></td><td class="code"><pre><span class="line"># 也就是 name, descriptor 都是 undefined</span>
+<span class="line">2016-12-21 10:28:26.617 function Example() &#123;</span>
+<span class="line">        _classCallCheck(this, Example);</span>
+<span class="line">    &#125; undefined undefined</span>
+</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/js/">js</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/decorator/">decorator</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 Oliver<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div><menu class="page-menu u-fr"><li class="page-menu__item"><a class="page-menu__link icon-arrow-left" title="Previous" href="/correct-ugly-markdown-css-in-webstorm/"></a></li><li class="page-menu__item"><a class="page-menu__link icon-arrow-right" title="Next" href="/use-terminal-to-update-win10-key/"></a></li></menu></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

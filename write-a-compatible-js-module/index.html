@@ -1,25 +1,31 @@
-include _views/post
-include _views/menu
-extends _views/main
-
-block main
-  +post(page, 'post')
-  
-  if theme.reward_image
-    section.reward 
-      a(class="btn-reward" href="#") 打赏
-      div.reward-wrapper.clearfix
-        img(src = theme.reward_image)
-
-  if theme.disqus_shortname && page.comments && !env.debug
-    div.comments
-      div#disqus_thread
-        noscript.
-          Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block menu
-  +menu('post')
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="Oliver"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>编写一个可以兼容 AMD 和 CMD 的 js 模块 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2015-11-29T12:11:07.000Z">November 29, 2015</time><h1 class="post__title"><a href="/write-a-compatible-js-module/">编写一个可以兼容 AMD 和 CMD 的 js 模块</a></h1><div class="post__main echo"><p>没什么好解释的，直接看代码吧。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+</pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">factory</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</span>
+<span class="line">        <span class="comment">// AMD. Register as an anonymous module.</span></span>
+<span class="line">        <span class="comment">//define(['jquery', 'underscore'], factory);</span></span>
+<span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</span>
+<span class="line">        <span class="comment">// Node/CommonJS style for Browserify/Seajs</span></span>
+<span class="line">        <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'jquery'</span>), <span class="built_in">require</span>(<span class="string">'underscore'</span>));</span>
+<span class="line">    &#125; <span class="keyword">else</span> &#123;</span>
+<span class="line">        <span class="comment">// Browser globals</span></span>
+<span class="line">        factory(jQuery, _);</span>
+<span class="line">        <span class="comment">//factory();</span></span>
+<span class="line">    &#125;</span>
+<span class="line">&#125;(<span class="function"><span class="keyword">function</span> (<span class="params">$, _</span>) </span>&#123;</span>
+<span class="line">    <span class="comment">//doSomething...</span></span>
+<span class="line">&#125;));</span>
+</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/compatible-module/">compatible module</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/amd/">AMD</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/cmd/">CMD</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 Oliver<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div><menu class="page-menu u-fr"><li class="page-menu__item"><a class="page-menu__link icon-arrow-left" title="Previous" href="/use-js-to-convert-ts-to-data/"></a></li><li class="page-menu__item"><a class="page-menu__link icon-arrow-right" title="Next" href="/show-a-default-image-when-the-image-is-broken/"></a></li></menu></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
