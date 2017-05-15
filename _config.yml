@@ -80,6 +80,9 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 
+# plugins:
+#   - hexo-footnotes
+
 ## Themes: http://hexo.io/themes/
 theme: ochuunn
 # theme: cactus-dark
@@ -105,10 +108,15 @@ deploy:
   branch: master
 - type: baidu_url_submitter
 
+# deploy:
+#     type: github
+#     repo: https://github.com/ochukai/ochukai.github.io.git
+#     branch: master
+
 # Admin
 admin:
-    name: oliver
-    password: xiaoyee
-    secret: ochukai
-    # expire: 60*1
-    # cors: http://localhost:3000
+  name: oliver
+  password: xiaoyee
+  secret: ochukai
+  # expire: 60*1
+  # cors: http://localhost:3000

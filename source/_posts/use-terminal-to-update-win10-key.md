@@ -1,8 +1,8 @@
 title: 使用命令行更新 Win10 的密钥
 tags:
   - win10
-categories:
-  - Window
+  - win10-key
+  - slmgr
 date: 2016-12-16 13:02:13
 ---
 

@@ -3,8 +3,6 @@ tags:
   - compatible module
   - AMD
   - CMD
-categories:
-  - JavaScript
 date: 2015-11-29 20:11:07
 ---
 
@@ -26,26 +24,4 @@ date: 2015-11-29 20:11:07
 }(function ($, _) {
     //doSomething...
 }));
-```
-
-还有一种写法
-
-```js
-// from: http://segmentfault.com/a/1190000003732752
-;(function(){
-    function MyModule() {
-        // ...
-    }
-    
-    var moduleName = MyModule;
-    if (typeof module !== 'undefined' && typeof exports === 'object') {
-        module.exports = moduleName;
-    } else if (typeof define === 'function' && (define.amd || define.cmd)) {
-        define(function() { return moduleName; });
-    } else {
-        this.moduleName = moduleName;
-    }
-}).call(function() {
-    return this || (typeof window !== 'undefined' ? window : global);
-});
 ```

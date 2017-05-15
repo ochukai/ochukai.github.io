@@ -4,8 +4,6 @@ tags:
   - date
   - format
   - js
-categories:
-  - JavaScript
 date: 2015-12-02 11:10:44
 ---
 ## 问题产生

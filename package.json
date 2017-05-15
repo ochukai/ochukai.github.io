@@ -3,24 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "hexo": {
-    "version": "3.2.2"
+    "version": "3.3.5"
   },
   "scripts": {
     "deploy": "hexo clean && hexo generate && hexo deploy",
     "start": "hexo clean && hexo s --debug"
   },
   "dependencies": {
-    "hexo": "^3.2.0",
+    "hexo": "^3.3.5",
     "hexo-all-minifier": "0.0.14",
     "hexo-baidu-url-submit": "0.0.5",
     "hexo-cli-extras": "^1.0.4",
-    "hexo-deployer-git": "^0.2.0",
+    "hexo-deployer-git": "^0.3.0",
     "hexo-featured-image": "^0.2.0",
     "hexo-footnotes": "^1.0.1",
     "hexo-generator-archive": "*",
     "hexo-generator-category": "*",
     "hexo-generator-feed": "^1.0.3",
-    "hexo-generator-index": "^0.2.0",
+    "hexo-generator-index": "^0.2.1",
     "hexo-generator-json-content": "^3.0.1",
     "hexo-generator-seo-friendly-sitemap": "0.0.20",
     "hexo-generator-sitemap": "*",
@@ -28,10 +28,10 @@
     "hexo-helper-live2d": "^1.0.5",
     "hexo-hey": "^0.4.1",
     "hexo-pagination": "^0.1.0",
-    "hexo-renderer-ejs": "*",
-    "hexo-renderer-jade": "*",
-    "hexo-renderer-marked": "*",
-    "hexo-renderer-stylus": "*",
+    "hexo-renderer-ejs": "^0.3.0",
+    "hexo-renderer-jade": "^0.4.0",
+    "hexo-renderer-marked": "^0.3.0",
+    "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.2.0"
   }
 }

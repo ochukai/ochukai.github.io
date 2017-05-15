@@ -1,8 +1,7 @@
 title: Textarea 的高度自动增长
 tags:
   - textarea
-categories:
-  - HTML
+  - html
 date: 2017-01-20 11:48:10
 ---
 
