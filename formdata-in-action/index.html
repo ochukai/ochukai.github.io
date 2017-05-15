@@ -1,119 +1,25 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>使用 formData 提交表单和上传图片 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-04-11T07:34:57.000Z" class="post__time">April 11, 2016</time><h1 class="post__title"><a href="/formdata-in-action/">使用 formData 提交表单和上传图片</a></h1><div class="post__main echo"><p>最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~</p><p>图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。</p><p>然后我就想到了可以用 FormData 来做，因为之前好像用过，感觉很方便。</p><h3 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h3><blockquote><p>The FormData interface provides a way to easily construct a set of <code>key/value</code> pairs representing form fields and their values, which can then be easily sent using the <code>XMLHttpRequest.send()</code> method. It uses the same format a form would use if the encoding type were set to “multipart/form-data”.</p></blockquote><p>如果使用 jQuery 提交 formData 的话，大致像这样：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-</pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span>
-<span class="line">  <span class="attr">url</span>        : url,</span>
-<span class="line">  <span class="attr">type</span>       : <span class="string">'POST'</span>,</span>
-<span class="line">  <span class="attr">data</span>       : formData,</span>
-<span class="line">  <span class="comment">// 下面这两条需要特别注意</span></span>
-<span class="line">  processData: <span class="literal">false</span>,</span>
-<span class="line">  <span class="attr">contentType</span>: <span class="literal">false</span>,</span>
-<span class="line">  success(data) &#123;</span>
-<span class="line">    <span class="comment">// ...</span></span>
-<span class="line">  &#125;,</span>
-<span class="line">  error(xhr) &#123;</span>
-<span class="line">    <span class="comment">// ...</span></span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure><p></p><p>就是把 formData 作为 data 发送到后台就好了，如果要构造一个 formData 对象的话，也很简单呢<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"></span>
-<span class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData();</span>
-<span class="line">formData.append(<span class="string">'ticket_id'</span>, <span class="number">1</span>);</span>
-</pre></td></tr></table></figure><p></p><p>如果放文件在 formData 里面的话呢，也没有太复杂的地方：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// html</span></span>
-<span class="line"><span class="comment">// &lt;input</span></span>
-<span class="line"><span class="comment">//   ref="input-image"</span></span>
-<span class="line"><span class="comment">//   accept="image/*"</span></span>
-<span class="line"><span class="comment">//   onChange=&#123; this.onImageSelected &#125;</span></span>
-<span class="line"><span class="comment">//   type="file"</span></span>
-<span class="line"><span class="comment">// /&gt;</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// ....</span></span>
-<span class="line">isImage: <span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</span>
-<span class="line">  <span class="comment">// (!src.type.match(/image.*/)</span></span>
-<span class="line">  <span class="keyword">var</span> type = <span class="string">'|'</span> + file.type.slice(file.type.lastIndexOf(<span class="string">'/'</span>) + <span class="number">1</span>) + <span class="string">'|'</span>;</span>
-<span class="line">  <span class="keyword">return</span> <span class="string">'|jpg|png|jpeg|bmp|gif|'</span>.indexOf(type) !== <span class="number">-1</span>;</span>
-<span class="line">&#125;,</span>
-<span class="line"></span>
-<span class="line">onImageSelected(e) &#123;</span>
-<span class="line">  <span class="keyword">var</span> file = e.target.files[<span class="number">0</span>];</span>
-<span class="line">  <span class="built_in">console</span>.log(<span class="string">'select image'</span>, file);</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.isImage(file)) &#123;</span>
-<span class="line">    Modal.error(&#123; <span class="attr">title</span>: <span class="string">'请选择一张图片'</span> &#125;);</span>
-<span class="line">    <span class="keyword">return</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">this</span>.props.onImageSelected(file);</span>
-<span class="line">&#125;</span>
-<span class="line"><span class="comment">// ...</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 放多个也可以~</span></span>
-<span class="line">formData.append(<span class="string">'file1'</span>, file1)</span>
-<span class="line">formData.append(<span class="string">'file2'</span>, file2)</span>
-</pre></td></tr></table></figure><p></p><p>对了，因为我把上传文件的 input 隐藏掉了，显示出来了是一个 加号 的图标，所以如果要触发 input 的点击事件的话：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line">onItemClick() &#123;</span>
-<span class="line">  <span class="keyword">const</span> input = findDOMNode(<span class="keyword">this</span>.refs[<span class="string">'input-image'</span>]);</span>
-<span class="line">  input.click();</span>
-<span class="line">&#125;,</span>
-</pre></td></tr></table></figure><p></p><h3 id="生成-formData"><a href="#生成-formData" class="headerlink" title="生成 formData"></a>生成 formData</h3><p>一个一个的 append 可能速度太慢了，而且需要每个都写一遍，其实生成的 formData 的方式还是蛮多的：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span>
-<span class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</span>
-<span class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData(form);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 2</span></span>
-<span class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</span>
-<span class="line"><span class="keyword">var</span> formdata = form.getFormData();</span>
-</pre></td></tr></table></figure><p></p><p>好了，没了。</p></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/formdata/" class="post__tag__link">formData</a></li><li class="post__tag__item"><a href="/tags/ajax/" class="post__tag__link">ajax</a></li><li class="post__tag__item"><a href="/tags/image-upload/" class="post__tag__link">image upload</a></li></ul></footer></article><section class="reward"><a href="#" class="btn-reward">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 Oliver<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/zepto-plugin/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/menu-with-moved-elfish/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>!function(e,t,c,n,s,m){s=e.createElement(t),m=e.getElementsByTagName(t)[0],s.src="//"+c+".disqus.com/"+n+".js",m.parentNode.insertBefore(s,m)}(document,"script","ochukai","embed")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+include _views/post
+include _views/menu
+extends _views/main
+
+block main
+  +post(page, 'post')
+  
+  if theme.reward_image
+    section.reward 
+      a(class="btn-reward" href="#") 打赏
+      div.reward-wrapper.clearfix
+        img(src = theme.reward_image)
+
+  if theme.disqus_shortname && page.comments && !env.debug
+    div.comments
+      div#disqus_thread
+        noscript.
+          Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+
+block head
+  title
+    = page.title + ' - ' + config.title
+
+block menu
+  +menu('post')

@@ -1,23 +1,25 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>杀死正在占有你端口的小程序 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-02-25T10:38:07.000Z" class="post__time">February 25, 2016</time><h1 class="post__title"><a href="/kill-process/">杀死正在占有你端口的小程序</a></h1><div class="post__main echo"><p>最近在 mac 上用 terminal 启动 python 的时候经常会提示我，端口被占用了，像这样<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-</pre></td><td class="code"><pre><span class="line">0 errors found</span>
-<span class="line">February 25, 2016 - 18:25:21</span>
-<span class="line">Django version 1.6.7, using settings <span class="string">'green.settings'</span></span>
-<span class="line">Starting development server at http://0.0.0.0:8000/</span>
-<span class="line">Quit the server with CONTROL-C.</span>
-<span class="line">Error: That port is already <span class="keyword">in</span> use.</span>
-</pre></td></tr></table></figure><p></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">ps aux | grep python</span>
-</pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line">(kkh)➜  green git:(feature/shopping_mall_womens_day) ✗ ps aux | grep python</span>
-<span class="line">Oliver          23232   0.0  0.0  2434840    752 s002  S+    5:25下午   0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn python</span>
-<span class="line">Oliver          23103   0.0  0.8  2550628  66364 s002  S     5:23下午   0:02.23 /Users/Oliver/dev/kkh/bin/python manage.py runserver 0.0.0.0:8000</span>
-</pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> 23103</span>
-</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/端口占用/" class="post__tag__link">端口占用</a></li></ul></footer></article><section class="reward"><a href="#" class="btn-reward">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 Oliver<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/telephone-number-not-recognize-in-wx/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/battleship-girls/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>!function(e,t,c,n,s,m){s=e.createElement(t),m=e.getElementsByTagName(t)[0],s.src="//"+c+".disqus.com/"+n+".js",m.parentNode.insertBefore(s,m)}(document,"script","ochukai","embed")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+include _views/post
+include _views/menu
+extends _views/main
+
+block main
+  +post(page, 'post')
+  
+  if theme.reward_image
+    section.reward 
+      a(class="btn-reward" href="#") 打赏
+      div.reward-wrapper.clearfix
+        img(src = theme.reward_image)
+
+  if theme.disqus_shortname && page.comments && !env.debug
+    div.comments
+      div#disqus_thread
+        noscript.
+          Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+
+block head
+  title
+    = page.title + ' - ' + config.title
+
+block menu
+  +menu('post')

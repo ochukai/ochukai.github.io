@@ -1,13 +1,25 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>在微信网页上的电话号码 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/archives" class="head-nav__link">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2016-02-26T10:36:25.000Z" class="post__time">February 26, 2016</time><h1 class="post__title"><a href="/telephone-number-not-recognize-in-wx/">在微信网页上的电话号码</a></h1><div class="post__main echo"><h3 id="电话好不不想被识别"><a href="#电话好不不想被识别" class="headerlink" title="电话好不不想被识别"></a>电话好不不想被识别</h3><p>在网页中的比较长的数字会被微信浏览器自动识别为电话号码，稍不注意可能就使页面变得很难看，与是，在 header 里面加上下面两个 meta 就电话号码就不会被识别了。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span>/&gt;</span></span>
-<span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-rim-auto-match"</span> <span class="attr">content</span>=<span class="string">"none"</span>&gt;</span></span>
-</pre></td></tr></table></figure><h3 id="如果要识别呢？"><a href="#如果要识别呢？" class="headerlink" title="如果要识别呢？"></a>如果要识别呢？</h3><p>加一个 <code>tel//***</code> 就可以了。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"telephone"</span>&gt;</span></span>
-<span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>苹果妹妹专线<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>
-<span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel://4000630086"</span>&gt;</span>400-063-0086<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>
-<span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>
-</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/微信开发/" class="post__tag__link">微信开发</a></li></ul></footer></article><section class="reward"><a href="#" class="btn-reward">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png"></div></section><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2016-2017 Oliver<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div><menu class="page-menu u-fr"><li class="page-menu__item"><a title="Previous" href="/for-in-scss/" class="page-menu__link icon-arrow-left"></a></li><li class="page-menu__item"><a title="Next" href="/kill-process/" class="page-menu__link icon-arrow-right"></a></li></menu></footer><script>!function(e,t,c,n,s,m){s=e.createElement(t),m=e.getElementsByTagName(t)[0],s.src="//"+c+".disqus.com/"+n+".js",m.parentNode.insertBefore(s,m)}(document,"script","ochukai","embed")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+include _views/post
+include _views/menu
+extends _views/main
+
+block main
+  +post(page, 'post')
+  
+  if theme.reward_image
+    section.reward 
+      a(class="btn-reward" href="#") 打赏
+      div.reward-wrapper.clearfix
+        img(src = theme.reward_image)
+
+  if theme.disqus_shortname && page.comments && !env.debug
+    div.comments
+      div#disqus_thread
+        noscript.
+          Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+
+block head
+  title
+    = page.title + ' - ' + config.title
+
+block menu
+  +menu('post')

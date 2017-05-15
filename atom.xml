@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ochukai.me/"/>
-  <updated>2017-04-07T09:13:03.831Z</updated>
+  <updated>2017-05-15T03:44:35.099Z</updated>
   <id>http://ochukai.me/</id>
   
   <author>
@@ -14,6 +14,108 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>升级到 React 15.5.0 之后遇到的问题。</title>
+    <link href="http://ochukai.me/react-15-5-0/"/>
+    <id>http://ochukai.me/react-15-5-0/</id>
+    <published>2017-04-17T08:43:52.000Z</published>
+    <updated>2017-05-15T03:44:35.099Z</updated>
+    
+    <content type="html"><![CDATA[<p>propTypes 被从 react 包里面分离出来了，如果要用到 <strong>propTypes</strong>, 则必须要自己安装 <code>prop-types</code></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">npm install prop-types --save</span>
+</pre></td></tr></table></figure><p>那么，对于之前项目里面已经存在的 <strong>propTypes</strong> 呢，可以使用 facebook 的这个工具 jscodeshift<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> 和 codemod<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, 其中 codemod 最好 clone 在当前项目文件夹。</p><p>用法像这样：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+</pre></td><td class="code"><pre><span class="line">jscodeshift </span>
+<span class="line">  --extensions=js,jsx </span>
+<span class="line">  -t ./react-codemod/transforms/React-PropTypes-to-prop-types.js </span>
+<span class="line">  src</span>
+<span class="line"></span>
+<span class="line">Processing 310 files...</span>
+<span class="line">Spawning 3 workers...</span>
+<span class="line">Sending 50 files to free worker...</span>
+<span class="line">Sending 50 files to free worker...</span>
+<span class="line">Sending 50 files to free worker...</span>
+<span class="line">Sending 50 files to free worker...</span>
+<span class="line">Sending 50 files to free worker...</span>
+<span class="line">Sending 50 files to free worker...</span>
+<span class="line">Sending 10 files to free worker...</span>
+<span class="line">All done.</span>
+<span class="line">Results:</span>
+<span class="line">  0   errors</span>
+<span class="line">  0   unmodified</span>
+<span class="line">  310 skipped</span>
+<span class="line">  0   ok</span>
+<span class="line">Time elapsed: 4.758seconds</span>
+</pre></td></tr></table></figure><p>执行完之后，代码会变成这样：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+</pre></td><td class="code"><pre><span class="line marked"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">'prop-types'</span>;</span>
+<span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">import</span> &#123; Form, Card, Modal, Spin &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span>
+<span class="line"></span>
+<span class="line"><span class="comment">// ...</span></span>
+<span class="line"></span>
+<span class="line">UserAnswerModal.propTypes = &#123;</span>
+<span class="line marked">  <span class="attr">item</span>: PropTypes.object,</span>
+<span class="line marked">  <span class="attr">visible</span>: PropTypes.bool,</span>
+<span class="line marked">  <span class="attr">loading</span>: PropTypes.bool,</span>
+<span class="line marked">  <span class="attr">type</span>: PropTypes.string,</span>
+<span class="line marked">  <span class="attr">form</span>: PropTypes.object,</span>
+<span class="line marked">  <span class="attr">onOk</span>: PropTypes.func,</span>
+<span class="line marked">  <span class="attr">onCancel</span>: PropTypes.func,</span>
+<span class="line">&#125;;</span>
+</pre></td></tr></table></figure><p>于是问题就解决了，但是因为你引用的包可能会有这个问题，所以 warning 应该不会消失。</p><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none;padding-left:0"><li id="fn:1"><span style="display:inline-block;vertical-align:top;padding-right:10px">1.</span><span style="display:inline-block;vertical-align:top"><a href="https://github.com/facebook/jscodeshift" target="_blank" rel="external">github/jscodeshift</a></span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display:inline-block;vertical-align:top;padding-right:10px">2.</span><span style="display:inline-block;vertical-align:top"><a href="https://github.com/reactjs/react-codemod" target="_blank" rel="external">github/react-codemod</a></span><a href="#fnref:2" rev="footnote"> ↩</a></li></ol></div></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;propTypes 被从 react 包里面分离出来了，如果要用到 &lt;strong&gt;propTypes&lt;/strong&gt;, 则必须要自己安装 &lt;code&gt;prop-types&lt;/code&gt;&lt;/p&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr
+    
+    </summary>
+    
+    
+      <category term="react" scheme="http://ochukai.me/tags/react/"/>
+    
+      <category term="jscodeshift" scheme="http://ochukai.me/tags/jscodeshift/"/>
+    
+      <category term="proptypes" scheme="http://ochukai.me/tags/proptypes/"/>
+    
+      <category term="react-codemod" scheme="http://ochukai.me/tags/react-codemod/"/>
+    
+  </entry>
   
   <entry>
     <title>详解 Promise</title>
@@ -372,30 +474,6 @@
   </entry>
   
   <entry>
-    <title>柏拉图式的爱情</title>
-    <link href="http://ochukai.me/platonism-love/"/>
-    <id>http://ochukai.me/platonism-love/</id>
-    <published>2017-02-24T07:00:28.000Z</published>
-    <updated>2017-02-24T07:04:22.189Z</updated>
-    
-    <content type="html"><![CDATA[<p>柏拉图式爱情，也称为精神恋爱，以西方哲学家柏拉图命名的一种人与人之间的精神爱情，追求心灵沟通，排斥肉欲，理性的精神上的纯洁爱情。</p><p>最早由Marsilio Ficino于15世纪提出，作为苏格拉底式爱情的同义词，用来指代苏格拉底和他学生之间的爱慕关系。</p><p>柏拉图式爱情根植于古希腊的理性主义传统和同性恋爱风尚。 哲学界对爱情的定义是理性的，所以它包容了如：道德、责任、义务等等这些充满人类理性光芒的社会化的衍生物。</p><p>柏拉图认为：“当心灵摒绝肉体而向往着真理的时候，这时才是最好的。而当灵魂被肉体的罪恶所感染时，人们追求真理的愿望就不会得到满足。当人类没有对肉欲的强烈需求时，心境是平和的，肉欲是人性中兽性的表现，是每个生物体的本性，人之所以是所谓的高等动物，是因为人的本性中，<strong>人性强于兽性，精神交流是美好的、是道德的。</strong>” 但实际上按照会饮篇的理论而言，柏拉图式的爱情主要是指一个同性之间的爱情，而这个也和当时希腊风气相关。</p><p>希腊学者认为<strong>同性之间的爱情才是真正属天的爱情，而异性的婚姻制度不过是为了社会的建构</strong>。</p><p>而现今柏拉图式爱情已经扭曲成精神爱情，基本上是断章取义只是形容男女之间的爱恋（柏拉图式爱情在现代经常来表达男女之间的爱情，通常出现在言情小说中），而这个正是因为现代社会对于同性恋的排斥。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;柏拉图式爱情，也称为精神恋爱，以西方哲学家柏拉图命名的一种人与人之间的精神爱情，追求心灵沟通，排斥肉欲，理性的精神上的纯洁爱情。&lt;/p&gt;&lt;p&gt;最早由Marsilio Ficino于15世纪提出，作为苏格拉底式爱情的同义词，用来指代苏格拉底和他学生之间的爱慕关系。&lt;/p&gt;&lt;p
-    
-    </summary>
-    
-      <category term="柏拉图式的爱情" scheme="http://ochukai.me/categories/%E6%9F%8F%E6%8B%89%E5%9B%BE%E5%BC%8F%E7%9A%84%E7%88%B1%E6%83%85/"/>
-    
-    
-      <category term="柏拉图" scheme="http://ochukai.me/tags/%E6%9F%8F%E6%8B%89%E5%9B%BE/"/>
-    
-      <category term="爱情" scheme="http://ochukai.me/tags/%E7%88%B1%E6%83%85/"/>
-    
-  </entry>
-  
-  <entry>
     <title>(**) 的 IE 👽</title>
     <link href="http://ochukai.me/ie-css-hack/"/>
     <id>http://ochukai.me/ie-css-hack/</id>
@@ -682,7 +760,7 @@
     <link href="http://ochukai.me/textarea-height-auto-increase/"/>
     <id>http://ochukai.me/textarea-height-auto-increase/</id>
     <published>2017-01-20T03:48:10.000Z</published>
-    <updated>2017-01-20T06:41:03.831Z</updated>
+    <updated>2017-04-14T01:57:00.873Z</updated>
     
     <content type="html"><![CDATA[<p>一般情况下，textarea 的高度是定死的，rows 指定了之后，高度就不变了，内容多了之后会出现滚动条，这样的设定在大部分的场景下面是够用的， 但是有时就会很丑陋（废话😊）。</p><p>我们都知道 HTML 的元素都有一个 scrollHeight 这个属性，就是当该元素出现滚动条的时候，内容的高度。</p><p>那就方便了：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
@@ -770,10 +848,10 @@
     
     </summary>
     
-      <category term="HTML" scheme="http://ochukai.me/categories/html/"/>
-    
     
       <category term="textarea" scheme="http://ochukai.me/tags/textarea/"/>
+    
+      <category term="html" scheme="http://ochukai.me/tags/html/"/>
     
   </entry>
   
@@ -1875,7 +1953,7 @@
     <link href="http://ochukai.me/use-terminal-to-update-win10-key/"/>
     <id>http://ochukai.me/use-terminal-to-update-win10-key/</id>
     <published>2016-12-16T05:02:13.000Z</published>
-    <updated>2016-12-16T06:58:09.484Z</updated>
+    <updated>2017-04-14T01:57:38.819Z</updated>
     
     <content type="html"><![CDATA[<p>今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
@@ -1895,10 +1973,12 @@
     
     </summary>
     
-      <category term="Window" scheme="http://ochukai.me/categories/window/"/>
-    
     
       <category term="win10" scheme="http://ochukai.me/tags/win10/"/>
+    
+      <category term="win10-key" scheme="http://ochukai.me/tags/win10-key/"/>
+    
+      <category term="slmgr" scheme="http://ochukai.me/tags/slmgr/"/>
     
   </entry>
   
@@ -2003,37 +2083,13 @@
   </entry>
   
   <entry>
-    <title>Javascript 中的 splice 方法</title>
-    <link href="http://ochukai.me/splice-in-javascript/"/>
-    <id>http://ochukai.me/splice-in-javascript/</id>
-    <published>2016-11-22T01:40:09.766Z</published>
-    <updated>2017-01-04T01:50:26.000Z</updated>
+    <title>Clearfix 的正确写法~</title>
+    <link href="http://ochukai.me/wrong-clearfix-make-me-crazy/"/>
+    <id>http://ochukai.me/wrong-clearfix-make-me-crazy/</id>
+    <published>2016-11-22T01:40:09.782Z</published>
+    <updated>2017-05-15T02:53:38.178Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)</p></blockquote><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">arrayObject.splice(index, how-many, item1, item2, ...itemX)</span>
-</pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>index</td><td>必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</td></tr><tr><td>how-many</td><td>必需。要删除的项目数量。<code>如果设置为 0，则不会删除项目</code>。</td></tr><tr><td>item1, …, itemX</td><td>可选。向数组添加的新项目。</td></tr></tbody></table><h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span>
-<span class="line">arrr.splice(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
-</pre></td></tr></table></figure><p>删除第三个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span>
-<span class="line">arrr.splice(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span>
-<span class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></span>
-</pre></td></tr></table></figure><p>删除后面两个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
-<span class="line">arrr.splice(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span>
-<span class="line">                  <span class="comment">// arrr: [0, 1]</span></span>
-</pre></td></tr></table></figure><p>替换</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// 把第二个元素变成 5</span></span>
-<span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span>
-<span class="line">arrr.splice(<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>); <span class="comment">// [0, 1, 5, 4]</span></span>
-</pre></td></tr></table></figure><p>交换位置</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+    <content type="html"><![CDATA[<p>Clearfix 就是这么简单！</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -2041,32 +2097,31 @@
 <span class="line">6</span>
 <span class="line">7</span>
 <span class="line">8</span>
-</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swapArrayItemPosition</span>(<span class="params">arr, one, another</span>) </span>&#123;</span>
-<span class="line">  <span class="keyword">var</span> dummy = arr.splice(one, <span class="number">1</span>, arr[another])[<span class="number">0</span>];</span>
-<span class="line">  arr.splice(another, <span class="number">1</span>, dummy);</span>
-<span class="line">  <span class="keyword">return</span> arr;</span>
+<span class="line">9</span>
+</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>,</span>
+<span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span> &#123;</span>
+<span class="line">    <span class="attribute">display</span>: table;</span>
+<span class="line">    <span class="attribute">content</span>: <span class="string">" "</span></span>
 <span class="line">&#125;</span>
 <span class="line"></span>
-<span class="line"><span class="comment">// arrr = [0, 1, 5, 4]</span></span>
-<span class="line">swapArrayItemPosition(arrr, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// [0, 5, 1, 4]</span></span>
+<span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span>
+<span class="line">    <span class="attribute">clear</span>: both</span>
+<span class="line">&#125;</span>
 </pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;&lt;p&gt;splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。(会改变原始数组)&lt;/p&gt;&lt;/blockquote&gt;&lt;h2 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;
+      &lt;p&gt;Clearfix 就是这么简单！&lt;/p&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;2&lt;/sp
     
     </summary>
     
-      <category term="javascript" scheme="http://ochukai.me/categories/javascript/"/>
-    
-      <category term="[object Object]" scheme="http://ochukai.me/categories/javascript/object-object/"/>
+      <category term="css" scheme="http://ochukai.me/categories/css/"/>
     
     
-      <category term="js" scheme="http://ochukai.me/tags/js/"/>
+      <category term="css" scheme="http://ochukai.me/tags/css/"/>
     
-      <category term="splice" scheme="http://ochukai.me/tags/splice/"/>
-    
-      <category term="array" scheme="http://ochukai.me/tags/array/"/>
+      <category term="html" scheme="http://ochukai.me/tags/html/"/>
     
   </entry>
   
