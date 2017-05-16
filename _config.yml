@@ -74,8 +74,8 @@ time_format: HH:mm:ss
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 6
-pagination_dir: page
+# per_page: 6
+# pagination_dir: page
 
 # Extensions
 ## Plugins: http://hexo.io/plugins/
@@ -114,9 +114,9 @@ deploy:
 #     branch: master
 
 # Admin
-admin:
-  name: oliver
-  password: xiaoyee
-  secret: ochukai
+# admin:
+#   name: oliver
+#   password: xiaoyee
+#   secret: ochukai
   # expire: 60*1
   # cors: http://localhost:3000

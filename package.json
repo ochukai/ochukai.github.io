@@ -1,7 +1,7 @@
 {
-  "name": "ochuunn",
+  "name": "ochuunn-blog",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "hexo": {
     "version": "3.3.5"
   },
@@ -26,11 +26,8 @@
     "hexo-generator-sitemap": "*",
     "hexo-generator-tag": "^0.2.0",
     "hexo-helper-live2d": "^1.0.5",
-    "hexo-hey": "^0.4.1",
-    "hexo-pagination": "^0.1.0",
-    "hexo-renderer-ejs": "^0.3.0",
-    "hexo-renderer-jade": "^0.4.0",
     "hexo-renderer-marked": "^0.3.0",
+    "hexo-renderer-pug": "0.0.5",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.2.0"
   }
