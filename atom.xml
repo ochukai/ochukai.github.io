@@ -5,15 +5,229 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ochukai.me/"/>
-  <updated>2017-05-15T03:44:35.099Z</updated>
+  <updated>2017-06-01T10:53:18.047Z</updated>
   <id>http://ochukai.me/</id>
   
   <author>
-    <name>Oliver</name>
+    <name>Oliver Wang</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>直播写代码要去那个平台呢?</title>
+    <link href="http://ochukai.me/live-code/"/>
+    <id>http://ochukai.me/live-code/</id>
+    <published>2017-06-01T10:51:49.000Z</published>
+    <updated>2017-06-01T10:53:18.047Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在我在 <a href="http://www.huya.com/ochukai" target="_blank" rel="external">虎牙-代码痴汉umi</a>, 有谁推荐新的直播平台吗 ?</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现在我在 &lt;a href=&quot;http://www.huya.com/ochukai&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;虎牙-代码痴汉umi&lt;/a&gt;, 有谁推荐新的直播平台吗 ?&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="直播" scheme="http://ochukai.me/tags/%E7%9B%B4%E6%92%AD/"/>
+    
+      <category term="直播写代码" scheme="http://ochukai.me/tags/%E7%9B%B4%E6%92%AD%E5%86%99%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给 Git Bash 设置好看的配色~ 😜</title>
+    <link href="http://ochukai.me/beautiful-color-git-bash/"/>
+    <id>http://ochukai.me/beautiful-color-git-bash/</id>
+    <published>2017-05-31T22:06:06.000Z</published>
+    <updated>2017-06-01T09:47:33.139Z</updated>
+    
+    <content type="html"><![CDATA[<p>window 上面的命令行一直都非常丑陋 (看我用词多么强烈)~</p><p>今天上午终于因为看 Git Bash 配色而双眼变得模糊了, 于是上网搜了一下有没有结局方案, 然后就发现了这个 <a href="https://github.com/mavnn/mintty-colors-solarized" target="_blank" rel="external">github/mintty-colors-solarized</a>, 但这个项目是好几年前的了, 我还是怀着试试看的态度尝试了一下.</p><p>我发现了, 干程序员别的可能不行, 但是尝试的能力还是有的, 经常为了找一个新的框架, 或者要写一个组件而去把所有相关的项目全看一边, 然后才发现不行~</p><p>但是今天老天并没有调戏我, 先说一下修改的过程吧~ 在 Git Bash 里面输入,</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+</pre></td><td class="code"><pre><span class="line">cd ~</span>
+<span class="line">vi .minttyrc</span>
+</pre></td></tr></table></figure><p>开始编辑它的配置文件, 不妨输入这些东西, 这些配色就是我从上面的项目里面找来的~</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+</pre></td><td class="code"><pre><span class="line">...</span>
+<span class="line">Font=Consolas</span>
+<span class="line"></span>
+<span class="line"># 后面是颜色的配置</span>
+<span class="line">ForegroundColour=131,148,150</span>
+<span class="line">BackgroundColour=0,43,54</span>
+<span class="line">CursorColour=220,50,47</span>
+<span class="line"></span>
+<span class="line">Black=7,54,66</span>
+<span class="line">BoldBlack=0,43,54</span>
+<span class="line">Red=220,50,47</span>
+<span class="line">BoldRed=203,75,22</span>
+<span class="line">Green=133,153,0</span>
+<span class="line">BoldGreen=88,110,117</span>
+<span class="line">Yellow=181,137,0</span>
+<span class="line">BoldYellow=101,123,131</span>
+<span class="line">Blue=38,139,210</span>
+<span class="line">BoldBlue=131,148,150</span>
+<span class="line">Magenta=211,54,130</span>
+<span class="line">BoldMagenta=108,113,196</span>
+<span class="line">Cyan=42,161,152</span>
+<span class="line">BoldCyan=147,161,161</span>
+<span class="line">White=238,232,213</span>
+<span class="line">BoldWhite=253,246,227</span>
+</pre></td></tr></table></figure><p>保存之后, 重启一下, 效果就像下面这样了~</p><p><img src="/images/terminal.png" alt="非选中状态"></p><p><img src="/images/terminal-selected.png" alt="选中状态"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;window 上面的命令行一直都非常丑陋 (看我用词多么强烈)~&lt;/p&gt;&lt;p&gt;今天上午终于因为看 Git Bash 配色而双眼变得模糊了, 于是上网搜了一下有没有结局方案, 然后就发现了这个 &lt;a href=&quot;https://github.com/mavnn/mintty-
+    
+    </summary>
+    
+    
+      <category term="git bash" scheme="http://ochukai.me/tags/git-bash/"/>
+    
+      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
+    
+      <category term="配色" scheme="http://ochukai.me/tags/%E9%85%8D%E8%89%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>写了一个 Vue 的图片预览插件~😜</title>
+    <link href="http://ochukai.me/vue-image-preview/"/>
+    <id>http://ochukai.me/vue-image-preview/</id>
+    <published>2017-05-31T22:01:01.000Z</published>
+    <updated>2017-06-01T11:03:34.339Z</updated>
+    
+    <content type="html"><![CDATA[<p>(还没写~)</p><p>效果是这样的~</p><p><img src="/images/vue-image-preview.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;(还没写~)&lt;/p&gt;&lt;p&gt;效果是这样的~&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/images/vue-image-preview.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://ochukai.me/tags/vue/"/>
+    
+      <category term="image-preview" scheme="http://ochukai.me/tags/image-preview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VUE 总结一下~</title>
+    <link href="http://ochukai.me/vue-summary/"/>
+    <id>http://ochukai.me/vue-summary/</id>
+    <published>2017-05-24T03:27:55.000Z</published>
+    <updated>2017-06-01T10:49:07.666Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近开始接触 vue, 写了一个算是前端小论坛的公司内部项目, 算是一个知识库, 可添加一些常见的问题供别人查阅~</p><p>现在做个总结吧, 项目写完一个多星期, 现在想想差不多都忘记了~ 真是老了~</p><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="/images/vue-lifecycle.png" alt=""></p><p>其中 created 和 mounted 的顺序要确定好~ 比较重要的就像下面这三个吧, 其他的像是 <code>updated</code>, <code>beforeUpdate</code> 我几乎没有用过, 暂时不说~</p><h3 id="created"><a href="#created" class="headerlink" title="created"></a>created</h3><p>实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</p><h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。<br>这个时候可以获取到 template 里面的标签元素了, 如果要修改大小样式之类的在这里面写~</p><h3 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed"></a>destroyed</h3><p>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。 该钩子在服务器端渲染期间不被调用。</p><h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>使用过 vue 的 transition 标签之后最大的感慨便是, 做动画比 react 简单好多啊, 可能是我之前用 react 并没有写过动画的缘故吧, 但不可否认 vue 的动画很简单~</p><p>我之前写的一个小组件</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span>
+<span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"back-top-fade"</span>&gt;</span></span>
+<span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"show"</span> <span class="attr">class</span>=<span class="string">"back-to-top hidden-xs"</span> @<span class="attr">click</span>=<span class="string">"handleBackTopClick"</span>&gt;</span></span>
+<span class="line">      <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"el-icon-caret-top"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span>
+<span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>
+<span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span>
+<span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span>
+</pre></td></tr></table></figure><p>这是一个简单的返回顶部的按钮, 当页面滚动到 一定距离的时候 <strong>show</strong> 变为 true, (对了, 为什么我的网址没有返回顶部的按钮呢~ 打开控制台就知道了~)</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+</pre></td><td class="code"><pre><span class="line">handleScroll() &#123;</span>
+<span class="line">  <span class="keyword">let</span> scrollTop = getScrollTop();</span>
+<span class="line">  <span class="keyword">this</span>.show = scrollTop &gt; <span class="number">400</span>;</span>
+<span class="line">&#125;,</span>
+</pre></td></tr></table></figure><p>transition 下面的元素通过 <strong>v-if</strong> <strong>v-show</strong> 来控制隐藏和消失~ 然后会有几个状态类~</p><ol><li><strong>v-enter</strong>: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。</li><li><strong>v-enter-active</strong>: 定义进入过渡的结束状态。在元素被插入时生效，在 transition/animation 完成之后移除。</li><li><strong>v-leave</strong>: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。</li><li><strong>v-leave-active</strong>: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 transition/animation 完成之后移除。</li></ol><p>我只写了一个样式, 这样的话 按钮进出场的效果都是一样的~</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.back-top-fade-enter</span>,</span>
+<span class="line"><span class="selector-class">.back-top-fade-leave-active</span> &#123;</span>
+<span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-30px);</span>
+<span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span></span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>下面这几个比较有用</p><ul><li>普通的 @click 事件</li><li>@click.self 这样很有用, 只是点击自己的时候有用</li><li>@click.stop 阻止单击事件冒泡</li><li>@click.prevent 阻止默认行为</li></ul><h2 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue Router"></a>Vue Router</h2><p><strong>beforeRouteUpdate</strong> 这个方法很好用</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+</pre></td><td class="code"><pre><span class="line"></span>
+<span class="line">beforeRouteEnter (to, <span class="keyword">from</span>, next) &#123;</span>
+<span class="line">  <span class="comment">// 在渲染该组件的对应路由被 confirm 前调用</span></span>
+<span class="line">  <span class="comment">// 不！能！获取组件实例 `this`</span></span>
+<span class="line">  <span class="comment">// 因为当钩子执行前，组件实例还没被创建</span></span>
+<span class="line">&#125;,</span>
+<span class="line"></span>
+<span class="line">beforeRouteUpdate (to, <span class="keyword">from</span>, next) &#123;</span>
+<span class="line">  <span class="comment">// 在当前路由改变，但是该组件被复用时调用</span></span>
+<span class="line">  <span class="comment">// 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，</span></span>
+<span class="line">  <span class="comment">// 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。</span></span>
+<span class="line">  <span class="comment">// 可以访问组件实例 `this`</span></span>
+<span class="line">&#125;,</span>
+<span class="line"></span>
+<span class="line">beforeRouteLeave (to, <span class="keyword">from</span>, next) &#123;</span>
+<span class="line">  <span class="comment">// 导航离开该组件的对应路由时调用</span></span>
+<span class="line">  <span class="comment">// 可以访问组件实例 `this`</span></span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure><p>还有一个就是</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+</pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 命名的路由 --&gt;</span></span>
+<span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">"&#123; name: 'user', params: &#123; userId: 123 &#125;&#125;"</span>&gt;</span>User<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span>
+</pre></td></tr></table></figure><h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2><p>watch 很好用~</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近开始接触 vue, 写了一个算是前端小论坛的公司内部项目, 算是一个知识库, 可添加一些常见的问题供别人查阅~&lt;/p&gt;&lt;p&gt;现在做个总结吧, 项目写完一个多星期, 现在想想差不多都忘记了~ 真是老了~&lt;/p&gt;&lt;h2 id=&quot;生命周期&quot;&gt;&lt;a href=&quot;#生命周期&quot; c
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://ochukai.me/tags/vue/"/>
+    
+      <category term="image-preview" scheme="http://ochukai.me/tags/image-preview/"/>
+    
+  </entry>
   
   <entry>
     <title>升级到 React 15.5.0 之后遇到的问题。</title>
@@ -553,9 +767,9 @@
       <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="font" scheme="http://ochukai.me/tags/font/"/>
-    
       <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
+    
+      <category term="font" scheme="http://ochukai.me/tags/font/"/>
     
   </entry>
   
@@ -1863,9 +2077,9 @@
 <span class="line"></span>
 <span class="line">  render() &#123;</span>
 <span class="line">    <span class="keyword">return</span> (</span>
-<span class="line">      &lt;div &#123; ...this.props &#125;&gt;</span>
+<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
 <span class="line">        &#123; this.props.children &#125;</span>
-<span class="line">      &lt;/div&gt;</span>
+<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
 <span class="line">    );</span>
 <span class="line">  &#125;</span>
 <span class="line">  </span>
@@ -1942,9 +2156,9 @@
       <category term="JavaScript" scheme="http://ochukai.me/categories/javascript/"/>
     
     
-      <category term="decorator" scheme="http://ochukai.me/tags/decorator/"/>
-    
       <category term="js" scheme="http://ochukai.me/tags/js/"/>
+    
+      <category term="decorator" scheme="http://ochukai.me/tags/decorator/"/>
     
   </entry>
   
@@ -2150,380 +2364,6 @@
       <category term="东野圭吾" scheme="http://ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE/"/>
     
       <category term="东野圭吾作品全集" scheme="http://ochukai.me/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE%E4%BD%9C%E5%93%81%E5%85%A8%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Splice 和 Slice 的区别</title>
-    <link href="http://ochukai.me/ths-difference-between-splice-and-slice/"/>
-    <id>http://ochukai.me/ths-difference-between-splice-and-slice/</id>
-    <published>2016-07-11T02:52:16.000Z</published>
-    <updated>2017-04-07T09:13:20.178Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前写过一遍介绍 <code>splice()</code> 方法的，这一次又遇到了 <code>slice()</code>, 这两个太像了, 首先看这两个意思吧：</p><blockquote><p>splice [splais]<br>n. 接合；结婚<br>vt. 拼接；接合；使结婚</p></blockquote><p>和</p><blockquote><p>slice [slais]<br>n. 薄片；部分；菜刀，火铲<br>vt. 切下；把…分成部分；将…切成薄片<br>vi. 切开；割破</p></blockquote><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><code>slice()</code> 方法可从已有的数组中返回选定的元素。这个函数有两个参数 <code>slice(start, end)</code> 会返回一个从 <code>start</code> 到 <code>end</code> 之前元素的新数组， 如果 <code>end</code> 是<code>负数</code>，就从数组末尾倒着数, 如果 end 没有设置，就返回从 start 到数组末尾组成的新数组咯~</p><p>总之这是一个返回新数组的函数，知识返回而已，不会改变原来的数组，而 <code>splice</code> 方法则会改变原来的数组.</p><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-</pre></td><td class="code"><pre><span class="line">var arr = new Array(3)</span>
-<span class="line">arr[0] = &quot;George&quot;</span>
-<span class="line">arr[1] = &quot;John&quot;</span>
-<span class="line">arr[2] = &quot;Thomas&quot;</span>
-<span class="line">arr[3] = &quot;James&quot;</span>
-<span class="line">arr[4] = &quot;Adrew&quot;</span>
-<span class="line">arr[5] = &quot;Martin&quot;</span>
-<span class="line"></span>
-<span class="line">console.log(arr.slice(4)) // [&quot;Adrew&quot;, &quot;Martin&quot;] == arr.slice(4, 6)</span>
-<span class="line">console.log(arr.slice(0, -4)) // [&quot;George&quot;, &quot;John&quot;] == arr.slice(0, 2)</span>
-</pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;之前写过一遍介绍 &lt;code&gt;splice()&lt;/code&gt; 方法的，这一次又遇到了 &lt;code&gt;slice()&lt;/code&gt;, 这两个太像了, 首先看这两个意思吧：&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;splice [splais]&lt;br&gt;n. 接合；结婚&lt;br&gt;vt. 
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://ochukai.me/tags/js/"/>
-    
-      <category term="splice" scheme="http://ochukai.me/tags/splice/"/>
-    
-      <category term="slice" scheme="http://ochukai.me/tags/slice/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>上层滚动 下层不摇滚</title>
-    <link href="http://ochukai.me/prevent-deep-div-scroll-with-the-top-element/"/>
-    <id>http://ochukai.me/prevent-deep-div-scroll-with-the-top-element/</id>
-    <published>2016-06-23T03:12:27.000Z</published>
-    <updated>2016-11-22T01:40:09.751Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近写手机页面颇多, 经常有弹出框, 或者下拉列表, 如果弹框或者下拉列表的内容太多,出现了滚动条, 恰好外面的内容也很多,也有滚动条的话,就会出现一种情况:</p><p><img src="../images/scroll-1.png" alt="例子"></p><p>比如上图, 当用力划一下屏幕, 下拉框滚到底了之后, <strong>body</strong> 随之也开始滚, 很讨厌。出现过好多次了, 而且测试逼我太紧~</p><h2 id="我要解决这个问题啊"><a href="#我要解决这个问题啊" class="headerlink" title="我要解决这个问题啊"></a>我要解决这个问题啊</h2><p>其实很简单, 只要弹出下拉列表的时候让下层的元素不能滚动就好了。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.modal-open</span> &#123; </span>
-<span class="line">  <span class="attribute">overflow</span>: hidden;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p>js 的话就这么写:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-</pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">$div</span>) </span>&#123;</span>
-<span class="line">  $(<span class="string">'body'</span>).addClass(<span class="string">'modal-open'</span>);</span>
-<span class="line">  <span class="comment">// ...</span></span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params">$div</span>) </span>&#123;</span>
-<span class="line">  $(<span class="string">'body'</span>).removeClass(<span class="string">'modal-open'</span>);</span>
-<span class="line">  <span class="comment">// ...</span></span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p>以上。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近写手机页面颇多, 经常有弹出框, 或者下拉列表, 如果弹框或者下拉列表的内容太多,出现了滚动条, 恰好外面的内容也很多,也有滚动条的话,就会出现一种情况:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;../images/scroll-1.png&quot; alt=&quot;例子&quot;&gt;&lt;/p&gt;&lt;p&gt;比
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Zepto 插件写法</title>
-    <link href="http://ochukai.me/zepto-plugin/"/>
-    <id>http://ochukai.me/zepto-plugin/</id>
-    <published>2016-06-20T06:32:33.000Z</published>
-    <updated>2016-11-22T01:40:09.782Z</updated>
-    
-    <content type="html"><![CDATA[<p>一般是这样的… 比较水, 并没有怎么写过.</p><p>我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-<span class="line">32</span>
-<span class="line">33</span>
-<span class="line">34</span>
-<span class="line">35</span>
-<span class="line">36</span>
-<span class="line">37</span>
-<span class="line">38</span>
-<span class="line">39</span>
-<span class="line">40</span>
-<span class="line">41</span>
-<span class="line">42</span>
-<span class="line">43</span>
-<span class="line">44</span>
-<span class="line">45</span>
-<span class="line">46</span>
-<span class="line">47</span>
-<span class="line">48</span>
-<span class="line">49</span>
-<span class="line">50</span>
-<span class="line">51</span>
-<span class="line">52</span>
-<span class="line">53</span>
-<span class="line">54</span>
-<span class="line">55</span>
-<span class="line">56</span>
-<span class="line">57</span>
-<span class="line">58</span>
-<span class="line">59</span>
-<span class="line">60</span>
-</pre></td><td class="code"><pre><span class="line"></span>
-<span class="line">+<span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>&#123;</span>
-<span class="line"><span class="meta">  'use strict'</span>;</span>
-<span class="line"></span>
-<span class="line">  <span class="comment">// BUTTON PUBLIC CLASS DEFINITION</span></span>
-<span class="line">  <span class="comment">// ==============================</span></span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">var</span> Button = <span class="function"><span class="keyword">function</span> (<span class="params">element, options</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">this</span>.$element  = $(element);</span>
-<span class="line">    <span class="keyword">this</span>.options   = $.extend(&#123;&#125;, Button.DEFAULTS, options);</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  Button.DEFAULTS = &#123;</span>
-<span class="line">    <span class="attr">loadingText</span>: <span class="string">'loading...'</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  Button.prototype.setState = <span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;&#125;;</span>
-<span class="line"></span>
-<span class="line">  Button.prototype.toggle = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line">  <span class="comment">// BUTTON PLUGIN DEFINITION</span></span>
-<span class="line">  <span class="comment">// ========================</span></span>
-<span class="line"></span>
-<span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Plugin</span>(<span class="params">option</span>) </span>&#123;</span>
-<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
-<span class="line">      <span class="keyword">var</span> $<span class="keyword">this</span>    = $(<span class="keyword">this</span>),</span>
-<span class="line">          lookup   = $.fn.button.lookup,</span>
-<span class="line">          instance = lookup[$<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>)];</span>
-<span class="line"></span>
-<span class="line">      <span class="keyword">if</span> (!instance) &#123;</span>
-<span class="line">        lookup[++lookup.i] = (instance = <span class="keyword">new</span> Button(<span class="keyword">this</span>, options));</span>
-<span class="line">        $<span class="keyword">this</span>.data(<span class="string">'bs.button'</span>, lookup.i);</span>
-<span class="line">      &#125;</span>
-<span class="line"></span>
-<span class="line">      <span class="comment">// button method</span></span>
-<span class="line">      <span class="comment">// if (option == 'toggle') &#123;</span></span>
-<span class="line">      <span class="comment">//   data.toggle();</span></span>
-<span class="line">      <span class="comment">// &#125; else if (option) &#123;</span></span>
-<span class="line">      <span class="comment">//   data.setState(option);</span></span>
-<span class="line">      <span class="comment">// &#125;</span></span>
-<span class="line">    &#125;);</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">var</span> old = $.fn.button;</span>
-<span class="line"></span>
-<span class="line">  $.fn.button             = Plugin;</span>
-<span class="line">  $.fn.button.lookup      = &#123; <span class="attr">i</span>: <span class="number">0</span> &#125;;</span>
-<span class="line">  $.fn.button.Constructor = Button;</span>
-<span class="line"></span>
-<span class="line"></span>
-<span class="line">  <span class="comment">// BUTTON NO CONFLICT</span></span>
-<span class="line">  <span class="comment">// ==================</span></span>
-<span class="line"></span>
-<span class="line">  $.fn.button.noConflict = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span>
-<span class="line">    $.fn.button = old;</span>
-<span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span>
-<span class="line">  &#125;;</span>
-<span class="line"></span>
-<span class="line">&#125; (Zepto);</span>
-</pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一般是这样的… 比较水, 并没有怎么写过.&lt;/p&gt;&lt;p&gt;我只是把 bootstrap 的 button 组件改了一下, 删掉了 data-api 部分, 感觉这样该够用了。&lt;/p&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="http://ochukai.me/categories/javascript/"/>
-    
-    
-      <category term="zepto" scheme="http://ochukai.me/tags/zepto/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 formData 提交表单和上传图片</title>
-    <link href="http://ochukai.me/formdata-in-action/"/>
-    <id>http://ochukai.me/formdata-in-action/</id>
-    <published>2016-04-11T07:34:57.000Z</published>
-    <updated>2016-11-22T01:40:09.735Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~</p><p>图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。</p><p>然后我就想到了可以用 FormData 来做，因为之前好像用过，感觉很方便。</p><h3 id="FormData"><a href="#FormData" class="headerlink" title="FormData"></a>FormData</h3><blockquote><p>The FormData interface provides a way to easily construct a set of <code>key/value</code> pairs representing form fields and their values, which can then be easily sent using the <code>XMLHttpRequest.send()</code> method. It uses the same format a form would use if the encoding type were set to “multipart/form-data”.</p></blockquote><p>如果使用 jQuery 提交 formData 的话，大致像这样：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-</pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span>
-<span class="line">  <span class="attr">url</span>        : url,</span>
-<span class="line">  <span class="attr">type</span>       : <span class="string">'POST'</span>,</span>
-<span class="line">  <span class="attr">data</span>       : formData,</span>
-<span class="line">  <span class="comment">// 下面这两条需要特别注意</span></span>
-<span class="line">  processData: <span class="literal">false</span>,</span>
-<span class="line">  <span class="attr">contentType</span>: <span class="literal">false</span>,</span>
-<span class="line">  success(data) &#123;</span>
-<span class="line">    <span class="comment">// ...</span></span>
-<span class="line">  &#125;,</span>
-<span class="line">  error(xhr) &#123;</span>
-<span class="line">    <span class="comment">// ...</span></span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;);</span>
-</pre></td></tr></table></figure><p></p><p>就是把 formData 作为 data 发送到后台就好了，如果要构造一个 formData 对象的话，也很简单呢<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-</pre></td><td class="code"><pre><span class="line"></span>
-<span class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData();</span>
-<span class="line">formData.append(<span class="string">'ticket_id'</span>, <span class="number">1</span>);</span>
-</pre></td></tr></table></figure><p></p><p>如果放文件在 formData 里面的话呢，也没有太复杂的地方：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// html</span></span>
-<span class="line"><span class="comment">// &lt;input</span></span>
-<span class="line"><span class="comment">//   ref="input-image"</span></span>
-<span class="line"><span class="comment">//   accept="image/*"</span></span>
-<span class="line"><span class="comment">//   onChange=&#123; this.onImageSelected &#125;</span></span>
-<span class="line"><span class="comment">//   type="file"</span></span>
-<span class="line"><span class="comment">// /&gt;</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// ....</span></span>
-<span class="line">isImage: <span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</span>
-<span class="line">  <span class="comment">// (!src.type.match(/image.*/)</span></span>
-<span class="line">  <span class="keyword">var</span> type = <span class="string">'|'</span> + file.type.slice(file.type.lastIndexOf(<span class="string">'/'</span>) + <span class="number">1</span>) + <span class="string">'|'</span>;</span>
-<span class="line">  <span class="keyword">return</span> <span class="string">'|jpg|png|jpeg|bmp|gif|'</span>.indexOf(type) !== <span class="number">-1</span>;</span>
-<span class="line">&#125;,</span>
-<span class="line"></span>
-<span class="line">onImageSelected(e) &#123;</span>
-<span class="line">  <span class="keyword">var</span> file = e.target.files[<span class="number">0</span>];</span>
-<span class="line">  <span class="built_in">console</span>.log(<span class="string">'select image'</span>, file);</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.isImage(file)) &#123;</span>
-<span class="line">    Modal.error(&#123; <span class="attr">title</span>: <span class="string">'请选择一张图片'</span> &#125;);</span>
-<span class="line">    <span class="keyword">return</span>;</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">this</span>.props.onImageSelected(file);</span>
-<span class="line">&#125;</span>
-<span class="line"><span class="comment">// ...</span></span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 放多个也可以~</span></span>
-<span class="line">formData.append(<span class="string">'file1'</span>, file1)</span>
-<span class="line">formData.append(<span class="string">'file2'</span>, file2)</span>
-</pre></td></tr></table></figure><p></p><p>对了，因为我把上传文件的 input 隐藏掉了，显示出来了是一个 加号 的图标，所以如果要触发 input 的点击事件的话：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line">onItemClick() &#123;</span>
-<span class="line">  <span class="keyword">const</span> input = findDOMNode(<span class="keyword">this</span>.refs[<span class="string">'input-image'</span>]);</span>
-<span class="line">  input.click();</span>
-<span class="line">&#125;,</span>
-</pre></td></tr></table></figure><p></p><h3 id="生成-formData"><a href="#生成-formData" class="headerlink" title="生成 formData"></a>生成 formData</h3><p>一个一个的 append 可能速度太慢了，而且需要每个都写一遍，其实生成的 formData 的方式还是蛮多的：<br></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span>
-<span class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</span>
-<span class="line"><span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData(form);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 2</span></span>
-<span class="line"><span class="keyword">var</span> form =  <span class="built_in">document</span>.getElementById(<span class="string">"form"</span>);</span>
-<span class="line"><span class="keyword">var</span> formdata = form.getFormData();</span>
-</pre></td></tr></table></figure><p></p><p>好了，没了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近做了一个表单，需要提交好多信息和一些图片，后台的同学说要图片随着表单一起提交。那就不能用 ajax 单张上传了~&lt;/p&gt;&lt;p&gt;图片的话，最多可以选8张，选中了的也可以取消掉，因为并没有传到服务器，所以删除很easy。&lt;/p&gt;&lt;p&gt;然后我就想到了可以用 FormData 
-    
-    </summary>
-    
-      <category term="form" scheme="http://ochukai.me/categories/form/"/>
-    
-      <category term="JavaScript" scheme="http://ochukai.me/categories/form/javascript/"/>
-    
-    
-      <category term="formData" scheme="http://ochukai.me/tags/formdata/"/>
-    
-      <category term="ajax" scheme="http://ochukai.me/tags/ajax/"/>
-    
-      <category term="image upload" scheme="http://ochukai.me/tags/image-upload/"/>
     
   </entry>
   

@@ -1,3 +1,7 @@
+http://ochukai.me/live-code/
+http://ochukai.me/beautiful-color-git-bash/
+http://ochukai.me/vue-image-preview/
+http://ochukai.me/vue-summary/
 http://ochukai.me/react-15-5-0/
 http://ochukai.me/promise-in-action/
 http://ochukai.me/ie-css-hack/
