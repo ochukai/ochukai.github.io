@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": false,
   "hexo": {
-    "version": "3.3.5"
+    "version": "3.3.7"
   },
   "scripts": {
     "deploy": "hexo clean && hexo generate && hexo deploy",
+    "build": "hexo clean && hexo generate && hexo server",
     "start": "hexo clean && hexo s --debug"
   },
   "dependencies": {
-    "hexo": "^3.3.5",
+    "hexo": "^3.3.7",
     "hexo-all-minifier": "0.0.14",
     "hexo-baidu-url-submit": "0.0.5",
     "hexo-cli-extras": "^1.0.4",
@@ -23,9 +24,9 @@
     "hexo-generator-index": "^0.2.1",
     "hexo-generator-json-content": "^3.0.1",
     "hexo-generator-seo-friendly-sitemap": "0.0.20",
-    "hexo-generator-sitemap": "*",
+    "hexo-generator-sitemap": "^1.2.0",
     "hexo-generator-tag": "^0.2.0",
-    "hexo-helper-live2d": "^1.0.5",
+    "hexo-helper-live2d": "^2.0.5",
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-pug": "0.0.5",
     "hexo-renderer-stylus": "^0.3.3",

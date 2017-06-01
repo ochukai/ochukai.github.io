@@ -6,7 +6,7 @@
 title: I am Oliver
 subtitle:
 description: 这是我的博客。会记录平时遇到的技术问题~
-author: Oliver
+author: Oliver Wang
 keywords: 博客, Ochukai, Oliver, 技术
 language: zh-Hans
 timezone:
@@ -120,3 +120,6 @@ deploy:
 #   secret: ochukai
   # expire: 60*1
   # cors: http://localhost:3000
+
+live2d: 
+  model: hijiki

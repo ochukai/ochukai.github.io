@@ -1,6 +1,8 @@
 # head
 menu:
   カタログ/（目录）: /archives
+  # sitemap: /sitemap.xml
+  # other menus
 
 rss: /atom.xml
 favicon: /favicon.png
@@ -13,8 +15,13 @@ google_analytics: UA-73840162-1   # your id
 disqus_shortname: ochukai   # your disqus name
 
 live2d: false    # true
-hjid: 452159      # 23546
+hjid: false      # your hjid (hotjar)
 
 start_year: 2016
 
-reward_image: /img/wechat.png
+reward_images: 
+- type: '微信'
+  url: '/img/wechat.png'
+# - type: '支付宝' 
+#   url: '/img/wechat.png'
+ 
