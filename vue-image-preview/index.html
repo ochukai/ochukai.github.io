@@ -1,1 +1,121 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>写了一个 Vue 的图片预览插件~😜 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2017-05-31T22:01:01.000Z">June 1, 2017</time><h1 class="post__title"><a href="/vue-image-preview/">写了一个 Vue 的图片预览插件~😜</a></h1><div class="post__main echo"><p>(还没写~)</p><p>效果是这样的~</p><p><img src="/images/vue-image-preview.jpg" alt=""></p></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/vue/">vue</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/image-preview/">image-preview</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2017 Oliver Wang<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div></footer><script>!function(e,t,c,n,s,m){s=e.createElement(t),m=e.getElementsByTagName(t)[0],s.src="//"+c+".disqus.com/"+n+".js",m.parentNode.insertBefore(s,m)}(document,"script","ochukai","embed")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>写了一个 Vue 的图片预览插件~😜 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2017-05-31T22:01:01.000Z">June 1, 2017</time><h1 class="post__title"><a href="/vue-image-preview/">写了一个 Vue 的图片预览插件~😜</a></h1><div class="post__main echo"><p>最近的项目里面需要一个图片点击放大预览的插件~ 项目是 vue 写的 SPA ~</p><p>找了好久，没有现成的，有一个，但是写的我很不喜欢，需要手动传入图片地址，宽度和高度，都这样了，还写什么程序~</p><p>然后我打算自己写一个~</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>基本思路的话，就是点击图片的时候，产生一个遮罩层（或者遮罩层本来就有），然后在遮罩层添加一个图片，居中什么的样式到时随便了。点击事件很简单， <code>@click</code> 就好了，点击图片之后可以获取到图片的路径，因为点击的是已经显示出来的图片，所以当前图片的 meta 信息肯定包含了该图片的长和宽。</p><p>生成一个遮罩层也很简单，然后根据图片的长宽和屏幕的长宽（或者浏览窗口的大小）可以计算图片的居中位置。</p><p>然后添加到 body 上面就好了，但是添加的话，因为 vue 有自己的生命周期，<code>document.body.appendChild()</code> 的话事件都不能用 vue 的了，于是如果 <strong>append 一个 vue 的插件到 dom </strong>算是第一个问题。</p><p>简单的思路就这样，只要实现了动态添加 vue 组件到 body，那么这个插件就可以实现了。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我先去看了一个 element-ui 的代码，好复杂，有一个很大的 mixin， 看来看去没明白，后来我想起之前看到的那个图片预览的插件，<a href="https://github.com/xiecg/vue-fancybox" target="_blank" rel="external">github/vue-fancybox</a>，顺便帮作者宣传一下吧，虽然不符合我的价值观~</p><p>这个插件有一个插入的操作，大概是这么写的，</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> FancyBoxConstructor = Vue.extend(fancyBox);</span>
+<span class="line"><span class="keyword">let</span> instance = <span class="keyword">new</span> FancyBoxConstructor(&#123;</span>
+<span class="line">  <span class="attr">el</span>: <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span>
+<span class="line">&#125;);</span>
+<span class="line"></span>
+<span class="line"><span class="built_in">document</span>.body.appendChild(instance.$el);</span>
+</pre></td></tr></table></figure><p>他还写了好多别的代码，但是主要逻辑应该是这个，首先初始化组件之后，再 append 到 body，不错。</p><p>然后我就借用了，</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+</pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ImagePreviewConstructor = Vue.extend(ImagePreview);</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (el) =&gt; &#123;</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">let</span> instance = <span class="keyword">new</span> ImagePreviewConstructor(&#123;</span>
+<span class="line">    <span class="attr">el</span>: <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</span>
+<span class="line">    <span class="attr">data</span>: &#123;</span>
+<span class="line">      <span class="attr">img</span>: el,</span>
+<span class="line">      <span class="attr">imgSrc</span>: el.src</span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;);</span>
+<span class="line"></span>
+<span class="line">  <span class="built_in">document</span>.body.appendChild(instance.$el);</span>
+<span class="line"></span>
+<span class="line">&#125;;</span>
+</pre></td></tr></table></figure><p>初始化的时候顺便传入 <strong>props</strong>, 这个文件算是组件的入口文件了，调用这个组件的方式是这样的：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+</pre></td><td class="code"><pre><span class="line">handleContentClick(e) &#123;</span>
+<span class="line">  <span class="keyword">const</span> el = e.target;</span>
+<span class="line">  <span class="keyword">if</span> (el.localName === <span class="string">'img'</span>) &#123;</span>
+<span class="line">    e.preventDefault();</span>
+<span class="line"></span>
+<span class="line">    <span class="keyword">const</span> imageSrc = el.src;</span>
+<span class="line">    <span class="keyword">if</span> (imageSrc) &#123;</span>
+<span class="line">      showImagePreview(el);</span>
+<span class="line">    &#125;</span>
+<span class="line">  &#125;</span>
+<span class="line"></span>
+<span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure><p>这样的话，组件便可以开始了，或者说已经结束了，因为只要在 template 里面写个 div， 再写个 img 就好了， 剩下的就是样式问题：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span>
+<span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"image-fade"</span>&gt;</span></span>
+<span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"image-preview__wrapper"</span></span>
+<span class="line">         <span class="attr">style</span>=<span class="string">"z-index: 2003;"</span></span>
+<span class="line">         <span class="attr">ref</span>=<span class="string">"wrapper"</span></span>
+<span class="line">         @<span class="attr">click.self</span>=<span class="string">"handleClick"</span></span>
+<span class="line">         @<span class="attr">mousewheel.stop</span>=<span class="string">"handleMouseWheel"</span></span>
+<span class="line">         <span class="attr">v-if</span>=<span class="string">"imgSrc"</span>&gt;</span></span>
+<span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"imgSrc"</span>/&gt;</span></span>
+<span class="line"></span>
+<span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"toolbar"</span>&gt;</span></span>
+<span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">icon</span>=<span class="string">"minus"</span> @<span class="attr">click</span>=<span class="string">"handleZoomIn"</span>&gt;</span>缩小<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span>
+<span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">icon</span>=<span class="string">"plus"</span> @<span class="attr">click</span>=<span class="string">"handleZoomOut"</span>&gt;</span>放大<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span>
+<span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">icon</span>=<span class="string">"close"</span> @<span class="attr">click</span>=<span class="string">"handleClose"</span>&gt;</span>关闭<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span>
+<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>
+<span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>
+<span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span>
+<span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span>
+</pre></td></tr></table></figure><p>这里我加了一个 <code>transition</code> 标签，是 vue 里面很方便写出入场动画的标签，文档在这里<a href="http://cn.vuejs.org/v2/guide/transitions.html" target="_blank" rel="external">vue/transition</a>, 里面就是 div 和 img，或许这样的结构有点简陋，但是能用啊，而且公司不给太多时间（咦，这个心态不对呀~）</p><p>组件 mounted 之后，要初始化图片的位置和事件，</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+</pre></td><td class="code"><pre><span class="line">mounted() &#123;</span>
+<span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'html'</span>).style.overflow = <span class="string">'hidden'</span>;</span>
+<span class="line"></span>
+<span class="line">  Vue.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span>
+<span class="line">    <span class="keyword">this</span>.initImagePosition();</span>
+<span class="line">    <span class="keyword">this</span>.initHammer();</span>
+<span class="line">  &#125;);</span>
+<span class="line">&#125;,</span>
+</pre></td></tr></table></figure><p>哦对了，图片的手势处理，拖拽我用的 hammerjs 来做的。</p><p>然后就是 <strong>handleClick</strong>，点击图片之后的操作了，加了 <code>.self</code> 是为了事件只在 div 标签触发，用过 vue 的人都知道，好用~</p><p>效果是这样的~</p><p><img src="/images/vue-image-preview.jpg" alt=""></p></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/vue/">vue</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/image-preview/">image-preview</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section><div class="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2017 Oliver Wang<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div></footer><script>!function(e,t,c,n,s,m){s=e.createElement(t),m=e.getElementsByTagName(t)[0],s.src="//"+c+".disqus.com/"+n+".js",m.parentNode.insertBefore(s,m)}(document,"script","ochukai","embed")</script><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
