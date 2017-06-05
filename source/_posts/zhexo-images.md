@@ -4,7 +4,7 @@ date: 2013-12-26 22:46:49
 
 This is a image test post.
 
-![](/assets/wallpaper-2572384.jpg)
+* 图片在 li 下面 ![](/assets/wallpaper-2572384.jpg)
 
 ![Caption](/assets/wallpaper-2311325.jpg)
 

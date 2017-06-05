@@ -14,9 +14,6 @@ google_analytics: UA-73840162-1   # your id
 
 disqus_shortname: ochukai   # your disqus name
 
-live2d: false    # true
-hjid: false      # your hjid (hotjar)
-
 start_year: 2016
 
 reward_images: 
