@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ochukai.me/nginx-uwsgi-django/</loc>
+    
+    <lastmod>2017-06-27T07:36:11.272Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ochukai.me/vue-image-preview/</loc>
     
-    <lastmod>2017-06-05T10:09:03.558Z</lastmod>
+    <lastmod>2017-06-05T10:09:03.557Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/zhexo-images/</loc>
     
-    <lastmod>2017-06-05T02:44:38.485Z</lastmod>
+    <lastmod>2017-06-05T02:44:38.484Z</lastmod>
     
   </url>
   
@@ -25,14 +32,14 @@
   <url>
     <loc>http://ochukai.me/vue-summary/</loc>
     
-    <lastmod>2017-06-01T10:49:07.667Z</lastmod>
+    <lastmod>2017-06-01T10:49:07.666Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/beautiful-color-git-bash/</loc>
     
-    <lastmod>2017-06-01T09:47:33.140Z</lastmod>
+    <lastmod>2017-06-01T09:47:33.139Z</lastmod>
     
   </url>
   
@@ -53,7 +60,7 @@
   <url>
     <loc>http://ochukai.me/zhexo-gallery-post/</loc>
     
-    <lastmod>2017-05-15T02:58:20.995Z</lastmod>
+    <lastmod>2017-05-15T02:58:20.994Z</lastmod>
     
   </url>
   
@@ -130,35 +137,35 @@
   <url>
     <loc>http://ochukai.me/wrong-clearfix-make-me-crazy/</loc>
     
-    <lastmod>2017-05-15T02:53:38.179Z</lastmod>
+    <lastmod>2017-05-15T02:53:38.178Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/use-terminal-to-update-win10-key/</loc>
     
-    <lastmod>2017-04-14T01:57:38.820Z</lastmod>
+    <lastmod>2017-04-14T01:57:38.819Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/use-js-to-convert-ts-to-data/</loc>
     
-    <lastmod>2017-04-14T01:57:13.153Z</lastmod>
+    <lastmod>2017-04-14T01:57:13.152Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/textarea-height-auto-increase/</loc>
     
-    <lastmod>2017-04-14T01:57:00.874Z</lastmod>
+    <lastmod>2017-04-14T01:57:00.873Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/telephone-number-not-recognize-in-wx/</loc>
     
-    <lastmod>2017-04-14T01:56:47.477Z</lastmod>
+    <lastmod>2017-04-14T01:56:47.476Z</lastmod>
     
   </url>
   
@@ -179,14 +186,14 @@
   <url>
     <loc>http://ochukai.me/promise-in-action/</loc>
     
-    <lastmod>2017-04-07T09:13:03.832Z</lastmod>
+    <lastmod>2017-04-07T09:13:03.831Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/modify-wamp-mysql-password/</loc>
     
-    <lastmod>2017-04-07T09:12:41.797Z</lastmod>
+    <lastmod>2017-04-07T09:12:41.796Z</lastmod>
     
   </url>
   
@@ -214,28 +221,28 @@
   <url>
     <loc>http://ochukai.me/about/index.html</loc>
     
-    <lastmod>2017-03-30T02:29:11.607Z</lastmod>
+    <lastmod>2017-03-30T02:29:11.606Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/git-remember-password-in-window-and-linux/</loc>
     
-    <lastmod>2017-03-30T02:26:36.102Z</lastmod>
+    <lastmod>2017-03-30T02:26:36.101Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/window-focus-wallpaper/</loc>
     
-    <lastmod>2017-03-22T07:02:46.869Z</lastmod>
+    <lastmod>2017-03-22T07:02:46.868Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/higashino-keigo/</loc>
     
-    <lastmod>2017-03-09T03:19:41.131Z</lastmod>
+    <lastmod>2017-03-09T03:19:41.130Z</lastmod>
     
   </url>
   
@@ -249,7 +256,7 @@
   <url>
     <loc>http://ochukai.me/change-window-terminal-terminal-font/</loc>
     
-    <lastmod>2017-02-15T02:30:06.017Z</lastmod>
+    <lastmod>2017-02-15T02:30:06.016Z</lastmod>
     
   </url>
   
@@ -270,7 +277,7 @@
   <url>
     <loc>http://ochukai.me/webpack-dev-server-vs-webstorm/</loc>
     
-    <lastmod>2017-01-24T06:24:24.861Z</lastmod>
+    <lastmod>2017-01-24T06:24:24.860Z</lastmod>
     
   </url>
   
@@ -291,7 +298,7 @@
   <url>
     <loc>http://ochukai.me/tags/index.html</loc>
     
-    <lastmod>2017-01-03T07:00:15.128Z</lastmod>
+    <lastmod>2017-01-03T07:00:15.127Z</lastmod>
     
   </url>
   
@@ -326,14 +333,14 @@
   <url>
     <loc>http://ochukai.me/show-a-default-image-when-the-image-is-broken/</loc>
     
-    <lastmod>2016-11-22T01:40:09.767Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.766Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/wamp-mysql-chinese-question-mark/</loc>
     
-    <lastmod>2016-11-22T01:40:09.767Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.766Z</lastmod>
     
   </url>
   
@@ -352,14 +359,14 @@
   </url>
   
   <url>
-    <loc>http://ochukai.me/prevent-deep-div-scroll-with-the-top-element/</loc>
+    <loc>http://ochukai.me/protect-yourself-in-network/</loc>
     
     <lastmod>2016-11-22T01:40:09.751Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ochukai.me/protect-yourself-in-network/</loc>
+    <loc>http://ochukai.me/prevent-deep-div-scroll-with-the-top-element/</loc>
     
     <lastmod>2016-11-22T01:40:09.751Z</lastmod>
     
@@ -368,40 +375,40 @@
   <url>
     <loc>http://ochukai.me/for-in-scss/</loc>
     
-    <lastmod>2016-11-22T01:40:09.736Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/battleship-girls/</loc>
     
-    <lastmod>2016-11-22T01:40:09.736Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/formdata-in-action/</loc>
     
-    <lastmod>2016-11-22T01:40:09.736Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://ochukai.me/css-animation-queue-list/</loc>
     
-    <lastmod>2016-11-22T01:40:09.736Z</lastmod>
+    <lastmod>2016-11-22T01:40:09.735Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ochukai.me/404.html</loc>
+    <loc>http://ochukai.me/README.html</loc>
     
     <lastmod>2016-11-22T01:40:09.720Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ochukai.me/README.html</loc>
+    <loc>http://ochukai.me/404.html</loc>
     
     <lastmod>2016-11-22T01:40:09.720Z</lastmod>
     
