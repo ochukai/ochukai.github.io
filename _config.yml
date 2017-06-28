@@ -85,7 +85,6 @@ time_format: HH:mm:ss
 
 ## Themes: http://hexo.io/themes/
 theme: ochuunn
-# theme: cactus-dark
 
 #test feed
 feed:

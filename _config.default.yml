@@ -9,17 +9,17 @@ favicon: /favicon.png
 
 date_format: 'MMMM D, YYYY'
 
-google_verification: '-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak'  # your token
-google_analytics: 'UA-73840162-1'   # your id
+google_verification: false  # your token
+google_analytics: false   # your id
 
 livere_id: 'city'
-livere_uid: 'MTAyMC8yOTI0Ni81ODEz'
+livere_uid: 'your uid'
 
 start_year: 2016
 
-reward_images: 
-- type: '微信'
-  url: '/img/wechat.png'
+reward_images: # add your qr image
+# - type: '微信'
+#   url: '/img/wechat.png'
 # - type: '支付宝' 
 #   url: '/img/wechat.png'
  
