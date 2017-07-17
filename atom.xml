@@ -19,7 +19,7 @@
     <title>Django 项目部署在 nginx + uwsgi</title>
     <link href="http://ochukai.me/nginx-uwsgi-django/"/>
     <id>http://ochukai.me/nginx-uwsgi-django/</id>
-    <published>2017-06-27T05:28:31.000Z</published>
+    <published>2017-06-27T06:28:31.000Z</published>
     <updated>2017-06-27T07:36:11.272Z</updated>
     
     <content type="html"><![CDATA[<p>好久不写博客了，最近一直在忙一个私活，一个问卷类的项目，用 django 写的，说实话，之前除了在公司厘米用，都没有用过 python，还好我有一些好同事，有问题可以直接问，方便了很多。</p><p>为了避免长时间不写文章的尴尬，我急匆匆的新键了一个 md，开始写。</p><p>一般来说，本地运行 django 项目是很简单，<br></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -121,7 +121,7 @@
     <title>直播写代码要去那个平台呢?</title>
     <link href="http://ochukai.me/live-code/"/>
     <id>http://ochukai.me/live-code/</id>
-    <published>2017-06-01T09:51:49.000Z</published>
+    <published>2017-06-01T10:51:49.000Z</published>
     <updated>2017-06-01T10:53:18.047Z</updated>
     
     <content type="html"><![CDATA[<p>现在我在 <a href="http://www.huya.com/ochukai" target="_blank" rel="external">虎牙-代码痴汉umi</a>, 有谁推荐新的直播平台吗 ?</p>]]></content>
@@ -143,7 +143,7 @@
     <title>给 Git Bash 设置好看的配色~ 😜</title>
     <link href="http://ochukai.me/beautiful-color-git-bash/"/>
     <id>http://ochukai.me/beautiful-color-git-bash/</id>
-    <published>2017-05-31T21:06:06.000Z</published>
+    <published>2017-05-31T22:06:06.000Z</published>
     <updated>2017-06-01T09:47:33.139Z</updated>
     
     <content type="html"><![CDATA[<p>window 上面的命令行一直都非常丑陋 (看我用词多么强烈)~</p><p>今天上午终于因为看 Git Bash 配色而双眼变得模糊了, 于是上网搜了一下有没有结局方案, 然后就发现了这个 <a href="https://github.com/mavnn/mintty-colors-solarized" target="_blank" rel="external">github/mintty-colors-solarized</a>, 但这个项目是好几年前的了, 我还是怀着试试看的态度尝试了一下.</p><p>我发现了, 干程序员别的可能不行, 但是尝试的能力还是有的, 经常为了找一个新的框架, 或者要写一个组件而去把所有相关的项目全看一边, 然后才发现不行~</p><p>但是今天老天并没有调戏我, 先说一下修改的过程吧~ 在 Git Bash 里面输入,</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -207,9 +207,9 @@
     </summary>
     
     
-      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
-    
       <category term="git bash" scheme="http://ochukai.me/tags/git-bash/"/>
+    
+      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
     
       <category term="配色" scheme="http://ochukai.me/tags/%E9%85%8D%E8%89%B2/"/>
     
@@ -219,7 +219,7 @@
     <title>写了一个 Vue 的图片预览插件~😜</title>
     <link href="http://ochukai.me/vue-image-preview/"/>
     <id>http://ochukai.me/vue-image-preview/</id>
-    <published>2017-05-31T21:01:01.000Z</published>
+    <published>2017-05-31T22:01:01.000Z</published>
     <updated>2017-06-05T10:09:03.557Z</updated>
     
     <content type="html"><![CDATA[<p>最近的项目里面需要一个图片点击放大预览的插件~ 项目是 vue 写的 SPA ~</p><p>找了好久，没有现成的，有一个，但是写的我很不喜欢，需要手动传入图片地址，宽度和高度，都这样了，还写什么程序~</p><p>然后我打算自己写一个~</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>基本思路的话，就是点击图片的时候，产生一个遮罩层（或者遮罩层本来就有），然后在遮罩层添加一个图片，居中什么的样式到时随便了。点击事件很简单， <code>@click</code> 就好了，点击图片之后可以获取到图片的路径，因为点击的是已经显示出来的图片，所以当前图片的 meta 信息肯定包含了该图片的长和宽。</p><p>生成一个遮罩层也很简单，然后根据图片的长宽和屏幕的长宽（或者浏览窗口的大小）可以计算图片的居中位置。</p><p>然后添加到 body 上面就好了，但是添加的话，因为 vue 有自己的生命周期，<code>document.body.appendChild()</code> 的话事件都不能用 vue 的了，于是如果 <strong>append 一个 vue 的插件到 dom </strong>算是第一个问题。</p><p>简单的思路就这样，只要实现了动态添加 vue 组件到 body，那么这个插件就可以实现了。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我先去看了一个 element-ui 的代码，好复杂，有一个很大的 mixin， 看来看去没明白，后来我想起之前看到的那个图片预览的插件，<a href="https://github.com/xiecg/vue-fancybox" target="_blank" rel="external">github/vue-fancybox</a>，顺便帮作者宣传一下吧，虽然不符合我的价值观~</p><p>这个插件有一个插入的操作，大概是这么写的，</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -361,7 +361,7 @@
     <title>VUE 总结一下~</title>
     <link href="http://ochukai.me/vue-summary/"/>
     <id>http://ochukai.me/vue-summary/</id>
-    <published>2017-05-24T02:27:55.000Z</published>
+    <published>2017-05-24T03:27:55.000Z</published>
     <updated>2017-06-01T10:49:07.666Z</updated>
     
     <content type="html"><![CDATA[<p>最近开始接触 vue, 写了一个算是前端小论坛的公司内部项目, 算是一个知识库, 可添加一些常见的问题供别人查阅~</p><p>现在做个总结吧, 项目写完一个多星期, 现在想想差不多都忘记了~ 真是老了~</p><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="/images/vue-lifecycle.png" alt=""></p><p>其中 created 和 mounted 的顺序要确定好~ 比较重要的就像下面这三个吧, 其他的像是 <code>updated</code>, <code>beforeUpdate</code> 我几乎没有用过, 暂时不说~</p><h3 id="created"><a href="#created" class="headerlink" title="created"></a>created</h3><p>实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</p><h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。<br>这个时候可以获取到 template 里面的标签元素了, 如果要修改大小样式之类的在这里面写~</p><h3 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed"></a>destroyed</h3><p>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。 该钩子在服务器端渲染期间不被调用。</p><h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>使用过 vue 的 transition 标签之后最大的感慨便是, 做动画比 react 简单好多啊, 可能是我之前用 react 并没有写过动画的缘故吧, 但不可否认 vue 的动画很简单~</p><p>我之前写的一个小组件</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -455,7 +455,7 @@
     <title>升级到 React 15.5.0 之后遇到的问题。</title>
     <link href="http://ochukai.me/react-15-5-0/"/>
     <id>http://ochukai.me/react-15-5-0/</id>
-    <published>2017-04-17T07:43:52.000Z</published>
+    <published>2017-04-17T08:43:52.000Z</published>
     <updated>2017-05-15T03:44:35.099Z</updated>
     
     <content type="html"><![CDATA[<p>propTypes 被从 react 包里面分离出来了，如果要用到 <strong>propTypes</strong>, 则必须要自己安装 <code>prop-types</code></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -557,7 +557,7 @@
     <title>详解 Promise</title>
     <link href="http://ochukai.me/promise-in-action/"/>
     <id>http://ochukai.me/promise-in-action/</id>
-    <published>2017-03-08T07:54:54.000Z</published>
+    <published>2017-03-08T08:54:54.000Z</published>
     <updated>2017-04-07T09:13:03.831Z</updated>
     
     <content type="html"><![CDATA[<p>偶然看到一篇介绍 Promise 的文章，这个概念也出现好久了，之前一直用着 <a href="https://github.com/cujojs/when" target="_blank" rel="external">whenjs</a>, 但是一直没有时间自己写一个。</p><p>于是下定决心，自己写一个吧~ 毕竟别人都能写出来的东西，而且工作的时候都是在写一些业务型的代码，感觉非常没有创造性~</p><hr><p>Promise 用起来挺简单的，可以很好的解决 js callback 多的时候，缩进很烦的问题。而且线性的写代码也更容易理解~</p><p>现在写这篇文章，就是高中的时候写作文一样，看到题目就开始辗转反侧，脑子里面想好多内容，理清了思路，但是拿起笔就全忘了。</p><p>今天在开始写之前我也下了好大的决心，在代码上面写了大片的注释，感觉写这一篇应该会很顺利吧，结果还是事与愿违，写了些乱七八糟的东西。</p><p>这篇文章主要是介绍 Promise 的用法以及我是怎么实现这么一个库的，但是该怎么开始写呢？于是我列了几个要点，概念，原理，实现，感觉填充起来会比较容易吧，嗯，就这么办吧~</p><h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><p><a href="https://promisesaplus.com" target="_blank" rel="external">Promise/A+ 规范</a><br><a href="https://tc39.github.io/ecma262/#sec-promise-objects" target="_blank" rel="external">ES6 Promise</a> — 加载比较慢~ 想看就耐心等~</p><p>两个规范在这了，其实现在用的多的是 Promise/A+ 规范，看起来还是很简单的。</p><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Promise 就是承诺，会按照 then 的顺序做些事情，出了问题会在 catch 里面。像这样：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -913,7 +913,7 @@
     <title>(**) 的 IE 👽</title>
     <link href="http://ochukai.me/ie-css-hack/"/>
     <id>http://ochukai.me/ie-css-hack/</id>
-    <published>2017-02-17T07:17:14.000Z</published>
+    <published>2017-02-17T08:17:14.000Z</published>
     <updated>2017-02-17T08:40:31.600Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>以前都说前端坑，或者前端入坑了，为什么呢？ 因为 IE 啊。</p></blockquote><p>我做前端以来，一直都是很幸福的，因为还几乎咩有处理过 ie 的兼容问题。</p><p>但是最近要处理，以前应付面试背过的兼容方案都忘掉了，所以还是要查。</p><p>忽略 IE6，IE7 的情况下，规则就这几条：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -945,7 +945,7 @@
     <title>下载 window 聚焦壁纸 😜</title>
     <link href="http://ochukai.me/window-focus-wallpaper/"/>
     <id>http://ochukai.me/window-focus-wallpaper/</id>
-    <published>2017-02-17T00:29:58.000Z</published>
+    <published>2017-02-17T01:29:58.000Z</published>
     <updated>2017-03-22T07:02:46.868Z</updated>
     
     <content type="html"><![CDATA[<p>一直觉得 window 聚焦的壁纸很好看~<br>今天终于找到了壁纸存放的路径，就是下面这个</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -971,7 +971,7 @@
     <title>更换 window 命令行字体</title>
     <link href="http://ochukai.me/change-window-terminal-terminal-font/"/>
     <id>http://ochukai.me/change-window-terminal-terminal-font/</id>
-    <published>2017-02-15T01:16:08.000Z</published>
+    <published>2017-02-15T02:16:08.000Z</published>
     <updated>2017-02-15T02:30:06.016Z</updated>
     
     <content type="html"><![CDATA[<p>我一直觉得 window 命令行下面的字体非常丑陋，因为有时会用 git bash， 有时也会直接使用编译器自带的控制台，这些都是可以设置字体的，所以 window 自带的命令行用的不是太多。</p><p>今天刚好看到一篇文章是写关于修改命令行字体的，哈哈。</p><p>首先打开<strong>一个命令行窗口</strong>，输入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -989,9 +989,9 @@
       <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="font" scheme="http://ochukai.me/tags/font/"/>
-    
       <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
+    
+      <category term="font" scheme="http://ochukai.me/tags/font/"/>
     
   </entry>
   
@@ -999,7 +999,7 @@
     <title>稍微总结一下 dva 😜</title>
     <link href="http://ochukai.me/dva-in-action/"/>
     <id>http://ochukai.me/dva-in-action/</id>
-    <published>2017-01-23T00:28:20.000Z</published>
+    <published>2017-01-23T01:28:20.000Z</published>
     <updated>2017-01-24T06:18:01.627Z</updated>
     
     <content type="html"><![CDATA[<p>使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇</p><h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p><img src="../images/dva-flow.png" alt=""></p><p>上面是一张 dva 的图，<code>component，state，dispatch，connect</code> 都是与 redux 一样的概念，不过，dva 把 <strong>action -&gt; reducer</strong> 拆分成了，<strong>action -&gt; model(reducer, effect,subscription)</strong>，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。</p><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>一个简单的 model 是这样的:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -1167,7 +1167,7 @@
     <title>删除 .svn 文件夹</title>
     <link href="http://ochukai.me/remove-svn-folder/"/>
     <id>http://ochukai.me/remove-svn-folder/</id>
-    <published>2017-01-22T01:09:47.000Z</published>
+    <published>2017-01-22T02:09:47.000Z</published>
     <updated>2017-01-22T02:30:05.297Z</updated>
     
     <content type="html"><![CDATA[<p>新建 remove-svn.bat, 放到项目根目录执行就好了。（本来以为 svn 会提供这样的功能，结果还要自己写，😒）</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -1195,7 +1195,7 @@
     <title>Textarea 的高度自动增长</title>
     <link href="http://ochukai.me/textarea-height-auto-increase/"/>
     <id>http://ochukai.me/textarea-height-auto-increase/</id>
-    <published>2017-01-20T02:48:10.000Z</published>
+    <published>2017-01-20T03:48:10.000Z</published>
     <updated>2017-04-14T01:57:00.873Z</updated>
     
     <content type="html"><![CDATA[<p>一般情况下，textarea 的高度是定死的，rows 指定了之后，高度就不变了，内容多了之后会出现滚动条，这样的设定在大部分的场景下面是够用的， 但是有时就会很丑陋（废话😊）。</p><p>我们都知道 HTML 的元素都有一个 scrollHeight 这个属性，就是当该元素出现滚动条的时候，内容的高度。</p><p>那就方便了：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -1295,7 +1295,7 @@
     <title>JavaScript 绑定 this</title>
     <link href="http://ochukai.me/js-bind-this/"/>
     <id>http://ochukai.me/js-bind-this/</id>
-    <published>2016-12-30T01:28:20.000Z</published>
+    <published>2016-12-30T02:28:20.000Z</published>
     <updated>2016-12-30T03:55:16.592Z</updated>
     
     <content type="html"><![CDATA[<p>其实这篇文章主要是介绍这个东西 <a href="https://github.com/tc39/proposal-bind-operator" target="_blank" rel="external">Proposal Bind Operator</a> 或者 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:bind_operator" target="_blank" rel="external">bind_operator</a>。</p><p>也是在一个很偶然的机会看到了，git 上面的一个项目用到了这个用法，为什么自己发现不了这些东西呢？</p><h2 id="传统的-this-绑定"><a href="#传统的-this-绑定" class="headerlink" title="传统的 this 绑定"></a>传统的 this 绑定</h2><h3 id="在函数外面暂存一个变量"><a href="#在函数外面暂存一个变量" class="headerlink" title="在函数外面暂存一个变量"></a>在函数外面暂存一个变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -1449,7 +1449,7 @@
     <title>修改 WebStorm 里面丑陋的 Markdown 样式</title>
     <link href="http://ochukai.me/correct-ugly-markdown-css-in-webstorm/"/>
     <id>http://ochukai.me/correct-ugly-markdown-css-in-webstorm/</id>
-    <published>2016-12-23T06:27:27.000Z</published>
+    <published>2016-12-23T07:27:27.000Z</published>
     <updated>2017-02-15T02:14:41.000Z</updated>
     
     <content type="html"><![CDATA[<p>一直觉得在 webstrom 里面看 markdown 是一种折磨，尤其是有 table 的情况下，很不爽！！！</p><p>今天突然发现有一个设置项可以自定义 markdown 的样式，</p><p><img src="../images/webstorm-md-css-1.png" alt="设置"></p><p>就是右边方框里面的选项，取消 webstorm 默认的， 然后添加自己的 css，下面的css 是我找来的，还可以看：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -2279,7 +2279,7 @@
     <title>JavaScript 中的 Decorator</title>
     <link href="http://ochukai.me/decorator-in-js/"/>
     <id>http://ochukai.me/decorator-in-js/</id>
-    <published>2016-12-21T00:33:38.000Z</published>
+    <published>2016-12-21T01:33:38.000Z</published>
     <updated>2017-04-07T09:12:17.073Z</updated>
     
     <content type="html"><![CDATA[<p>昨天在看一个拖拽库的时候，遇到了这么一段代码，感觉很有意思：<br></p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -2388,7 +2388,7 @@
     <title>使用命令行更新 Win10 的密钥</title>
     <link href="http://ochukai.me/use-terminal-to-update-win10-key/"/>
     <id>http://ochukai.me/use-terminal-to-update-win10-key/</id>
-    <published>2016-12-16T04:02:13.000Z</published>
+    <published>2016-12-16T05:02:13.000Z</published>
     <updated>2017-04-14T01:57:38.819Z</updated>
     
     <content type="html"><![CDATA[<p>今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -2422,7 +2422,7 @@
     <title>webpack-dev-server 在 webstorm 中失效的问题</title>
     <link href="http://ochukai.me/webpack-dev-server-vs-webstorm/"/>
     <id>http://ochukai.me/webpack-dev-server-vs-webstorm/</id>
-    <published>2016-12-08T10:32:09.000Z</published>
+    <published>2016-12-08T11:32:09.000Z</published>
     <updated>2017-01-24T06:24:24.860Z</updated>
     
     <content type="html"><![CDATA[<p>最近换了公司 ！！！</p><p>重新用上了高大上的 win7 系统，还是熟悉的画面，然后又装上了 WebStorm，准备开始我的性福人生。</p><p>但天有不测风云，在使用一个基于 webpack 构建的项目中，每次修改代码之后，webpack-dev-server 总是不能够自动重新编译，很烦！！！</p><p>这可急坏了宝宝！！！</p><p>但是我非常冷静的分析了一下原因，可能是因为webstorm有自动保存的机制， 是不是很机智，一下子就命中了要害（但其实这中间的过程可复杂了）</p><p><img src="../images/webstorm-save-file.png" alt="正常"></p><p>如上图， 在 <code>File -&gt; Settings -&gt; Appearance &amp; Behavior -&gt; System Settings</code> 里面，取消勾选上面红框的两项。</p><p>每次修改之后，<code>ctrl + s</code> 就可以了。</p>]]></content>
@@ -2445,53 +2445,10 @@
   </entry>
   
   <entry>
-    <title>Clearfix 的正确写法~</title>
-    <link href="http://ochukai.me/wrong-clearfix-make-me-crazy/"/>
-    <id>http://ochukai.me/wrong-clearfix-make-me-crazy/</id>
-    <published>2016-11-22T01:40:09.782Z</published>
-    <updated>2017-05-15T02:53:38.178Z</updated>
-    
-    <content type="html"><![CDATA[<p>Clearfix 就是这么简单！</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>,</span>
-<span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span> &#123;</span>
-<span class="line">    <span class="attribute">display</span>: table;</span>
-<span class="line">    <span class="attribute">content</span>: <span class="string">" "</span></span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span>
-<span class="line">    <span class="attribute">clear</span>: both</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Clearfix 就是这么简单！&lt;/p&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;line&quot;&gt;2&lt;/sp
-    
-    </summary>
-    
-      <category term="css" scheme="http://ochukai.me/categories/css/"/>
-    
-    
-      <category term="css" scheme="http://ochukai.me/tags/css/"/>
-    
-      <category term="html" scheme="http://ochukai.me/tags/html/"/>
-    
-  </entry>
-  
-  <entry>
     <title>在 window 里面杀死某个进程</title>
     <link href="http://ochukai.me/kill-process-in-window/"/>
     <id>http://ochukai.me/kill-process-in-window/</id>
-    <published>2016-11-22T00:49:57.000Z</published>
+    <published>2016-11-22T01:49:57.000Z</published>
     <updated>2016-12-08T11:50:20.425Z</updated>
     
     <content type="html"><![CDATA[<h2 id="查看被谁占用"><a href="#查看被谁占用" class="headerlink" title="查看被谁占用"></a>查看被谁占用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
@@ -2558,6 +2515,49 @@
     
     
       <category term="端口占用" scheme="http://ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Clearfix 的正确写法~</title>
+    <link href="http://ochukai.me/wrong-clearfix-make-me-crazy/"/>
+    <id>http://ochukai.me/wrong-clearfix-make-me-crazy/</id>
+    <published>2016-11-22T01:40:09.782Z</published>
+    <updated>2017-05-15T02:53:38.178Z</updated>
+    
+    <content type="html"><![CDATA[<p>Clearfix 就是这么简单！</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>,</span>
+<span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span> &#123;</span>
+<span class="line">    <span class="attribute">display</span>: table;</span>
+<span class="line">    <span class="attribute">content</span>: <span class="string">" "</span></span>
+<span class="line">&#125;</span>
+<span class="line"></span>
+<span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span>
+<span class="line">    <span class="attribute">clear</span>: both</span>
+<span class="line">&#125;</span>
+</pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Clearfix 就是这么简单！&lt;/p&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;2&lt;/sp
+    
+    </summary>
+    
+      <category term="css" scheme="http://ochukai.me/categories/css/"/>
+    
+    
+      <category term="css" scheme="http://ochukai.me/tags/css/"/>
+    
+      <category term="html" scheme="http://ochukai.me/tags/html/"/>
     
   </entry>
   
