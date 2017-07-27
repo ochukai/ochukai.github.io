@@ -107,10 +107,6 @@ deploy:
   branch: master
 - type: baidu_url_submitter
 
-# deploy:
-#     type: github
-#     repo: https://github.com/ochukai/ochukai.github.io.git
-#     branch: master
 
 # Admin
 # admin:
@@ -120,5 +116,3 @@ deploy:
   # expire: 60*1
   # cors: http://localhost:3000
 
-live2d: 
-  model: hijiki
