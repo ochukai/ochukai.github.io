@@ -207,9 +207,9 @@
     </summary>
     
     
-      <category term="git bash" scheme="http://ochukai.me/tags/git-bash/"/>
-    
       <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
+    
+      <category term="git bash" scheme="http://ochukai.me/tags/git-bash/"/>
     
       <category term="配色" scheme="http://ochukai.me/tags/%E9%85%8D%E8%89%B2/"/>
     
@@ -989,9 +989,9 @@
       <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
-    
       <category term="font" scheme="http://ochukai.me/tags/font/"/>
+    
+      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
     
   </entry>
   
