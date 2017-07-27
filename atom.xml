@@ -207,9 +207,9 @@
     </summary>
     
     
-      <category term="git bash" scheme="http://ochukai.me/tags/git-bash/"/>
-    
       <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
+    
+      <category term="git bash" scheme="http://ochukai.me/tags/git-bash/"/>
     
       <category term="配色" scheme="http://ochukai.me/tags/%E9%85%8D%E8%89%B2/"/>
     
@@ -989,9 +989,9 @@
       <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
-    
       <category term="font" scheme="http://ochukai.me/tags/font/"/>
+    
+      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
     
   </entry>
   
@@ -2299,9 +2299,9 @@
 <span class="line"></span>
 <span class="line">  render() &#123;</span>
 <span class="line">    <span class="keyword">return</span> (</span>
-<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
+<span class="line">      &lt;div &#123; ...this.props &#125;&gt;</span>
 <span class="line">        &#123; this.props.children &#125;</span>
-<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
+<span class="line">      &lt;/div&gt;</span>
 <span class="line">    );</span>
 <span class="line">  &#125;</span>
 <span class="line">  </span>
