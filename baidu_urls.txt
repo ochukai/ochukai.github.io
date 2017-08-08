@@ -1,3 +1,4 @@
+http://ochukai.me/flex-shrink/
 http://ochukai.me/nginx-uwsgi-django/
 http://ochukai.me/live-code/
 http://ochukai.me/beautiful-color-git-bash/

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ochukai.me/"/>
-  <updated>2017-06-27T07:36:11.272Z</updated>
+  <updated>2017-08-08T08:02:33.864Z</updated>
   <id>http://ochukai.me/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>flex shrink 的用处</title>
+    <link href="http://ochukai.me/flex-shrink/"/>
+    <id>http://ochukai.me/flex-shrink/</id>
+    <published>2017-08-08T07:38:17.000Z</published>
+    <updated>2017-08-08T08:02:33.864Z</updated>
+    
+    <content type="html"><![CDATA[<p>flex grow 和 shrink 这两兄弟我经常遇见，不过目前为止，grow 还没有帮过我什么忙， shrink 很不错，帮过我几次了。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line"><span class="selector-tag">flex-shrink</span>: 0</span>
+</pre></td></tr></table></figure><p>每当别的元素位置不够了，要来挤压我的空间时， flex-shrink 就会帮我把别的元素挡在门外，是一个很有原则的人。</p><blockquote><p>flex-shrink 定义收缩比率。不允许负值</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;flex grow 和 shrink 这两兄弟我经常遇见，不过目前为止，grow 还没有帮过我什么忙， shrink 很不错，帮过我几次了。&lt;/p&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+    
+    </summary>
+    
+    
+      <category term="flex" scheme="http://ochukai.me/tags/flex/"/>
+    
+      <category term="flex shrink" scheme="http://ochukai.me/tags/flex-shrink/"/>
+    
+  </entry>
   
   <entry>
     <title>Django 项目部署在 nginx + uwsgi</title>
@@ -207,9 +231,9 @@
     </summary>
     
     
-      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
-    
       <category term="git bash" scheme="http://ochukai.me/tags/git-bash/"/>
+    
+      <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
     
       <category term="配色" scheme="http://ochukai.me/tags/%E9%85%8D%E8%89%B2/"/>
     
@@ -989,9 +1013,9 @@
       <category term="Window" scheme="http://ochukai.me/categories/window/"/>
     
     
-      <category term="font" scheme="http://ochukai.me/tags/font/"/>
-    
       <category term="terminal" scheme="http://ochukai.me/tags/terminal/"/>
+    
+      <category term="font" scheme="http://ochukai.me/tags/font/"/>
     
   </entry>
   
@@ -2299,9 +2323,9 @@
 <span class="line"></span>
 <span class="line">  render() &#123;</span>
 <span class="line">    <span class="keyword">return</span> (</span>
-<span class="line">      &lt;div &#123; ...this.props &#125;&gt;</span>
+<span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> &#123; <span class="attr">...this.props</span> &#125;&gt;</span></span>
 <span class="line">        &#123; this.props.children &#125;</span>
-<span class="line">      &lt;/div&gt;</span>
+<span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span>
 <span class="line">    );</span>
 <span class="line">  &#125;</span>
 <span class="line">  </span>
@@ -2515,49 +2539,6 @@
     
     
       <category term="端口占用" scheme="http://ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Clearfix 的正确写法~</title>
-    <link href="http://ochukai.me/wrong-clearfix-make-me-crazy/"/>
-    <id>http://ochukai.me/wrong-clearfix-make-me-crazy/</id>
-    <published>2016-11-22T01:40:09.782Z</published>
-    <updated>2017-05-15T02:53:38.178Z</updated>
-    
-    <content type="html"><![CDATA[<p>Clearfix 就是这么简单！</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-</pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>,</span>
-<span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span> &#123;</span>
-<span class="line">    <span class="attribute">display</span>: table;</span>
-<span class="line">    <span class="attribute">content</span>: <span class="string">" "</span></span>
-<span class="line">&#125;</span>
-<span class="line"></span>
-<span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span>
-<span class="line">    <span class="attribute">clear</span>: both</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Clearfix 就是这么简单！&lt;/p&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;line&quot;&gt;2&lt;/sp
-    
-    </summary>
-    
-      <category term="css" scheme="http://ochukai.me/categories/css/"/>
-    
-    
-      <category term="css" scheme="http://ochukai.me/tags/css/"/>
-    
-      <category term="html" scheme="http://ochukai.me/tags/html/"/>
     
   </entry>
   
