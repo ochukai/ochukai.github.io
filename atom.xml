@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ochukai.me/"/>
-  <updated>2017-08-08T08:02:33.864Z</updated>
+  <updated>2017-09-06T03:32:37.914Z</updated>
   <id>http://ochukai.me/</id>
   
   <author>
@@ -14,6 +14,244 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SVN 的备份与还原</title>
+    <link href="http://ochukai.me/svn-backup-and-restore/"/>
+    <id>http://ochukai.me/svn-backup-and-restore/</id>
+    <published>2017-09-06T03:09:56.000Z</published>
+    <updated>2017-09-06T03:32:37.914Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实很早之前就做了这个，但是最近公司要搬家所以又重新整理了一下 准备拿出来用上的，不过要用的那一天内网突然断了，所以也没有正式用，但是测试表明，十几个 svn 库，总体积三个多 g 备份的时候，只需要五分钟，超级快，保存了所有的提交记录。</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+<span class="line">37</span>
+<span class="line">38</span>
+<span class="line">39</span>
+<span class="line">40</span>
+<span class="line">41</span>
+<span class="line">42</span>
+<span class="line">43</span>
+<span class="line">44</span>
+<span class="line">45</span>
+<span class="line">46</span>
+<span class="line">47</span>
+<span class="line">48</span>
+<span class="line">49</span>
+<span class="line">50</span>
+<span class="line">51</span>
+<span class="line">52</span>
+<span class="line">53</span>
+<span class="line">54</span>
+<span class="line">55</span>
+<span class="line">56</span>
+<span class="line">57</span>
+</pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span>
+<span class="line"><span class="built_in">title</span> SVN Backup by oli</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line"></span>
+<span class="line"><span class="built_in">set</span> SVN_HOME="C:\Program Files\VisualSVN Server"</span>
+<span class="line">:: 设置根目录</span>
+<span class="line"><span class="built_in">set</span> SVN_ROOT=C:\Repositories</span>
+<span class="line">:: 设置要备份到的位置</span>
+<span class="line"><span class="built_in">set</span> SVN_BACKUP_ROOT=C:\Backup</span>
+<span class="line"></span>
+<span class="line"><span class="built_in">set</span> TIME_DIR=<span class="variable">%date:~,4%</span><span class="variable">%date:~5,2%</span><span class="variable">%date:~8,2%</span>_<span class="variable">%time:~,2%</span><span class="variable">%time:~3,2%</span><span class="variable">%time:~6,2%</span><span class="variable">%time:~9,2%</span></span>
+<span class="line"><span class="built_in">set</span> BACKUP_DIRECTORY=<span class="variable">%SVN_BACKUP_ROOT%</span>\<span class="variable">%TIME_DIR%</span></span>
+<span class="line"><span class="built_in">set</span> LOG=<span class="variable">%BACKUP_DIRECTORY%</span>\backup.log</span>
+<span class="line"></span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exist</span> <span class="variable">%SVN_HOME%</span> <span class="keyword">goto</span> error</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">goto</span> <span class="built_in">start</span></span>
+<span class="line"></span>
+<span class="line">:<span class="built_in">start</span></span>
+<span class="line"><span class="keyword">for</span> /r <span class="variable">%SVN_BACKUP_ROOT%</span> <span class="variable">%%I</span> <span class="keyword">in</span> (backup.log) <span class="keyword">do</span> (</span>
+<span class="line">  <span class="keyword">if</span> <span class="variable">%%~</span>zI <span class="keyword">GEQ</span> <span class="number">1048576</span> <span class="built_in">ren</span> <span class="variable">%LOG%</span> backup_<span class="variable">%TIME%</span>.log</span>
+<span class="line">)</span>
+<span class="line"></span>
+<span class="line"><span class="built_in">mkdir</span> <span class="variable">%BACKUP_DIRECTORY%</span></span>
+<span class="line">@<span class="built_in">echo</span> [info] create new directory: <span class="variable">%BACKUP_DIRECTORY%</span></span>
+<span class="line"></span>
+<span class="line">@<span class="built_in">echo</span> [info] <span class="variable">%date:~,10%</span> <span class="variable">%time:~,2%</span>:<span class="variable">%time:~3,2%</span>:<span class="variable">%time:~6,2%</span> create backup category: <span class="variable">%BACKUP_DIRECTORY%</span> &gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span class="keyword">for</span> /d <span class="variable">%%i</span> <span class="keyword">in</span> (<span class="variable">%SVN_ROOT%</span>\*) <span class="keyword">do</span> (</span>
+<span class="line">  @<span class="built_in">echo</span> [info] backup <span class="variable">%%~</span>ni &gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line">  @<span class="built_in">echo</span> [info] backup <span class="variable">%%~</span>ni</span>
+<span class="line"></span>
+<span class="line">  :: --incremental</span>
+<span class="line">  <span class="variable">%SVN_HOME%</span>\bin\svnadmin dump <span class="variable">%SVN_ROOT%</span>\<span class="variable">%%~</span>ni &gt; <span class="variable">%BACKUP_DIRECTORY%</span>\<span class="variable">%%~</span>ni.dmp <span class="number">2</span>&gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line">)</span>
+<span class="line"></span>
+<span class="line">@<span class="built_in">echo</span> [info] <span class="variable">%date:~,10%</span> <span class="variable">%time:~,2%</span>:<span class="variable">%time:~3,2%</span>:<span class="variable">%time:~6,2%</span> finish: <span class="variable">%errorlevel%</span></span>
+<span class="line">@<span class="built_in">echo</span> [info] <span class="variable">%date:~,10%</span> <span class="variable">%time:~,2%</span>:<span class="variable">%time:~3,2%</span>:<span class="variable">%time:~6,2%</span> finish: <span class="variable">%errorlevel%</span> &gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line"></span>
+<span class="line">:error</span>
+<span class="line"><span class="built_in">echo</span> [error] <span class="variable">%date:~,10%</span> <span class="variable">%time:~,2%</span>:<span class="variable">%time:~3,2%</span>:<span class="variable">%time:~6,2%</span> directory <span class="keyword">not</span> <span class="keyword">exist</span>，please check: <span class="variable">%SVN_HOME%</span>&gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line"><span class="keyword">goto</span> end</span>
+<span class="line"></span>
+<span class="line">:end</span>
+<span class="line">@<span class="built_in">echo</span>. &gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line">:: <span class="keyword">exit</span></span>
+<span class="line"></span>
+<span class="line"><span class="built_in">PAUSE</span></span>
+</pre></td></tr></table></figure><p>下面这一段是还原，就是把备份好的 dmp 文件，还原成文件夹。</p><p>还原的时候要根据自己是不是全新还原来考虑是否注释掉代码中的那一行~</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+<span class="line">37</span>
+<span class="line">38</span>
+<span class="line">39</span>
+<span class="line">40</span>
+<span class="line">41</span>
+<span class="line">42</span>
+<span class="line">43</span>
+<span class="line">44</span>
+<span class="line">45</span>
+<span class="line">46</span>
+<span class="line">47</span>
+<span class="line">48</span>
+<span class="line">49</span>
+</pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> off</span>
+<span class="line"></span>
+<span class="line"><span class="built_in">title</span> SVN Backup by oli</span>
+<span class="line"></span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line"></span>
+<span class="line"><span class="built_in">set</span> SVN_HOME="C:\Program Files\VisualSVN Server"</span>
+<span class="line"></span>
+<span class="line">:: 要还原到的目录</span>
+<span class="line"><span class="built_in">set</span> SVN_ROOT=C:\testLoad</span>
+<span class="line"></span>
+<span class="line">:: 之前备份的目录</span>
+<span class="line"><span class="built_in">set</span> SVN_BACKUP_DIR=C:\Backup\<span class="number">20170831</span>_11282822</span>
+<span class="line"></span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line">:: ---------------------------------------</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exist</span> <span class="variable">%SVN_HOME%</span> <span class="keyword">goto</span> error</span>
+<span class="line"></span>
+<span class="line"><span class="keyword">goto</span> <span class="built_in">start</span></span>
+<span class="line"></span>
+<span class="line">:<span class="built_in">start</span></span>
+<span class="line"><span class="keyword">for</span> <span class="variable">%%i</span> <span class="keyword">in</span> (<span class="variable">%SVN_BACKUP_DIR%</span>\*.dmp) <span class="keyword">do</span> (</span>
+<span class="line">  @<span class="built_in">echo</span> [info] backup <span class="variable">%%~</span>ni &gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line">  @<span class="built_in">echo</span> [info] backup <span class="variable">%%~</span>ni</span>
+<span class="line"></span>
+<span class="line">  :: 目录不存在就新建一个否则会报错的，</span>
+<span class="line">  :: 如果全新还原这个目录必须新建，否则可以注释这一行</span>
+<span class="line">  <span class="variable">%SVN_HOME%</span>\bin\svnadmin create <span class="variable">%SVN_ROOT%</span>\<span class="variable">%%~</span>ni</span>
+<span class="line">  :: --incremental</span>
+<span class="line">  <span class="variable">%SVN_HOME%</span>\bin\svnadmin load <span class="variable">%SVN_ROOT%</span>\<span class="variable">%%~</span>ni &lt; <span class="variable">%SVN_BACKUP_DIR%</span>\<span class="variable">%%~</span>ni.dmp</span>
+<span class="line">)</span>
+<span class="line"></span>
+<span class="line">@<span class="built_in">echo</span> [info] <span class="variable">%date:~,10%</span> <span class="variable">%time:~,2%</span>:<span class="variable">%time:~3,2%</span>:<span class="variable">%time:~6,2%</span> finish: <span class="variable">%errorlevel%</span></span>
+<span class="line">@<span class="built_in">echo</span> [info] <span class="variable">%date:~,10%</span> <span class="variable">%time:~,2%</span>:<span class="variable">%time:~3,2%</span>:<span class="variable">%time:~6,2%</span> finish: <span class="variable">%errorlevel%</span> &gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line"></span>
+<span class="line">:error</span>
+<span class="line"><span class="built_in">echo</span> [error] <span class="variable">%date:~,10%</span> <span class="variable">%time:~,2%</span>:<span class="variable">%time:~3,2%</span>:<span class="variable">%time:~6,2%</span> SVNADMIN <span class="keyword">not</span> <span class="keyword">exist</span>, lease check: <span class="variable">%SVN_HOME%</span>&gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line"><span class="keyword">goto</span> end</span>
+<span class="line"></span>
+<span class="line">:end</span>
+<span class="line">@<span class="built_in">echo</span>. &gt;&gt;<span class="variable">%LOG%</span></span>
+<span class="line">:: <span class="keyword">exit</span></span>
+<span class="line"></span>
+<span class="line"><span class="built_in">PAUSE</span></span>
+</pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实很早之前就做了这个，但是最近公司要搬家所以又重新整理了一下 准备拿出来用上的，不过要用的那一天内网突然断了，所以也没有正式用，但是测试表明，十几个 svn 库，总体积三个多 g 备份的时候，只需要五分钟，超级快，保存了所有的提交记录。&lt;/p&gt;&lt;figure class=
+    
+    </summary>
+    
+    
+      <category term="svn" scheme="http://ochukai.me/tags/svn/"/>
+    
+      <category term="svn backup" scheme="http://ochukai.me/tags/svn-backup/"/>
+    
+      <category term="svn 备份" scheme="http://ochukai.me/tags/svn-%E5%A4%87%E4%BB%BD/"/>
+    
+      <category term="svn 还原" scheme="http://ochukai.me/tags/svn-%E8%BF%98%E5%8E%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>flex shrink 的用处</title>
@@ -2465,80 +2703,6 @@
       <category term="webpack" scheme="http://ochukai.me/tags/webpack/"/>
     
       <category term="webstorm" scheme="http://ochukai.me/tags/webstorm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 window 里面杀死某个进程</title>
-    <link href="http://ochukai.me/kill-process-in-window/"/>
-    <id>http://ochukai.me/kill-process-in-window/</id>
-    <published>2016-11-22T01:49:57.000Z</published>
-    <updated>2016-12-08T11:50:20.425Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="查看被谁占用"><a href="#查看被谁占用" class="headerlink" title="查看被谁占用"></a>查看被谁占用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-</pre></td><td class="code"><pre><span class="line">netstat -ano | findstr 8989</span>
-<span class="line">  </span>
-<span class="line"># C:\Users\Administrator&gt;netstat -ano | findstr 8989</span>
-<span class="line">#   TCP    0.0.0.0:8989           0.0.0.0:0              LISTENING       6360</span>
-<span class="line">#   TCP    [::]:8989              [::]:0                 LISTENING       6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53638            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53640            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53641            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53645            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53646            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53652            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53653            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:8989             [::1]:53654            ESTABLISHED     6360</span>
-<span class="line">#   TCP    [::1]:53638            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53640            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53641            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53645            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53646            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53652            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53653            [::1]:8989             ESTABLISHED     5440</span>
-<span class="line">#   TCP    [::1]:53654            [::1]:8989             ESTABLISHED     5440</span>
-</pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">tasklist | findstr 8989//查看pid为3036的是什么程序在用</span>
-</pre></td></tr></table></figure><h2 id="杀死某进程"><a href="#杀死某进程" class="headerlink" title="杀死某进程"></a>杀死某进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line"># /T 包括子进程</span>
-<span class="line"># /F 强制</span>
-<span class="line">  </span>
-<span class="line">taskkill /T /F /PID 8989</span>
-</pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;查看被谁占用&quot;&gt;&lt;a href=&quot;#查看被谁占用&quot; class=&quot;headerlink&quot; title=&quot;查看被谁占用&quot;&gt;&lt;/a&gt;查看被谁占用&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut
-    
-    </summary>
-    
-      <category term="Window" scheme="http://ochukai.me/categories/window/"/>
-    
-    
-      <category term="端口占用" scheme="http://ochukai.me/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/"/>
     
   </entry>
   
