@@ -15,3 +15,6 @@ db.json
 .vscode/
 .deploy*/
 .deploy_git/
+
+yarn.lock
+package-lock.json

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "hexo": {
-    "version": "3.3.7"
+    "version": "3.8.0"
   },
   "scripts": {
     "deploy": "hexo clean && hexo generate && hexo deploy",
@@ -11,24 +11,25 @@
     "start": "hexo clean && hexo s --debug"
   },
   "dependencies": {
-    "hexo": "^3.3.7",
-    "hexo-all-minifier": "0.0.14",
-    "hexo-baidu-url-submit": "0.0.5",
-    "hexo-cli-extras": "^1.0.4",
-    "hexo-deployer-git": "^0.3.0",
-    "hexo-featured-image": "^0.2.0",
-    "hexo-footnotes": "^1.0.1",
+    "hexo": "*",
+    "hexo-all-minifier": "*",
+    "hexo-baidu-url-submit": "*",
+    "hexo-cli-extras": "*",
+    "hexo-deployer-git": "*",
+    "hexo-featured-image": "*",
+    "hexo-footnotes": "*",
     "hexo-generator-archive": "*",
     "hexo-generator-category": "*",
-    "hexo-generator-feed": "^1.0.3",
-    "hexo-generator-index": "^0.2.1",
-    "hexo-generator-json-content": "^3.0.1",
-    "hexo-generator-seo-friendly-sitemap": "0.0.20",
-    "hexo-generator-sitemap": "^1.2.0",
-    "hexo-generator-tag": "^0.2.0",
-    "hexo-renderer-marked": "^0.3.0",
-    "hexo-renderer-pug": "0.0.5",
-    "hexo-renderer-stylus": "^0.3.3",
-    "hexo-server": "^0.2.0"
+    "hexo-generator-feed": "*",
+    "hexo-generator-index": "*",
+    "hexo-generator-json-content": "*",
+    "hexo-generator-seo-friendly-sitemap": "*",
+    "hexo-generator-sitemap": "*",
+    "hexo-generator-tag": "*",
+    "hexo-renderer-marked": "*",
+    "hexo-renderer-pug": "*",
+    "hexo-renderer-stylus": "*",
+    "hexo-server": "*",
+    "highlight.js": "*"
   }
 }
