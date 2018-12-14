@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ochukai.me/"/>
-  <updated>2018-12-14T07:04:15.551Z</updated>
+  <updated>2018-12-14T10:04:16.989Z</updated>
   <id>http://ochukai.me/</id>
   
   <author>
@@ -17,19 +17,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>《心经》</title>
-    <link href="http://ochukai.me//the-hrdaya/"/>
-    <id>http://ochukai.me//the-hrdaya/</id>
-    <published>2018-12-14T06:52:16.000Z</published>
-    <updated>2018-12-14T07:04:15.551Z</updated>
+    <title>使用 SVN 的 branch 功能 😂</title>
+    <link href="http://ochukai.me//svn-branch/"/>
+    <id>http://ochukai.me//svn-branch/</id>
+    <published>2018-12-14T09:18:08.000Z</published>
+    <updated>2018-12-14T10:04:16.989Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="简介《般若经》"><a href="#简介《般若经》" class="headerlink" title="简介《般若经》"></a>简介《般若经》</h3><p>《般若经》共有九部： 《放光般若》、《光明般若》、《道行般若》、《胜天般若》、《胜天王般若》、《文殊问般若》、《金刚般若》、《大品般若》、《小品般若》</p><blockquote><p>玄奘版 《般若波罗蜜多心经》</p></blockquote><p><img src="../assets/hrdaya.png" alt="《般若波罗蜜多心经》"></p><p>观自在菩萨，行深般若波罗蜜多时。照见五蕴皆空，度一切苦厄。</p><p>舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如是。舍利子，是诸法空相，不生不灭，不垢不净，不增不减。</p><p>是故空中无色，无受想行识，无眼耳鼻舌身意，无色声香味触法，无眼界，乃至无意识界。无无明，亦无无明尽，乃至无老死，亦无老死尽。无苦集灭道，无智亦无得，以无所得故。菩提萨埵，依般若波罗蜜多故，心无挂碍，无挂碍故，无有恐怖，远离颠倒梦想，究竟涅槃。三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。</p><p>故知般若波罗蜜多，是大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。</p><p>故说般若波罗蜜多咒，即说咒曰：揭谛揭谛，波罗揭谛，波罗僧揭谛，菩提萨婆诃。</p><blockquote><p>鸠摩罗什版 《摩诃般若波罗蜜大明咒经》</p></blockquote><p>观世音菩萨，行深般若波罗蜜时，照见五阴空，度一切苦厄。</p><p>舍利弗，色空，故无恼坏相；受空，故无受相；想空，故无知相；行空，故无作相；识空，故无觉相。何以故？</p><p>舍利弗，非色异空，非空异色，色即是空，空即是色，受、想、行、识，亦如是。</p><p>舍利弗，是诸法空相，不生不灭，不垢不净，不增不减。是空法，非过去、非未来、非现在。</p><p>是故空中无色，无受、想、行、识，无眼、耳、鼻、舌、身、意，无色、声、香、味、触、法，无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽；无苦集灭道，无智亦无得，以无所得故。</p><p>菩萨依般若波罗蜜故，心无挂碍。无挂碍故，无有恐怖，离颠倒梦想苦恼，究竟涅盘。三世诸佛，依般若波罗蜜故。得阿耨多罗三藐三菩提。故知般若波罗蜜是大明咒、无上明咒、无等等明咒，能除一切苦，真实不虚。</p><p>故说般若波罗蜜咒。即说咒曰：“竭帝竭帝 波罗竭帝波 罗僧竭帝 菩提僧莎呵。”</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>来到目前这个公司就一直再用 svn，工作之余可能会用 git 管理一些自己的项目。</p><p>目前这个项目写了一年，基本都是流水线似的开发，写完一个功能发布一个功能，一共两个人，就做在一起，沟通基本靠吼。</p><p>现在项目基本稳定了，但是要解决一些小 bug 之类的，解决之后当天直接就打包上线了，于是矛盾就出现了，功能稳定了，之前立下的 flag 要开始实现了，“发布之后这个就升级一下” 之类的话，现在要开始做了。</p><p>所以呢，如果在主分支上面升级新功能，当天解决的 bug 要打包就不愉快了，因为新代码把之前的代码搞乱了。</p><p>现在就需要分支了，其实早就需要分支了。</p><p>前几天我还在用 git 做分支，改 bug 的话， 就切换到 master，改完 bug svn 提交，打包。之后再 切回之前的 git 分支，但是 git 和 svn 的合作并不是特别融洽，麻烦。</p><p>所以今天学了一下 svn 的分支，真的，自从我听说 svn，就从来没用过他的分支功能，想来也不会太好用。</p><h2 id="开始学习-svn-的分支之前"><a href="#开始学习-svn-的分支之前" class="headerlink" title="开始学习 svn 的分支之前"></a>开始学习 svn 的分支之前</h2><p>这些知识是我看到 svn 的 branch 之后才知道的，但是要写在前面，我也不知道为啥，就写在这里吧。</p><h3 id="svn-的目录结构"><a href="#svn-的目录结构" class="headerlink" title="svn 的目录结构"></a>svn 的目录结构</h3><p>在 svn server 的管理界面创建新的 repo 的时候，会有两种选项</p><ol><li>empty repo</li><li>trunk，branches，tags</li></ol><p>第二种的意思是，创建一个 repo 文件夹，并且新建 trunk（主分支），branches（分支），tags（标签） 这三个文件夹。</p><p>第二种应该算是标准的 svn 项目结构，服务器使用 trunk 部署，平时开发在各自的分支上面做开发，做好了合并到 trunk。</p><h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><p>svn 创建分支的命令是 <strong>copy</strong>，是不是很神奇。</p><p>svn 创建分支的意思大概是，把这个文件夹复制到别的地方，你随便搞吧。因为是两个文件夹，所以肯定没关系。</p><p>所以要创建分支，可以直接执行， svn copy trunk/ branches/branch_name, svn 会原封不动的 把 trunk 文件夹的内容复制到 branches 下面的  branch_name 文件夹，真的一模一样。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ochukai@DESKTOP-IMK2E44 MINGW64 /e/dev/svn/***-pc</span><br><span class="line">$ ls</span><br><span class="line">branches  tags  trunk</span><br><span class="line"></span><br><span class="line">ochukai@DESKTOP-IMK2E44 MINGW64 /e/dev/svn/***-pc</span><br><span class="line">$ svn copy trunk/ branches/branch_name</span><br><span class="line">A         branches/branch_name</span><br><span class="line"><span class="comment"># 提交</span></span><br><span class="line">ochukai@DESKTOP-IMK2E44 MINGW64 /e/dev/svn/***-pc</span><br><span class="line">$ svn commit -m <span class="string">"add branch_name"</span></span><br></pre></td></tr></table></figure><h2 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h2><p>切换分支就是打开文件夹， <strong>cd branches/branch_name</strong></p><h2 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h2><p>跟 git 差不多。</p><p><strong>svn merge ../branches/branch_name/</strong></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ochukai@DESKTOP-IMK2E44 MINGW64 /e/dev/svn/***-pc/trunk</span><br><span class="line">$ svn merge ../branches/branch_name/</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">ochukai@DESKTOP-IMK2E44 MINGW64 /e/dev/svn/***-pc</span><br><span class="line">$ svn commit -m <span class="string">"merge"</span></span><br></pre></td></tr></table></figure><p>好了。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;简介《般若经》&quot;&gt;&lt;a href=&quot;#简介《般若经》&quot; class=&quot;headerlink&quot; title=&quot;简介《般若经》&quot;&gt;&lt;/a&gt;简介《般若经》&lt;/h3&gt;&lt;p&gt;《般若经》共有九部： 《放光般若》、《光明般若》、《道行般若》、《胜天般若》、《胜天王般若》、《文殊
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;来到目前这个公司就一直再用 svn，工作之余可能会用 git 管理一些自己的项目。&lt;/p&gt;
+&lt;p&gt;目前这个项目写了一年，基本都是流水线似的开
+      
+    
+    </summary>
+    
+    
+      <category term="svn" scheme="http://ochukai.me/tags/svn/"/>
+    
+      <category term="branch" scheme="http://ochukai.me/tags/branch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《心经》</title>
+    <link href="http://ochukai.me//the-hrdaya/"/>
+    <id>http://ochukai.me//the-hrdaya/</id>
+    <published>2018-12-14T06:52:16.000Z</published>
+    <updated>2018-12-14T09:16:30.512Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>其实我不是复制过来直接就发布了，最近我写代码之余，慢慢开始抄经了~</p><p>字虽不好看，但是在坚持，今年喜欢上了钢笔，买了几只网红笔，像贵妃，78G 之类便宜好用极具性价比的。</p><p>没想到，上一篇文章发布在去年九月，那个时候刚刚开始写现在的一个用 electron 包裹的前端小程序，也不算小，但是持续到今天十一月，好像很大了。</p><p>就是这个不大不小的程序，整整一年零三个月，我没有写过文章了，手生，脑也生，我是不是要组织一下代码，哦不，我要组织一下语言。</p><p>本年度第一篇文章就在这个凄凄惨惨的下午诞生了，这一篇更像是一篇总结，前一段事件我发现，我的网站访问不了了，可能是因为一年多没有提交代码，所以 git 把我的 page 服务停了吧，同样是上个月，我收到了阿里云给我的信息，ochukai.me 要续费了，这个域名已经三年了，但是因为去年一年的懒惰，这里变得极为萧条，ochuunn 这个主题的星星数量一直在 120 附近徘徊，看了十分心痛，可我又抽不出时间来完善升级一下。</p><p>说到抽不出时间，年初我两次阿里云的电话面试没过。因为他们问我业余时间做什么，我说我没有业余时间。</p><p>我想起，四个月前，我卸载了王者农药，真的是农药，七个赛季王者也玩腻了，加上越来越大的肚腩，于是狠心，卸载。顺便开始撸铁，睡觉时间也在慢慢变长，从日均 5.7，到现在 7.5 了，肩膀不怎么疼了，胳膊也粗了，腹肌正在酝酿中，已经可以摸到了，很开心，找到了人生的一大毒瘤，并把它消灭的成就感促使我开心。</p><p>我买了好多自动铅笔，买了一个二手画板，有事没事画一幅，很丑，但是我很善良，哈哈。</p><hr><h3 id="简介《般若经》"><a href="#简介《般若经》" class="headerlink" title="简介《般若经》"></a>简介《般若经》</h3><p>《般若经》共有九部： 《放光般若》、《光明般若》、《道行般若》、《胜天般若》、《胜天王般若》、《文殊问般若》、《金刚般若》、《大品般若》、《小品般若》</p><blockquote><p>玄奘版 《般若波罗蜜多心经》</p></blockquote><p><img src="../assets/hrdaya.png" alt="《般若波罗蜜多心经》"></p><p>观自在菩萨，行深般若波罗蜜多时。照见五蕴皆空，度一切苦厄。</p><p>舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如是。舍利子，是诸法空相，不生不灭，不垢不净，不增不减。</p><p>是故空中无色，无受想行识，无眼耳鼻舌身意，无色声香味触法，无眼界，乃至无意识界。无无明，亦无无明尽，乃至无老死，亦无老死尽。无苦集灭道，无智亦无得，以无所得故。菩提萨埵，依般若波罗蜜多故，心无挂碍，无挂碍故，无有恐怖，远离颠倒梦想，究竟涅槃。三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。</p><p>故知般若波罗蜜多，是大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。</p><p>故说般若波罗蜜多咒，即说咒曰：揭谛揭谛，波罗揭谛，波罗僧揭谛，菩提萨婆诃。</p><blockquote><p>鸠摩罗什版 《摩诃般若波罗蜜大明咒经》</p></blockquote><p>观世音菩萨，行深般若波罗蜜时，照见五阴空，度一切苦厄。</p><p>舍利弗，色空，故无恼坏相；受空，故无受相；想空，故无知相；行空，故无作相；识空，故无觉相。何以故？</p><p>舍利弗，非色异空，非空异色，色即是空，空即是色，受、想、行、识，亦如是。</p><p>舍利弗，是诸法空相，不生不灭，不垢不净，不增不减。是空法，非过去、非未来、非现在。</p><p>是故空中无色，无受、想、行、识，无眼、耳、鼻、舌、身、意，无色、声、香、味、触、法，无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽；无苦集灭道，无智亦无得，以无所得故。</p><p>菩萨依般若波罗蜜故，心无挂碍。无挂碍故，无有恐怖，离颠倒梦想苦恼，究竟涅盘。三世诸佛，依般若波罗蜜故。得阿耨多罗三藐三菩提。故知般若波罗蜜是大明咒、无上明咒、无等等明咒，能除一切苦，真实不虚。</p><p>故说般若波罗蜜咒。即说咒曰：“竭帝竭帝 波罗竭帝波 罗僧竭帝 菩提僧莎呵。”</p><blockquote><p>回向偈</p></blockquote><p>愿以此功德。庄严佛净土。</p><p>上报四重恩。下济三途苦。</p><p>若有见闻者。悉发菩提心。</p><p>尽此一报身。同生极乐国。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;其实我不是复制过来直接就发布了，最近我写代码之余，慢慢开始抄经了~&lt;/p&gt;
+&lt;p&gt;字虽不好看，但是在坚持，今年喜欢上了钢笔，买了几只网红笔，
       
     
     </summary>
@@ -541,34 +568,6 @@
       <category term="js" scheme="http://ochukai.me/tags/js/"/>
     
       <category term="decorator" scheme="http://ochukai.me/tags/decorator/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用命令行更新 Win10 的密钥</title>
-    <link href="http://ochukai.me//use-terminal-to-update-win10-key/"/>
-    <id>http://ochukai.me//use-terminal-to-update-win10-key/</id>
-    <published>2016-12-16T05:02:13.000Z</published>
-    <updated>2017-04-14T01:57:38.820Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置密钥</span></span><br><span class="line">slmgr /ipk DDCGG-9N3QJ-2B23T-C***V-XD72F</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查是否已激活</span></span><br><span class="line">slmgr.vbs -ato</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天在公司装了 win10，但是点击更换密钥的时候老是卡死，然后就搜了一下发现可以用命令行设置&lt;/p&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="win10" scheme="http://ochukai.me/tags/win10/"/>
-    
-      <category term="win10-key" scheme="http://ochukai.me/tags/win10-key/"/>
-    
-      <category term="slmgr" scheme="http://ochukai.me/tags/slmgr/"/>
     
   </entry>
   
