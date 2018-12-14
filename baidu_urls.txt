@@ -1,3 +1,4 @@
+http://ochukai.me/the-hrdaya/
 http://ochukai.me/svn-backup-and-restore/
 http://ochukai.me/flex-shrink/
 http://ochukai.me/nginx-uwsgi-django/

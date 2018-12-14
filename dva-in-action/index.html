@@ -1,141 +1,26 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>稍微总结一下 dva 😜 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2017-01-23T01:28:20.000Z">January 23, 2017</time><h1 class="post__title"><a href="/dva-in-action/">稍微总结一下 dva 😜</a></h1><div class="post__main echo"><p>使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇</p><h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p><img src="../images/dva-flow.png" alt=""></p><p>上面是一张 dva 的图，<code>component，state，dispatch，connect</code> 都是与 redux 一样的概念，不过，dva 把 <strong>action -&gt; reducer</strong> 拆分成了，<strong>action -&gt; model(reducer, effect,subscription)</strong>，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。</p><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>一个简单的 model 是这样的:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-</pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span>
-<span class="line">  <span class="attr">namespace</span>: <span class="string">'example'</span>, <span class="comment">// 这里是命名空间  </span></span>
-<span class="line">  state: &#123;&#125;,</span>
-<span class="line">  <span class="attr">subscriptions</span>: &#123;&#125;,</span>
-<span class="line">  </span>
-<span class="line">  <span class="attr">effects</span>: &#123;</span>
-<span class="line">    * query(&#123; payload &#125;, &#123; select, call, put &#125;) &#123;</span>
-<span class="line">      <span class="comment">//</span></span>
-<span class="line">    &#125;</span>
-<span class="line">  &#125;,</span>
-<span class="line"></span>
-<span class="line">  <span class="attr">reducers</span>: &#123;</span>
-<span class="line">    querySuccess(state, &#123; payload &#125;) &#123;</span>
-<span class="line">      <span class="comment">//</span></span>
-<span class="line">    &#125;</span>
-<span class="line">  &#125;,</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><p>可以简单的理解为 comboReducer 使用这个值作为 key，而且 namespace 最重要的地方是用在 dispatch（put）的时候</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// 假如 example 的 model 定义了 query 这个 effect 或者 reducer。</span></span>
-<span class="line">dispatch(&#123; <span class="attr">type</span>: <span class="string">'example/query'</span> &#125;)</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 当前 model 中存在名为 querySuccess 的 reducer</span></span>
-<span class="line"><span class="comment">// 然后在 effect 中这样访问 reducer</span></span>
-<span class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'querySuccess'</span> &#125;) </span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 在组件中当然可以直接 dispatch(&#123; type: 'example/someReducer' &#125;)</span></span>
-</pre></td></tr></table></figure><h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>就是一个对象</p><h3 id="subscriptions"><a href="#subscriptions" class="headerlink" title="subscriptions"></a>subscriptions</h3><p>顾名思义可以订阅一些事件，待续😆</p><h3 id="effects"><a href="#effects" class="headerlink" title="effects"></a>effects</h3><p>异步操作，这里使用了 <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="external">redux-sagas</a>，先举个例子吧，其实就是异步的action， 但是是使用 sagas 实现的，很好（niu）看（bi）。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span>
-<span class="line">* update(&#123; payload &#125;, &#123; call, put &#125;) &#123;</span>
-<span class="line">  <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'showModalLoading'</span> &#125;);</span>
-<span class="line"></span>
-<span class="line">  <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">yield</span> call(saveTenants, payload);</span>
-<span class="line">  <span class="keyword">if</span> (data.status === <span class="string">'success'</span>) &#123;</span>
-<span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'hideModal'</span> &#125;);</span>
-<span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'query'</span> &#125;); <span class="comment">// 刷新一下列表</span></span>
-<span class="line">  &#125; <span class="keyword">else</span> &#123;</span>
-<span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'hideModalLoading'</span> &#125;);</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;,</span>
-<span class="line"><span class="comment">// ...</span></span>
-</pre></td></tr></table></figure><p>（感觉丝毫不需要我用文字描述，顺着读完就知道是什么意思了，还是特么异步的）</p><blockquote><p>select, put, call 这些概念是 sagas 里面的</p></blockquote><h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>修改 state 的地方</p><h2 id="dva"><a href="#dva" class="headerlink" title="dva"></a>dva</h2><p>dva 会对 dispatch 做一些处理，比如他要把 <strong>example/query</strong> 分成 example 下面的 query （effect/reducer）。</p><p>所以肯定要注册这个 model，才能让 dva 知道 example 的存在，</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-</pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dva <span class="keyword">from</span> <span class="string">'dva'</span>;</span>
-<span class="line"><span class="keyword">const</span> app = dva();</span>
-<span class="line"></span>
-<span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/example'</span>));</span>
-</pre></td></tr></table></figure><p>其实 dva 出了 model 这个方法，还有其他的几个</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. Init</span></span>
-<span class="line"><span class="keyword">import</span> dva <span class="keyword">from</span> <span class="string">'dva'</span>;</span>
-<span class="line"><span class="keyword">const</span> app = dva();</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 2. Plugins</span></span>
-<span class="line">app.use(&#123;</span>
-<span class="line"><span class="comment">/**</span>
-<span class="line">* called when an effect or subscription emit an error.</span>
-<span class="line">*</span>
-<span class="line">* @param  &#123;string&#125; err       Exception</span>
-<span class="line">* @param  &#123;function&#125; action  the effect or subscription</span>
-<span class="line">*/</span></span>
-<span class="line"><span class="comment">// onError : (err, action) =&gt; &#123;&#125;</span></span>
-<span class="line">&#125;);</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 3. Model</span></span>
-<span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/example'</span>));</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 4. Router</span></span>
-<span class="line">app.router(<span class="built_in">require</span>(<span class="string">'./router'</span>));</span>
-<span class="line"></span>
-<span class="line"><span class="comment">// 5. Start</span></span>
-<span class="line">app.start(<span class="string">'#root'</span>);</span>
-</pre></td></tr></table></figure><h2 id="dev-cli"><a href="#dev-cli" class="headerlink" title="dev-cli"></a><a href="https://github.com/dvajs/dva-cli" target="_blank" rel="external">dev-cli</a></h2><p>比较好用的东西，解决了新建 router，component，model 还要添加 dva 的配置的问题，生成 router， component 的同时会直接在 dva 配置中更新。</p><p>例子：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-</pre></td><td class="code"><pre><span class="line">$ dva g route product-list</span>
-<span class="line">$ dva g model products</span>
-<span class="line">$ dva g component Editor</span>
-<span class="line">$ dva g component Users/UserModal</span>
-<span class="line">$ dva g component Header --no-css</span>
-</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/js/">js</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/dva/">dva</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/react/">react</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8yOTI0Ni81ODEz"><script>!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&(n=e.createElement(t),n.src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2017 Oliver Wang<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div></footer><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" content="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>稍微总结一下 dva 😜 - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2017-01-23T01:28:20.000Z">January 23, 2017</time><h1 class="post__title"><a href="/dva-in-action/">稍微总结一下 dva 😜</a></h1><div class="post__main echo"><p>使用 dva 已经四个月了吧，陆陆续续做了两三个项目，之前在非常恶心的傻逼公司 Kyligence，算是我的 dva 的启蒙地，那一天傍晚，不小心看到了 ant-tool，然后又看到了 antd，于是感觉我的前端有了一次不小的改变~ 😇</p>
+<h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p><img src="../images/dva-flow.png" alt=""></p>
+<p>上面是一张 dva 的图，<code>component，state，dispatch，connect</code> 都是与 redux 一样的概念，不过，dva 把 <strong>action -&gt; reducer</strong> 拆分成了，<strong>action -&gt; model(reducer, effect,subscription)</strong>，这一部分改变的还是很多的，让 dispatch 的写法方便了一万倍。</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>一个简单的 model 是这样的:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  namespace: <span class="string">'example'</span>, <span class="comment">// 这里是命名空间  </span></span><br><span class="line">  state: &#123;&#125;,</span><br><span class="line">  subscriptions: &#123;&#125;,</span><br><span class="line">  </span><br><span class="line">  effects: &#123;</span><br><span class="line">    * query(&#123; payload &#125;, &#123; select, call, put &#125;) &#123;</span><br><span class="line">      <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  reducers: &#123;</span><br><span class="line">    querySuccess(state, &#123; payload &#125;) &#123;</span><br><span class="line">      <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h3><p>可以简单的理解为 comboReducer 使用这个值作为 key，而且 namespace 最重要的地方是用在 dispatch（put）的时候</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假如 example 的 model 定义了 query 这个 effect 或者 reducer。</span></span><br><span class="line">dispatch(&#123; <span class="attr">type</span>: <span class="string">'example/query'</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前 model 中存在名为 querySuccess 的 reducer</span></span><br><span class="line"><span class="comment">// 然后在 effect 中这样访问 reducer</span></span><br><span class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'querySuccess'</span> &#125;) </span><br><span class="line"></span><br><span class="line"><span class="comment">// 在组件中当然可以直接 dispatch(&#123; type: 'example/someReducer' &#125;)</span></span><br></pre></td></tr></table></figure>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>就是一个对象</p>
+<h3 id="subscriptions"><a href="#subscriptions" class="headerlink" title="subscriptions"></a>subscriptions</h3><p>顾名思义可以订阅一些事件，待续😆</p>
+<h3 id="effects"><a href="#effects" class="headerlink" title="effects"></a>effects</h3><p>异步操作，这里使用了 <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="noopener">redux-sagas</a>，先举个例子吧，其实就是异步的action， 但是是使用 sagas 实现的，很好（niu）看（bi）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">* update(&#123; payload &#125;, &#123; call, put &#125;) &#123;</span><br><span class="line">  <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'showModalLoading'</span> &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">yield</span> call(saveTenants, payload);</span><br><span class="line">  <span class="keyword">if</span> (data.status === <span class="string">'success'</span>) &#123;</span><br><span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'hideModal'</span> &#125;);</span><br><span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'query'</span> &#125;); <span class="comment">// 刷新一下列表</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'hideModalLoading'</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p>（感觉丝毫不需要我用文字描述，顺着读完就知道是什么意思了，还是特么异步的）</p>
+<blockquote>
+<p>select, put, call 这些概念是 sagas 里面的</p>
+</blockquote>
+<h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>修改 state 的地方</p>
+<h2 id="dva"><a href="#dva" class="headerlink" title="dva"></a>dva</h2><p>dva 会对 dispatch 做一些处理，比如他要把 <strong>example/query</strong> 分成 example 下面的 query （effect/reducer）。</p>
+<p>所以肯定要注册这个 model，才能让 dva 知道 example 的存在，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dva <span class="keyword">from</span> <span class="string">'dva'</span>;</span><br><span class="line"><span class="keyword">const</span> app = dva();</span><br><span class="line"></span><br><span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/example'</span>));</span><br></pre></td></tr></table></figure>
+<p>其实 dva 出了 model 这个方法，还有其他的几个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. Init</span></span><br><span class="line"><span class="keyword">import</span> dva <span class="keyword">from</span> <span class="string">'dva'</span>;</span><br><span class="line"><span class="keyword">const</span> app = dva();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. Plugins</span></span><br><span class="line">app.use(&#123;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* called when an effect or subscription emit an error.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* @param  &#123;string&#125; err       Exception</span></span><br><span class="line"><span class="comment">* @param  &#123;function&#125; action  the effect or subscription</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// onError : (err, action) =&gt; &#123;&#125;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. Model</span></span><br><span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/example'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. Router</span></span><br><span class="line">app.router(<span class="built_in">require</span>(<span class="string">'./router'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. Start</span></span><br><span class="line">app.start(<span class="string">'#root'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="dev-cli"><a href="#dev-cli" class="headerlink" title="dev-cli"></a><a href="https://github.com/dvajs/dva-cli" target="_blank" rel="noopener">dev-cli</a></h2><p>比较好用的东西，解决了新建 router，component，model 还要添加 dva 的配置的问题，生成 router， component 的同时会直接在 dva 配置中更新。</p>
+<p>例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ dva g route product-list</span><br><span class="line">$ dva g model products</span><br><span class="line">$ dva g component Editor</span><br><span class="line">$ dva g component Users/UserModal</span><br><span class="line">$ dva g component Header --no-css</span><br></pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/js/">js</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/dva/">dva</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/react/">react</a></li></ul></footer></article><section class="reward"> <a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8yOTI0Ni81ODEz"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 Oliver Wang<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+ga('create','UA-73840162-1');
+ga('send','pageview');</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

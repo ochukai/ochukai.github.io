@@ -1,79 +1,21 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" conauthortent="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Django 项目部署在 nginx + uwsgi - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2017-06-27T06:28:31.000Z">June 27, 2017</time><h1 class="post__title"><a href="/nginx-uwsgi-django/">Django 项目部署在 nginx + uwsgi</a></h1><div class="post__main echo"><p>好久不写博客了，最近一直在忙一个私活，一个问卷类的项目，用 django 写的，说实话，之前除了在公司厘米用，都没有用过 python，还好我有一些好同事，有问题可以直接问，方便了很多。</p><p>为了避免长时间不写文章的尴尬，我急匆匆的新键了一个 md，开始写。</p><p>一般来说，本地运行 django 项目是很简单，<br></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">python manage.py runserver</span>
-</pre></td></tr></table></figure><p></p><h2 id="UWSGI"><a href="#UWSGI" class="headerlink" title="UWSGI"></a>UWSGI</h2><p>总感觉这个单词全部大写的话，很别扭，使用 uwsgi 启动项目的话也不是太难，</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-</pre></td><td class="code"><pre><span class="line"><span class="comment"># docon.ini</span></span>
-<span class="line"><span class="comment"># uwsgi abc.ini</span></span>
-<span class="line"><span class="comment"># uwsgi --reload /tmp/***.pid</span></span>
-<span class="line"><span class="comment"># uwsgi --stop /tmp/***.pid</span></span>
-<span class="line"><span class="section"></span>
-<span class="line">[uwsgi]</span></span>
-<span class="line"><span class="attr">chdir</span>=/home/docon</span>
-<span class="line"><span class="attr">module</span>=docon.wsgi:application</span>
-<span class="line"><span class="attr">master</span>=<span class="literal">True</span></span>
-<span class="line"><span class="attr">processes</span>=<span class="number">2</span></span>
-<span class="line"><span class="attr">threads</span>=<span class="number">2</span></span>
-<span class="line"><span class="attr">socket</span>=:<span class="number">8000</span></span>
-<span class="line"><span class="comment"># http=:80</span></span>
-<span class="line"><span class="attr">daemonize</span>=/var/log/uwsgi-docon.log</span>
-<span class="line"><span class="attr">pidfile</span>=/tmp/docon.pid</span>
-<span class="line"><span class="attr">vacuum</span>=<span class="literal">True</span></span>
-</pre></td></tr></table></figure><p>有一点要注意的就是， 如果单独使用 uwsgi，需要写 <strong>http=:80</strong>, 如果配合 nginx 的话，就改成 <strong>socket=:8000</strong>, 8000 随便写。</p><h2 id="NGINX"><a href="#NGINX" class="headerlink" title="NGINX"></a>NGINX</h2><p>一般初装 ubuntu 的 nginx 之后，有一个默认的配置，在 <strong>/etc/nginx/sites-enabled/default</strong> 这个位置，需要修改成自己项目的配置。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">vi /etc/nginx/sites-enabled/default</span>
-</pre></td></tr></table></figure><p>然后修改成自己的配置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-</pre></td><td class="code"><pre><span class="line">server &#123;</span>
-<span class="line">  listen 80;</span>
-<span class="line">  server_name ***.com;</span>
-<span class="line">  charset utf-8;</span>
-<span class="line"></span>
-<span class="line">  client_max_body_size 75M;</span>
-<span class="line"></span>
-<span class="line">  location / &#123;</span>
-<span class="line">    include uwsgi_params;</span>
-<span class="line">    uwsgi_pass localhost:8000;</span>
-<span class="line">  &#125;</span>
-<span class="line"></span>
-<span class="line">  location /static/ &#123;</span>
-<span class="line">    alias /var/www/html/docon/static/;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;</span>
-</pre></td></tr></table></figure><p>重启 nginx</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">/etc/init.d/nginx restart</span>
-</pre></td></tr></table></figure><p>哦，对了，在启动之前，要把静态文件，放到上面配置的 <strong>/var/www/html/docon/static</strong> 中去，这个路径是自己配置的，随便写吧，首先要在项目的 setting.py 里面设置 <strong>STATIC_ROOT</strong>,</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">STATIC_ROOT = /var/www/html/docon/static</span>
-</pre></td></tr></table></figure><p>然后在执行下面的命令，把所有的静态文件转移过去。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">python manage.py collectstatic</span>
-</pre></td></tr></table></figure><p>如果启动的过程中报错了, 查看占用的端口, 然后 kill 就好了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span>
-<span class="line">2</span>
-</pre></td><td class="code"><pre><span class="line">netstat -ntpl</span>
-<span class="line">kill -9 ***</span>
-</pre></td></tr></table></figure></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/django/">django</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/nginx/">nginx</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/uwsgi/">uwsgi</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8yOTI0Ni81ODEz"><script>!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&(n=e.createElement(t),n.src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2017 Oliver Wang<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div></footer><script>!function(e,t,a,n,c,o){e.GoogleAnalyticsObject=n,e[n]||(e[n]=function(){(e[n].q=e[n].q||[]).push(arguments)}),e[n].l=+new Date,c=t.createElement(a),o=t.getElementsByTagName(a)[0],c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script","ga"),ga("create","UA-73840162-1"),ga("send","pageview")</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="google-site-verification" content="-zz_UiN3Z6szo1tjCMg8H66_XeAH2-dL2KLimiLJ0Ak"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, Oliver, 技术"><meta name="description" content="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Django 项目部署在 nginx + uwsgi - I am Oliver</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2017-06-27T06:28:31.000Z">June 27, 2017</time><h1 class="post__title"><a href="/nginx-uwsgi-django/">Django 项目部署在 nginx + uwsgi</a></h1><div class="post__main echo"><p>好久不写博客了，最近一直在忙一个私活，一个问卷类的项目，用 django 写的，说实话，之前除了在公司厘米用，都没有用过 python，还好我有一些好同事，有问题可以直接问，方便了很多。</p>
+<p>为了避免长时间不写文章的尴尬，我急匆匆的新键了一个 md，开始写。</p>
+<p>一般来说，本地运行 django 项目是很简单，<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure></p>
+<h2 id="UWSGI"><a href="#UWSGI" class="headerlink" title="UWSGI"></a>UWSGI</h2><p>总感觉这个单词全部大写的话，很别扭，使用 uwsgi 启动项目的话也不是太难，</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docon.ini</span></span><br><span class="line"><span class="comment"># uwsgi abc.ini</span></span><br><span class="line"><span class="comment"># uwsgi --reload /tmp/***.pid</span></span><br><span class="line"><span class="comment"># uwsgi --stop /tmp/***.pid</span></span><br><span class="line"></span><br><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">chdir</span>=/home/docon</span><br><span class="line"><span class="attr">module</span>=docon.wsgi:application</span><br><span class="line"><span class="attr">master</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">processes</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">threads</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">socket</span>=:<span class="number">8000</span></span><br><span class="line"><span class="comment"># http=:80</span></span><br><span class="line"><span class="attr">daemonize</span>=/var/log/uwsgi-docon.log</span><br><span class="line"><span class="attr">pidfile</span>=/tmp/docon.pid</span><br><span class="line"><span class="attr">vacuum</span>=<span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p>有一点要注意的就是， 如果单独使用 uwsgi，需要写 <strong>http=:80</strong>, 如果配合 nginx 的话，就改成 <strong>socket=:8000</strong>, 8000 随便写。</p>
+<h2 id="NGINX"><a href="#NGINX" class="headerlink" title="NGINX"></a>NGINX</h2><p>一般初装 ubuntu 的 nginx 之后，有一个默认的配置，在 <strong>/etc/nginx/sites-enabled/default</strong> 这个位置，需要修改成自己项目的配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/nginx/sites-enabled/default</span><br></pre></td></tr></table></figure>
+<p>然后修改成自己的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name ***.com;</span><br><span class="line">  charset utf-8;</span><br><span class="line"></span><br><span class="line">  client_max_body_size 75M;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    include uwsgi_params;</span><br><span class="line">    uwsgi_pass localhost:8000;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  location /static/ &#123;</span><br><span class="line">    alias /var/www/html/docon/static/;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启 nginx</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
+<p>哦，对了，在启动之前，要把静态文件，放到上面配置的 <strong>/var/www/html/docon/static</strong> 中去，这个路径是自己配置的，随便写吧，首先要在项目的 setting.py 里面设置 <strong>STATIC_ROOT</strong>, </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STATIC_ROOT = /var/www/html/docon/static</span><br></pre></td></tr></table></figure>
+<p>然后在执行下面的命令，把所有的静态文件转移过去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py collectstatic</span><br></pre></td></tr></table></figure>
+<p>如果启动的过程中报错了, 查看占用的端口, 然后 kill 就好了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat -ntpl</span><br><span class="line">kill -9 ***</span><br></pre></td></tr></table></figure>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/django/">django</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/nginx/">nginx</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/uwsgi/">uwsgi</a></li></ul></footer></article><section class="reward"> <a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section><div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8yOTI0Ni81ODEz"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 Oliver Wang<a href="http://www.beianbaba.com/icp/ochukai.me" target="view_window" style="color:#fff">（鲁ICP备16006255号-1）</a></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+ga('create','UA-73840162-1');
+ga('send','pageview');</script><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
