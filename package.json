@@ -1,7 +1,16 @@
 {
-  "name": "ochuunn-blog",
-  "version": "0.1.0",
+  "name": "ochukai.github.io",
+  "version": "1.1.0",
   "private": false,
+  "author": {
+    "name": "ochukai",
+    "url": "https://github.com/ochukai"
+  },
+  "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ochukai/ochukai.github.io.git"
+  },
   "hexo": {
     "version": "3.8.0"
   },
