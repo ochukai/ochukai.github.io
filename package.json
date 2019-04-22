@@ -8,8 +8,8 @@
   },
   "license": "MIT",
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/ochukai/ochukai.github.io.git"
+    "type": "git",
+    "url": "git+https://github.com/ochukai/ochukai.github.io.git"
   },
   "hexo": {
     "version": "3.8.0"
@@ -20,25 +20,25 @@
     "start": "hexo clean && hexo s --debug"
   },
   "dependencies": {
-    "hexo": "*",
-    "hexo-all-minifier": "*",
+    "hexo": "^3.8.0",
+    "hexo-all-minifier": "^0.5.3",
     "hexo-baidu-url-submit": "*",
     "hexo-cli-extras": "*",
-    "hexo-deployer-git": "*",
+    "hexo-deployer-git": "^1.0.0",
     "hexo-featured-image": "*",
     "hexo-footnotes": "*",
     "hexo-generator-archive": "*",
     "hexo-generator-category": "*",
     "hexo-generator-feed": "*",
     "hexo-generator-index": "*",
-    "hexo-generator-json-content": "*",
-    "hexo-generator-seo-friendly-sitemap": "*",
+    "hexo-generator-json-content": "^4.1.3",
+    "hexo-generator-seo-friendly-sitemap": "0.0.25",
     "hexo-generator-sitemap": "*",
     "hexo-generator-tag": "*",
-    "hexo-renderer-marked": "*",
+    "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-pug": "*",
     "hexo-renderer-stylus": "*",
     "hexo-server": "*",
-    "highlight.js": "*"
+    "highlight.js": "^9.15.6"
   }
 }
