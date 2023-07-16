@@ -10,7 +10,7 @@
 
     <url>
         <loc>https://ochukai.github.io/categories/css/</loc>
-        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <lastmod>2023-07-16T05:37:59.705Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -23,14 +23,14 @@
     </url>
 
     <url>
-        <loc>https://ochukai.github.io/categories/javascript/</loc>
+        <loc>https://ochukai.github.io/categories/webstorm/</loc>
         <lastmod>2023-07-16T03:46:17.425Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://ochukai.github.io/categories/webstorm/</loc>
+        <loc>https://ochukai.github.io/categories/javascript/</loc>
         <lastmod>2023-07-16T03:46:17.425Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -86,14 +86,14 @@
     </url>
 
     <url>
-        <loc>https://ochukai.github.io/categories/react/javascript/</loc>
+        <loc>https://ochukai.github.io/categories/ie/</loc>
         <lastmod>2023-07-16T03:46:17.422Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://ochukai.github.io/categories/ie/</loc>
+        <loc>https://ochukai.github.io/categories/react/javascript/</loc>
         <lastmod>2023-07-16T03:46:17.422Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
