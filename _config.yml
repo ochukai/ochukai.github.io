@@ -7,7 +7,7 @@ title: I am Oliver
 subtitle:
 description: 这是我的博客。会记录平时遇到的技术问题~
 author: Oliver Wang
-keywords: 博客, Ochukai, Oliver, 技术
+keywords: 博客, Ochukai, 技术
 language: zh-Hans
 timezone:
 
@@ -17,7 +17,7 @@ sitemap:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://ochukai.me/
+url: https://ochukai.github.io/
 root: /
 permalink: /:title/
 permalink_defaults:
@@ -61,10 +61,6 @@ archive_generator:
   monthly: true
   daily: false
 
-all_minifier:
-  enable: true
-  debug_enable: false
-
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
@@ -92,21 +88,12 @@ feed:
   path: atom.xml
   limit: 20
 
-# baidu
-baidu_url_submit:
-  count: 100 ## 提交最新的一个链接
-  host: ochukai.me ## 在百度站长平台中注册的域名
-  token: npgKZT5CBlJEtiFc ## 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
-  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
-
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
 - type: git
   repo: https://github.com/ochukai/ochukai.github.io.git
   branch: master
-- type: baidu_url_submitter
-
 
 # Admin
 # admin:
@@ -115,4 +102,3 @@ deploy:
 #   secret: ochukai
   # expire: 60*1
   # cors: http://localhost:3000
-
