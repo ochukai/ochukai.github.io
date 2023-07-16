@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, 技术"><meta name="description" content="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>GIT - 记住密码在 window &amp; linux - I am Oliver</title>
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+<!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+<script src="/js/fancybox/jquery.fancybox.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/tags">标签</a></li><li class="head-nav__item"><a class="head-nav__link" href="/archives">目录</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2015-11-23T02:46:44.000Z">2015 - 11 - 23 10:46:44</time><h1 class="post__title"><a href="/git-remember-password-in-window-and-linux/">GIT - 记住密码在 window &amp; linux</a></h1><div class="post__main echo"><h1 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 因为 window 不允许之间新建 . 开头的文件，所以使用 mv 的方式</span></span><br><span class="line"><span class="built_in">mv</span> git-credentials .git-credentials</span><br></pre></td></tr></table></figure>
+
+<p>然后编辑 <strong>.git-credentials</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># github 是这样的格式</span><br><span class="line">https://&#123;username&#125;:&#123;password&#125;@github.com </span><br><span class="line"></span><br><span class="line"># git.oschina.net 是这样的</span><br><span class="line">https://&#123;username&#125;:&#123;password&#125;@git.oschina.net</span><br></pre></td></tr></table></figure>
+
+<p>最后一步是</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><blockquote>
+<p>在此之前或许要添加 ssh-key (<a target="_blank" rel="noopener" href="https://help.github.com/articles/generating-ssh-keys/#platform-linux">https://help.github.com/articles/generating-ssh-keys/#platform-linux</a>)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global credential.helper cache</span><br><span class="line"># 默认缓存密码15分钟，可以改得更长, 比如1小时</span><br><span class="line">$ git config --global credential.helper &#x27;cache --timeout=3600&#x27;</span><br></pre></td></tr></table></figure>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/git/">git</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81/">记住密码</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section></main><footer class="foot"><div class="foot-copy">&copy; 2016 - 2023 Oliver Wang</div></footer>
+<script src="/js/scroller.js"></script>
+
+<script src="/js/main.js"></script>
+</body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, 技术"><meta name="description" content="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>VUE 总结一下~ - I am Oliver</title>
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+<!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+<script src="/js/fancybox/jquery.fancybox.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/tags">标签</a></li><li class="head-nav__item"><a class="head-nav__link" href="/archives">目录</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2017-05-24T03:27:55.000Z">2017 - 05 - 24 11:27:55</time><h1 class="post__title"><a href="/vue-summary/">VUE 总结一下~</a></h1><div class="post__main echo"><p>最近开始接触 vue, 写了一个算是前端小论坛的公司内部项目, 算是一个知识库, 可添加一些常见的问题供别人查阅~</p>
+<p>现在做个总结吧, 项目写完一个多星期, 现在想想差不多都忘记了~ 真是老了~</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="/images/vue-lifecycle.png"></p>
+<p>其中 created 和 mounted 的顺序要确定好~ 比较重要的就像下面这三个吧, 其他的像是 <code>updated</code>, <code>beforeUpdate</code> 我几乎没有用过, 暂时不说~ </p>
+<h3 id="created"><a href="#created" class="headerlink" title="created"></a>created</h3><p>实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch&#x2F;event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</p>
+<h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。<br>这个时候可以获取到 template 里面的标签元素了, 如果要修改大小样式之类的在这里面写~</p>
+<h3 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed"></a>destroyed</h3><p>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。 该钩子在服务器端渲染期间不被调用。</p>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>使用过 vue 的 transition 标签之后最大的感慨便是, 做动画比 react 简单好多啊, 可能是我之前用 react 并没有写过动画的缘故吧, 但不可否认 vue 的动画很简单~</p>
+<p>我之前写的一个小组件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">&quot;back-top-fade&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">&quot;show&quot;</span> <span class="attr">class</span>=<span class="string">&quot;back-to-top hidden-xs&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;handleBackTopClick&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;el-icon-caret-top&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这是一个简单的返回顶部的按钮, 当页面滚动到 一定距离的时候 <strong>show</strong> 变为 true, (对了, 为什么我的网址没有返回顶部的按钮呢~ 打开控制台就知道了~)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">handleScroll</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> scrollTop = <span class="title function_">getScrollTop</span>();</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">show</span> = scrollTop &gt; <span class="number">400</span>;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>transition 下面的元素通过 <strong>v-if</strong> <strong>v-show</strong> 来控制隐藏和消失~ 然后会有几个状态类~</p>
+<ol>
+<li><strong>v-enter</strong>: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。</li>
+<li><strong>v-enter-active</strong>: 定义进入过渡的结束状态。在元素被插入时生效，在 transition&#x2F;animation 完成之后移除。</li>
+<li><strong>v-leave</strong>: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。</li>
+<li><strong>v-leave-active</strong>: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 transition&#x2F;animation 完成之后移除。</li>
+</ol>
+<p>我只写了一个样式, 这样的话 按钮进出场的效果都是一样的~</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.back-top-fade-enter</span>,</span><br><span class="line"><span class="selector-class">.back-top-fade-leave-active</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">30px</span>);</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>下面这几个比较有用</p>
+<ul>
+<li>普通的  @click 事件</li>
+<li>@click.self 这样很有用, 只是点击自己的时候有用</li>
+<li>@click.stop 阻止单击事件冒泡</li>
+<li>@click.prevent 阻止默认行为</li>
+</ul>
+<h2 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue Router"></a>Vue Router</h2><p><strong>beforeRouteUpdate</strong> 这个方法很好用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">beforeRouteEnter (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">  <span class="comment">// 在渲染该组件的对应路由被 confirm 前调用</span></span><br><span class="line">  <span class="comment">// 不！能！获取组件实例 `this`</span></span><br><span class="line">  <span class="comment">// 因为当钩子执行前，组件实例还没被创建</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">beforeRouteUpdate (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">  <span class="comment">// 在当前路由改变，但是该组件被复用时调用</span></span><br><span class="line">  <span class="comment">// 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，</span></span><br><span class="line">  <span class="comment">// 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。</span></span><br><span class="line">  <span class="comment">// 可以访问组件实例 `this`</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">beforeRouteLeave (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">  <span class="comment">// 导航离开该组件的对应路由时调用</span></span><br><span class="line">  <span class="comment">// 可以访问组件实例 `this`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>还有一个就是</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 命名的路由 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#123; name: &#x27;user&#x27;, params: &#123; userId: 123 &#125;&#125;&quot;</span>&gt;</span>User<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2><p>watch 很好用~</p>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/vue/">vue</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/image-preview/">image-preview</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section></main><footer class="foot"><div class="foot-copy">&copy; 2016 - 2023 Oliver Wang</div></footer>
+<script src="/js/scroller.js"></script>
+
+<script src="/js/main.js"></script>
+</body></html>

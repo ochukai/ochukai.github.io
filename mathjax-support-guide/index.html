@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, 技术"><meta name="description" content="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>❤ 如何支持 MathJax~ - I am Oliver</title>
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+<!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+<script src="/js/fancybox/jquery.fancybox.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/tags">标签</a></li><li class="head-nav__item"><a class="head-nav__link" href="/archives">目录</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2019-04-22T07:49:39.000Z">2019 - 04 - 22 15:49:39</time><h1 class="post__title"><a href="/mathjax-support-guide/">❤ 如何支持 MathJax~</a></h1><div class="post__main echo"><p>好久好久之前就有一个 issue 提出来要支持 <strong>MathJax</strong>，结果到现在我都没有实现，直到昨天看到有人又要这个，所以我觉得还是写写吧，毕竟不是太复杂的东西。</p>
+<p>是这个 <a target="_blank" rel="noopener" href="https://github.com/mathjax/MathJax">MathJax</a>， 但是这个 repo clone 到本地之后，我发现他有 50m + 的大小，于是找了一个 cdn:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure>
+
+<p>想要页面支持 MathJax，只要这个页面引入他的 js，然后按照 MathJax 的语法来写公式就 ok 了。</p>
+<h2 id="mathjax-true"><a href="#mathjax-true" class="headerlink" title="mathjax: true"></a>mathjax: true</h2><p>当然作为一个主题，我就帮你们把 js 引入了，你们只要写公式就好了，但是因为 MathJax 的 js 还是挺大的，所以我在页头加了一个属性：<strong>mathjax</strong>，就是来标加，如果当前文章需要 MathJax 的支持，就把 <strong>mathjax</strong> 设置为 <strong>true</strong>。</p>
+<p>就像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: ❤ 如何支持 MathJax~</span><br><span class="line">tags:</span><br><span class="line">  - mathjax</span><br><span class="line">date: 2019-04-22 15:49:39</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br><span class="line"># 文章内容</span><br></pre></td></tr></table></figure>
+
+<p>其他页面就不用添加这个属性了，自动就不会引入 MathJax 的 js。</p>
+<h2 id="开始写公式"><a href="#开始写公式" class="headerlink" title="开始写公式"></a>开始写公式</h2><p>下面就是写公式了，之前我都没有接触过这个东西，所以随便从网上找了一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\sum_&#123;i=0&#125;^n i^2 = \frac&#123;(n^2+n)(2n+1)&#125;&#123;6&#125;$$</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>new post -&gt; 复制代码 -&gt; yarn start -&gt; 打开 localhost:4000</p>
+</blockquote>
+<p>发现公式没有出来，于是我又去 bing 查了一下，原来还需要改一个东西，</p>
+<p>大概就在 <code>~/node_modules/marked/lib/marked.js</code> 的第 464 行，如果找不到，就搜索 escape。</p>
+<p><img src="/images/mathjax-marked.png" alt="修改代码"></p>
+<p>然后照图，把 <strong>escape</strong>， <strong>em</strong> 修改为下面的值:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inline = &#123;</span><br><span class="line">  <span class="comment">// escape: /^\\([\\`*&#123;&#125;\[\]()#+\-.!_&gt;])/,</span></span><br><span class="line">  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()# +\-.!_&gt;])/</span>,</span><br><span class="line">  <span class="attr">autolink</span>: <span class="regexp">/^&lt;(scheme:[^\s\x00-\x1f&lt;&gt;]*|email)&gt;/</span>,</span><br><span class="line">  <span class="attr">url</span>: noop,</span><br><span class="line">  <span class="attr">tag</span>: <span class="regexp">/^&lt;!--[\s\S]*?--&gt;|^&lt;\/?[a-zA-Z0-9\-]+(?:&quot;[^&quot;]*&quot;|&#x27;[^&#x27;]*&#x27;|\s[^&lt;&#x27;&quot;&gt;\/\s]*)*?\/?&gt;/</span>,</span><br><span class="line">  <span class="attr">link</span>: <span class="regexp">/^!?\[(inside)\]\(href\)/</span>,</span><br><span class="line">  <span class="attr">reflink</span>: <span class="regexp">/^!?\[(inside)\]\s*\[([^\]]*)\]/</span>,</span><br><span class="line">  <span class="attr">nolink</span>: <span class="regexp">/^!?\[((?:\[[^\[\]]*\]|\\[\[\]]|[^\[\]])*)\]/</span>,</span><br><span class="line">  <span class="attr">strong</span>: <span class="regexp">/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/</span>,</span><br><span class="line">  <span class="comment">// em: /^_([^\s_](?:[^_]|__)+?[^\s_])_\b|^\*((?:\*\*|[^*])+?)\*(?!\*)/,</span></span><br><span class="line">  <span class="attr">em</span>:<span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br><span class="line">  <span class="attr">code</span>: <span class="regexp">/^(`+)\s*([\s\S]*?[^`]?)\s*\1(?!`)/</span>,</span><br><span class="line">  <span class="attr">br</span>: <span class="regexp">/^ &#123;2,&#125;\n(?!\s*$)/</span>,</span><br><span class="line">  <span class="attr">del</span>: noop,</span><br><span class="line">  <span class="attr">text</span>: <span class="regexp">/^[\s\S]+?(?=[\\&lt;!\[`*]|\b_| &#123;2,&#125;\n|$)/</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后再次 yarn start，发现公式出来了~</p>
+<p>$$\sum_{i&#x3D;0}^n i^2 &#x3D; \frac{(n^2+n)(2n+1)}{6}$$</p>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/mathjax/">mathjax</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});
+MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for(i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="//cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></main><footer class="foot"><div class="foot-copy">&copy; 2016 - 2023 Oliver Wang</div></footer>
+<script src="/js/scroller.js"></script>
+
+<script src="/js/main.js"></script>
+</body></html>

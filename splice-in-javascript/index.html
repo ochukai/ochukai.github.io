@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Oliver Wang"><meta name="keywords" content="博客, Ochukai, 技术"><meta name="description" content="这是我的博客。会记录平时遇到的技术问题~"><link rel="alternative" href="/atom.xml" title="I am Oliver" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Javascript 中的 splice 方法 - I am Oliver</title>
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+<!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+<script src="/js/fancybox/jquery.fancybox.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">I am Oliver</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/tags">标签</a></li><li class="head-nav__item"><a class="head-nav__link" href="/archives">目录</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time class="post__time" datetime="2016-03-16T06:25:53.000Z">2016 - 03 - 16 14:25:53</time><h1 class="post__title"><a href="/splice-in-javascript/">Javascript 中的 splice 方法</a></h1><div class="post__main echo"><blockquote>
+<p>splice() 方法向&#x2F;从数组中添加&#x2F;删除项目，然后返回被删除的项目。(会改变原始数组)</p>
+</blockquote>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arrayObject.<span class="title function_">splice</span>(index, how-many, item1, item2, ...itemX)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index</td>
+<td>必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。</td>
+</tr>
+<tr>
+<td>how-many</td>
+<td>必需。要删除的项目数量。<code>如果设置为 0，则不会删除项目</code>。</td>
+</tr>
+<tr>
+<td>item1, …, itemX</td>
+<td>可选。向数组添加的新项目。</td>
+</tr>
+</tbody></table>
+<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><p>在数组最开始插入一个元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];   <span class="comment">// arrr: [1, 2, 3, 4]</span></span><br><span class="line">arrr.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);   <span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+<p>删除第三个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 3, 4]</span></span><br><span class="line">arrr.<span class="title function_">splice</span>(<span class="number">3</span>, <span class="number">1</span>) <span class="comment">// return [3] 删除的元素会做为返回返回值</span></span><br><span class="line">                  <span class="comment">// arrr: [0, 1, 2, 4]</span></span><br></pre></td></tr></table></figure>
+
+<p>删除后面两个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span><br><span class="line">arrr.<span class="title function_">splice</span>(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">// return [2， 4]</span></span><br><span class="line">                  <span class="comment">// arrr: [0, 1]</span></span><br></pre></td></tr></table></figure>
+
+<p>替换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把第二个元素变成 5</span></span><br><span class="line"><span class="comment">// arrr: [0, 1, 2, 4]</span></span><br><span class="line">arrr.<span class="title function_">splice</span>(<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>); <span class="comment">// [0, 1, 5, 4]</span></span><br></pre></td></tr></table></figure>
+
+<p>交换位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">swapArrayItemPosition</span>(<span class="params">arr, one, another</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> dummy = arr.<span class="title function_">splice</span>(one, <span class="number">1</span>, arr[another])[<span class="number">0</span>];</span><br><span class="line">  arr.<span class="title function_">splice</span>(another, <span class="number">1</span>, dummy);</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// arrr = [0, 1, 5, 4]</span></span><br><span class="line"><span class="title function_">swapArrayItemPosition</span>(arrr, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// [0, 5, 1, 4]</span></span><br></pre></td></tr></table></figure>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/js/">js</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/splice/">splice</a></li><li class="post__tag__item"><a class="post__tag__link" href="/tags/array/">array</a></li></ul></footer></article><section class="reward"><a class="btn-reward" href="#">打赏</a><div class="reward-wrapper clearfix"><img src="/img/wechat.png" title="微信"></div></section></main><footer class="foot"><div class="foot-copy">&copy; 2016 - 2023 Oliver Wang</div></footer>
+<script src="/js/scroller.js"></script>
+
+<script src="/js/main.js"></script>
+</body></html>

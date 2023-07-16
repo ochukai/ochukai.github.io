@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://ochukai.github.io/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-tag-plugins/</loc>
+        <lastmod>2023-07-16T03:46:17.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-no-title/</loc>
+        <lastmod>2023-07-16T03:46:17.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-videos/</loc>
+        <lastmod>2023-07-16T03:46:17.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-tags/</loc>
+        <lastmod>2023-07-16T03:46:17.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%86%E3%82%B9%E3%83%88/</loc>
+        <lastmod>2023-07-16T03:46:17.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-%E4%B8%AD%E6%96%87%E6%B8%AC%E8%A9%A6/</loc>
+        <lastmod>2023-07-16T03:46:17.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/vue-image-preview/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/use-terminal-to-update-win10-key/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/vue-summary/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/webpack-dev-server-vs-webstorm/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/wamp-mysql-chinese-question-mark/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/window-focus-wallpaper/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zepto-plugin/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/wrong-clearfix-make-me-crazy/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-elements/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/write-a-compatible-js-module/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-gallery-post/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+        <image:image>
+
+            <image:loc>https://ochukai.github.io/assets/wallpaper-2572384.jpg</image:loc>
+
+        </image:image>
+
+        <image:image>
+
+            <image:loc>https://ochukai.github.io/assets/wallpaper-2311325.jpg</image:loc>
+
+        </image:image>
+
+        <image:image>
+
+            <image:loc>https://ochukai.github.io/assets/wallpaper-878514.jpg</image:loc>
+
+        </image:image>
+
+        <image:image>
+
+            <image:loc>http://placehold.it/350x150.jpg</image:loc>
+
+        </image:image>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-excerpts/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-hello-world/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-images/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/zhexo-long-title/</loc>
+        <lastmod>2023-07-16T03:46:17.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/qian-zi-wen/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/react-15-5-0/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/protect-yourself-in-network/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/promise-in-action/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/svn-backup-and-restore/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/remove-svn-folder/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/svn-branch/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/show-a-default-image-when-the-image-is-broken/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/splice-in-javascript/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/telephone-number-not-recognize-in-wx/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/ths-difference-between-splice-and-slice/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/textarea-height-auto-increase/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/the-hrdaya/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/use-js-to-convert-ts-to-data/</loc>
+        <lastmod>2023-07-16T03:46:17.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/js-bind-this/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/js-is-in-sight/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/kill-process-in-window/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/kill-process/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/live-code/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/mathjax-support-guide/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/menu-with-moved-elfish/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/mathjax-test/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/modify-wamp-mysql-password/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/my-first-tattoo/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/my-second-tattoo/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/my-third-tattoo/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/navicat-10-1-7-key/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/nginx-uwsgi-django/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/prevent-deep-div-scroll-with-the-top-element/</loc>
+        <lastmod>2023-07-16T03:46:17.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/dva-in-action/</loc>
+        <lastmod>2023-07-16T03:46:17.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/flex-shrink/</loc>
+        <lastmod>2023-07-16T03:46:17.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/for-in-scss/</loc>
+        <lastmod>2023-07-16T03:46:17.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/formdata-in-action/</loc>
+        <lastmod>2023-07-16T03:46:17.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/git-remember-password-in-window-and-linux/</loc>
+        <lastmod>2023-07-16T03:46:17.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/higashino-keigo/</loc>
+        <lastmod>2023-07-16T03:46:17.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/esekesu-senkanno-onnanoko/</loc>
+        <lastmod>2023-07-16T03:46:17.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/ie-css-hack/</loc>
+        <lastmod>2023-07-16T03:46:17.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/battleship-girls/</loc>
+        <lastmod>2023-07-16T03:46:17.421Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/beautiful-color-git-bash/</loc>
+        <lastmod>2023-07-16T03:46:17.421Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/change-window-terminal-terminal-font/</loc>
+        <lastmod>2023-07-16T03:46:17.421Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/css-animation-queue-list/</loc>
+        <lastmod>2023-07-16T03:46:17.421Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/decorator-in-js/</loc>
+        <lastmod>2023-07-16T03:46:17.421Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/correct-ugly-markdown-css-in-webstorm/</loc>
+        <lastmod>2023-07-16T03:46:17.421Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://ochukai.github.io/baseview-in-backbone/</loc>
+        <lastmod>2023-07-16T03:46:17.420Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+</urlset>
+<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->
