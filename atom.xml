@@ -6,7 +6,7 @@
   <link href="https://ochukai.github.io/atom.xml" rel="self"/>
   
   <link href="https://ochukai.github.io/"/>
-  <updated>2023-07-16T05:37:59.705Z</updated>
+  <updated>2023-07-16T05:40:56.177Z</updated>
   <id>https://ochukai.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://ochukai.github.io/wrong-clearfix-make-me-crazy/"/>
     <id>https://ochukai.github.io/wrong-clearfix-make-me-crazy/</id>
     <published>2019-06-06T02:23:45.000Z</published>
-    <updated>2023-07-16T05:37:59.705Z</updated>
+    <updated>2023-07-16T05:40:56.177Z</updated>
     
     <content type="html"><![CDATA[<p>Clearfix 就是这么简单！</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>,</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: table;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot; &quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">clear</span>: both</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -40,6 +40,8 @@
     <category term="css" scheme="https://ochukai.github.io/tags/css/"/>
     
     <category term="html" scheme="https://ochukai.github.io/tags/html/"/>
+    
+    <category term="clearfix" scheme="https://ochukai.github.io/tags/clearfix/"/>
     
   </entry>
   
